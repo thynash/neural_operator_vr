@@ -1,0 +1,1011 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>training.checkpoint_manager API documentation</title>
+<meta name="description" content="Checkpoint management for saving and loading training state.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>training.checkpoint_manager</code></h1>
+</header>
+<section id="section-intro">
+<p>Checkpoint management for saving and loading training state.</p>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="training.checkpoint_manager.CheckpointManager"><code class="flex name class">
+<span>class <span class="ident">CheckpointManager</span></span>
+<span>(</span><span>checkpoint_dir: str | pathlib.Path)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class CheckpointManager:
+    &#34;&#34;&#34;
+    Manager for saving and loading training checkpoints.
+    
+    Handles complete training state persistence including model weights,
+    optimizer state, random number generator states, training history,
+    and configuration for exact reproducibility.
+    
+    Parameters
+    ----------
+    checkpoint_dir : str or Path
+        Directory where checkpoints will be saved.
+    
+    Attributes
+    ----------
+    checkpoint_dir : Path
+        Directory for checkpoint storage.
+    
+    Examples
+    --------
+    &gt;&gt;&gt; manager = CheckpointManager(&#34;./checkpoints&#34;)
+    &gt;&gt;&gt; manager.save_checkpoint(model, optimizer, iteration=1000, epoch=10, history={}, config={})
+    &gt;&gt;&gt; state = manager.load_checkpoint(&#34;checkpoint_iter_1000.pt&#34;, model, optimizer)
+    &#34;&#34;&#34;
+    
+    def __init__(self, checkpoint_dir: Union[str, Path]):
+        &#34;&#34;&#34;Initialize checkpoint manager with output directory.&#34;&#34;&#34;
+        self.checkpoint_dir = Path(checkpoint_dir)
+        self.checkpoint_dir.mkdir(parents=True, exist_ok=True)
+    
+    def save_checkpoint(
+        self,
+        model: NeuralOperator,
+        optimizer: OptimizerWithVariance,
+        iteration: int,
+        epoch: int,
+        history: Dict[str, Any],
+        config: Dict[str, Any],
+        filename: str = None
+    ) -&gt; Path:
+        &#34;&#34;&#34;
+        Save complete training checkpoint.
+        
+        Stores model state, optimizer state, training iteration/epoch,
+        random number generator states, training history, and configuration.
+        
+        Parameters
+        ----------
+        model : NeuralOperator
+            Neural operator model to save.
+        optimizer : OptimizerWithVariance
+            Optimizer to save.
+        iteration : int
+            Current training iteration number.
+        epoch : int
+            Current training epoch number.
+        history : Dict[str, Any]
+            Training history dictionary.
+        config : Dict[str, Any]
+            Experiment configuration dictionary.
+        filename : str, optional
+            Name of checkpoint file. If None, uses &#34;checkpoint_iter_{iteration}.pt&#34;.
+        
+        Returns
+        -------
+        Path
+            Path to the saved checkpoint file.
+        
+        Examples
+        --------
+        &gt;&gt;&gt; manager.save_checkpoint(
+        ...     model=model,
+        ...     optimizer=optimizer,
+        ...     iteration=1000,
+        ...     epoch=10,
+        ...     history=logger.history,
+        ...     config=config,
+        ...     filename=&#34;checkpoint_1000.pt&#34;
+        ... )
+        &#34;&#34;&#34;
+        if filename is None:
+            filename = f&#34;checkpoint_iter_{iteration}.pt&#34;
+        
+        filepath = self.checkpoint_dir / filename
+        
+        # Collect all RNG states
+        rng_states = {
+            &#39;python&#39;: random.getstate(),
+            &#39;numpy&#39;: np.random.get_state(),
+            &#39;torch&#39;: torch.get_rng_state(),
+        }
+        
+        # Add CUDA RNG state if available
+        if torch.cuda.is_available():
+            rng_states[&#39;torch_cuda&#39;] = torch.cuda.get_rng_state_all()
+        
+        # Create checkpoint dictionary
+        checkpoint = {
+            &#39;model_state_dict&#39;: model.state_dict(),
+            &#39;optimizer_state_dict&#39;: optimizer.get_state_dict(),
+            &#39;iteration&#39;: iteration,
+            &#39;epoch&#39;: epoch,
+            &#39;rng_states&#39;: rng_states,
+            &#39;history&#39;: history,
+            &#39;config&#39;: config
+        }
+        
+        # Save checkpoint
+        torch.save(checkpoint, filepath)
+        
+        return filepath
+    
+    def load_checkpoint(
+        self,
+        filename: str,
+        model: Optional[NeuralOperator] = None,
+        optimizer: Optional[OptimizerWithVariance] = None,
+        load_rng_states: bool = True,
+        weights_only: bool = False
+    ) -&gt; Dict[str, Any]:
+        &#34;&#34;&#34;
+        Load training checkpoint and restore states.
+        
+        Supports two modes:
+        1. Full restoration: Restores all states for exact training continuation
+        2. Weights only: Loads only model weights for inference
+        
+        Parameters
+        ----------
+        filename : str
+            Name of checkpoint file to load.
+        model : NeuralOperator, optional
+            Model to load weights into. Required unless weights_only=False.
+        optimizer : OptimizerWithVariance, optional
+            Optimizer to load state into. Ignored if weights_only=True.
+        load_rng_states : bool, default=True
+            Whether to restore random number generator states.
+        weights_only : bool, default=False
+            If True, only load model weights (for inference).
+        
+        Returns
+        -------
+        Dict[str, Any]
+            Dictionary containing checkpoint data including iteration, epoch, history, config.
+        
+        Raises
+        ------
+        FileNotFoundError
+            If checkpoint file does not exist.
+        ValueError
+            If model is None when trying to load weights.
+        CheckpointCompatibilityError
+            If checkpoint is incompatible with current model architecture.
+        
+        Examples
+        --------
+        &gt;&gt;&gt; # Full restoration for training continuation
+        &gt;&gt;&gt; state = manager.load_checkpoint(&#34;checkpoint_1000.pt&#34;, model, optimizer)
+        &gt;&gt;&gt; iteration = state[&#39;iteration&#39;]
+        &gt;&gt;&gt; 
+        &gt;&gt;&gt; # Weights only for inference
+        &gt;&gt;&gt; state = manager.load_checkpoint(&#34;final_checkpoint.pt&#34;, model, weights_only=True)
+        &#34;&#34;&#34;
+        filepath = self.checkpoint_dir / filename
+        
+        if not filepath.exists():
+            raise FileNotFoundError(f&#34;Checkpoint file not found: {filepath}&#34;)
+        
+        # Load checkpoint
+        checkpoint = torch.load(filepath, map_location=&#39;cpu&#39;)
+        
+        # Validate checkpoint compatibility if model provided
+        if model is not None:
+            self._validate_checkpoint_compatibility(checkpoint, model)
+        
+        # Load model weights
+        if model is not None:
+            try:
+                model.load_state_dict(checkpoint[&#39;model_state_dict&#39;])
+            except RuntimeError as e:
+                # Provide detailed error information
+                checkpoint_info = self._get_model_info_from_state_dict(checkpoint[&#39;model_state_dict&#39;])
+                model_info = self._get_model_info_from_model(model)
+                
+                raise CheckpointCompatibilityError(
+                    f&#34;Failed to load checkpoint weights: {str(e)}&#34;,
+                    checkpoint_info=checkpoint_info,
+                    model_info=model_info
+                ) from e
+        elif not weights_only:
+            raise ValueError(&#34;Model must be provided to load checkpoint&#34;)
+        
+        # If weights_only mode, return early
+        if weights_only:
+            return {
+                &#39;iteration&#39;: checkpoint.get(&#39;iteration&#39;, 0),
+                &#39;epoch&#39;: checkpoint.get(&#39;epoch&#39;, 0),
+                &#39;config&#39;: checkpoint.get(&#39;config&#39;, {})
+            }
+        
+        # Load optimizer state
+        if optimizer is not None and &#39;optimizer_state_dict&#39; in checkpoint:
+            try:
+                optimizer.load_state_dict(checkpoint[&#39;optimizer_state_dict&#39;])
+            except Exception as e:
+                import warnings
+                warnings.warn(f&#34;Failed to load optimizer state: {str(e)}&#34;)
+        
+        # Restore RNG states
+        if load_rng_states and &#39;rng_states&#39; in checkpoint:
+            rng_states = checkpoint[&#39;rng_states&#39;]
+            
+            # Restore Python RNG state
+            if &#39;python&#39; in rng_states:
+                random.setstate(rng_states[&#39;python&#39;])
+            
+            # Restore NumPy RNG state
+            if &#39;numpy&#39; in rng_states:
+                np.random.set_state(rng_states[&#39;numpy&#39;])
+            
+            # Restore PyTorch RNG state
+            if &#39;torch&#39; in rng_states:
+                torch.set_rng_state(rng_states[&#39;torch&#39;])
+            
+            # Restore CUDA RNG state
+            if &#39;torch_cuda&#39; in rng_states and torch.cuda.is_available():
+                torch.cuda.set_rng_state_all(rng_states[&#39;torch_cuda&#39;])
+        
+        return {
+            &#39;iteration&#39;: checkpoint.get(&#39;iteration&#39;, 0),
+            &#39;epoch&#39;: checkpoint.get(&#39;epoch&#39;, 0),
+            &#39;history&#39;: checkpoint.get(&#39;history&#39;, {}),
+            &#39;config&#39;: checkpoint.get(&#39;config&#39;, {})
+        }
+    
+    def _validate_checkpoint_compatibility(
+        self,
+        checkpoint: Dict[str, Any],
+        model: NeuralOperator
+    ) -&gt; None:
+        &#34;&#34;&#34;
+        Validate that checkpoint is compatible with current model.
+        
+        Parameters
+        ----------
+        checkpoint : Dict[str, Any]
+            Loaded checkpoint dictionary.
+        model : NeuralOperator
+            Current model instance.
+        
+        Raises
+        ------
+        CheckpointCompatibilityError
+            If checkpoint is incompatible with model.
+        &#34;&#34;&#34;
+        checkpoint_state = checkpoint.get(&#39;model_state_dict&#39;, {})
+        model_state = model.state_dict()
+        
+        # Get parameter information
+        checkpoint_info = self._get_model_info_from_state_dict(checkpoint_state)
+        model_info = self._get_model_info_from_model(model)
+        
+        # Check parameter count
+        if checkpoint_info[&#39;num_parameters&#39;] != model_info[&#39;num_parameters&#39;]:
+            raise CheckpointCompatibilityError(
+                &#34;Checkpoint has different number of parameters than current model&#34;,
+                checkpoint_info=checkpoint_info,
+                model_info=model_info
+            )
+        
+        # Check parameter names
+        checkpoint_params = set(checkpoint_state.keys())
+        model_params = set(model_state.keys())
+        
+        missing_in_checkpoint = model_params - checkpoint_params
+        extra_in_checkpoint = checkpoint_params - model_params
+        
+        if missing_in_checkpoint or extra_in_checkpoint:
+            error_msg = &#34;Checkpoint parameter names don&#39;t match current model&#34;
+            
+            if missing_in_checkpoint:
+                checkpoint_info[&#39;missing_parameters&#39;] = list(missing_in_checkpoint)[:10]  # Show first 10
+            
+            if extra_in_checkpoint:
+                checkpoint_info[&#39;extra_parameters&#39;] = list(extra_in_checkpoint)[:10]  # Show first 10
+            
+            raise CheckpointCompatibilityError(
+                error_msg,
+                checkpoint_info=checkpoint_info,
+                model_info=model_info
+            )
+        
+        # Check parameter shapes
+        shape_mismatches = []
+        for name in checkpoint_params:
+            checkpoint_shape = checkpoint_state[name].shape
+            model_shape = model_state[name].shape
+            
+            if checkpoint_shape != model_shape:
+                shape_mismatches.append({
+                    &#39;parameter&#39;: name,
+                    &#39;checkpoint_shape&#39;: checkpoint_shape,
+                    &#39;model_shape&#39;: model_shape
+                })
+        
+        if shape_mismatches:
+            checkpoint_info[&#39;shape_mismatches&#39;] = shape_mismatches[:10]  # Show first 10
+            
+            raise CheckpointCompatibilityError(
+                &#34;Checkpoint has parameters with different shapes than current model&#34;,
+                checkpoint_info=checkpoint_info,
+                model_info=model_info
+            )
+    
+    def _get_model_info_from_state_dict(self, state_dict: Dict[str, torch.Tensor]) -&gt; Dict[str, Any]:
+        &#34;&#34;&#34;Extract model information from state dict.&#34;&#34;&#34;
+        num_params = sum(p.numel() for p in state_dict.values())
+        param_names = list(state_dict.keys())
+        
+        return {
+            &#39;num_parameters&#39;: num_params,
+            &#39;num_layers&#39;: len(param_names),
+            &#39;parameter_names&#39;: param_names[:10],  # Show first 10
+            &#39;total_parameter_names&#39;: len(param_names)
+        }
+    
+    def _get_model_info_from_model(self, model: NeuralOperator) -&gt; Dict[str, Any]:
+        &#34;&#34;&#34;Extract model information from model instance.&#34;&#34;&#34;
+        state_dict = model.state_dict()
+        num_params = model.get_parameter_count()
+        param_names = list(state_dict.keys())
+        
+        return {
+            &#39;num_parameters&#39;: num_params,
+            &#39;num_layers&#39;: len(param_names),
+            &#39;parameter_names&#39;: param_names[:10],  # Show first 10
+            &#39;total_parameter_names&#39;: len(param_names),
+            &#39;model_type&#39;: type(model).__name__
+        }
+    
+    def list_checkpoints(self) -&gt; list:
+        &#34;&#34;&#34;
+        List all checkpoint files in the checkpoint directory.
+        
+        Returns
+        -------
+        list
+            List of checkpoint filenames sorted by modification time.
+        
+        Examples
+        --------
+        &gt;&gt;&gt; checkpoints = manager.list_checkpoints()
+        &gt;&gt;&gt; print(f&#34;Found {len(checkpoints)} checkpoints&#34;)
+        &#34;&#34;&#34;
+        checkpoints = list(self.checkpoint_dir.glob(&#34;*.pt&#34;))
+        checkpoints.sort(key=lambda p: p.stat().st_mtime)
+        return [cp.name for cp in checkpoints]
+    
+    def get_latest_checkpoint(self) -&gt; Optional[str]:
+        &#34;&#34;&#34;
+        Get the most recently saved checkpoint filename.
+        
+        Returns
+        -------
+        Optional[str]
+            Filename of the latest checkpoint, or None if no checkpoints exist.
+        
+        Examples
+        --------
+        &gt;&gt;&gt; latest = manager.get_latest_checkpoint()
+        &gt;&gt;&gt; if latest:
+        ...     state = manager.load_checkpoint(latest, model, optimizer)
+        &#34;&#34;&#34;
+        checkpoints = self.list_checkpoints()
+        return checkpoints[-1] if checkpoints else None
+    
+    def delete_checkpoint(self, filename: str) -&gt; None:
+        &#34;&#34;&#34;
+        Delete a checkpoint file.
+        
+        Parameters
+        ----------
+        filename : str
+            Name of checkpoint file to delete.
+        
+        Raises
+        ------
+        FileNotFoundError
+            If checkpoint file does not exist.
+        
+        Examples
+        --------
+        &gt;&gt;&gt; manager.delete_checkpoint(&#34;checkpoint_iter_500.pt&#34;)
+        &#34;&#34;&#34;
+        filepath = self.checkpoint_dir / filename
+        
+        if not filepath.exists():
+            raise FileNotFoundError(f&#34;Checkpoint file not found: {filepath}&#34;)
+        
+        filepath.unlink()
+    
+    def cleanup_old_checkpoints(self, keep_last_n: int = 5) -&gt; None:
+        &#34;&#34;&#34;
+        Delete old checkpoints, keeping only the most recent ones.
+        
+        Parameters
+        ----------
+        keep_last_n : int, default=5
+            Number of most recent checkpoints to keep.
+        
+        Examples
+        --------
+        &gt;&gt;&gt; # Keep only the 5 most recent checkpoints
+        &gt;&gt;&gt; manager.cleanup_old_checkpoints(keep_last_n=5)
+        &#34;&#34;&#34;
+        checkpoints = self.list_checkpoints()
+        
+        # Keep final checkpoint if it exists
+        final_checkpoint = &#39;final_checkpoint.pt&#39;
+        if final_checkpoint in checkpoints:
+            checkpoints.remove(final_checkpoint)
+        
+        # Delete old checkpoints
+        if len(checkpoints) &gt; keep_last_n:
+            for checkpoint in checkpoints[:-keep_last_n]:
+                self.delete_checkpoint(checkpoint)</code></pre>
+</details>
+<div class="desc"><p>Manager for saving and loading training checkpoints.</p>
+<p>Handles complete training state persistence including model weights,
+optimizer state, random number generator states, training history,
+and configuration for exact reproducibility.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>checkpoint_dir</code></strong> :&ensp;<code>str</code> or <code>Path</code></dt>
+<dd>Directory where checkpoints will be saved.</dd>
+</dl>
+<h2 id="attributes">Attributes</h2>
+<dl>
+<dt><strong><code>checkpoint_dir</code></strong> :&ensp;<code>Path</code></dt>
+<dd>Directory for checkpoint storage.</dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; manager = CheckpointManager(&quot;./checkpoints&quot;)
+&gt;&gt;&gt; manager.save_checkpoint(model, optimizer, iteration=1000, epoch=10, history={}, config={})
+&gt;&gt;&gt; state = manager.load_checkpoint(&quot;checkpoint_iter_1000.pt&quot;, model, optimizer)
+</code></pre>
+<p>Initialize checkpoint manager with output directory.</p></div>
+<h3>Methods</h3>
+<dl>
+<dt id="training.checkpoint_manager.CheckpointManager.cleanup_old_checkpoints"><code class="name flex">
+<span>def <span class="ident">cleanup_old_checkpoints</span></span>(<span>self, keep_last_n: int = 5) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def cleanup_old_checkpoints(self, keep_last_n: int = 5) -&gt; None:
+    &#34;&#34;&#34;
+    Delete old checkpoints, keeping only the most recent ones.
+    
+    Parameters
+    ----------
+    keep_last_n : int, default=5
+        Number of most recent checkpoints to keep.
+    
+    Examples
+    --------
+    &gt;&gt;&gt; # Keep only the 5 most recent checkpoints
+    &gt;&gt;&gt; manager.cleanup_old_checkpoints(keep_last_n=5)
+    &#34;&#34;&#34;
+    checkpoints = self.list_checkpoints()
+    
+    # Keep final checkpoint if it exists
+    final_checkpoint = &#39;final_checkpoint.pt&#39;
+    if final_checkpoint in checkpoints:
+        checkpoints.remove(final_checkpoint)
+    
+    # Delete old checkpoints
+    if len(checkpoints) &gt; keep_last_n:
+        for checkpoint in checkpoints[:-keep_last_n]:
+            self.delete_checkpoint(checkpoint)</code></pre>
+</details>
+<div class="desc"><p>Delete old checkpoints, keeping only the most recent ones.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>keep_last_n</code></strong> :&ensp;<code>int</code>, default=<code>5</code></dt>
+<dd>Number of most recent checkpoints to keep.</dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; # Keep only the 5 most recent checkpoints
+&gt;&gt;&gt; manager.cleanup_old_checkpoints(keep_last_n=5)
+</code></pre></div>
+</dd>
+<dt id="training.checkpoint_manager.CheckpointManager.delete_checkpoint"><code class="name flex">
+<span>def <span class="ident">delete_checkpoint</span></span>(<span>self, filename: str) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def delete_checkpoint(self, filename: str) -&gt; None:
+    &#34;&#34;&#34;
+    Delete a checkpoint file.
+    
+    Parameters
+    ----------
+    filename : str
+        Name of checkpoint file to delete.
+    
+    Raises
+    ------
+    FileNotFoundError
+        If checkpoint file does not exist.
+    
+    Examples
+    --------
+    &gt;&gt;&gt; manager.delete_checkpoint(&#34;checkpoint_iter_500.pt&#34;)
+    &#34;&#34;&#34;
+    filepath = self.checkpoint_dir / filename
+    
+    if not filepath.exists():
+        raise FileNotFoundError(f&#34;Checkpoint file not found: {filepath}&#34;)
+    
+    filepath.unlink()</code></pre>
+</details>
+<div class="desc"><p>Delete a checkpoint file.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>filename</code></strong> :&ensp;<code>str</code></dt>
+<dd>Name of checkpoint file to delete.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>FileNotFoundError</code></dt>
+<dd>If checkpoint file does not exist.</dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; manager.delete_checkpoint(&quot;checkpoint_iter_500.pt&quot;)
+</code></pre></div>
+</dd>
+<dt id="training.checkpoint_manager.CheckpointManager.get_latest_checkpoint"><code class="name flex">
+<span>def <span class="ident">get_latest_checkpoint</span></span>(<span>self) ‑> str | None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_latest_checkpoint(self) -&gt; Optional[str]:
+    &#34;&#34;&#34;
+    Get the most recently saved checkpoint filename.
+    
+    Returns
+    -------
+    Optional[str]
+        Filename of the latest checkpoint, or None if no checkpoints exist.
+    
+    Examples
+    --------
+    &gt;&gt;&gt; latest = manager.get_latest_checkpoint()
+    &gt;&gt;&gt; if latest:
+    ...     state = manager.load_checkpoint(latest, model, optimizer)
+    &#34;&#34;&#34;
+    checkpoints = self.list_checkpoints()
+    return checkpoints[-1] if checkpoints else None</code></pre>
+</details>
+<div class="desc"><p>Get the most recently saved checkpoint filename.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>Optional[str]</code></dt>
+<dd>Filename of the latest checkpoint, or None if no checkpoints exist.</dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; latest = manager.get_latest_checkpoint()
+&gt;&gt;&gt; if latest:
+...     state = manager.load_checkpoint(latest, model, optimizer)
+</code></pre></div>
+</dd>
+<dt id="training.checkpoint_manager.CheckpointManager.list_checkpoints"><code class="name flex">
+<span>def <span class="ident">list_checkpoints</span></span>(<span>self) ‑> list</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def list_checkpoints(self) -&gt; list:
+    &#34;&#34;&#34;
+    List all checkpoint files in the checkpoint directory.
+    
+    Returns
+    -------
+    list
+        List of checkpoint filenames sorted by modification time.
+    
+    Examples
+    --------
+    &gt;&gt;&gt; checkpoints = manager.list_checkpoints()
+    &gt;&gt;&gt; print(f&#34;Found {len(checkpoints)} checkpoints&#34;)
+    &#34;&#34;&#34;
+    checkpoints = list(self.checkpoint_dir.glob(&#34;*.pt&#34;))
+    checkpoints.sort(key=lambda p: p.stat().st_mtime)
+    return [cp.name for cp in checkpoints]</code></pre>
+</details>
+<div class="desc"><p>List all checkpoint files in the checkpoint directory.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>list</code></dt>
+<dd>List of checkpoint filenames sorted by modification time.</dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; checkpoints = manager.list_checkpoints()
+&gt;&gt;&gt; print(f&quot;Found {len(checkpoints)} checkpoints&quot;)
+</code></pre></div>
+</dd>
+<dt id="training.checkpoint_manager.CheckpointManager.load_checkpoint"><code class="name flex">
+<span>def <span class="ident">load_checkpoint</span></span>(<span>self,<br>filename: str,<br>model: <a title="models.base.NeuralOperator" href="../models/base.html#models.base.NeuralOperator">NeuralOperator</a> | None = None,<br>optimizer: <a title="optimizers.base.OptimizerWithVariance" href="../optimizers/base.html#optimizers.base.OptimizerWithVariance">OptimizerWithVariance</a> | None = None,<br>load_rng_states: bool = True,<br>weights_only: bool = False) ‑> Dict[str, Any]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def load_checkpoint(
+    self,
+    filename: str,
+    model: Optional[NeuralOperator] = None,
+    optimizer: Optional[OptimizerWithVariance] = None,
+    load_rng_states: bool = True,
+    weights_only: bool = False
+) -&gt; Dict[str, Any]:
+    &#34;&#34;&#34;
+    Load training checkpoint and restore states.
+    
+    Supports two modes:
+    1. Full restoration: Restores all states for exact training continuation
+    2. Weights only: Loads only model weights for inference
+    
+    Parameters
+    ----------
+    filename : str
+        Name of checkpoint file to load.
+    model : NeuralOperator, optional
+        Model to load weights into. Required unless weights_only=False.
+    optimizer : OptimizerWithVariance, optional
+        Optimizer to load state into. Ignored if weights_only=True.
+    load_rng_states : bool, default=True
+        Whether to restore random number generator states.
+    weights_only : bool, default=False
+        If True, only load model weights (for inference).
+    
+    Returns
+    -------
+    Dict[str, Any]
+        Dictionary containing checkpoint data including iteration, epoch, history, config.
+    
+    Raises
+    ------
+    FileNotFoundError
+        If checkpoint file does not exist.
+    ValueError
+        If model is None when trying to load weights.
+    CheckpointCompatibilityError
+        If checkpoint is incompatible with current model architecture.
+    
+    Examples
+    --------
+    &gt;&gt;&gt; # Full restoration for training continuation
+    &gt;&gt;&gt; state = manager.load_checkpoint(&#34;checkpoint_1000.pt&#34;, model, optimizer)
+    &gt;&gt;&gt; iteration = state[&#39;iteration&#39;]
+    &gt;&gt;&gt; 
+    &gt;&gt;&gt; # Weights only for inference
+    &gt;&gt;&gt; state = manager.load_checkpoint(&#34;final_checkpoint.pt&#34;, model, weights_only=True)
+    &#34;&#34;&#34;
+    filepath = self.checkpoint_dir / filename
+    
+    if not filepath.exists():
+        raise FileNotFoundError(f&#34;Checkpoint file not found: {filepath}&#34;)
+    
+    # Load checkpoint
+    checkpoint = torch.load(filepath, map_location=&#39;cpu&#39;)
+    
+    # Validate checkpoint compatibility if model provided
+    if model is not None:
+        self._validate_checkpoint_compatibility(checkpoint, model)
+    
+    # Load model weights
+    if model is not None:
+        try:
+            model.load_state_dict(checkpoint[&#39;model_state_dict&#39;])
+        except RuntimeError as e:
+            # Provide detailed error information
+            checkpoint_info = self._get_model_info_from_state_dict(checkpoint[&#39;model_state_dict&#39;])
+            model_info = self._get_model_info_from_model(model)
+            
+            raise CheckpointCompatibilityError(
+                f&#34;Failed to load checkpoint weights: {str(e)}&#34;,
+                checkpoint_info=checkpoint_info,
+                model_info=model_info
+            ) from e
+    elif not weights_only:
+        raise ValueError(&#34;Model must be provided to load checkpoint&#34;)
+    
+    # If weights_only mode, return early
+    if weights_only:
+        return {
+            &#39;iteration&#39;: checkpoint.get(&#39;iteration&#39;, 0),
+            &#39;epoch&#39;: checkpoint.get(&#39;epoch&#39;, 0),
+            &#39;config&#39;: checkpoint.get(&#39;config&#39;, {})
+        }
+    
+    # Load optimizer state
+    if optimizer is not None and &#39;optimizer_state_dict&#39; in checkpoint:
+        try:
+            optimizer.load_state_dict(checkpoint[&#39;optimizer_state_dict&#39;])
+        except Exception as e:
+            import warnings
+            warnings.warn(f&#34;Failed to load optimizer state: {str(e)}&#34;)
+    
+    # Restore RNG states
+    if load_rng_states and &#39;rng_states&#39; in checkpoint:
+        rng_states = checkpoint[&#39;rng_states&#39;]
+        
+        # Restore Python RNG state
+        if &#39;python&#39; in rng_states:
+            random.setstate(rng_states[&#39;python&#39;])
+        
+        # Restore NumPy RNG state
+        if &#39;numpy&#39; in rng_states:
+            np.random.set_state(rng_states[&#39;numpy&#39;])
+        
+        # Restore PyTorch RNG state
+        if &#39;torch&#39; in rng_states:
+            torch.set_rng_state(rng_states[&#39;torch&#39;])
+        
+        # Restore CUDA RNG state
+        if &#39;torch_cuda&#39; in rng_states and torch.cuda.is_available():
+            torch.cuda.set_rng_state_all(rng_states[&#39;torch_cuda&#39;])
+    
+    return {
+        &#39;iteration&#39;: checkpoint.get(&#39;iteration&#39;, 0),
+        &#39;epoch&#39;: checkpoint.get(&#39;epoch&#39;, 0),
+        &#39;history&#39;: checkpoint.get(&#39;history&#39;, {}),
+        &#39;config&#39;: checkpoint.get(&#39;config&#39;, {})
+    }</code></pre>
+</details>
+<div class="desc"><p>Load training checkpoint and restore states.</p>
+<p>Supports two modes:
+1. Full restoration: Restores all states for exact training continuation
+2. Weights only: Loads only model weights for inference</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>filename</code></strong> :&ensp;<code>str</code></dt>
+<dd>Name of checkpoint file to load.</dd>
+<dt><strong><code>model</code></strong> :&ensp;<code>NeuralOperator</code>, optional</dt>
+<dd>Model to load weights into. Required unless weights_only=False.</dd>
+<dt><strong><code>optimizer</code></strong> :&ensp;<code>OptimizerWithVariance</code>, optional</dt>
+<dd>Optimizer to load state into. Ignored if weights_only=True.</dd>
+<dt><strong><code>load_rng_states</code></strong> :&ensp;<code>bool</code>, default=<code>True</code></dt>
+<dd>Whether to restore random number generator states.</dd>
+<dt><strong><code>weights_only</code></strong> :&ensp;<code>bool</code>, default=<code>False</code></dt>
+<dd>If True, only load model weights (for inference).</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>Dict[str, Any]</code></dt>
+<dd>Dictionary containing checkpoint data including iteration, epoch, history, config.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>FileNotFoundError</code></dt>
+<dd>If checkpoint file does not exist.</dd>
+<dt><code>ValueError</code></dt>
+<dd>If model is None when trying to load weights.</dd>
+<dt><code>CheckpointCompatibilityError</code></dt>
+<dd>If checkpoint is incompatible with current model architecture.</dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; # Full restoration for training continuation
+&gt;&gt;&gt; state = manager.load_checkpoint(&quot;checkpoint_1000.pt&quot;, model, optimizer)
+&gt;&gt;&gt; iteration = state['iteration']
+&gt;&gt;&gt; 
+&gt;&gt;&gt; # Weights only for inference
+&gt;&gt;&gt; state = manager.load_checkpoint(&quot;final_checkpoint.pt&quot;, model, weights_only=True)
+</code></pre></div>
+</dd>
+<dt id="training.checkpoint_manager.CheckpointManager.save_checkpoint"><code class="name flex">
+<span>def <span class="ident">save_checkpoint</span></span>(<span>self,<br>model: <a title="models.base.NeuralOperator" href="../models/base.html#models.base.NeuralOperator">NeuralOperator</a>,<br>optimizer: <a title="optimizers.base.OptimizerWithVariance" href="../optimizers/base.html#optimizers.base.OptimizerWithVariance">OptimizerWithVariance</a>,<br>iteration: int,<br>epoch: int,<br>history: Dict[str, Any],<br>config: Dict[str, Any],<br>filename: str = None) ‑> pathlib.Path</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def save_checkpoint(
+    self,
+    model: NeuralOperator,
+    optimizer: OptimizerWithVariance,
+    iteration: int,
+    epoch: int,
+    history: Dict[str, Any],
+    config: Dict[str, Any],
+    filename: str = None
+) -&gt; Path:
+    &#34;&#34;&#34;
+    Save complete training checkpoint.
+    
+    Stores model state, optimizer state, training iteration/epoch,
+    random number generator states, training history, and configuration.
+    
+    Parameters
+    ----------
+    model : NeuralOperator
+        Neural operator model to save.
+    optimizer : OptimizerWithVariance
+        Optimizer to save.
+    iteration : int
+        Current training iteration number.
+    epoch : int
+        Current training epoch number.
+    history : Dict[str, Any]
+        Training history dictionary.
+    config : Dict[str, Any]
+        Experiment configuration dictionary.
+    filename : str, optional
+        Name of checkpoint file. If None, uses &#34;checkpoint_iter_{iteration}.pt&#34;.
+    
+    Returns
+    -------
+    Path
+        Path to the saved checkpoint file.
+    
+    Examples
+    --------
+    &gt;&gt;&gt; manager.save_checkpoint(
+    ...     model=model,
+    ...     optimizer=optimizer,
+    ...     iteration=1000,
+    ...     epoch=10,
+    ...     history=logger.history,
+    ...     config=config,
+    ...     filename=&#34;checkpoint_1000.pt&#34;
+    ... )
+    &#34;&#34;&#34;
+    if filename is None:
+        filename = f&#34;checkpoint_iter_{iteration}.pt&#34;
+    
+    filepath = self.checkpoint_dir / filename
+    
+    # Collect all RNG states
+    rng_states = {
+        &#39;python&#39;: random.getstate(),
+        &#39;numpy&#39;: np.random.get_state(),
+        &#39;torch&#39;: torch.get_rng_state(),
+    }
+    
+    # Add CUDA RNG state if available
+    if torch.cuda.is_available():
+        rng_states[&#39;torch_cuda&#39;] = torch.cuda.get_rng_state_all()
+    
+    # Create checkpoint dictionary
+    checkpoint = {
+        &#39;model_state_dict&#39;: model.state_dict(),
+        &#39;optimizer_state_dict&#39;: optimizer.get_state_dict(),
+        &#39;iteration&#39;: iteration,
+        &#39;epoch&#39;: epoch,
+        &#39;rng_states&#39;: rng_states,
+        &#39;history&#39;: history,
+        &#39;config&#39;: config
+    }
+    
+    # Save checkpoint
+    torch.save(checkpoint, filepath)
+    
+    return filepath</code></pre>
+</details>
+<div class="desc"><p>Save complete training checkpoint.</p>
+<p>Stores model state, optimizer state, training iteration/epoch,
+random number generator states, training history, and configuration.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>model</code></strong> :&ensp;<code>NeuralOperator</code></dt>
+<dd>Neural operator model to save.</dd>
+<dt><strong><code>optimizer</code></strong> :&ensp;<code>OptimizerWithVariance</code></dt>
+<dd>Optimizer to save.</dd>
+<dt><strong><code>iteration</code></strong> :&ensp;<code>int</code></dt>
+<dd>Current training iteration number.</dd>
+<dt><strong><code>epoch</code></strong> :&ensp;<code>int</code></dt>
+<dd>Current training epoch number.</dd>
+<dt><strong><code>history</code></strong> :&ensp;<code>Dict[str, Any]</code></dt>
+<dd>Training history dictionary.</dd>
+<dt><strong><code>config</code></strong> :&ensp;<code>Dict[str, Any]</code></dt>
+<dd>Experiment configuration dictionary.</dd>
+<dt><strong><code>filename</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Name of checkpoint file. If None, uses "checkpoint_iter_{iteration}.pt".</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>Path</code></dt>
+<dd>Path to the saved checkpoint file.</dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; manager.save_checkpoint(
+...     model=model,
+...     optimizer=optimizer,
+...     iteration=1000,
+...     epoch=10,
+...     history=logger.history,
+...     config=config,
+...     filename=&quot;checkpoint_1000.pt&quot;
+... )
+</code></pre></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="training" href="index.html">training</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="training.checkpoint_manager.CheckpointManager" href="#training.checkpoint_manager.CheckpointManager">CheckpointManager</a></code></h4>
+<ul class="">
+<li><code><a title="training.checkpoint_manager.CheckpointManager.cleanup_old_checkpoints" href="#training.checkpoint_manager.CheckpointManager.cleanup_old_checkpoints">cleanup_old_checkpoints</a></code></li>
+<li><code><a title="training.checkpoint_manager.CheckpointManager.delete_checkpoint" href="#training.checkpoint_manager.CheckpointManager.delete_checkpoint">delete_checkpoint</a></code></li>
+<li><code><a title="training.checkpoint_manager.CheckpointManager.get_latest_checkpoint" href="#training.checkpoint_manager.CheckpointManager.get_latest_checkpoint">get_latest_checkpoint</a></code></li>
+<li><code><a title="training.checkpoint_manager.CheckpointManager.list_checkpoints" href="#training.checkpoint_manager.CheckpointManager.list_checkpoints">list_checkpoints</a></code></li>
+<li><code><a title="training.checkpoint_manager.CheckpointManager.load_checkpoint" href="#training.checkpoint_manager.CheckpointManager.load_checkpoint">load_checkpoint</a></code></li>
+<li><code><a title="training.checkpoint_manager.CheckpointManager.save_checkpoint" href="#training.checkpoint_manager.CheckpointManager.save_checkpoint">save_checkpoint</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>

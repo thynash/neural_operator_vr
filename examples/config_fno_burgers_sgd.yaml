@@ -1,0 +1,69 @@
+experiment:
+  name: "fno_burgers_sgd"
+  seed: 42
+  device: "cuda"
+  deterministic: true
+
+dataset:
+  type: "burgers"
+  params:
+    viscosity: 0.01
+    spatial_resolution: 256
+    temporal_resolution: 100
+  num_train_trajectories: 500
+  num_val_trajectories: 100
+  input_horizon: 1
+  output_horizon: 1
+  train_val_split: 0.8
+  batch_size: 16
+  shuffle: true
+
+model:
+  type: "fno"
+  params:
+    modes: 12
+    width: 64
+    num_layers: 4
+    activation: "gelu"
+    padding: 8
+
+optimizer:
+  type: "sgd"
+  params:
+    learning_rate: 0.01
+    momentum: 0.9
+    weight_decay: 0.0001
+    nesterov: true
+
+scheduler:
+  type: "cosine"
+  params:
+    T_max: 8000
+    eta_min: 1.0e-06
+
+training:
+  num_epochs: 50
+  batch_size: 16
+  validation_interval: 50
+  variance_interval: 200
+  checkpoint_interval: 500
+  early_stopping_patience: 10
+  target_loss: 0.001
+
+logging:
+  log_dir: "./logs"
+  save_checkpoints: true
+  save_final_model: true
+  log_level: "INFO"
+
+analysis:
+  compute_spectral_radius: true
+  spectral_interval: 500
+  long_horizon_steps: 50
+  num_eigenvalues: 10
+
+visualization:
+  generate_plots: true
+  plot_format: "pdf"
+  dpi: 300
+  output_dir: "./visualization_output"

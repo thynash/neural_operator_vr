@@ -1,0 +1,787 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>models.fno API documentation</title>
+<meta name="description" content="Fourier Neural Operator (FNO) architecture implementation.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>models.fno</code></h1>
+</header>
+<section id="section-intro">
+<p>Fourier Neural Operator (FNO) architecture implementation.</p>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="models.fno.FNO"><code class="flex name class">
+<span>class <span class="ident">FNO</span></span>
+<span>(</span><span>input_channels: int,<br>output_channels: int,<br>modes: int,<br>width: int,<br>num_layers: int,<br>activation: str = 'relu',<br>padding: int = 0)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class FNO(NeuralOperator):
+    &#34;&#34;&#34;
+    Fourier Neural Operator architecture.
+    
+    FNO learns operators using spectral convolutions in Fourier space,
+    enabling efficient learning of PDEs and dynamical systems.
+    
+    Parameters
+    ----------
+    input_channels : int
+        Number of input channels
+    output_channels : int
+        Number of output channels
+    modes : int
+        Number of Fourier modes to keep
+    width : int
+        Hidden channel dimension
+    num_layers : int
+        Number of Fourier layers
+    activation : str, optional
+        Activation function name (&#39;relu&#39;, &#39;tanh&#39;, &#39;gelu&#39;), default &#39;relu&#39;
+    padding : int, optional
+        Padding for domain extension, default 0
+    &#34;&#34;&#34;
+    
+    def __init__(
+        self,
+        input_channels: int,
+        output_channels: int,
+        modes: int,
+        width: int,
+        num_layers: int,
+        activation: str = &#39;relu&#39;,
+        padding: int = 0
+    ):
+        super().__init__()
+        
+        self.input_channels = input_channels
+        self.output_channels = output_channels
+        self.modes = modes
+        self.width = width
+        self.num_layers = num_layers
+        self.padding = padding
+        
+        # Lifting layer: project input to hidden dimension
+        self.lifting = nn.Linear(input_channels, width)
+        
+        # Fourier layers
+        self.fourier_layers = nn.ModuleList([
+            FourierLayer(width, width, modes, activation)
+            for _ in range(num_layers)
+        ])
+        
+        # Projection layer: project back to output dimension
+        self.projection = nn.Sequential(
+            nn.Linear(width, 128),
+            self._get_activation(activation),
+            nn.Linear(128, output_channels)
+        )
+        
+        # Initialize weights with Xavier uniform
+        self._initialize_weights()
+    
+    def _get_activation(self, activation: str) -&gt; nn.Module:
+        &#34;&#34;&#34;Get activation function module by name.&#34;&#34;&#34;
+        activations = {
+            &#39;relu&#39;: nn.ReLU(),
+            &#39;tanh&#39;: nn.Tanh(),
+            &#39;gelu&#39;: nn.GELU()
+        }
+        
+        if activation.lower() not in activations:
+            raise ValueError(
+                f&#34;Unknown activation &#39;{activation}&#39;. &#34;
+                f&#34;Choose from: {list(activations.keys())}&#34;
+            )
+        
+        return activations[activation.lower()]
+    
+    def _initialize_weights(self):
+        &#34;&#34;&#34;Initialize all weights using Xavier uniform initialization.&#34;&#34;&#34;
+        for module in self.modules():
+            if isinstance(module, nn.Linear):
+                nn.init.xavier_uniform_(module.weight)
+                if module.bias is not None:
+                    nn.init.zeros_(module.bias)
+            elif isinstance(module, nn.Conv1d):
+                nn.init.xavier_uniform_(module.weight)
+                if module.bias is not None:
+                    nn.init.zeros_(module.bias)
+    
+    def forward(
+        self, 
+        input_functions: torch.Tensor, 
+        query_points: torch.Tensor
+    ) -&gt; torch.Tensor:
+        &#34;&#34;&#34;
+        Evaluate operator on input functions at query points.
+        
+        For FNO, we treat the input_functions as spatiotemporal fields.
+        
+        Parameters
+        ----------
+        input_functions : torch.Tensor
+            Discretized input functions with shape [batch, input_dim, num_sensors]
+        query_points : torch.Tensor
+            Evaluation locations with shape [batch, output_dim, num_queries]
+            (Note: FNO processes entire spatial domain, query_points used for output shape)
+        
+        Returns
+        -------
+        torch.Tensor
+            Operator output with shape [batch, output_dim, num_queries]
+        &#34;&#34;&#34;
+        # Validate input shapes
+        if input_functions.ndim != 3:
+            raise ShapeError(
+                &#34;input_functions must be 3-dimensional&#34;,
+                expected_shape=(None, self.input_channels, None),
+                actual_shape=input_functions.shape,
+                tensor_name=&#34;input_functions&#34;
+            )
+        
+        if query_points.ndim != 3:
+            raise ShapeError(
+                &#34;query_points must be 3-dimensional&#34;,
+                expected_shape=(None, self.output_channels, None),
+                actual_shape=query_points.shape,
+                tensor_name=&#34;query_points&#34;
+            )
+        
+        if input_functions.shape[1] != self.input_channels:
+            raise ShapeError(
+                f&#34;input_functions dimension 1 must match input_channels={self.input_channels}&#34;,
+                expected_shape=(None, self.input_channels, None),
+                actual_shape=input_functions.shape,
+                tensor_name=&#34;input_functions&#34;
+            )
+        
+        batch_size = input_functions.shape[0]
+        spatial_dim = input_functions.shape[2]
+        
+        # Permute to [batch, spatial_dim, input_channels] for lifting
+        x = input_functions.permute(0, 2, 1)  # [batch, spatial_dim, input_channels]
+        
+        # Lifting layer
+        x = self.lifting(x)  # [batch, spatial_dim, width]
+        
+        # Permute to [batch, width, spatial_dim] for Fourier layers
+        x = x.permute(0, 2, 1)  # [batch, width, spatial_dim]
+        
+        # Apply padding if specified
+        if self.padding &gt; 0:
+            x = F.pad(x, (0, self.padding))
+        
+        # Apply Fourier layers
+        for fourier_layer in self.fourier_layers:
+            x = fourier_layer(x)
+        
+        # Remove padding
+        if self.padding &gt; 0:
+            x = x[..., :-self.padding]
+        
+        # Permute back to [batch, spatial_dim, width] for projection
+        x = x.permute(0, 2, 1)  # [batch, spatial_dim, width]
+        
+        # Projection layer
+        x = self.projection(x)  # [batch, spatial_dim, output_channels]
+        
+        # Permute to match expected output shape [batch, output_dim, num_queries]
+        x = x.permute(0, 2, 1)  # [batch, output_channels, spatial_dim]
+        
+        # Interpolate or slice to match query_points shape if needed
+        num_queries = query_points.shape[2]
+        if spatial_dim != num_queries:
+            x = F.interpolate(x, size=num_queries, mode=&#39;linear&#39;, align_corners=True)
+        
+        return x
+    
+    def get_parameter_count(self) -&gt; int:
+        &#34;&#34;&#34;
+        Return total number of trainable parameters.
+        
+        Returns
+        -------
+        int
+            Total count of trainable parameters
+        &#34;&#34;&#34;
+        return sum(p.numel() for p in self.parameters() if p.requires_grad)</code></pre>
+</details>
+<div class="desc"><p>Fourier Neural Operator architecture.</p>
+<p>FNO learns operators using spectral convolutions in Fourier space,
+enabling efficient learning of PDEs and dynamical systems.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>input_channels</code></strong> :&ensp;<code>int</code></dt>
+<dd>Number of input channels</dd>
+<dt><strong><code>output_channels</code></strong> :&ensp;<code>int</code></dt>
+<dd>Number of output channels</dd>
+<dt><strong><code>modes</code></strong> :&ensp;<code>int</code></dt>
+<dd>Number of Fourier modes to keep</dd>
+<dt><strong><code>width</code></strong> :&ensp;<code>int</code></dt>
+<dd>Hidden channel dimension</dd>
+<dt><strong><code>num_layers</code></strong> :&ensp;<code>int</code></dt>
+<dd>Number of Fourier layers</dd>
+<dt><strong><code>activation</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Activation function name ('relu', 'tanh', 'gelu'), default 'relu'</dd>
+<dt><strong><code>padding</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>Padding for domain extension, default 0</dd>
+</dl>
+<p>Initialize internal Module state, shared by both nn.Module and ScriptModule.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="models.base.NeuralOperator" href="base.html#models.base.NeuralOperator">NeuralOperator</a></li>
+<li>torch.nn.modules.module.Module</li>
+<li>abc.ABC</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="models.fno.FNO.forward"><code class="name flex">
+<span>def <span class="ident">forward</span></span>(<span>self, input_functions: torch.Tensor, query_points: torch.Tensor) ‑> torch.Tensor</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def forward(
+    self, 
+    input_functions: torch.Tensor, 
+    query_points: torch.Tensor
+) -&gt; torch.Tensor:
+    &#34;&#34;&#34;
+    Evaluate operator on input functions at query points.
+    
+    For FNO, we treat the input_functions as spatiotemporal fields.
+    
+    Parameters
+    ----------
+    input_functions : torch.Tensor
+        Discretized input functions with shape [batch, input_dim, num_sensors]
+    query_points : torch.Tensor
+        Evaluation locations with shape [batch, output_dim, num_queries]
+        (Note: FNO processes entire spatial domain, query_points used for output shape)
+    
+    Returns
+    -------
+    torch.Tensor
+        Operator output with shape [batch, output_dim, num_queries]
+    &#34;&#34;&#34;
+    # Validate input shapes
+    if input_functions.ndim != 3:
+        raise ShapeError(
+            &#34;input_functions must be 3-dimensional&#34;,
+            expected_shape=(None, self.input_channels, None),
+            actual_shape=input_functions.shape,
+            tensor_name=&#34;input_functions&#34;
+        )
+    
+    if query_points.ndim != 3:
+        raise ShapeError(
+            &#34;query_points must be 3-dimensional&#34;,
+            expected_shape=(None, self.output_channels, None),
+            actual_shape=query_points.shape,
+            tensor_name=&#34;query_points&#34;
+        )
+    
+    if input_functions.shape[1] != self.input_channels:
+        raise ShapeError(
+            f&#34;input_functions dimension 1 must match input_channels={self.input_channels}&#34;,
+            expected_shape=(None, self.input_channels, None),
+            actual_shape=input_functions.shape,
+            tensor_name=&#34;input_functions&#34;
+        )
+    
+    batch_size = input_functions.shape[0]
+    spatial_dim = input_functions.shape[2]
+    
+    # Permute to [batch, spatial_dim, input_channels] for lifting
+    x = input_functions.permute(0, 2, 1)  # [batch, spatial_dim, input_channels]
+    
+    # Lifting layer
+    x = self.lifting(x)  # [batch, spatial_dim, width]
+    
+    # Permute to [batch, width, spatial_dim] for Fourier layers
+    x = x.permute(0, 2, 1)  # [batch, width, spatial_dim]
+    
+    # Apply padding if specified
+    if self.padding &gt; 0:
+        x = F.pad(x, (0, self.padding))
+    
+    # Apply Fourier layers
+    for fourier_layer in self.fourier_layers:
+        x = fourier_layer(x)
+    
+    # Remove padding
+    if self.padding &gt; 0:
+        x = x[..., :-self.padding]
+    
+    # Permute back to [batch, spatial_dim, width] for projection
+    x = x.permute(0, 2, 1)  # [batch, spatial_dim, width]
+    
+    # Projection layer
+    x = self.projection(x)  # [batch, spatial_dim, output_channels]
+    
+    # Permute to match expected output shape [batch, output_dim, num_queries]
+    x = x.permute(0, 2, 1)  # [batch, output_channels, spatial_dim]
+    
+    # Interpolate or slice to match query_points shape if needed
+    num_queries = query_points.shape[2]
+    if spatial_dim != num_queries:
+        x = F.interpolate(x, size=num_queries, mode=&#39;linear&#39;, align_corners=True)
+    
+    return x</code></pre>
+</details>
+<div class="desc"><p>Evaluate operator on input functions at query points.</p>
+<p>For FNO, we treat the input_functions as spatiotemporal fields.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>input_functions</code></strong> :&ensp;<code>torch.Tensor</code></dt>
+<dd>Discretized input functions with shape [batch, input_dim, num_sensors]</dd>
+<dt><strong><code>query_points</code></strong> :&ensp;<code>torch.Tensor</code></dt>
+<dd>Evaluation locations with shape [batch, output_dim, num_queries]
+(Note: FNO processes entire spatial domain, query_points used for output shape)</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>torch.Tensor</code></dt>
+<dd>Operator output with shape [batch, output_dim, num_queries]</dd>
+</dl></div>
+</dd>
+<dt id="models.fno.FNO.get_parameter_count"><code class="name flex">
+<span>def <span class="ident">get_parameter_count</span></span>(<span>self) ‑> int</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_parameter_count(self) -&gt; int:
+    &#34;&#34;&#34;
+    Return total number of trainable parameters.
+    
+    Returns
+    -------
+    int
+        Total count of trainable parameters
+    &#34;&#34;&#34;
+    return sum(p.numel() for p in self.parameters() if p.requires_grad)</code></pre>
+</details>
+<div class="desc"><p>Return total number of trainable parameters.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>int</code></dt>
+<dd>Total count of trainable parameters</dd>
+</dl></div>
+</dd>
+</dl>
+</dd>
+<dt id="models.fno.FourierLayer"><code class="flex name class">
+<span>class <span class="ident">FourierLayer</span></span>
+<span>(</span><span>in_channels: int, out_channels: int, modes: int, activation: str = 'relu')</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class FourierLayer(nn.Module):
+    &#34;&#34;&#34;
+    Fourier layer combining spectral convolution and local convolution.
+    
+    Parameters
+    ----------
+    in_channels : int
+        Number of input channels
+    out_channels : int
+        Number of output channels
+    modes : int
+        Number of Fourier modes to keep
+    activation : str
+        Activation function name
+    &#34;&#34;&#34;
+    
+    def __init__(
+        self, 
+        in_channels: int, 
+        out_channels: int, 
+        modes: int,
+        activation: str = &#39;relu&#39;
+    ):
+        super().__init__()
+        
+        self.spectral_conv = SpectralConv1d(in_channels, out_channels, modes)
+        self.local_conv = nn.Conv1d(in_channels, out_channels, kernel_size=1)
+        self.activation = self._get_activation(activation)
+    
+    def _get_activation(self, activation: str) -&gt; nn.Module:
+        &#34;&#34;&#34;Get activation function module by name.&#34;&#34;&#34;
+        activations = {
+            &#39;relu&#39;: nn.ReLU(),
+            &#39;tanh&#39;: nn.Tanh(),
+            &#39;gelu&#39;: nn.GELU()
+        }
+        
+        if activation.lower() not in activations:
+            raise ValueError(
+                f&#34;Unknown activation &#39;{activation}&#39;. &#34;
+                f&#34;Choose from: {list(activations.keys())}&#34;
+            )
+        
+        return activations[activation.lower()]
+    
+    def forward(self, x: torch.Tensor) -&gt; torch.Tensor:
+        &#34;&#34;&#34;
+        Apply Fourier layer with residual connection.
+        
+        Parameters
+        ----------
+        x : torch.Tensor
+            Input tensor with shape [batch, in_channels, spatial_dim]
+        
+        Returns
+        -------
+        torch.Tensor
+            Output tensor with shape [batch, out_channels, spatial_dim]
+        &#34;&#34;&#34;
+        # Spectral convolution
+        x1 = self.spectral_conv(x)
+        
+        # Local 1x1 convolution
+        x2 = self.local_conv(x)
+        
+        # Combine and activate
+        out = self.activation(x1 + x2)
+        
+        return out</code></pre>
+</details>
+<div class="desc"><p>Fourier layer combining spectral convolution and local convolution.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>in_channels</code></strong> :&ensp;<code>int</code></dt>
+<dd>Number of input channels</dd>
+<dt><strong><code>out_channels</code></strong> :&ensp;<code>int</code></dt>
+<dd>Number of output channels</dd>
+<dt><strong><code>modes</code></strong> :&ensp;<code>int</code></dt>
+<dd>Number of Fourier modes to keep</dd>
+<dt><strong><code>activation</code></strong> :&ensp;<code>str</code></dt>
+<dd>Activation function name</dd>
+</dl>
+<p>Initialize internal Module state, shared by both nn.Module and ScriptModule.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>torch.nn.modules.module.Module</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="models.fno.FourierLayer.forward"><code class="name flex">
+<span>def <span class="ident">forward</span></span>(<span>self, x: torch.Tensor) ‑> torch.Tensor</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def forward(self, x: torch.Tensor) -&gt; torch.Tensor:
+    &#34;&#34;&#34;
+    Apply Fourier layer with residual connection.
+    
+    Parameters
+    ----------
+    x : torch.Tensor
+        Input tensor with shape [batch, in_channels, spatial_dim]
+    
+    Returns
+    -------
+    torch.Tensor
+        Output tensor with shape [batch, out_channels, spatial_dim]
+    &#34;&#34;&#34;
+    # Spectral convolution
+    x1 = self.spectral_conv(x)
+    
+    # Local 1x1 convolution
+    x2 = self.local_conv(x)
+    
+    # Combine and activate
+    out = self.activation(x1 + x2)
+    
+    return out</code></pre>
+</details>
+<div class="desc"><p>Apply Fourier layer with residual connection.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>x</code></strong> :&ensp;<code>torch.Tensor</code></dt>
+<dd>Input tensor with shape [batch, in_channels, spatial_dim]</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>torch.Tensor</code></dt>
+<dd>Output tensor with shape [batch, out_channels, spatial_dim]</dd>
+</dl></div>
+</dd>
+</dl>
+</dd>
+<dt id="models.fno.SpectralConv1d"><code class="flex name class">
+<span>class <span class="ident">SpectralConv1d</span></span>
+<span>(</span><span>in_channels: int, out_channels: int, modes: int)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class SpectralConv1d(nn.Module):
+    &#34;&#34;&#34;
+    1D Spectral Convolution layer for FNO.
+    
+    Performs convolution in Fourier space by:
+    1. FFT of input
+    2. Multiply low-frequency modes with learned weights
+    3. IFFT back to physical space
+    
+    Parameters
+    ----------
+    in_channels : int
+        Number of input channels
+    out_channels : int
+        Number of output channels
+    modes : int
+        Number of Fourier modes to keep
+    &#34;&#34;&#34;
+    
+    def __init__(self, in_channels: int, out_channels: int, modes: int):
+        super().__init__()
+        
+        self.in_channels = in_channels
+        self.out_channels = out_channels
+        self.modes = modes
+        
+        # Learnable weights for Fourier modes (complex-valued)
+        # Scale by 1/sqrt(in_channels * out_channels) for initialization
+        scale = 1.0 / (in_channels * out_channels)
+        self.weights = nn.Parameter(
+            scale * torch.randn(in_channels, out_channels, modes, 2)
+        )
+    
+    def forward(self, x: torch.Tensor) -&gt; torch.Tensor:
+        &#34;&#34;&#34;
+        Apply spectral convolution.
+        
+        Parameters
+        ----------
+        x : torch.Tensor
+            Input tensor with shape [batch, in_channels, spatial_dim]
+        
+        Returns
+        -------
+        torch.Tensor
+            Output tensor with shape [batch, out_channels, spatial_dim]
+        &#34;&#34;&#34;
+        batch_size = x.shape[0]
+        spatial_dim = x.shape[2]
+        
+        # FFT along spatial dimension
+        x_ft = torch.fft.rfft(x, dim=2)  # [batch, in_channels, modes_total]
+        
+        # Initialize output in Fourier space
+        out_ft = torch.zeros(
+            batch_size, 
+            self.out_channels, 
+            spatial_dim // 2 + 1,
+            dtype=torch.cfloat,
+            device=x.device
+        )
+        
+        # Multiply relevant modes with learned weights
+        # Only process first &#39;modes&#39; frequencies
+        modes_to_use = min(self.modes, spatial_dim // 2 + 1)
+        
+        # Convert weights to complex
+        weights_complex = torch.view_as_complex(self.weights)  # [in_channels, out_channels, modes]
+        
+        # Perform multiplication: einsum over input channels
+        out_ft[:, :, :modes_to_use] = torch.einsum(
+            &#39;bix,iox-&gt;box&#39;,
+            x_ft[:, :, :modes_to_use],
+            weights_complex[:, :, :modes_to_use]
+        )
+        
+        # IFFT back to physical space
+        x_out = torch.fft.irfft(out_ft, n=spatial_dim, dim=2)
+        
+        return x_out</code></pre>
+</details>
+<div class="desc"><p>1D Spectral Convolution layer for FNO.</p>
+<p>Performs convolution in Fourier space by:
+1. FFT of input
+2. Multiply low-frequency modes with learned weights
+3. IFFT back to physical space</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>in_channels</code></strong> :&ensp;<code>int</code></dt>
+<dd>Number of input channels</dd>
+<dt><strong><code>out_channels</code></strong> :&ensp;<code>int</code></dt>
+<dd>Number of output channels</dd>
+<dt><strong><code>modes</code></strong> :&ensp;<code>int</code></dt>
+<dd>Number of Fourier modes to keep</dd>
+</dl>
+<p>Initialize internal Module state, shared by both nn.Module and ScriptModule.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>torch.nn.modules.module.Module</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="models.fno.SpectralConv1d.forward"><code class="name flex">
+<span>def <span class="ident">forward</span></span>(<span>self, x: torch.Tensor) ‑> torch.Tensor</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def forward(self, x: torch.Tensor) -&gt; torch.Tensor:
+    &#34;&#34;&#34;
+    Apply spectral convolution.
+    
+    Parameters
+    ----------
+    x : torch.Tensor
+        Input tensor with shape [batch, in_channels, spatial_dim]
+    
+    Returns
+    -------
+    torch.Tensor
+        Output tensor with shape [batch, out_channels, spatial_dim]
+    &#34;&#34;&#34;
+    batch_size = x.shape[0]
+    spatial_dim = x.shape[2]
+    
+    # FFT along spatial dimension
+    x_ft = torch.fft.rfft(x, dim=2)  # [batch, in_channels, modes_total]
+    
+    # Initialize output in Fourier space
+    out_ft = torch.zeros(
+        batch_size, 
+        self.out_channels, 
+        spatial_dim // 2 + 1,
+        dtype=torch.cfloat,
+        device=x.device
+    )
+    
+    # Multiply relevant modes with learned weights
+    # Only process first &#39;modes&#39; frequencies
+    modes_to_use = min(self.modes, spatial_dim // 2 + 1)
+    
+    # Convert weights to complex
+    weights_complex = torch.view_as_complex(self.weights)  # [in_channels, out_channels, modes]
+    
+    # Perform multiplication: einsum over input channels
+    out_ft[:, :, :modes_to_use] = torch.einsum(
+        &#39;bix,iox-&gt;box&#39;,
+        x_ft[:, :, :modes_to_use],
+        weights_complex[:, :, :modes_to_use]
+    )
+    
+    # IFFT back to physical space
+    x_out = torch.fft.irfft(out_ft, n=spatial_dim, dim=2)
+    
+    return x_out</code></pre>
+</details>
+<div class="desc"><p>Apply spectral convolution.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>x</code></strong> :&ensp;<code>torch.Tensor</code></dt>
+<dd>Input tensor with shape [batch, in_channels, spatial_dim]</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>torch.Tensor</code></dt>
+<dd>Output tensor with shape [batch, out_channels, spatial_dim]</dd>
+</dl></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="models" href="index.html">models</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="models.fno.FNO" href="#models.fno.FNO">FNO</a></code></h4>
+<ul class="">
+<li><code><a title="models.fno.FNO.forward" href="#models.fno.FNO.forward">forward</a></code></li>
+<li><code><a title="models.fno.FNO.get_parameter_count" href="#models.fno.FNO.get_parameter_count">get_parameter_count</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="models.fno.FourierLayer" href="#models.fno.FourierLayer">FourierLayer</a></code></h4>
+<ul class="">
+<li><code><a title="models.fno.FourierLayer.forward" href="#models.fno.FourierLayer.forward">forward</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="models.fno.SpectralConv1d" href="#models.fno.SpectralConv1d">SpectralConv1d</a></code></h4>
+<ul class="">
+<li><code><a title="models.fno.SpectralConv1d.forward" href="#models.fno.SpectralConv1d.forward">forward</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>

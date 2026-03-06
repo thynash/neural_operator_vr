@@ -1,0 +1,593 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>analysis.spectral API documentation</title>
+<meta name="description" content="Spectral analysis for neural operators.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>analysis.spectral</code></h1>
+</header>
+<section id="section-intro">
+<p>Spectral analysis for neural operators.</p>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="analysis.spectral.compute_eigenvalue_error"><code class="name flex">
+<span>def <span class="ident">compute_eigenvalue_error</span></span>(<span>learned_eigenvalues: torch.Tensor,<br>true_eigenvalues: torch.Tensor,<br>method: str = 'hungarian') ‑> float</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compute_eigenvalue_error(
+    learned_eigenvalues: torch.Tensor,
+    true_eigenvalues: torch.Tensor,
+    method: str = &#39;hungarian&#39;
+) -&gt; float:
+    &#34;&#34;&#34;
+    Compute eigenvalue approximation error.
+    
+    Matches learned eigenvalues to true eigenvalues and computes error.
+    Uses Hungarian algorithm for optimal matching.
+    
+    Args:
+        learned_eigenvalues: Learned eigenvalues [n]
+        true_eigenvalues: True eigenvalues [m]
+        method: &#39;hungarian&#39; for optimal matching, &#39;nearest&#39; for greedy matching
+    
+    Returns:
+        Eigenvalue approximation error
+    
+    Validates: Requirements 7.3
+    &#34;&#34;&#34;
+    # Convert to numpy for easier manipulation
+    learned = learned_eigenvalues.detach().cpu().numpy()
+    true = true_eigenvalues.detach().cpu().numpy()
+    
+    n_learned = len(learned)
+    n_true = len(true)
+    
+    if method == &#39;hungarian&#39;:
+        # Use Hungarian algorithm for optimal matching
+        from scipy.optimize import linear_sum_assignment
+        
+        # Compute cost matrix (distances between eigenvalues)
+        cost_matrix = np.zeros((n_learned, n_true))
+        for i in range(n_learned):
+            for j in range(n_true):
+                cost_matrix[i, j] = np.abs(learned[i] - true[j])
+        
+        # Find optimal assignment
+        row_ind, col_ind = linear_sum_assignment(cost_matrix)
+        
+        # Compute total error
+        total_error = cost_matrix[row_ind, col_ind].sum()
+        
+        # Normalize by number of matched pairs
+        error = total_error / len(row_ind)
+        
+    elif method == &#39;nearest&#39;:
+        # Greedy nearest neighbor matching
+        total_error = 0.0
+        used_true = set()
+        
+        for learned_eig in learned:
+            # Find nearest unused true eigenvalue
+            min_dist = float(&#39;inf&#39;)
+            best_idx = -1
+            
+            for j, true_eig in enumerate(true):
+                if j not in used_true:
+                    dist = np.abs(learned_eig - true_eig)
+                    if dist &lt; min_dist:
+                        min_dist = dist
+                        best_idx = j
+            
+            if best_idx &gt;= 0:
+                total_error += min_dist
+                used_true.add(best_idx)
+        
+        # Normalize by number of learned eigenvalues
+        error = total_error / n_learned
+        
+    else:
+        raise ValueError(f&#34;Unknown method: {method}. Use &#39;hungarian&#39; or &#39;nearest&#39;&#34;)
+    
+    return float(error)</code></pre>
+</details>
+<div class="desc"><p>Compute eigenvalue approximation error.</p>
+<p>Matches learned eigenvalues to true eigenvalues and computes error.
+Uses Hungarian algorithm for optimal matching.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>learned_eigenvalues</code></strong></dt>
+<dd>Learned eigenvalues [n]</dd>
+<dt><strong><code>true_eigenvalues</code></strong></dt>
+<dd>True eigenvalues [m]</dd>
+<dt><strong><code>method</code></strong></dt>
+<dd>'hungarian' for optimal matching, 'nearest' for greedy matching</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Eigenvalue approximation error
+Validates: Requirements 7.3</p></div>
+</dd>
+<dt id="analysis.spectral.compute_operator_eigenvalues"><code class="name flex">
+<span>def <span class="ident">compute_operator_eigenvalues</span></span>(<span>model: torch.nn.modules.module.Module,<br>state_point: torch.Tensor,<br>num_eigenvalues: int = 10,<br>method: str = 'auto') ‑> torch.Tensor</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compute_operator_eigenvalues(
+    model: nn.Module,
+    state_point: torch.Tensor,
+    num_eigenvalues: int = 10,
+    method: str = &#39;auto&#39;
+) -&gt; torch.Tensor:
+    &#34;&#34;&#34;
+    Compute eigenvalues of the learned operator Jacobian at a state point.
+    
+    Uses automatic differentiation to construct the Jacobian matrix,
+    then computes eigenvalues using torch.linalg.eig or power iteration.
+    
+    Args:
+        model: Neural operator model
+        state_point: State at which to compute eigenvalues [state_dim] or [batch, state_dim]
+        num_eigenvalues: Number of eigenvalues to compute (for power iteration)
+        method: &#39;auto&#39;, &#39;eig&#39;, or &#39;power_iteration&#39;
+    
+    Returns:
+        Eigenvalues as complex tensor [num_eigenvalues] or [state_dim]
+    
+    Validates: Requirements 7.1
+    &#34;&#34;&#34;
+    model.eval()
+    
+    # Ensure state_point has batch dimension
+    if state_point.dim() == 1:
+        state_point = state_point.unsqueeze(0)
+    elif state_point.dim() == 3:
+        # Handle time series data [batch, time, state_dim]
+        # Use the last time step
+        state_point = state_point[:, -1, :]
+    
+    batch_size, state_dim = state_point.shape
+    
+    # Ensure requires_grad is True
+    state_point = state_point.detach().requires_grad_(True)
+    
+    # Prepare inputs for neural operator
+    # state_point: [batch, state_dim]
+    # Neural operators expect: input_functions [batch, state_dim, num_sensors]
+    #                          query_points [batch, state_dim, num_queries]
+    # For Jacobian computation, we use state as both input and query
+    input_functions = state_point.unsqueeze(2)  # [batch, state_dim, 1]
+    query_points = state_point.unsqueeze(2)  # [batch, state_dim, 1]
+    
+    # Compute Jacobian using automatic differentiation
+    jacobian = torch.zeros(state_dim, state_dim, device=state_point.device)
+    
+    for i in range(state_dim):
+        # Zero gradients
+        if state_point.grad is not None:
+            state_point.grad.zero_()
+        
+        # Forward pass
+        output = model(input_functions, query_points)  # [batch, state_dim, 1]
+        
+        # Backward pass for i-th output component
+        # output shape: [batch, state_dim, 1]
+        output_i = output[0, i, 0]
+        
+        output_i.backward(retain_graph=True)
+        
+        # Store gradient (i-th row of Jacobian)
+        if state_point.grad is not None:
+            jacobian[i, :] = state_point.grad[0, :].detach()
+    
+    # Compute eigenvalues
+    if method == &#39;auto&#39;:
+        # Use eig for small matrices, power iteration for large
+        if state_dim &lt;= 100:
+            method = &#39;eig&#39;
+        else:
+            method = &#39;power_iteration&#39;
+    
+    if method == &#39;eig&#39;:
+        # Use torch.linalg.eig for full eigenvalue decomposition
+        eigenvalues, _ = torch.linalg.eig(jacobian)
+    elif method == &#39;power_iteration&#39;:
+        # Use power iteration for dominant eigenvalues
+        eigenvalues = _power_iteration_eigenvalues(jacobian, num_eigenvalues)
+    else:
+        raise ValueError(f&#34;Unknown method: {method}. Use &#39;auto&#39;, &#39;eig&#39;, or &#39;power_iteration&#39;&#34;)
+    
+    model.train()
+    return eigenvalues</code></pre>
+</details>
+<div class="desc"><p>Compute eigenvalues of the learned operator Jacobian at a state point.</p>
+<p>Uses automatic differentiation to construct the Jacobian matrix,
+then computes eigenvalues using torch.linalg.eig or power iteration.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>model</code></strong></dt>
+<dd>Neural operator model</dd>
+<dt><strong><code>state_point</code></strong></dt>
+<dd>State at which to compute eigenvalues [state_dim] or [batch, state_dim]</dd>
+<dt><strong><code>num_eigenvalues</code></strong></dt>
+<dd>Number of eigenvalues to compute (for power iteration)</dd>
+<dt><strong><code>method</code></strong></dt>
+<dd>'auto', 'eig', or 'power_iteration'</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Eigenvalues as complex tensor [num_eigenvalues] or [state_dim]
+Validates: Requirements 7.1</p></div>
+</dd>
+<dt id="analysis.spectral.compute_spectral_radius"><code class="name flex">
+<span>def <span class="ident">compute_spectral_radius</span></span>(<span>eigenvalues: torch.Tensor) ‑> float</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compute_spectral_radius(eigenvalues: torch.Tensor) -&gt; float:
+    &#34;&#34;&#34;
+    Compute spectral radius as the maximum absolute eigenvalue.
+    
+    Args:
+        eigenvalues: Complex eigenvalues tensor
+    
+    Returns:
+        Spectral radius (maximum |λ_i|)
+    
+    Validates: Requirements 7.2
+    &#34;&#34;&#34;
+    # Compute absolute values of complex eigenvalues
+    abs_eigenvalues = torch.abs(eigenvalues)
+    
+    # Return maximum
+    spectral_radius = torch.max(abs_eigenvalues).item()
+    
+    return spectral_radius</code></pre>
+</details>
+<div class="desc"><p>Compute spectral radius as the maximum absolute eigenvalue.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>eigenvalues</code></strong></dt>
+<dd>Complex eigenvalues tensor</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Spectral radius (maximum |λ_i|)
+Validates: Requirements 7.2</p></div>
+</dd>
+<dt id="analysis.spectral.save_eigenvalue_data"><code class="name flex">
+<span>def <span class="ident">save_eigenvalue_data</span></span>(<span>training_history: Dict[str, List], filepath: str) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def save_eigenvalue_data(
+    training_history: Dict[str, List],
+    filepath: str
+) -&gt; None:
+    &#34;&#34;&#34;
+    Save eigenvalue data for post-training analysis.
+    
+    Args:
+        training_history: Training history containing eigenvalue data
+        filepath: Path to save eigenvalue data (JSON format)
+    
+    Validates: Requirements 7.5
+    &#34;&#34;&#34;
+    import json
+    
+    # Extract eigenvalue data
+    eigenvalue_data = {
+        &#39;spectral_radius&#39;: training_history.get(&#39;spectral_radius&#39;, []),
+        &#39;eigenvalues&#39;: training_history.get(&#39;eigenvalues&#39;, []),
+    }
+    
+    # Save to JSON
+    with open(filepath, &#39;w&#39;) as f:
+        json.dump(eigenvalue_data, f, indent=2)</code></pre>
+</details>
+<div class="desc"><p>Save eigenvalue data for post-training analysis.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>training_history</code></strong></dt>
+<dd>Training history containing eigenvalue data</dd>
+<dt><strong><code>filepath</code></strong></dt>
+<dd>Path to save eigenvalue data (JSON format)</dd>
+</dl>
+<p>Validates: Requirements 7.5</p></div>
+</dd>
+<dt id="analysis.spectral.track_eigenvalue_evolution"><code class="name flex">
+<span>def <span class="ident">track_eigenvalue_evolution</span></span>(<span>model: torch.nn.modules.module.Module,<br>state_point: torch.Tensor,<br>training_history: Dict[str, List[Tuple[int, float]]],<br>iteration: int,<br>num_eigenvalues: int = 10) ‑> Dict[str, List]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def track_eigenvalue_evolution(
+    model: nn.Module,
+    state_point: torch.Tensor,
+    training_history: Dict[str, List[Tuple[int, float]]],
+    iteration: int,
+    num_eigenvalues: int = 10
+) -&gt; Dict[str, List]:
+    &#34;&#34;&#34;
+    Track eigenvalue evolution during training.
+    
+    Computes eigenvalues and spectral radius at current iteration
+    and appends to training history.
+    
+    Args:
+        model: Neural operator model
+        state_point: State at which to compute eigenvalues
+        training_history: Training history dictionary to update
+        iteration: Current training iteration
+        num_eigenvalues: Number of eigenvalues to compute
+    
+    Returns:
+        Updated training history
+    
+    Validates: Requirements 7.4
+    &#34;&#34;&#34;
+    # Compute eigenvalues
+    eigenvalues = compute_operator_eigenvalues(
+        model, state_point, num_eigenvalues=num_eigenvalues
+    )
+    
+    # Compute spectral radius
+    spectral_radius = compute_spectral_radius(eigenvalues)
+    
+    # Initialize history lists if not present
+    if &#39;spectral_radius&#39; not in training_history:
+        training_history[&#39;spectral_radius&#39;] = []
+    if &#39;eigenvalues&#39; not in training_history:
+        training_history[&#39;eigenvalues&#39;] = []
+    
+    # Append to history
+    training_history[&#39;spectral_radius&#39;].append((iteration, spectral_radius))
+    
+    # Store eigenvalues as list of (real, imag) pairs
+    eigenvalues_list = [
+        (eig.real.item(), eig.imag.item()) for eig in eigenvalues
+    ]
+    training_history[&#39;eigenvalues&#39;].append((iteration, eigenvalues_list))
+    
+    return training_history</code></pre>
+</details>
+<div class="desc"><p>Track eigenvalue evolution during training.</p>
+<p>Computes eigenvalues and spectral radius at current iteration
+and appends to training history.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>model</code></strong></dt>
+<dd>Neural operator model</dd>
+<dt><strong><code>state_point</code></strong></dt>
+<dd>State at which to compute eigenvalues</dd>
+<dt><strong><code>training_history</code></strong></dt>
+<dd>Training history dictionary to update</dd>
+<dt><strong><code>iteration</code></strong></dt>
+<dd>Current training iteration</dd>
+<dt><strong><code>num_eigenvalues</code></strong></dt>
+<dd>Number of eigenvalues to compute</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Updated training history
+Validates: Requirements 7.4</p></div>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="analysis.spectral.SpectralAnalyzer"><code class="flex name class">
+<span>class <span class="ident">SpectralAnalyzer</span></span>
+<span>(</span><span>model: torch.nn.modules.module.Module, dataset, device: torch.device)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class SpectralAnalyzer:
+    &#34;&#34;&#34;Wrapper class for spectral analysis functions.
+    
+    This class provides a convenient interface to spectral analysis functions
+    for use in the experiment runner.
+    &#34;&#34;&#34;
+    
+    def __init__(self, model: nn.Module, dataset, device: torch.device):
+        &#34;&#34;&#34;Initialize spectral analyzer.
+        
+        Args:
+            model: Neural operator model
+            dataset: Dataset (not used but kept for compatibility)
+            device: Device for computation
+        &#34;&#34;&#34;
+        self.model = model
+        self.dataset = dataset
+        self.device = device
+    
+    def compute_operator_eigenvalues(
+        self,
+        state_point: torch.Tensor,
+        num_eigenvalues: int = 10,
+        method: str = &#39;auto&#39;
+    ) -&gt; torch.Tensor:
+        &#34;&#34;&#34;Compute eigenvalues of operator Jacobian at state point.&#34;&#34;&#34;
+        return compute_operator_eigenvalues(
+            self.model,
+            state_point.to(self.device),
+            num_eigenvalues,
+            method
+        )
+    
+    def compute_spectral_radius(self, eigenvalues: torch.Tensor) -&gt; float:
+        &#34;&#34;&#34;Compute spectral radius from eigenvalues.&#34;&#34;&#34;
+        return compute_spectral_radius(eigenvalues)
+    
+    def compute_eigenvalue_error(
+        self,
+        learned_eigenvalues: torch.Tensor,
+        true_eigenvalues: torch.Tensor
+    ) -&gt; float:
+        &#34;&#34;&#34;Compute eigenvalue approximation error.&#34;&#34;&#34;
+        return compute_eigenvalue_error(learned_eigenvalues, true_eigenvalues)</code></pre>
+</details>
+<div class="desc"><p>Wrapper class for spectral analysis functions.</p>
+<p>This class provides a convenient interface to spectral analysis functions
+for use in the experiment runner.</p>
+<p>Initialize spectral analyzer.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>model</code></strong></dt>
+<dd>Neural operator model</dd>
+<dt><strong><code>dataset</code></strong></dt>
+<dd>Dataset (not used but kept for compatibility)</dd>
+<dt><strong><code>device</code></strong></dt>
+<dd>Device for computation</dd>
+</dl></div>
+<h3>Methods</h3>
+<dl>
+<dt id="analysis.spectral.SpectralAnalyzer.compute_eigenvalue_error"><code class="name flex">
+<span>def <span class="ident">compute_eigenvalue_error</span></span>(<span>self, learned_eigenvalues: torch.Tensor, true_eigenvalues: torch.Tensor) ‑> float</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compute_eigenvalue_error(
+    self,
+    learned_eigenvalues: torch.Tensor,
+    true_eigenvalues: torch.Tensor
+) -&gt; float:
+    &#34;&#34;&#34;Compute eigenvalue approximation error.&#34;&#34;&#34;
+    return compute_eigenvalue_error(learned_eigenvalues, true_eigenvalues)</code></pre>
+</details>
+<div class="desc"><p>Compute eigenvalue approximation error.</p></div>
+</dd>
+<dt id="analysis.spectral.SpectralAnalyzer.compute_operator_eigenvalues"><code class="name flex">
+<span>def <span class="ident">compute_operator_eigenvalues</span></span>(<span>self, state_point: torch.Tensor, num_eigenvalues: int = 10, method: str = 'auto') ‑> torch.Tensor</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compute_operator_eigenvalues(
+    self,
+    state_point: torch.Tensor,
+    num_eigenvalues: int = 10,
+    method: str = &#39;auto&#39;
+) -&gt; torch.Tensor:
+    &#34;&#34;&#34;Compute eigenvalues of operator Jacobian at state point.&#34;&#34;&#34;
+    return compute_operator_eigenvalues(
+        self.model,
+        state_point.to(self.device),
+        num_eigenvalues,
+        method
+    )</code></pre>
+</details>
+<div class="desc"><p>Compute eigenvalues of operator Jacobian at state point.</p></div>
+</dd>
+<dt id="analysis.spectral.SpectralAnalyzer.compute_spectral_radius"><code class="name flex">
+<span>def <span class="ident">compute_spectral_radius</span></span>(<span>self, eigenvalues: torch.Tensor) ‑> float</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compute_spectral_radius(self, eigenvalues: torch.Tensor) -&gt; float:
+    &#34;&#34;&#34;Compute spectral radius from eigenvalues.&#34;&#34;&#34;
+    return compute_spectral_radius(eigenvalues)</code></pre>
+</details>
+<div class="desc"><p>Compute spectral radius from eigenvalues.</p></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="analysis" href="index.html">analysis</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="analysis.spectral.compute_eigenvalue_error" href="#analysis.spectral.compute_eigenvalue_error">compute_eigenvalue_error</a></code></li>
+<li><code><a title="analysis.spectral.compute_operator_eigenvalues" href="#analysis.spectral.compute_operator_eigenvalues">compute_operator_eigenvalues</a></code></li>
+<li><code><a title="analysis.spectral.compute_spectral_radius" href="#analysis.spectral.compute_spectral_radius">compute_spectral_radius</a></code></li>
+<li><code><a title="analysis.spectral.save_eigenvalue_data" href="#analysis.spectral.save_eigenvalue_data">save_eigenvalue_data</a></code></li>
+<li><code><a title="analysis.spectral.track_eigenvalue_evolution" href="#analysis.spectral.track_eigenvalue_evolution">track_eigenvalue_evolution</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="analysis.spectral.SpectralAnalyzer" href="#analysis.spectral.SpectralAnalyzer">SpectralAnalyzer</a></code></h4>
+<ul class="">
+<li><code><a title="analysis.spectral.SpectralAnalyzer.compute_eigenvalue_error" href="#analysis.spectral.SpectralAnalyzer.compute_eigenvalue_error">compute_eigenvalue_error</a></code></li>
+<li><code><a title="analysis.spectral.SpectralAnalyzer.compute_operator_eigenvalues" href="#analysis.spectral.SpectralAnalyzer.compute_operator_eigenvalues">compute_operator_eigenvalues</a></code></li>
+<li><code><a title="analysis.spectral.SpectralAnalyzer.compute_spectral_radius" href="#analysis.spectral.SpectralAnalyzer.compute_spectral_radius">compute_spectral_radius</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,1852 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>analysis API documentation</title>
+<meta name="description" content="Metrics computation and spectral analysis.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Package <code>analysis</code></h1>
+</header>
+<section id="section-intro">
+<p>Metrics computation and spectral analysis.</p>
+</section>
+<section>
+<h2 class="section-title" id="header-submodules">Sub-modules</h2>
+<dl>
+<dt><code class="name"><a title="analysis.baseline" href="baseline.html">analysis.baseline</a></code></dt>
+<dd>
+<div class="desc"><p>Baseline comparison utilities for theoretical analysis.</p></div>
+</dd>
+<dt><code class="name"><a title="analysis.metrics" href="metrics.html">analysis.metrics</a></code></dt>
+<dd>
+<div class="desc"><p>Metrics computation for training, validation, and convergence analysis.</p></div>
+</dd>
+<dt><code class="name"><a title="analysis.spectral" href="spectral.html">analysis.spectral</a></code></dt>
+<dd>
+<div class="desc"><p>Spectral analysis for neural operators.</p></div>
+</dd>
+<dt><code class="name"><a title="analysis.statistics" href="statistics.html">analysis.statistics</a></code></dt>
+<dd>
+<div class="desc"><p>Statistical analysis for multi-seed experiments.</p></div>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="analysis.aggregate_results"><code class="name flex">
+<span>def <span class="ident">aggregate_results</span></span>(<span>results_list: List[Dict[str, Any]],<br>metrics_to_aggregate: List[str] | None = None) ‑> Dict[str, Dict[str, float]]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def aggregate_results(
+    results_list: List[Dict[str, Any]],
+    metrics_to_aggregate: Optional[List[str]] = None
+) -&gt; Dict[str, Dict[str, float]]:
+    &#34;&#34;&#34;
+    Aggregate results across multiple experimental runs.
+    
+    Computes mean and standard deviation for each metric across runs.
+    
+    Args:
+        results_list: List of result dictionaries from multiple runs
+        metrics_to_aggregate: List of metric names to aggregate. If None, aggregates all numeric metrics.
+    
+    Returns:
+        Dictionary mapping metric names to aggregated statistics:
+            {
+                &#39;metric_name&#39;: {
+                    &#39;mean&#39;: float,
+                    &#39;std&#39;: float,
+                    &#39;min&#39;: float,
+                    &#39;max&#39;: float,
+                    &#39;count&#39;: int,
+                    &#39;ci_95_lower&#39;: float,  # 95% confidence interval lower bound
+                    &#39;ci_95_upper&#39;: float,  # 95% confidence interval upper bound
+                }
+            }
+    
+    Validates: Requirements 15.2, 15.4
+    
+    Example:
+        &gt;&gt;&gt; results = [
+        ...     {&#39;val_loss&#39;: 0.1, &#39;iterations_to_target&#39;: 1000},
+        ...     {&#39;val_loss&#39;: 0.12, &#39;iterations_to_target&#39;: 1100},
+        ...     {&#39;val_loss&#39;: 0.11, &#39;iterations_to_target&#39;: 1050},
+        ... ]
+        &gt;&gt;&gt; aggregated = aggregate_results(results)
+        &gt;&gt;&gt; print(aggregated[&#39;val_loss&#39;][&#39;mean&#39;])
+        0.11
+    &#34;&#34;&#34;
+    if not results_list:
+        return {}
+    
+    # Determine which metrics to aggregate
+    if metrics_to_aggregate is None:
+        # Aggregate all numeric metrics found in the first result
+        metrics_to_aggregate = []
+        for key, value in results_list[0].items():
+            if isinstance(value, (int, float, np.number)):
+                metrics_to_aggregate.append(key)
+    
+    aggregated = {}
+    
+    for metric_name in metrics_to_aggregate:
+        # Collect values for this metric across all runs
+        values = []
+        for result in results_list:
+            if metric_name in result and result[metric_name] is not None:
+                values.append(float(result[metric_name]))
+        
+        if not values:
+            continue
+        
+        # Compute statistics
+        values_array = np.array(values)
+        mean_val = np.mean(values_array)
+        std_val = np.std(values_array, ddof=1) if len(values) &gt; 1 else 0.0
+        min_val = np.min(values_array)
+        max_val = np.max(values_array)
+        count = len(values)
+        
+        # Compute 95% confidence interval using t-distribution
+        if count &gt; 1:
+            confidence_level = 0.95
+            degrees_freedom = count - 1
+            t_critical = stats.t.ppf((1 + confidence_level) / 2, degrees_freedom)
+            margin_error = t_critical * (std_val / np.sqrt(count))
+            ci_lower = mean_val - margin_error
+            ci_upper = mean_val + margin_error
+        else:
+            ci_lower = mean_val
+            ci_upper = mean_val
+        
+        aggregated[metric_name] = {
+            &#39;mean&#39;: float(mean_val),
+            &#39;std&#39;: float(std_val),
+            &#39;min&#39;: float(min_val),
+            &#39;max&#39;: float(max_val),
+            &#39;count&#39;: count,
+            &#39;ci_95_lower&#39;: float(ci_lower),
+            &#39;ci_95_upper&#39;: float(ci_upper),
+        }
+    
+    return aggregated</code></pre>
+</details>
+<div class="desc"><p>Aggregate results across multiple experimental runs.</p>
+<p>Computes mean and standard deviation for each metric across runs.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>results_list</code></strong></dt>
+<dd>List of result dictionaries from multiple runs</dd>
+<dt><strong><code>metrics_to_aggregate</code></strong></dt>
+<dd>List of metric names to aggregate. If None, aggregates all numeric metrics.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Dictionary mapping metric names to aggregated statistics:
+{
+'metric_name': {
+'mean': float,
+'std': float,
+'min': float,
+'max': float,
+'count': int,
+'ci_95_lower': float,
+# 95% confidence interval lower bound
+'ci_95_upper': float,
+# 95% confidence interval upper bound
+}
+}
+Validates: Requirements 15.2, 15.4</p>
+<h2 id="example">Example</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; results = [
+...     {'val_loss': 0.1, 'iterations_to_target': 1000},
+...     {'val_loss': 0.12, 'iterations_to_target': 1100},
+...     {'val_loss': 0.11, 'iterations_to_target': 1050},
+... ]
+&gt;&gt;&gt; aggregated = aggregate_results(results)
+&gt;&gt;&gt; print(aggregated['val_loss']['mean'])
+0.11
+</code></pre></div>
+</dd>
+<dt id="analysis.compare_optimizer_efficiency"><code class="name flex">
+<span>def <span class="ident">compare_optimizer_efficiency</span></span>(<span>sgd_history: Dict, adam_history: Dict, svrg_history: Dict, target_loss: float) ‑> Dict[str, Dict[str, float]]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compare_optimizer_efficiency(
+    sgd_history: Dict,
+    adam_history: Dict,
+    svrg_history: Dict,
+    target_loss: float
+) -&gt; Dict[str, Dict[str, float]]:
+    &#34;&#34;&#34;
+    Compare optimizer efficiency across multiple metrics.
+    
+    Args:
+        sgd_history: Training history for SGD
+        adam_history: Training history for Adam
+        svrg_history: Training history for SVRG
+        target_loss: Target validation loss for convergence
+    
+    Returns:
+        Dictionary with efficiency metrics for each optimizer
+    
+    Validates: Requirements 18.1, 18.2
+    &#34;&#34;&#34;
+    from analysis.metrics import compute_convergence_metrics
+    
+    optimizers = {
+        &#39;SGD&#39;: sgd_history,
+        &#39;Adam&#39;: adam_history,
+        &#39;SVRG&#39;: svrg_history,
+    }
+    
+    efficiency_comparison = {}
+    
+    for opt_name, history in optimizers.items():
+        # Compute convergence metrics
+        convergence = compute_convergence_metrics(history, target_loss)
+        
+        # Extract final gradient variance
+        grad_var_history = history.get(&#39;train_grad_variance&#39;, [])
+        final_grad_variance = grad_var_history[-1][1] if grad_var_history else None
+        
+        efficiency_comparison[opt_name] = {
+            &#39;iterations_to_target&#39;: convergence[&#39;iterations_to_target&#39;],
+            &#39;time_to_target&#39;: convergence[&#39;time_to_target&#39;],
+            &#39;gradient_evals_to_target&#39;: convergence[&#39;gradient_evals_to_target&#39;],
+            &#39;final_val_loss&#39;: convergence[&#39;final_val_loss&#39;],
+            &#39;min_val_loss&#39;: convergence[&#39;min_val_loss&#39;],
+            &#39;final_grad_variance&#39;: final_grad_variance,
+        }
+    
+    # Compute variance reduction factors
+    sgd_var = efficiency_comparison[&#39;SGD&#39;][&#39;final_grad_variance&#39;]
+    svrg_var = efficiency_comparison[&#39;SVRG&#39;][&#39;final_grad_variance&#39;]
+    
+    if sgd_var is not None and svrg_var is not None:
+        efficiency_comparison[&#39;variance_reduction_factor&#39;] = compute_variance_reduction_factor(
+            sgd_var, svrg_var
+        )
+    
+    return efficiency_comparison</code></pre>
+</details>
+<div class="desc"><p>Compare optimizer efficiency across multiple metrics.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>sgd_history</code></strong></dt>
+<dd>Training history for SGD</dd>
+<dt><strong><code>adam_history</code></strong></dt>
+<dd>Training history for Adam</dd>
+<dt><strong><code>svrg_history</code></strong></dt>
+<dd>Training history for SVRG</dd>
+<dt><strong><code>target_loss</code></strong></dt>
+<dd>Target validation loss for convergence</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Dictionary with efficiency metrics for each optimizer
+Validates: Requirements 18.1, 18.2</p></div>
+</dd>
+<dt id="analysis.compare_optimizers"><code class="name flex">
+<span>def <span class="ident">compare_optimizers</span></span>(<span>results_by_optimizer: Dict[str, List[Dict[str, Any]]],<br>metric_name: str,<br>test_type: str = 'auto',<br>alpha: float = 0.05) ‑> Dict[str, Any]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compare_optimizers(
+    results_by_optimizer: Dict[str, List[Dict[str, Any]]],
+    metric_name: str,
+    test_type: str = &#39;auto&#39;,
+    alpha: float = 0.05
+) -&gt; Dict[str, Any]:
+    &#34;&#34;&#34;
+    Perform statistical significance testing comparing optimizer performance.
+    
+    Args:
+        results_by_optimizer: Dictionary mapping optimizer names to lists of results
+            {
+                &#39;SGD&#39;: [result1, result2, ...],
+                &#39;Adam&#39;: [result1, result2, ...],
+                &#39;SVRG&#39;: [result1, result2, ...],
+            }
+        metric_name: Name of the metric to compare (e.g., &#39;val_loss&#39;, &#39;iterations_to_target&#39;)
+        test_type: Type of statistical test to perform:
+            - &#39;auto&#39;: Automatically choose based on data (default)
+            - &#39;t-test&#39;: Paired or unpaired t-test
+            - &#39;wilcoxon&#39;: Wilcoxon signed-rank test (non-parametric)
+            - &#39;mann-whitney&#39;: Mann-Whitney U test (non-parametric)
+        alpha: Significance level (default: 0.05)
+    
+    Returns:
+        Dictionary containing:
+            - &#39;comparisons&#39;: List of pairwise comparison results
+            - &#39;test_type&#39;: Type of test performed
+            - &#39;metric&#39;: Metric name
+            - &#39;alpha&#39;: Significance level
+    
+    Validates: Requirements 15.3
+    
+    Example:
+        &gt;&gt;&gt; results = {
+        ...     &#39;SGD&#39;: [{&#39;val_loss&#39;: 0.1}, {&#39;val_loss&#39;: 0.12}],
+        ...     &#39;Adam&#39;: [{&#39;val_loss&#39;: 0.08}, {&#39;val_loss&#39;: 0.09}],
+        ... }
+        &gt;&gt;&gt; comparison = compare_optimizers(results, &#39;val_loss&#39;)
+        &gt;&gt;&gt; print(comparison[&#39;comparisons&#39;][0][&#39;significant&#39;])
+    &#34;&#34;&#34;
+    # Extract metric values for each optimizer
+    optimizer_values = {}
+    for optimizer_name, results_list in results_by_optimizer.items():
+        values = []
+        for result in results_list:
+            if metric_name in result and result[metric_name] is not None:
+                values.append(float(result[metric_name]))
+        if values:
+            optimizer_values[optimizer_name] = np.array(values)
+    
+    if len(optimizer_values) &lt; 2:
+        return {
+            &#39;comparisons&#39;: [],
+            &#39;test_type&#39;: test_type,
+            &#39;metric&#39;: metric_name,
+            &#39;alpha&#39;: alpha,
+            &#39;error&#39;: &#39;Need at least 2 optimizers with valid data for comparison&#39;
+        }
+    
+    # Determine test type
+    if test_type == &#39;auto&#39;:
+        # Use t-test if sample sizes are reasonable (&gt;= 5), otherwise use non-parametric
+        min_sample_size = min(len(values) for values in optimizer_values.values())
+        if min_sample_size &gt;= 5:
+            test_type = &#39;t-test&#39;
+        else:
+            test_type = &#39;mann-whitney&#39;
+    
+    # Perform pairwise comparisons
+    comparisons = []
+    optimizer_names = sorted(optimizer_values.keys())
+    
+    for i in range(len(optimizer_names)):
+        for j in range(i + 1, len(optimizer_names)):
+            opt1_name = optimizer_names[i]
+            opt2_name = optimizer_names[j]
+            values1 = optimizer_values[opt1_name]
+            values2 = optimizer_values[opt2_name]
+            
+            # Perform statistical test
+            if test_type == &#39;t-test&#39;:
+                # Independent samples t-test
+                statistic, p_value = stats.ttest_ind(values1, values2)
+                test_name = &#34;Independent t-test&#34;
+            elif test_type == &#39;wilcoxon&#39;:
+                # Wilcoxon signed-rank test (requires paired samples)
+                if len(values1) == len(values2):
+                    statistic, p_value = stats.wilcoxon(values1, values2)
+                    test_name = &#34;Wilcoxon signed-rank test&#34;
+                else:
+                    # Fall back to Mann-Whitney if not paired
+                    statistic, p_value = stats.mannwhitneyu(values1, values2, alternative=&#39;two-sided&#39;)
+                    test_name = &#34;Mann-Whitney U test (fallback)&#34;
+            elif test_type == &#39;mann-whitney&#39;:
+                # Mann-Whitney U test
+                statistic, p_value = stats.mannwhitneyu(values1, values2, alternative=&#39;two-sided&#39;)
+                test_name = &#34;Mann-Whitney U test&#34;
+            else:
+                raise ValueError(f&#34;Unknown test type: {test_type}&#34;)
+            
+            # Determine significance
+            significant = p_value &lt; alpha
+            
+            # Compute effect size (Cohen&#39;s d for t-test)
+            mean1 = np.mean(values1)
+            mean2 = np.mean(values2)
+            if test_type == &#39;t-test&#39;:
+                pooled_std = np.sqrt(((len(values1) - 1) * np.var(values1, ddof=1) + 
+                                     (len(values2) - 1) * np.var(values2, ddof=1)) / 
+                                    (len(values1) + len(values2) - 2))
+                effect_size = (mean1 - mean2) / pooled_std if pooled_std &gt; 0 else 0.0
+            else:
+                effect_size = None
+            
+            comparison = {
+                &#39;optimizer1&#39;: opt1_name,
+                &#39;optimizer2&#39;: opt2_name,
+                &#39;mean1&#39;: float(mean1),
+                &#39;mean2&#39;: float(mean2),
+                &#39;statistic&#39;: float(statistic),
+                &#39;p_value&#39;: float(p_value),
+                &#39;significant&#39;: significant,
+                &#39;test_name&#39;: test_name,
+            }
+            
+            if effect_size is not None:
+                comparison[&#39;effect_size&#39;] = float(effect_size)
+            
+            comparisons.append(comparison)
+    
+    return {
+        &#39;comparisons&#39;: comparisons,
+        &#39;test_type&#39;: test_type,
+        &#39;metric&#39;: metric_name,
+        &#39;alpha&#39;: alpha,
+    }</code></pre>
+</details>
+<div class="desc"><p>Perform statistical significance testing comparing optimizer performance.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>results_by_optimizer</code></strong></dt>
+<dd>Dictionary mapping optimizer names to lists of results
+{
+'SGD': [result1, result2, &hellip;],
+'Adam': [result1, result2, &hellip;],
+'SVRG': [result1, result2, &hellip;],
+}</dd>
+<dt><strong><code>metric_name</code></strong></dt>
+<dd>Name of the metric to compare (e.g., 'val_loss', 'iterations_to_target')</dd>
+<dt><strong><code>test_type</code></strong></dt>
+<dd>Type of statistical test to perform:
+- 'auto': Automatically choose based on data (default)
+- 't-test': Paired or unpaired t-test
+- 'wilcoxon': Wilcoxon signed-rank test (non-parametric)
+- 'mann-whitney': Mann-Whitney U test (non-parametric)</dd>
+<dt><strong><code>alpha</code></strong></dt>
+<dd>Significance level (default: 0.05)</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Dictionary containing:
+- 'comparisons': List of pairwise comparison results
+- 'test_type': Type of test performed
+- 'metric': Metric name
+- 'alpha': Significance level
+Validates: Requirements 15.3</p>
+<h2 id="example">Example</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; results = {
+...     'SGD': [{'val_loss': 0.1}, {'val_loss': 0.12}],
+...     'Adam': [{'val_loss': 0.08}, {'val_loss': 0.09}],
+... }
+&gt;&gt;&gt; comparison = compare_optimizers(results, 'val_loss')
+&gt;&gt;&gt; print(comparison['comparisons'][0]['significant'])
+</code></pre></div>
+</dd>
+<dt id="analysis.compute_convergence_metrics"><code class="name flex">
+<span>def <span class="ident">compute_convergence_metrics</span></span>(<span>training_history: Dict[str, List[Tuple[int, float]]], target_loss: float) ‑> Dict[str, Any]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compute_convergence_metrics(
+    training_history: Dict[str, List[Tuple[int, float]]],
+    target_loss: float
+) -&gt; Dict[str, Any]:
+    &#34;&#34;&#34;
+    Compute convergence metrics from training history.
+    
+    Args:
+        training_history: Dictionary containing metric histories with (iteration, value) tuples
+        target_loss: Target validation loss threshold
+    
+    Returns:
+        Dictionary containing:
+            - iterations_to_target: Iterations to reach target loss (or None)
+            - time_to_target: Wall-clock time to reach target loss (or None)
+            - gradient_evals_to_target: Gradient evaluations to reach target (or None)
+            - final_val_loss: Final validation loss achieved
+            - min_val_loss: Minimum validation loss achieved
+    
+    Validates: Requirements 8.1, 8.2, 8.3, 8.4
+    &#34;&#34;&#34;
+    val_loss_history = training_history.get(&#39;val_loss&#39;, [])
+    iteration_time_history = training_history.get(&#39;iteration_time&#39;, [])
+    
+    if not val_loss_history:
+        return {
+            &#39;iterations_to_target&#39;: None,
+            &#39;time_to_target&#39;: None,
+            &#39;gradient_evals_to_target&#39;: None,
+            &#39;final_val_loss&#39;: None,
+            &#39;min_val_loss&#39;: None,
+        }
+    
+    # Find minimum validation loss
+    min_val_loss = min(loss for _, loss in val_loss_history)
+    final_val_loss = val_loss_history[-1][1]
+    
+    # Find first iteration where target loss is reached
+    iterations_to_target = None
+    time_to_target = None
+    gradient_evals_to_target = None
+    
+    for iteration, loss in val_loss_history:
+        if loss &lt; target_loss:
+            iterations_to_target = iteration
+            
+            # Compute wall-clock time up to this iteration
+            time_to_target = sum(
+                time_val for iter_val, time_val in iteration_time_history
+                if iter_val &lt;= iteration
+            )
+            
+            # Gradient evaluations equal iterations (one gradient per iteration)
+            gradient_evals_to_target = iteration
+            break
+    
+    metrics = {
+        &#39;iterations_to_target&#39;: iterations_to_target,
+        &#39;time_to_target&#39;: time_to_target,
+        &#39;gradient_evals_to_target&#39;: gradient_evals_to_target,
+        &#39;final_val_loss&#39;: final_val_loss,
+        &#39;min_val_loss&#39;: min_val_loss,
+    }
+    
+    return metrics</code></pre>
+</details>
+<div class="desc"><p>Compute convergence metrics from training history.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>training_history</code></strong></dt>
+<dd>Dictionary containing metric histories with (iteration, value) tuples</dd>
+<dt><strong><code>target_loss</code></strong></dt>
+<dd>Target validation loss threshold</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Dictionary containing:
+- iterations_to_target: Iterations to reach target loss (or None)
+- time_to_target: Wall-clock time to reach target loss (or None)
+- gradient_evals_to_target: Gradient evaluations to reach target (or None)
+- final_val_loss: Final validation loss achieved
+- min_val_loss: Minimum validation loss achieved
+Validates: Requirements 8.1, 8.2, 8.3, 8.4</p></div>
+</dd>
+<dt id="analysis.compute_eigenvalue_error"><code class="name flex">
+<span>def <span class="ident">compute_eigenvalue_error</span></span>(<span>learned_eigenvalues: torch.Tensor,<br>true_eigenvalues: torch.Tensor,<br>method: str = 'hungarian') ‑> float</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compute_eigenvalue_error(
+    learned_eigenvalues: torch.Tensor,
+    true_eigenvalues: torch.Tensor,
+    method: str = &#39;hungarian&#39;
+) -&gt; float:
+    &#34;&#34;&#34;
+    Compute eigenvalue approximation error.
+    
+    Matches learned eigenvalues to true eigenvalues and computes error.
+    Uses Hungarian algorithm for optimal matching.
+    
+    Args:
+        learned_eigenvalues: Learned eigenvalues [n]
+        true_eigenvalues: True eigenvalues [m]
+        method: &#39;hungarian&#39; for optimal matching, &#39;nearest&#39; for greedy matching
+    
+    Returns:
+        Eigenvalue approximation error
+    
+    Validates: Requirements 7.3
+    &#34;&#34;&#34;
+    # Convert to numpy for easier manipulation
+    learned = learned_eigenvalues.detach().cpu().numpy()
+    true = true_eigenvalues.detach().cpu().numpy()
+    
+    n_learned = len(learned)
+    n_true = len(true)
+    
+    if method == &#39;hungarian&#39;:
+        # Use Hungarian algorithm for optimal matching
+        from scipy.optimize import linear_sum_assignment
+        
+        # Compute cost matrix (distances between eigenvalues)
+        cost_matrix = np.zeros((n_learned, n_true))
+        for i in range(n_learned):
+            for j in range(n_true):
+                cost_matrix[i, j] = np.abs(learned[i] - true[j])
+        
+        # Find optimal assignment
+        row_ind, col_ind = linear_sum_assignment(cost_matrix)
+        
+        # Compute total error
+        total_error = cost_matrix[row_ind, col_ind].sum()
+        
+        # Normalize by number of matched pairs
+        error = total_error / len(row_ind)
+        
+    elif method == &#39;nearest&#39;:
+        # Greedy nearest neighbor matching
+        total_error = 0.0
+        used_true = set()
+        
+        for learned_eig in learned:
+            # Find nearest unused true eigenvalue
+            min_dist = float(&#39;inf&#39;)
+            best_idx = -1
+            
+            for j, true_eig in enumerate(true):
+                if j not in used_true:
+                    dist = np.abs(learned_eig - true_eig)
+                    if dist &lt; min_dist:
+                        min_dist = dist
+                        best_idx = j
+            
+            if best_idx &gt;= 0:
+                total_error += min_dist
+                used_true.add(best_idx)
+        
+        # Normalize by number of learned eigenvalues
+        error = total_error / n_learned
+        
+    else:
+        raise ValueError(f&#34;Unknown method: {method}. Use &#39;hungarian&#39; or &#39;nearest&#39;&#34;)
+    
+    return float(error)</code></pre>
+</details>
+<div class="desc"><p>Compute eigenvalue approximation error.</p>
+<p>Matches learned eigenvalues to true eigenvalues and computes error.
+Uses Hungarian algorithm for optimal matching.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>learned_eigenvalues</code></strong></dt>
+<dd>Learned eigenvalues [n]</dd>
+<dt><strong><code>true_eigenvalues</code></strong></dt>
+<dd>True eigenvalues [m]</dd>
+<dt><strong><code>method</code></strong></dt>
+<dd>'hungarian' for optimal matching, 'nearest' for greedy matching</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Eigenvalue approximation error
+Validates: Requirements 7.3</p></div>
+</dd>
+<dt id="analysis.compute_long_horizon_metrics"><code class="name flex">
+<span>def <span class="ident">compute_long_horizon_metrics</span></span>(<span>model: torch.nn.modules.module.Module,<br>initial_state: torch.Tensor,<br>true_trajectory: torch.Tensor,<br>num_steps: int,<br>device: torch.device,<br>divergence_threshold: float = 1000.0) ‑> Dict[str, float]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compute_long_horizon_metrics(
+    model: nn.Module,
+    initial_state: torch.Tensor,
+    true_trajectory: torch.Tensor,
+    num_steps: int,
+    device: torch.device,
+    divergence_threshold: float = 1e3
+) -&gt; Dict[str, float]:
+    &#34;&#34;&#34;
+    Compute long-horizon prediction metrics via autoregressive rollout.
+    
+    Args:
+        model: Neural operator model
+        initial_state: Initial state for rollout [batch, input_horizon, state_dim]
+        true_trajectory: True trajectory [batch, num_steps, state_dim]
+        num_steps: Number of autoregressive steps
+        device: Device for computation
+        divergence_threshold: Threshold for detecting divergence
+    
+    Returns:
+        Dictionary containing:
+            - long_horizon_mse: Mean squared error over prediction horizon
+            - long_horizon_steps: Number of steps before divergence
+    
+    Validates: Requirements 6.3, 6.4, 8.3
+    &#34;&#34;&#34;
+    model.eval()
+    
+    with torch.no_grad():
+        current_state = initial_state.to(device)  # [batch, input_horizon, state_dim]
+        predictions = []
+        
+        # Autoregressive rollout
+        for step in range(num_steps):
+            # Prepare inputs for neural operator
+            # current_state: [batch, input_horizon, state_dim]
+            # Neural operators expect: input_functions [batch, state_dim, num_sensors]
+            #                          query_points [batch, state_dim, num_queries]
+            input_functions = current_state.permute(0, 2, 1)  # [batch, state_dim, input_horizon]
+            
+            # For query points, use the same shape as we want 1 output step
+            # Create query points with shape [batch, state_dim, 1]
+            query_points = torch.zeros(
+                current_state.shape[0], 
+                current_state.shape[2], 
+                1, 
+                device=device
+            )
+            
+            # Predict next state
+            next_state_output = model(input_functions, query_points)  # [batch, state_dim, 1]
+            next_state = next_state_output.permute(0, 2, 1)  # [batch, 1, state_dim]
+            
+            predictions.append(next_state.squeeze(1))  # [batch, state_dim]
+            
+            # Check for divergence
+            if torch.max(torch.abs(next_state)) &gt; divergence_threshold:
+                # Divergence detected
+                steps_before_divergence = step + 1
+                break
+            
+            # Update current state: shift window and append new prediction
+            # Keep last (input_horizon - 1) steps and append new prediction
+            current_state = torch.cat([
+                current_state[:, 1:, :],  # Drop first step
+                next_state  # Append new prediction
+            ], dim=1)
+        else:
+            # No divergence
+            steps_before_divergence = num_steps
+        
+        # Stack predictions
+        if len(predictions) &gt; 0:
+            predictions = torch.stack(predictions, dim=1)  # [batch, steps, state_dim]
+            
+            # Compute MSE over available steps
+            available_steps = predictions.shape[1]
+            true_traj_subset = true_trajectory[:, :available_steps, :].to(device)
+            mse = torch.mean((predictions - true_traj_subset) ** 2).item()
+        else:
+            mse = float(&#39;inf&#39;)
+    
+    metrics = {
+        &#39;long_horizon_mse&#39;: mse,
+        &#39;long_horizon_steps&#39;: steps_before_divergence,
+    }
+    
+    model.train()
+    return metrics</code></pre>
+</details>
+<div class="desc"><p>Compute long-horizon prediction metrics via autoregressive rollout.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>model</code></strong></dt>
+<dd>Neural operator model</dd>
+<dt><strong><code>initial_state</code></strong></dt>
+<dd>Initial state for rollout [batch, input_horizon, state_dim]</dd>
+<dt><strong><code>true_trajectory</code></strong></dt>
+<dd>True trajectory [batch, num_steps, state_dim]</dd>
+<dt><strong><code>num_steps</code></strong></dt>
+<dd>Number of autoregressive steps</dd>
+<dt><strong><code>device</code></strong></dt>
+<dd>Device for computation</dd>
+<dt><strong><code>divergence_threshold</code></strong></dt>
+<dd>Threshold for detecting divergence</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Dictionary containing:
+- long_horizon_mse: Mean squared error over prediction horizon
+- long_horizon_steps: Number of steps before divergence
+Validates: Requirements 6.3, 6.4, 8.3</p></div>
+</dd>
+<dt id="analysis.compute_operator_eigenvalues"><code class="name flex">
+<span>def <span class="ident">compute_operator_eigenvalues</span></span>(<span>model: torch.nn.modules.module.Module,<br>state_point: torch.Tensor,<br>num_eigenvalues: int = 10,<br>method: str = 'auto') ‑> torch.Tensor</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compute_operator_eigenvalues(
+    model: nn.Module,
+    state_point: torch.Tensor,
+    num_eigenvalues: int = 10,
+    method: str = &#39;auto&#39;
+) -&gt; torch.Tensor:
+    &#34;&#34;&#34;
+    Compute eigenvalues of the learned operator Jacobian at a state point.
+    
+    Uses automatic differentiation to construct the Jacobian matrix,
+    then computes eigenvalues using torch.linalg.eig or power iteration.
+    
+    Args:
+        model: Neural operator model
+        state_point: State at which to compute eigenvalues [state_dim] or [batch, state_dim]
+        num_eigenvalues: Number of eigenvalues to compute (for power iteration)
+        method: &#39;auto&#39;, &#39;eig&#39;, or &#39;power_iteration&#39;
+    
+    Returns:
+        Eigenvalues as complex tensor [num_eigenvalues] or [state_dim]
+    
+    Validates: Requirements 7.1
+    &#34;&#34;&#34;
+    model.eval()
+    
+    # Ensure state_point has batch dimension
+    if state_point.dim() == 1:
+        state_point = state_point.unsqueeze(0)
+    elif state_point.dim() == 3:
+        # Handle time series data [batch, time, state_dim]
+        # Use the last time step
+        state_point = state_point[:, -1, :]
+    
+    batch_size, state_dim = state_point.shape
+    
+    # Ensure requires_grad is True
+    state_point = state_point.detach().requires_grad_(True)
+    
+    # Prepare inputs for neural operator
+    # state_point: [batch, state_dim]
+    # Neural operators expect: input_functions [batch, state_dim, num_sensors]
+    #                          query_points [batch, state_dim, num_queries]
+    # For Jacobian computation, we use state as both input and query
+    input_functions = state_point.unsqueeze(2)  # [batch, state_dim, 1]
+    query_points = state_point.unsqueeze(2)  # [batch, state_dim, 1]
+    
+    # Compute Jacobian using automatic differentiation
+    jacobian = torch.zeros(state_dim, state_dim, device=state_point.device)
+    
+    for i in range(state_dim):
+        # Zero gradients
+        if state_point.grad is not None:
+            state_point.grad.zero_()
+        
+        # Forward pass
+        output = model(input_functions, query_points)  # [batch, state_dim, 1]
+        
+        # Backward pass for i-th output component
+        # output shape: [batch, state_dim, 1]
+        output_i = output[0, i, 0]
+        
+        output_i.backward(retain_graph=True)
+        
+        # Store gradient (i-th row of Jacobian)
+        if state_point.grad is not None:
+            jacobian[i, :] = state_point.grad[0, :].detach()
+    
+    # Compute eigenvalues
+    if method == &#39;auto&#39;:
+        # Use eig for small matrices, power iteration for large
+        if state_dim &lt;= 100:
+            method = &#39;eig&#39;
+        else:
+            method = &#39;power_iteration&#39;
+    
+    if method == &#39;eig&#39;:
+        # Use torch.linalg.eig for full eigenvalue decomposition
+        eigenvalues, _ = torch.linalg.eig(jacobian)
+    elif method == &#39;power_iteration&#39;:
+        # Use power iteration for dominant eigenvalues
+        eigenvalues = _power_iteration_eigenvalues(jacobian, num_eigenvalues)
+    else:
+        raise ValueError(f&#34;Unknown method: {method}. Use &#39;auto&#39;, &#39;eig&#39;, or &#39;power_iteration&#39;&#34;)
+    
+    model.train()
+    return eigenvalues</code></pre>
+</details>
+<div class="desc"><p>Compute eigenvalues of the learned operator Jacobian at a state point.</p>
+<p>Uses automatic differentiation to construct the Jacobian matrix,
+then computes eigenvalues using torch.linalg.eig or power iteration.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>model</code></strong></dt>
+<dd>Neural operator model</dd>
+<dt><strong><code>state_point</code></strong></dt>
+<dd>State at which to compute eigenvalues [state_dim] or [batch, state_dim]</dd>
+<dt><strong><code>num_eigenvalues</code></strong></dt>
+<dd>Number of eigenvalues to compute (for power iteration)</dd>
+<dt><strong><code>method</code></strong></dt>
+<dd>'auto', 'eig', or 'power_iteration'</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Eigenvalues as complex tensor [num_eigenvalues] or [state_dim]
+Validates: Requirements 7.1</p></div>
+</dd>
+<dt id="analysis.compute_spectral_approximation_quality"><code class="name flex">
+<span>def <span class="ident">compute_spectral_approximation_quality</span></span>(<span>learned_eigenvalues: torch.Tensor, true_eigenvalues: torch.Tensor) ‑> Dict[str, float]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compute_spectral_approximation_quality(
+    learned_eigenvalues: torch.Tensor,
+    true_eigenvalues: torch.Tensor
+) -&gt; Dict[str, float]:
+    &#34;&#34;&#34;
+    Compute spectral approximation quality metrics.
+    
+    Compares learned operator eigenvalues to true dynamical system eigenvalues.
+    
+    Args:
+        learned_eigenvalues: Eigenvalues from learned operator [n]
+        true_eigenvalues: True eigenvalues from dynamical system [m]
+    
+    Returns:
+        Dictionary containing:
+            - mean_absolute_error: Mean absolute error between matched eigenvalues
+            - max_absolute_error: Maximum absolute error
+            - relative_error: Relative error normalized by true eigenvalue magnitudes
+            - spectral_radius_error: Error in spectral radius
+    
+    Validates: Requirements 18.3
+    &#34;&#34;&#34;
+    from analysis.spectral import compute_eigenvalue_error, compute_spectral_radius
+    
+    # Convert to numpy for easier manipulation
+    learned = learned_eigenvalues.detach().cpu().numpy()
+    true = true_eigenvalues.detach().cpu().numpy()
+    
+    # Compute mean absolute error using optimal matching
+    mean_abs_error = compute_eigenvalue_error(
+        learned_eigenvalues, true_eigenvalues, method=&#39;hungarian&#39;
+    )
+    
+    # Compute maximum absolute error
+    from scipy.optimize import linear_sum_assignment
+    
+    n_learned = len(learned)
+    n_true = len(true)
+    
+    # Cost matrix
+    cost_matrix = np.zeros((n_learned, n_true))
+    for i in range(n_learned):
+        for j in range(n_true):
+            cost_matrix[i, j] = np.abs(learned[i] - true[j])
+    
+    # Optimal assignment
+    row_ind, col_ind = linear_sum_assignment(cost_matrix)
+    
+    # Maximum error
+    max_abs_error = cost_matrix[row_ind, col_ind].max()
+    
+    # Relative error (normalized by true eigenvalue magnitudes)
+    true_magnitudes = np.abs(true[col_ind])
+    relative_errors = cost_matrix[row_ind, col_ind] / (true_magnitudes + 1e-10)
+    mean_relative_error = relative_errors.mean()
+    
+    # Spectral radius error
+    learned_spectral_radius = compute_spectral_radius(learned_eigenvalues)
+    true_spectral_radius = compute_spectral_radius(true_eigenvalues)
+    spectral_radius_error = abs(learned_spectral_radius - true_spectral_radius)
+    
+    quality_metrics = {
+        &#39;mean_absolute_error&#39;: float(mean_abs_error),
+        &#39;max_absolute_error&#39;: float(max_abs_error),
+        &#39;relative_error&#39;: float(mean_relative_error),
+        &#39;spectral_radius_error&#39;: float(spectral_radius_error),
+    }
+    
+    return quality_metrics</code></pre>
+</details>
+<div class="desc"><p>Compute spectral approximation quality metrics.</p>
+<p>Compares learned operator eigenvalues to true dynamical system eigenvalues.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>learned_eigenvalues</code></strong></dt>
+<dd>Eigenvalues from learned operator [n]</dd>
+<dt><strong><code>true_eigenvalues</code></strong></dt>
+<dd>True eigenvalues from dynamical system [m]</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Dictionary containing:
+- mean_absolute_error: Mean absolute error between matched eigenvalues
+- max_absolute_error: Maximum absolute error
+- relative_error: Relative error normalized by true eigenvalue magnitudes
+- spectral_radius_error: Error in spectral radius
+Validates: Requirements 18.3</p></div>
+</dd>
+<dt id="analysis.compute_spectral_radius"><code class="name flex">
+<span>def <span class="ident">compute_spectral_radius</span></span>(<span>eigenvalues: torch.Tensor) ‑> float</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compute_spectral_radius(eigenvalues: torch.Tensor) -&gt; float:
+    &#34;&#34;&#34;
+    Compute spectral radius as the maximum absolute eigenvalue.
+    
+    Args:
+        eigenvalues: Complex eigenvalues tensor
+    
+    Returns:
+        Spectral radius (maximum |λ_i|)
+    
+    Validates: Requirements 7.2
+    &#34;&#34;&#34;
+    # Compute absolute values of complex eigenvalues
+    abs_eigenvalues = torch.abs(eigenvalues)
+    
+    # Return maximum
+    spectral_radius = torch.max(abs_eigenvalues).item()
+    
+    return spectral_radius</code></pre>
+</details>
+<div class="desc"><p>Compute spectral radius as the maximum absolute eigenvalue.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>eigenvalues</code></strong></dt>
+<dd>Complex eigenvalues tensor</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Spectral radius (maximum |λ_i|)
+Validates: Requirements 7.2</p></div>
+</dd>
+<dt id="analysis.compute_theoretical_sgd_convergence_rate"><code class="name flex">
+<span>def <span class="ident">compute_theoretical_sgd_convergence_rate</span></span>(<span>learning_rate: float,<br>strong_convexity: float,<br>smoothness: float,<br>gradient_variance: float,<br>num_iterations: int) ‑> float</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compute_theoretical_sgd_convergence_rate(
+    learning_rate: float,
+    strong_convexity: float,
+    smoothness: float,
+    gradient_variance: float,
+    num_iterations: int
+) -&gt; float:
+    &#34;&#34;&#34;
+    Compute theoretical convergence rate for SGD on strongly convex problems.
+    
+    For strongly convex functions with smoothness constant L and strong convexity μ,
+    SGD with learning rate η converges as:
+    E[f(x_t) - f(x*)] ≤ (1 - ημ)^t * [f(x_0) - f(x*)] + η*σ²/(2μ)
+    
+    where σ² is the gradient variance.
+    
+    Args:
+        learning_rate: Step size η
+        strong_convexity: Strong convexity parameter μ
+        smoothness: Smoothness constant L
+        gradient_variance: Gradient variance σ²
+        num_iterations: Number of iterations t
+    
+    Returns:
+        Theoretical convergence rate (expected suboptimality)
+    
+    Validates: Requirements 18.1
+    &#34;&#34;&#34;
+    # Convergence rate: (1 - η*μ)^t
+    convergence_factor = (1 - learning_rate * strong_convexity) ** num_iterations
+    
+    # Asymptotic error: η*σ²/(2μ)
+    asymptotic_error = learning_rate * gradient_variance / (2 * strong_convexity)
+    
+    # Total expected suboptimality (assuming f(x_0) - f(x*) = 1 for normalization)
+    expected_suboptimality = convergence_factor + asymptotic_error
+    
+    return expected_suboptimality</code></pre>
+</details>
+<div class="desc"><p>Compute theoretical convergence rate for SGD on strongly convex problems.</p>
+<p>For strongly convex functions with smoothness constant L and strong convexity μ,
+SGD with learning rate η converges as:
+E[f(x_t) - f(x<em>)] ≤ (1 - ημ)^t * [f(x_0) - f(x</em>)] + η*σ²/(2μ)</p>
+<p>where σ² is the gradient variance.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>learning_rate</code></strong></dt>
+<dd>Step size η</dd>
+<dt><strong><code>strong_convexity</code></strong></dt>
+<dd>Strong convexity parameter μ</dd>
+<dt><strong><code>smoothness</code></strong></dt>
+<dd>Smoothness constant L</dd>
+<dt><strong><code>gradient_variance</code></strong></dt>
+<dd>Gradient variance σ²</dd>
+<dt><strong><code>num_iterations</code></strong></dt>
+<dd>Number of iterations t</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Theoretical convergence rate (expected suboptimality)
+Validates: Requirements 18.1</p></div>
+</dd>
+<dt id="analysis.compute_theoretical_svrg_convergence_rate"><code class="name flex">
+<span>def <span class="ident">compute_theoretical_svrg_convergence_rate</span></span>(<span>learning_rate: float,<br>strong_convexity: float,<br>smoothness: float,<br>gradient_variance: float,<br>inner_loop_length: int,<br>num_epochs: int) ‑> float</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compute_theoretical_svrg_convergence_rate(
+    learning_rate: float,
+    strong_convexity: float,
+    smoothness: float,
+    gradient_variance: float,
+    inner_loop_length: int,
+    num_epochs: int
+) -&gt; float:
+    &#34;&#34;&#34;
+    Compute theoretical convergence rate for SVRG on strongly convex problems.
+    
+    SVRG achieves linear convergence with reduced variance:
+    E[f(x_t) - f(x*)] ≤ ρ^t * [f(x_0) - f(x*)]
+    
+    where ρ &lt; 1 depends on learning rate, strong convexity, and inner loop length.
+    
+    Args:
+        learning_rate: Step size η
+        strong_convexity: Strong convexity parameter μ
+        smoothness: Smoothness constant L
+        gradient_variance: Initial gradient variance σ²
+        inner_loop_length: Inner loop length m
+        num_epochs: Number of outer loop epochs
+    
+    Returns:
+        Theoretical convergence rate (expected suboptimality)
+    
+    Validates: Requirements 18.1
+    &#34;&#34;&#34;
+    # SVRG convergence rate (simplified)
+    # ρ ≈ 1 - μ*η*m / (1 + 2*L*η*m)
+    
+    numerator = strong_convexity * learning_rate * inner_loop_length
+    denominator = 1 + 2 * smoothness * learning_rate * inner_loop_length
+    
+    convergence_rate = 1 - numerator / denominator
+    
+    # Expected suboptimality after num_epochs
+    expected_suboptimality = convergence_rate ** num_epochs
+    
+    return expected_suboptimality</code></pre>
+</details>
+<div class="desc"><p>Compute theoretical convergence rate for SVRG on strongly convex problems.</p>
+<p>SVRG achieves linear convergence with reduced variance:
+E[f(x_t) - f(x<em>)] ≤ ρ^t * [f(x_0) - f(x</em>)]</p>
+<p>where ρ &lt; 1 depends on learning rate, strong convexity, and inner loop length.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>learning_rate</code></strong></dt>
+<dd>Step size η</dd>
+<dt><strong><code>strong_convexity</code></strong></dt>
+<dd>Strong convexity parameter μ</dd>
+<dt><strong><code>smoothness</code></strong></dt>
+<dd>Smoothness constant L</dd>
+<dt><strong><code>gradient_variance</code></strong></dt>
+<dd>Initial gradient variance σ²</dd>
+<dt><strong><code>inner_loop_length</code></strong></dt>
+<dd>Inner loop length m</dd>
+<dt><strong><code>num_epochs</code></strong></dt>
+<dd>Number of outer loop epochs</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Theoretical convergence rate (expected suboptimality)
+Validates: Requirements 18.1</p></div>
+</dd>
+<dt id="analysis.compute_training_metrics"><code class="name flex">
+<span>def <span class="ident">compute_training_metrics</span></span>(<span>model: torch.nn.modules.module.Module,<br>batch: Tuple[torch.Tensor, torch.Tensor],<br>loss: torch.Tensor,<br>device: torch.device) ‑> Dict[str, float]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compute_training_metrics(
+    model: nn.Module,
+    batch: Tuple[torch.Tensor, torch.Tensor],
+    loss: torch.Tensor,
+    device: torch.device
+) -&gt; Dict[str, float]:
+    &#34;&#34;&#34;
+    Compute training metrics for a single iteration.
+    
+    Args:
+        model: Neural operator model
+        batch: Tuple of (input, target) tensors
+        loss: Computed loss value
+        device: Device for computation
+    
+    Returns:
+        Dictionary containing:
+            - train_loss: MSE loss value
+            - train_grad_norm: L2 norm of gradient vector
+            - iteration_time: Time taken for this iteration (placeholder, set externally)
+    
+    Validates: Requirements 6.1, 8.1
+    &#34;&#34;&#34;
+    # Compute gradient norm
+    total_norm = 0.0
+    for param in model.parameters():
+        if param.grad is not None:
+            param_norm = param.grad.data.norm(2)
+            total_norm += param_norm.item() ** 2
+    grad_norm = total_norm ** 0.5
+    
+    metrics = {
+        &#39;train_loss&#39;: loss.item(),
+        &#39;train_grad_norm&#39;: grad_norm,
+    }
+    
+    return metrics</code></pre>
+</details>
+<div class="desc"><p>Compute training metrics for a single iteration.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>model</code></strong></dt>
+<dd>Neural operator model</dd>
+<dt><strong><code>batch</code></strong></dt>
+<dd>Tuple of (input, target) tensors</dd>
+<dt><strong><code>loss</code></strong></dt>
+<dd>Computed loss value</dd>
+<dt><strong><code>device</code></strong></dt>
+<dd>Device for computation</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Dictionary containing:
+- train_loss: MSE loss value
+- train_grad_norm: L2 norm of gradient vector
+- iteration_time: Time taken for this iteration (placeholder, set externally)
+Validates: Requirements 6.1, 8.1</p></div>
+</dd>
+<dt id="analysis.compute_validation_metrics"><code class="name flex">
+<span>def <span class="ident">compute_validation_metrics</span></span>(<span>model: torch.nn.modules.module.Module,<br>val_loader: torch.utils.data.dataloader.DataLoader,<br>device: torch.device,<br>denormalize_fn: <built-in function callable> | None = None) ‑> Dict[str, float]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compute_validation_metrics(
+    model: nn.Module,
+    val_loader: DataLoader,
+    device: torch.device,
+    denormalize_fn: Optional[callable] = None
+) -&gt; Dict[str, float]:
+    &#34;&#34;&#34;
+    Compute validation metrics on the validation set.
+    
+    Args:
+        model: Neural operator model
+        val_loader: DataLoader for validation data
+        device: Device for computation
+        denormalize_fn: Optional function to denormalize predictions and targets
+    
+    Returns:
+        Dictionary containing:
+            - val_loss: Mean squared error on validation set
+            - val_relative_error: Relative L2 error normalized by true solution norm
+            - val_max_error: Maximum pointwise error
+            - val_mean_absolute_error: Mean absolute error
+    
+    Validates: Requirements 6.2, 8.2
+    &#34;&#34;&#34;
+    model.eval()
+    
+    total_loss = 0.0
+    total_relative_error = 0.0
+    max_error = 0.0
+    total_mae = 0.0
+    num_batches = 0
+    
+    with torch.no_grad():
+        for batch_data in val_loader:
+            # Handle different batch formats
+            if len(batch_data) == 3:
+                # DeepONet format: (input_functions, query_points, targets)
+                input_functions, query_points, targets = batch_data
+                input_functions = input_functions.to(device)
+                query_points = query_points.to(device)
+                targets = targets.to(device)
+            elif len(batch_data) == 2:
+                # Simple format: (inputs, targets)
+                inputs, targets = batch_data
+                inputs = inputs.to(device)
+                targets = targets.to(device)
+                
+                # Reshape for neural operator format
+                # inputs: [batch, input_horizon, state_dim]
+                # Neural operators expect: input_functions [batch, state_dim, num_sensors]
+                #                          query_points [batch, state_dim, num_queries]
+                input_functions = inputs.permute(0, 2, 1)  # [batch, state_dim, input_horizon]
+                query_points = targets.permute(0, 2, 1)  # [batch, state_dim, output_horizon]
+            else:
+                raise ValueError(f&#34;Unexpected batch format with {len(batch_data)} elements&#34;)
+            
+            # Forward pass
+            outputs = model(input_functions, query_points)
+            
+            # Reshape targets to match predictions if needed
+            if targets.shape != outputs.shape:
+                # targets: [batch, output_horizon, state_dim]
+                # outputs: [batch, state_dim, output_horizon]
+                if len(targets.shape) == 3 and len(outputs.shape) == 3:
+                    if targets.shape[1] != outputs.shape[1]:
+                        targets = targets.permute(0, 2, 1)
+            
+            # Denormalize if function provided
+            if denormalize_fn is not None:
+                outputs_denorm = denormalize_fn(outputs)
+                targets_denorm = denormalize_fn(targets)
+            else:
+                outputs_denorm = outputs
+                targets_denorm = targets
+            
+            # Compute MSE loss
+            mse = torch.mean((outputs_denorm - targets_denorm) ** 2)
+            total_loss += mse.item()
+            
+            # Compute relative L2 error: ||y_pred - y_true|| / ||y_true||
+            diff_norm = torch.norm(outputs_denorm - targets_denorm)
+            target_norm = torch.norm(targets_denorm)
+            if target_norm &gt; 1e-10:  # Avoid division by zero
+                relative_error = (diff_norm / target_norm).item()
+            else:
+                relative_error = 0.0
+            total_relative_error += relative_error
+            
+            # Compute max error
+            batch_max_error = torch.max(torch.abs(outputs_denorm - targets_denorm)).item()
+            max_error = max(max_error, batch_max_error)
+            
+            # Compute mean absolute error
+            mae = torch.mean(torch.abs(outputs_denorm - targets_denorm)).item()
+            total_mae += mae
+            
+            num_batches += 1
+    
+    metrics = {
+        &#39;val_loss&#39;: total_loss / num_batches,
+        &#39;val_relative_error&#39;: total_relative_error / num_batches,
+        &#39;val_max_error&#39;: max_error,
+        &#39;val_mean_absolute_error&#39;: total_mae / num_batches,
+    }
+    
+    model.train()
+    return metrics</code></pre>
+</details>
+<div class="desc"><p>Compute validation metrics on the validation set.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>model</code></strong></dt>
+<dd>Neural operator model</dd>
+<dt><strong><code>val_loader</code></strong></dt>
+<dd>DataLoader for validation data</dd>
+<dt><strong><code>device</code></strong></dt>
+<dd>Device for computation</dd>
+<dt><strong><code>denormalize_fn</code></strong></dt>
+<dd>Optional function to denormalize predictions and targets</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Dictionary containing:
+- val_loss: Mean squared error on validation set
+- val_relative_error: Relative L2 error normalized by true solution norm
+- val_max_error: Maximum pointwise error
+- val_mean_absolute_error: Mean absolute error
+Validates: Requirements 6.2, 8.2</p></div>
+</dd>
+<dt id="analysis.compute_variance_reduction_factor"><code class="name flex">
+<span>def <span class="ident">compute_variance_reduction_factor</span></span>(<span>sgd_variance: float, svrg_variance: float) ‑> float</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compute_variance_reduction_factor(
+    sgd_variance: float,
+    svrg_variance: float
+) -&gt; float:
+    &#34;&#34;&#34;
+    Compute variance reduction factor achieved by SVRG relative to SGD.
+    
+    Variance reduction factor = σ²_SGD / σ²_SVRG
+    
+    A factor &gt; 1 indicates SVRG reduces variance compared to SGD.
+    
+    Args:
+        sgd_variance: Gradient variance for SGD (σ²_SGD)
+        svrg_variance: Gradient variance for SVRG (σ²_SVRG)
+    
+    Returns:
+        Variance reduction factor
+    
+    Validates: Requirements 18.2
+    &#34;&#34;&#34;
+    if svrg_variance &lt; 1e-10:
+        # SVRG variance is essentially zero (perfect variance reduction)
+        return float(&#39;inf&#39;)
+    
+    reduction_factor = sgd_variance / svrg_variance
+    
+    return reduction_factor</code></pre>
+</details>
+<div class="desc"><p>Compute variance reduction factor achieved by SVRG relative to SGD.</p>
+<p>Variance reduction factor = σ²_SGD / σ²_SVRG</p>
+<p>A factor &gt; 1 indicates SVRG reduces variance compared to SGD.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>sgd_variance</code></strong></dt>
+<dd>Gradient variance for SGD (σ²_SGD)</dd>
+<dt><strong><code>svrg_variance</code></strong></dt>
+<dd>Gradient variance for SVRG (σ²_SVRG)</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Variance reduction factor
+Validates: Requirements 18.2</p></div>
+</dd>
+<dt id="analysis.generate_summary_table"><code class="name flex">
+<span>def <span class="ident">generate_summary_table</span></span>(<span>aggregated_results: Dict[str, Dict[str, Dict[str, float]]],<br>output_path: pathlib.Path | None = None) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def generate_summary_table(
+    aggregated_results: Dict[str, Dict[str, Dict[str, float]]],
+    output_path: Optional[Path] = None
+) -&gt; str:
+    &#34;&#34;&#34;
+    Generate a formatted summary table from aggregated results.
+    
+    Args:
+        aggregated_results: Dictionary mapping optimizer names to aggregated statistics
+            {
+                &#39;optimizer_name&#39;: {
+                    &#39;metric_name&#39;: {&#39;mean&#39;: ..., &#39;std&#39;: ..., &#39;ci_95_lower&#39;: ..., &#39;ci_95_upper&#39;: ...}
+                }
+            }
+        output_path: Optional path to save the table as text file
+    
+    Returns:
+        Formatted string table
+    
+    Validates: Requirements 15.4
+    
+    Example:
+        &gt;&gt;&gt; results = {
+        ...     &#39;SGD&#39;: {&#39;val_loss&#39;: {&#39;mean&#39;: 0.1, &#39;std&#39;: 0.01, &#39;ci_95_lower&#39;: 0.09, &#39;ci_95_upper&#39;: 0.11}},
+        ...     &#39;Adam&#39;: {&#39;val_loss&#39;: {&#39;mean&#39;: 0.08, &#39;std&#39;: 0.015, &#39;ci_95_lower&#39;: 0.065, &#39;ci_95_upper&#39;: 0.095}},
+        ... }
+        &gt;&gt;&gt; table = generate_summary_table(results)
+    &#34;&#34;&#34;
+    if not aggregated_results:
+        return &#34;No results to display&#34;
+    
+    # Collect all unique metrics
+    all_metrics = set()
+    for optimizer_stats in aggregated_results.values():
+        all_metrics.update(optimizer_stats.keys())
+    all_metrics = sorted(all_metrics)
+    
+    # Build table
+    lines = []
+    lines.append(&#34;=&#34; * 100)
+    lines.append(&#34;Summary Statistics Across Multiple Runs&#34;)
+    lines.append(&#34;=&#34; * 100)
+    lines.append(&#34;&#34;)
+    
+    for metric_name in all_metrics:
+        lines.append(f&#34;Metric: {metric_name}&#34;)
+        lines.append(&#34;-&#34; * 100)
+        lines.append(f&#34;{&#39;Optimizer&#39;:&lt;15} {&#39;Mean&#39;:&lt;12} {&#39;Std Dev&#39;:&lt;12} {&#39;95% CI Lower&#39;:&lt;15} {&#39;95% CI Upper&#39;:&lt;15} {&#39;Count&#39;:&lt;8}&#34;)
+        lines.append(&#34;-&#34; * 100)
+        
+        for optimizer_name, optimizer_stats in aggregated_results.items():
+            if metric_name in optimizer_stats:
+                stats_dict = optimizer_stats[metric_name]
+                mean_val = stats_dict[&#39;mean&#39;]
+                std_val = stats_dict[&#39;std&#39;]
+                ci_lower = stats_dict[&#39;ci_95_lower&#39;]
+                ci_upper = stats_dict[&#39;ci_95_upper&#39;]
+                count = stats_dict[&#39;count&#39;]
+                
+                lines.append(
+                    f&#34;{optimizer_name:&lt;15} {mean_val:&lt;12.6f} {std_val:&lt;12.6f} &#34;
+                    f&#34;{ci_lower:&lt;15.6f} {ci_upper:&lt;15.6f} {count:&lt;8}&#34;
+                )
+        
+        lines.append(&#34;&#34;)
+    
+    lines.append(&#34;=&#34; * 100)
+    
+    table_str = &#34;\n&#34;.join(lines)
+    
+    # Save to file if path provided
+    if output_path is not None:
+        output_path = Path(output_path)
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        with open(output_path, &#39;w&#39;) as f:
+            f.write(table_str)
+    
+    return table_str</code></pre>
+</details>
+<div class="desc"><p>Generate a formatted summary table from aggregated results.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>aggregated_results</code></strong></dt>
+<dd>Dictionary mapping optimizer names to aggregated statistics
+{
+'optimizer_name': {
+'metric_name': {'mean': &hellip;, 'std': &hellip;, 'ci_95_lower': &hellip;, 'ci_95_upper': &hellip;}
+}
+}</dd>
+<dt><strong><code>output_path</code></strong></dt>
+<dd>Optional path to save the table as text file</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Formatted string table
+Validates: Requirements 15.4</p>
+<h2 id="example">Example</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; results = {
+...     'SGD': {'val_loss': {'mean': 0.1, 'std': 0.01, 'ci_95_lower': 0.09, 'ci_95_upper': 0.11}},
+...     'Adam': {'val_loss': {'mean': 0.08, 'std': 0.015, 'ci_95_lower': 0.065, 'ci_95_upper': 0.095}},
+... }
+&gt;&gt;&gt; table = generate_summary_table(results)
+</code></pre></div>
+</dd>
+<dt id="analysis.save_aggregated_statistics_csv"><code class="name flex">
+<span>def <span class="ident">save_aggregated_statistics_csv</span></span>(<span>aggregated_results: Dict[str, Dict[str, Dict[str, float]]],<br>output_path: pathlib.Path) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def save_aggregated_statistics_csv(
+    aggregated_results: Dict[str, Dict[str, Dict[str, float]]],
+    output_path: Path
+) -&gt; None:
+    &#34;&#34;&#34;
+    Save aggregated statistics to CSV format.
+    
+    Args:
+        aggregated_results: Dictionary mapping optimizer names to aggregated statistics
+            {
+                &#39;optimizer_name&#39;: {
+                    &#39;metric_name&#39;: {&#39;mean&#39;: ..., &#39;std&#39;: ..., &#39;ci_95_lower&#39;: ..., &#39;ci_95_upper&#39;: ...}
+                }
+            }
+        output_path: Path to save CSV file
+    
+    Validates: Requirements 15.5
+    
+    Example:
+        &gt;&gt;&gt; results = {
+        ...     &#39;SGD&#39;: {&#39;val_loss&#39;: {&#39;mean&#39;: 0.1, &#39;std&#39;: 0.01}},
+        ...     &#39;Adam&#39;: {&#39;val_loss&#39;: {&#39;mean&#39;: 0.08, &#39;std&#39;: 0.015}},
+        ... }
+        &gt;&gt;&gt; save_aggregated_statistics_csv(results, Path(&#39;results.csv&#39;))
+    &#34;&#34;&#34;
+    output_path = Path(output_path)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    
+    # Collect all unique metrics
+    all_metrics = set()
+    for optimizer_stats in aggregated_results.values():
+        all_metrics.update(optimizer_stats.keys())
+    all_metrics = sorted(all_metrics)
+    
+    # Write CSV
+    with open(output_path, &#39;w&#39;, newline=&#39;&#39;) as csvfile:
+        fieldnames = [&#39;optimizer&#39;, &#39;metric&#39;, &#39;mean&#39;, &#39;std&#39;, &#39;min&#39;, &#39;max&#39;, &#39;count&#39;, &#39;ci_95_lower&#39;, &#39;ci_95_upper&#39;]
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        
+        writer.writeheader()
+        
+        for optimizer_name, optimizer_stats in aggregated_results.items():
+            for metric_name in all_metrics:
+                if metric_name in optimizer_stats:
+                    stats_dict = optimizer_stats[metric_name]
+                    row = {
+                        &#39;optimizer&#39;: optimizer_name,
+                        &#39;metric&#39;: metric_name,
+                        &#39;mean&#39;: stats_dict[&#39;mean&#39;],
+                        &#39;std&#39;: stats_dict[&#39;std&#39;],
+                        &#39;min&#39;: stats_dict[&#39;min&#39;],
+                        &#39;max&#39;: stats_dict[&#39;max&#39;],
+                        &#39;count&#39;: stats_dict[&#39;count&#39;],
+                        &#39;ci_95_lower&#39;: stats_dict[&#39;ci_95_lower&#39;],
+                        &#39;ci_95_upper&#39;: stats_dict[&#39;ci_95_upper&#39;],
+                    }
+                    writer.writerow(row)</code></pre>
+</details>
+<div class="desc"><p>Save aggregated statistics to CSV format.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>aggregated_results</code></strong></dt>
+<dd>Dictionary mapping optimizer names to aggregated statistics
+{
+'optimizer_name': {
+'metric_name': {'mean': &hellip;, 'std': &hellip;, 'ci_95_lower': &hellip;, 'ci_95_upper': &hellip;}
+}
+}</dd>
+<dt><strong><code>output_path</code></strong></dt>
+<dd>Path to save CSV file</dd>
+</dl>
+<p>Validates: Requirements 15.5</p>
+<h2 id="example">Example</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; results = {
+...     'SGD': {'val_loss': {'mean': 0.1, 'std': 0.01}},
+...     'Adam': {'val_loss': {'mean': 0.08, 'std': 0.015}},
+... }
+&gt;&gt;&gt; save_aggregated_statistics_csv(results, Path('results.csv'))
+</code></pre></div>
+</dd>
+<dt id="analysis.save_comparison_results_csv"><code class="name flex">
+<span>def <span class="ident">save_comparison_results_csv</span></span>(<span>comparison_results: Dict[str, Any], output_path: pathlib.Path) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def save_comparison_results_csv(
+    comparison_results: Dict[str, Any],
+    output_path: Path
+) -&gt; None:
+    &#34;&#34;&#34;
+    Save statistical comparison results to CSV format.
+    
+    Args:
+        comparison_results: Dictionary from compare_optimizers()
+        output_path: Path to save CSV file
+    
+    Example:
+        &gt;&gt;&gt; comparison = compare_optimizers(results, &#39;val_loss&#39;)
+        &gt;&gt;&gt; save_comparison_results_csv(comparison, Path(&#39;comparisons.csv&#39;))
+    &#34;&#34;&#34;
+    output_path = Path(output_path)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    
+    comparisons = comparison_results.get(&#39;comparisons&#39;, [])
+    
+    if not comparisons:
+        # Write empty file with header
+        with open(output_path, &#39;w&#39;, newline=&#39;&#39;) as csvfile:
+            fieldnames = [&#39;optimizer1&#39;, &#39;optimizer2&#39;, &#39;mean1&#39;, &#39;mean2&#39;, &#39;statistic&#39;, 
+                         &#39;p_value&#39;, &#39;significant&#39;, &#39;effect_size&#39;, &#39;test_name&#39;]
+            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+            writer.writeheader()
+        return
+    
+    # Determine fieldnames based on first comparison
+    fieldnames = [&#39;optimizer1&#39;, &#39;optimizer2&#39;, &#39;mean1&#39;, &#39;mean2&#39;, &#39;statistic&#39;, 
+                 &#39;p_value&#39;, &#39;significant&#39;, &#39;test_name&#39;]
+    if &#39;effect_size&#39; in comparisons[0]:
+        fieldnames.insert(-1, &#39;effect_size&#39;)
+    
+    with open(output_path, &#39;w&#39;, newline=&#39;&#39;) as csvfile:
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        writer.writeheader()
+        
+        for comparison in comparisons:
+            row = {key: comparison.get(key, &#39;&#39;) for key in fieldnames}
+            writer.writerow(row)</code></pre>
+</details>
+<div class="desc"><p>Save statistical comparison results to CSV format.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>comparison_results</code></strong></dt>
+<dd>Dictionary from compare_optimizers()</dd>
+<dt><strong><code>output_path</code></strong></dt>
+<dd>Path to save CSV file</dd>
+</dl>
+<h2 id="example">Example</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; comparison = compare_optimizers(results, 'val_loss')
+&gt;&gt;&gt; save_comparison_results_csv(comparison, Path('comparisons.csv'))
+</code></pre></div>
+</dd>
+<dt id="analysis.save_eigenvalue_data"><code class="name flex">
+<span>def <span class="ident">save_eigenvalue_data</span></span>(<span>training_history: Dict[str, List], filepath: str) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def save_eigenvalue_data(
+    training_history: Dict[str, List],
+    filepath: str
+) -&gt; None:
+    &#34;&#34;&#34;
+    Save eigenvalue data for post-training analysis.
+    
+    Args:
+        training_history: Training history containing eigenvalue data
+        filepath: Path to save eigenvalue data (JSON format)
+    
+    Validates: Requirements 7.5
+    &#34;&#34;&#34;
+    import json
+    
+    # Extract eigenvalue data
+    eigenvalue_data = {
+        &#39;spectral_radius&#39;: training_history.get(&#39;spectral_radius&#39;, []),
+        &#39;eigenvalues&#39;: training_history.get(&#39;eigenvalues&#39;, []),
+    }
+    
+    # Save to JSON
+    with open(filepath, &#39;w&#39;) as f:
+        json.dump(eigenvalue_data, f, indent=2)</code></pre>
+</details>
+<div class="desc"><p>Save eigenvalue data for post-training analysis.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>training_history</code></strong></dt>
+<dd>Training history containing eigenvalue data</dd>
+<dt><strong><code>filepath</code></strong></dt>
+<dd>Path to save eigenvalue data (JSON format)</dd>
+</dl>
+<p>Validates: Requirements 7.5</p></div>
+</dd>
+<dt id="analysis.track_eigenvalue_evolution"><code class="name flex">
+<span>def <span class="ident">track_eigenvalue_evolution</span></span>(<span>model: torch.nn.modules.module.Module,<br>state_point: torch.Tensor,<br>training_history: Dict[str, List[Tuple[int, float]]],<br>iteration: int,<br>num_eigenvalues: int = 10) ‑> Dict[str, List]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def track_eigenvalue_evolution(
+    model: nn.Module,
+    state_point: torch.Tensor,
+    training_history: Dict[str, List[Tuple[int, float]]],
+    iteration: int,
+    num_eigenvalues: int = 10
+) -&gt; Dict[str, List]:
+    &#34;&#34;&#34;
+    Track eigenvalue evolution during training.
+    
+    Computes eigenvalues and spectral radius at current iteration
+    and appends to training history.
+    
+    Args:
+        model: Neural operator model
+        state_point: State at which to compute eigenvalues
+        training_history: Training history dictionary to update
+        iteration: Current training iteration
+        num_eigenvalues: Number of eigenvalues to compute
+    
+    Returns:
+        Updated training history
+    
+    Validates: Requirements 7.4
+    &#34;&#34;&#34;
+    # Compute eigenvalues
+    eigenvalues = compute_operator_eigenvalues(
+        model, state_point, num_eigenvalues=num_eigenvalues
+    )
+    
+    # Compute spectral radius
+    spectral_radius = compute_spectral_radius(eigenvalues)
+    
+    # Initialize history lists if not present
+    if &#39;spectral_radius&#39; not in training_history:
+        training_history[&#39;spectral_radius&#39;] = []
+    if &#39;eigenvalues&#39; not in training_history:
+        training_history[&#39;eigenvalues&#39;] = []
+    
+    # Append to history
+    training_history[&#39;spectral_radius&#39;].append((iteration, spectral_radius))
+    
+    # Store eigenvalues as list of (real, imag) pairs
+    eigenvalues_list = [
+        (eig.real.item(), eig.imag.item()) for eig in eigenvalues
+    ]
+    training_history[&#39;eigenvalues&#39;].append((iteration, eigenvalues_list))
+    
+    return training_history</code></pre>
+</details>
+<div class="desc"><p>Track eigenvalue evolution during training.</p>
+<p>Computes eigenvalues and spectral radius at current iteration
+and appends to training history.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>model</code></strong></dt>
+<dd>Neural operator model</dd>
+<dt><strong><code>state_point</code></strong></dt>
+<dd>State at which to compute eigenvalues</dd>
+<dt><strong><code>training_history</code></strong></dt>
+<dd>Training history dictionary to update</dd>
+<dt><strong><code>iteration</code></strong></dt>
+<dd>Current training iteration</dd>
+<dt><strong><code>num_eigenvalues</code></strong></dt>
+<dd>Number of eigenvalues to compute</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Updated training history
+Validates: Requirements 7.4</p></div>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3><a href="#header-submodules">Sub-modules</a></h3>
+<ul>
+<li><code><a title="analysis.baseline" href="baseline.html">analysis.baseline</a></code></li>
+<li><code><a title="analysis.metrics" href="metrics.html">analysis.metrics</a></code></li>
+<li><code><a title="analysis.spectral" href="spectral.html">analysis.spectral</a></code></li>
+<li><code><a title="analysis.statistics" href="statistics.html">analysis.statistics</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="analysis.aggregate_results" href="#analysis.aggregate_results">aggregate_results</a></code></li>
+<li><code><a title="analysis.compare_optimizer_efficiency" href="#analysis.compare_optimizer_efficiency">compare_optimizer_efficiency</a></code></li>
+<li><code><a title="analysis.compare_optimizers" href="#analysis.compare_optimizers">compare_optimizers</a></code></li>
+<li><code><a title="analysis.compute_convergence_metrics" href="#analysis.compute_convergence_metrics">compute_convergence_metrics</a></code></li>
+<li><code><a title="analysis.compute_eigenvalue_error" href="#analysis.compute_eigenvalue_error">compute_eigenvalue_error</a></code></li>
+<li><code><a title="analysis.compute_long_horizon_metrics" href="#analysis.compute_long_horizon_metrics">compute_long_horizon_metrics</a></code></li>
+<li><code><a title="analysis.compute_operator_eigenvalues" href="#analysis.compute_operator_eigenvalues">compute_operator_eigenvalues</a></code></li>
+<li><code><a title="analysis.compute_spectral_approximation_quality" href="#analysis.compute_spectral_approximation_quality">compute_spectral_approximation_quality</a></code></li>
+<li><code><a title="analysis.compute_spectral_radius" href="#analysis.compute_spectral_radius">compute_spectral_radius</a></code></li>
+<li><code><a title="analysis.compute_theoretical_sgd_convergence_rate" href="#analysis.compute_theoretical_sgd_convergence_rate">compute_theoretical_sgd_convergence_rate</a></code></li>
+<li><code><a title="analysis.compute_theoretical_svrg_convergence_rate" href="#analysis.compute_theoretical_svrg_convergence_rate">compute_theoretical_svrg_convergence_rate</a></code></li>
+<li><code><a title="analysis.compute_training_metrics" href="#analysis.compute_training_metrics">compute_training_metrics</a></code></li>
+<li><code><a title="analysis.compute_validation_metrics" href="#analysis.compute_validation_metrics">compute_validation_metrics</a></code></li>
+<li><code><a title="analysis.compute_variance_reduction_factor" href="#analysis.compute_variance_reduction_factor">compute_variance_reduction_factor</a></code></li>
+<li><code><a title="analysis.generate_summary_table" href="#analysis.generate_summary_table">generate_summary_table</a></code></li>
+<li><code><a title="analysis.save_aggregated_statistics_csv" href="#analysis.save_aggregated_statistics_csv">save_aggregated_statistics_csv</a></code></li>
+<li><code><a title="analysis.save_comparison_results_csv" href="#analysis.save_comparison_results_csv">save_comparison_results_csv</a></code></li>
+<li><code><a title="analysis.save_eigenvalue_data" href="#analysis.save_eigenvalue_data">save_eigenvalue_data</a></code></li>
+<li><code><a title="analysis.track_eigenvalue_evolution" href="#analysis.track_eigenvalue_evolution">track_eigenvalue_evolution</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>

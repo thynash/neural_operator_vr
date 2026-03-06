@@ -1,0 +1,11 @@
+================================================================================
+LORENZ SYSTEM - RESULTS SUMMARY
+================================================================================
+
+Optimizer  Final Val Loss  Total Iterations  Total Epochs  Mean Grad Variance
+     Adam        0.454902              1700             1            0.001357
+      SGD        0.454836              9400             4            0.000047
+     SVRG        0.454885              9800             4            0.000015
+
+Variance Reduction (SVRG vs SGD): 67.63%
+Variance Reduction (SVRG vs Adam): 98.88%

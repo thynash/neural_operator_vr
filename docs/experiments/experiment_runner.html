@@ -1,0 +1,716 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>experiments.experiment_runner API documentation</title>
+<meta name="description" content="Experiment runner for neural operator variance reduction experiments.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>experiments.experiment_runner</code></h1>
+</header>
+<section id="section-intro">
+<p>Experiment runner for neural operator variance reduction experiments.</p>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="experiments.experiment_runner.ExperimentRunner"><code class="flex name class">
+<span>class <span class="ident">ExperimentRunner</span></span>
+<span>(</span><span>config_path: str | pathlib.Path)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class ExperimentRunner:
+    &#34;&#34;&#34;Orchestrates complete neural operator experiments.&#34;&#34;&#34;
+    
+    def __init__(self, config_path: Union[str, Path]):
+        &#34;&#34;&#34;
+        Initialize experiment runner.
+        
+        Args:
+            config_path: Path to configuration file
+        &#34;&#34;&#34;
+        self.config_path = Path(config_path)
+        self.config = load_config(config_path)
+        ConfigValidator.validate(self.config)
+        
+        self.logger = None
+        self.device = None
+        self.dataset = None
+        self.train_loader = None
+        self.val_loader = None
+        self.model = None
+        self.optimizer = None
+        self.scheduler = None
+        self.training_loop = None
+        
+        # Setup logging
+        self._setup_logging()
+    
+    def _setup_logging(self) -&gt; None:
+        &#34;&#34;&#34;Setup Python logging.&#34;&#34;&#34;
+        log_level = getattr(logging, self.config.logging.log_level)
+        logging.basicConfig(
+            level=log_level,
+            format=&#39;%(asctime)s - %(name)s - %(levelname)s - %(message)s&#39;
+        )
+        self.logger = logging.getLogger(__name__)
+    
+    def setup_experiment(self) -&gt; None:
+        &#34;&#34;&#34;Initialize all experiment components.&#34;&#34;&#34;
+        self.logger.info(f&#34;Setting up experiment: {self.config.experiment.name}&#34;)
+        
+        # Set random seeds
+        set_random_seeds(
+            self.config.experiment.seed,
+            deterministic=self.config.experiment.deterministic
+        )
+        self.logger.info(f&#34;Random seed set to {self.config.experiment.seed}&#34;)
+        
+        # Setup device
+        self.device = get_device(self.config.experiment.device)
+        self.logger.info(f&#34;Using device: {self.device}&#34;)
+        
+        # Log system info
+        log_system_info(self.logger)
+        
+        # Create dataset
+        self._create_dataset()
+        
+        # Create model
+        self._create_model()
+        
+        # Create optimizer
+        self._create_optimizer()
+        
+        # Create scheduler (if specified)
+        if self.config.scheduler is not None:
+            self._create_scheduler()
+        
+        # Create metrics logger
+        log_dir = Path(self.config.logging.log_dir) / self.config.experiment.name
+        self.metrics_logger = MetricsLogger(
+            log_dir=str(log_dir),
+            experiment_name=self.config.experiment.name
+        )
+        
+        # Create training loop
+        self._create_training_loop()
+        
+        # Save configuration
+        config_save_path = log_dir / &#34;config.yaml&#34;
+        save_config(self.config, config_save_path)
+        self.logger.info(f&#34;Configuration saved to {config_save_path}&#34;)
+    
+    def _create_dataset(self) -&gt; None:
+        &#34;&#34;&#34;Create dataset and data loaders.&#34;&#34;&#34;
+        self.logger.info(f&#34;Creating {self.config.dataset.type} dataset&#34;)
+        
+        dataset_type = self.config.dataset.type
+        params = self.config.dataset.params
+        
+        # Extract seed from experiment config
+        seed = self.config.experiment.seed
+        
+        if dataset_type == &#34;logistic&#34;:
+            self.dataset = LogisticMapDataset(seed=seed)
+        elif dataset_type == &#34;lorenz&#34;:
+            self.dataset = LorenzSystemDataset(seed=seed)
+        elif dataset_type == &#34;burgers&#34;:
+            self.dataset = BurgersEquationDataset(seed=seed)
+        else:
+            raise ValueError(f&#34;Unknown dataset type: {dataset_type}&#34;)
+        
+        # Generate data - pass params to create_operator_dataset
+        self.logger.info(&#34;Generating training and validation data&#34;)
+        
+        # Prepare params for create_operator_dataset
+        dataset_params = dict(params)  # Copy params
+        
+        train_data = self.dataset.create_operator_dataset(
+            num_trajectories=self.config.dataset.num_train_trajectories,
+            input_horizon=self.config.dataset.input_horizon,
+            output_horizon=self.config.dataset.output_horizon,
+            **dataset_params  # Pass all params including trajectory_length
+        )
+        
+        val_data = self.dataset.create_operator_dataset(
+            num_trajectories=self.config.dataset.num_val_trajectories,
+            input_horizon=self.config.dataset.input_horizon,
+            output_horizon=self.config.dataset.output_horizon,
+            **dataset_params  # Pass all params including trajectory_length
+        )
+        
+        # Create data loaders
+        train_inputs, train_outputs = train_data
+        val_inputs, val_outputs = val_data
+        
+        self.train_loader, self.val_loader, self.normalization_stats = create_dataloaders(
+            train_inputs=train_inputs,
+            train_outputs=train_outputs,
+            val_inputs=val_inputs,
+            val_outputs=val_outputs,
+            batch_size=self.config.training.batch_size,
+            shuffle_train=self.config.dataset.shuffle,
+        )
+        
+        self.logger.info(
+            f&#34;Created data loaders: {len(self.train_loader)} train batches, &#34;
+            f&#34;{len(self.val_loader)} val batches&#34;
+        )
+    
+    def _create_model(self) -&gt; None:
+        &#34;&#34;&#34;Create neural operator model.&#34;&#34;&#34;
+        self.logger.info(f&#34;Creating {self.config.model.type} model&#34;)
+        
+        model_type = self.config.model.type
+        params = dict(self.config.model.params)  # Copy params
+        
+        # Infer input/output dimensions from data
+        sample_batch = next(iter(self.train_loader))
+        sample_input, sample_output = sample_batch
+        
+        # For DeepONet: input_dim and output_dim are the feature dimensions
+        # For FNO: in_channels and out_channels
+        if model_type == &#34;deeponet&#34;:
+            # Input shape: [batch, input_horizon, state_dim]
+            # We need to reshape for DeepONet: [batch, state_dim, input_horizon]
+            params[&#39;input_dim&#39;] = sample_input.shape[2]  # state_dim
+            params[&#39;output_dim&#39;] = sample_output.shape[2]  # state_dim
+            self.model = DeepONet(**params)
+        elif model_type == &#34;fno&#34;:
+            # FNO expects [batch, channels, spatial_dim]
+            params[&#39;in_channels&#39;] = sample_input.shape[1]
+            params[&#39;out_channels&#39;] = sample_output.shape[1]
+            self.model = FNO(**params)
+        else:
+            raise ValueError(f&#34;Unknown model type: {model_type}&#34;)
+        
+        self.model = self.model.to(self.device)
+        
+        param_count = self.model.get_parameter_count()
+        self.logger.info(f&#34;Model created with {param_count:,} parameters&#34;)
+    
+    def _create_optimizer(self) -&gt; None:
+        &#34;&#34;&#34;Create optimizer.&#34;&#34;&#34;
+        self.logger.info(f&#34;Creating {self.config.optimizer.type} optimizer&#34;)
+        
+        opt_type = self.config.optimizer.type
+        params = self.config.optimizer.params.copy()
+        
+        if opt_type == &#34;sgd&#34;:
+            self.optimizer = SGD(self.model.parameters(), **params)
+        elif opt_type == &#34;adam&#34;:
+            self.optimizer = Adam(self.model.parameters(), **params)
+        elif opt_type == &#34;svrg&#34;:
+            # SVRG doesn&#39;t take train_loader in __init__
+            self.optimizer = SVRG(self.model.parameters(), **params)
+        else:
+            raise ValueError(f&#34;Unknown optimizer type: {opt_type}&#34;)
+        
+        self.logger.info(f&#34;Optimizer created: {opt_type}&#34;)
+    
+    def _create_scheduler(self) -&gt; None:
+        &#34;&#34;&#34;Create learning rate scheduler.&#34;&#34;&#34;
+        sched_type = self.config.scheduler.type
+        params = self.config.scheduler.params
+        
+        self.logger.info(f&#34;Creating {sched_type} scheduler&#34;)
+        
+        if sched_type == &#34;step&#34;:
+            self.scheduler = StepLR(self.optimizer, **params)
+        elif sched_type == &#34;exponential&#34;:
+            self.scheduler = ExponentialLR(self.optimizer, **params)
+        elif sched_type == &#34;cosine&#34;:
+            self.scheduler = CosineAnnealingLR(self.optimizer, **params)
+        else:
+            raise ValueError(f&#34;Unknown scheduler type: {sched_type}&#34;)
+    
+    def _create_training_loop(self) -&gt; None:
+        &#34;&#34;&#34;Create training loop.&#34;&#34;&#34;
+        # Prepare config dict for training loop
+        training_config = {
+            &#39;device&#39;: str(self.device),
+            &#39;log_dir&#39;: self.config.logging.log_dir,
+            &#39;experiment_name&#39;: self.config.experiment.name,
+            &#39;checkpoint_dir&#39;: self.config.logging.log_dir,
+            &#39;validation_interval&#39;: self.config.training.validation_interval,
+            &#39;variance_interval&#39;: self.config.training.variance_interval,
+            &#39;checkpoint_interval&#39;: self.config.training.checkpoint_interval,
+            &#39;early_stopping_patience&#39;: self.config.training.early_stopping_patience,
+        }
+        
+        self.training_loop = TrainingLoop(
+            model=self.model,
+            optimizer=self.optimizer,
+            train_loader=self.train_loader,
+            val_loader=self.val_loader,
+            config=training_config,
+            logger=self.metrics_logger,
+        )
+    
+    def run(self) -&gt; Dict[str, Any]:
+        &#34;&#34;&#34;
+        Execute complete experiment.
+        
+        Returns:
+            Dictionary containing experiment results
+        &#34;&#34;&#34;
+        self.logger.info(&#34;Starting experiment execution&#34;)
+        
+        # Setup experiment if not already done
+        if self.training_loop is None:
+            self.setup_experiment()
+        
+        # Run training
+        self.logger.info(&#34;Starting training&#34;)
+        history = self.training_loop.run(num_epochs=self.config.training.num_epochs)
+        
+        # Compute analysis metrics
+        if self.config.analysis.compute_spectral_radius:
+            self.logger.info(&#34;Computing spectral analysis&#34;)
+            self._compute_spectral_analysis(history)
+        
+        # Generate visualizations
+        if self.config.visualization.generate_plots:
+            self.logger.info(&#34;Generating visualizations&#34;)
+            self._generate_visualizations(history)
+        
+        # Save results
+        self.logger.info(&#34;Saving results&#34;)
+        results = self._save_results(history)
+        
+        self.logger.info(&#34;Experiment completed successfully&#34;)
+        return results
+    
+    def _compute_spectral_analysis(self, history: Dict[str, Any]) -&gt; None:
+        &#34;&#34;&#34;Compute spectral analysis of learned operator.&#34;&#34;&#34;
+        analyzer = SpectralAnalyzer(
+            model=self.model,
+            dataset=self.dataset,
+            device=self.device,
+        )
+        
+        # Get a sample state point
+        sample_batch = next(iter(self.val_loader))
+        sample_input = sample_batch[0][0:1]  # First sample
+        
+        # Compute eigenvalues
+        eigenvalues = analyzer.compute_operator_eigenvalues(
+            state_point=sample_input,
+            num_eigenvalues=self.config.analysis.num_eigenvalues,
+        )
+        
+        spectral_radius = analyzer.compute_spectral_radius(eigenvalues)
+        
+        # Convert complex eigenvalues to JSON-serializable format
+        if torch.is_complex(eigenvalues):
+            eigenvalues_list = [
+                {&#34;real&#34;: float(ev.real), &#34;imag&#34;: float(ev.imag)}
+                for ev in eigenvalues
+            ]
+        else:
+            eigenvalues_list = eigenvalues.tolist() if hasattr(eigenvalues, &#39;tolist&#39;) else eigenvalues
+        
+        # Store in history
+        history[&#34;spectral_analysis&#34;] = {
+            &#34;eigenvalues&#34;: eigenvalues_list,
+            &#34;spectral_radius&#34;: float(spectral_radius),
+        }
+        
+        # Get true eigenvalues if available
+        try:
+            true_eigenvalues = self.dataset.get_true_eigenvalues(sample_input)
+            if true_eigenvalues is not None:
+                eigenvalue_error = analyzer.compute_eigenvalue_error(
+                    learned_eigenvalues=eigenvalues,
+                    true_eigenvalues=true_eigenvalues,
+                )
+                history[&#34;spectral_analysis&#34;][&#34;true_eigenvalues&#34;] = (
+                    true_eigenvalues.tolist() if hasattr(true_eigenvalues, &#39;tolist&#39;)
+                    else true_eigenvalues
+                )
+                history[&#34;spectral_analysis&#34;][&#34;eigenvalue_error&#34;] = float(eigenvalue_error)
+        except Exception as e:
+            self.logger.warning(f&#34;Could not compute true eigenvalues: {e}&#34;)
+    
+    def _generate_visualizations(self, history: Dict[str, Any]) -&gt; None:
+        &#34;&#34;&#34;Generate publication-quality visualizations.&#34;&#34;&#34;
+        output_dir = Path(self.config.visualization.output_dir)
+        output_dir.mkdir(parents=True, exist_ok=True)
+        
+        plot_gen = PlotGenerator(
+            output_dir=str(output_dir),
+            plot_format=self.config.visualization.plot_format,
+            dpi=self.config.visualization.dpi,
+        )
+        
+        # Training curves
+        if &#34;train_loss&#34; in history:
+            plot_gen.plot_training_curves(
+                histories={&#34;current&#34;: history},
+                optimizer_names=[self.config.optimizer.type],
+            )
+        
+        # Gradient variance
+        if &#34;train_grad_variance&#34; in history:
+            plot_gen.plot_gradient_variance(
+                histories={&#34;current&#34;: history},
+                optimizer_names=[self.config.optimizer.type],
+            )
+        
+        # Validation error
+        if &#34;val_loss&#34; in history:
+            plot_gen.plot_validation_error(
+                histories={&#34;current&#34;: history},
+                optimizer_names=[self.config.optimizer.type],
+            )
+        
+        self.logger.info(f&#34;Visualizations saved to {output_dir}&#34;)
+    
+    def _save_results(self, history: Dict[str, Any]) -&gt; Dict[str, Any]:
+        &#34;&#34;&#34;Save experiment results.&#34;&#34;&#34;
+        log_dir = Path(self.config.logging.log_dir) / self.config.experiment.name
+        log_dir.mkdir(parents=True, exist_ok=True)
+        
+        # Save training history
+        history_path = log_dir / &#34;training_history.json&#34;
+        with open(history_path, &#39;w&#39;) as f:
+            json.dump(history, f, indent=2)
+        
+        # Save final model if requested
+        if self.config.logging.save_final_model:
+            model_path = log_dir / &#34;final_model.pt&#34;
+            torch.save(self.model.state_dict(), model_path)
+            self.logger.info(f&#34;Final model saved to {model_path}&#34;)
+        
+        # Prepare results summary
+        val_loss_list = history.get(&#34;val_loss&#34;, [])
+        final_val_loss = val_loss_list[-1] if val_loss_list else None
+        
+        results = {
+            &#34;experiment_name&#34;: self.config.experiment.name,
+            &#34;config&#34;: self.config.to_dict(),
+            &#34;history&#34;: history,
+            &#34;final_val_loss&#34;: final_val_loss,
+        }
+        
+        return results
+    
+    def run_multiple_seeds(self, seeds: List[int]) -&gt; Dict[str, Any]:
+        &#34;&#34;&#34;
+        Run experiment with multiple random seeds for statistical analysis.
+        
+        Args:
+            seeds: List of random seeds to use
+            
+        Returns:
+            Dictionary containing aggregated results across all seeds
+        &#34;&#34;&#34;
+        self.logger.info(f&#34;Running experiment with {len(seeds)} different seeds&#34;)
+        
+        all_results = []
+        
+        for seed in seeds:
+            self.logger.info(f&#34;Running with seed {seed}&#34;)
+            
+            # Update config with new seed
+            self.config.experiment.seed = seed
+            self.config.experiment.name = f&#34;{self.config.experiment.name}_seed{seed}&#34;
+            
+            # Reset components
+            self.dataset = None
+            self.model = None
+            self.optimizer = None
+            self.scheduler = None
+            self.training_loop = None
+            
+            # Run experiment
+            results = self.run()
+            all_results.append(results)
+        
+        # Aggregate results
+        aggregated = self._aggregate_results(all_results)
+        
+        # Save aggregated results
+        log_dir = Path(self.config.logging.log_dir) / &#34;aggregated&#34;
+        log_dir.mkdir(parents=True, exist_ok=True)
+        
+        agg_path = log_dir / &#34;aggregated_results.json&#34;
+        with open(agg_path, &#39;w&#39;) as f:
+            json.dump(aggregated, f, indent=2)
+        
+        self.logger.info(f&#34;Aggregated results saved to {agg_path}&#34;)
+        
+        return aggregated
+    
+    def _aggregate_results(self, all_results: List[Dict[str, Any]]) -&gt; Dict[str, Any]:
+        &#34;&#34;&#34;Aggregate results across multiple runs.&#34;&#34;&#34;
+        import numpy as np
+        
+        # Extract final validation losses
+        final_losses = [
+            r[&#34;final_val_loss&#34;] for r in all_results
+            if r[&#34;final_val_loss&#34;] is not None
+        ]
+        
+        aggregated = {
+            &#34;num_runs&#34;: len(all_results),
+            &#34;seeds&#34;: [r[&#34;config&#34;][&#34;experiment&#34;][&#34;seed&#34;] for r in all_results],
+            &#34;final_val_loss&#34;: {
+                &#34;mean&#34;: float(np.mean(final_losses)) if final_losses else None,
+                &#34;std&#34;: float(np.std(final_losses)) if final_losses else None,
+                &#34;min&#34;: float(np.min(final_losses)) if final_losses else None,
+                &#34;max&#34;: float(np.max(final_losses)) if final_losses else None,
+            },
+            &#34;individual_results&#34;: all_results,
+        }
+        
+        return aggregated</code></pre>
+</details>
+<div class="desc"><p>Orchestrates complete neural operator experiments.</p>
+<p>Initialize experiment runner.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>config_path</code></strong></dt>
+<dd>Path to configuration file</dd>
+</dl></div>
+<h3>Methods</h3>
+<dl>
+<dt id="experiments.experiment_runner.ExperimentRunner.run"><code class="name flex">
+<span>def <span class="ident">run</span></span>(<span>self) ‑> Dict[str, Any]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def run(self) -&gt; Dict[str, Any]:
+    &#34;&#34;&#34;
+    Execute complete experiment.
+    
+    Returns:
+        Dictionary containing experiment results
+    &#34;&#34;&#34;
+    self.logger.info(&#34;Starting experiment execution&#34;)
+    
+    # Setup experiment if not already done
+    if self.training_loop is None:
+        self.setup_experiment()
+    
+    # Run training
+    self.logger.info(&#34;Starting training&#34;)
+    history = self.training_loop.run(num_epochs=self.config.training.num_epochs)
+    
+    # Compute analysis metrics
+    if self.config.analysis.compute_spectral_radius:
+        self.logger.info(&#34;Computing spectral analysis&#34;)
+        self._compute_spectral_analysis(history)
+    
+    # Generate visualizations
+    if self.config.visualization.generate_plots:
+        self.logger.info(&#34;Generating visualizations&#34;)
+        self._generate_visualizations(history)
+    
+    # Save results
+    self.logger.info(&#34;Saving results&#34;)
+    results = self._save_results(history)
+    
+    self.logger.info(&#34;Experiment completed successfully&#34;)
+    return results</code></pre>
+</details>
+<div class="desc"><p>Execute complete experiment.</p>
+<h2 id="returns">Returns</h2>
+<p>Dictionary containing experiment results</p></div>
+</dd>
+<dt id="experiments.experiment_runner.ExperimentRunner.run_multiple_seeds"><code class="name flex">
+<span>def <span class="ident">run_multiple_seeds</span></span>(<span>self, seeds: List[int]) ‑> Dict[str, Any]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def run_multiple_seeds(self, seeds: List[int]) -&gt; Dict[str, Any]:
+    &#34;&#34;&#34;
+    Run experiment with multiple random seeds for statistical analysis.
+    
+    Args:
+        seeds: List of random seeds to use
+        
+    Returns:
+        Dictionary containing aggregated results across all seeds
+    &#34;&#34;&#34;
+    self.logger.info(f&#34;Running experiment with {len(seeds)} different seeds&#34;)
+    
+    all_results = []
+    
+    for seed in seeds:
+        self.logger.info(f&#34;Running with seed {seed}&#34;)
+        
+        # Update config with new seed
+        self.config.experiment.seed = seed
+        self.config.experiment.name = f&#34;{self.config.experiment.name}_seed{seed}&#34;
+        
+        # Reset components
+        self.dataset = None
+        self.model = None
+        self.optimizer = None
+        self.scheduler = None
+        self.training_loop = None
+        
+        # Run experiment
+        results = self.run()
+        all_results.append(results)
+    
+    # Aggregate results
+    aggregated = self._aggregate_results(all_results)
+    
+    # Save aggregated results
+    log_dir = Path(self.config.logging.log_dir) / &#34;aggregated&#34;
+    log_dir.mkdir(parents=True, exist_ok=True)
+    
+    agg_path = log_dir / &#34;aggregated_results.json&#34;
+    with open(agg_path, &#39;w&#39;) as f:
+        json.dump(aggregated, f, indent=2)
+    
+    self.logger.info(f&#34;Aggregated results saved to {agg_path}&#34;)
+    
+    return aggregated</code></pre>
+</details>
+<div class="desc"><p>Run experiment with multiple random seeds for statistical analysis.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>seeds</code></strong></dt>
+<dd>List of random seeds to use</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Dictionary containing aggregated results across all seeds</p></div>
+</dd>
+<dt id="experiments.experiment_runner.ExperimentRunner.setup_experiment"><code class="name flex">
+<span>def <span class="ident">setup_experiment</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def setup_experiment(self) -&gt; None:
+    &#34;&#34;&#34;Initialize all experiment components.&#34;&#34;&#34;
+    self.logger.info(f&#34;Setting up experiment: {self.config.experiment.name}&#34;)
+    
+    # Set random seeds
+    set_random_seeds(
+        self.config.experiment.seed,
+        deterministic=self.config.experiment.deterministic
+    )
+    self.logger.info(f&#34;Random seed set to {self.config.experiment.seed}&#34;)
+    
+    # Setup device
+    self.device = get_device(self.config.experiment.device)
+    self.logger.info(f&#34;Using device: {self.device}&#34;)
+    
+    # Log system info
+    log_system_info(self.logger)
+    
+    # Create dataset
+    self._create_dataset()
+    
+    # Create model
+    self._create_model()
+    
+    # Create optimizer
+    self._create_optimizer()
+    
+    # Create scheduler (if specified)
+    if self.config.scheduler is not None:
+        self._create_scheduler()
+    
+    # Create metrics logger
+    log_dir = Path(self.config.logging.log_dir) / self.config.experiment.name
+    self.metrics_logger = MetricsLogger(
+        log_dir=str(log_dir),
+        experiment_name=self.config.experiment.name
+    )
+    
+    # Create training loop
+    self._create_training_loop()
+    
+    # Save configuration
+    config_save_path = log_dir / &#34;config.yaml&#34;
+    save_config(self.config, config_save_path)
+    self.logger.info(f&#34;Configuration saved to {config_save_path}&#34;)</code></pre>
+</details>
+<div class="desc"><p>Initialize all experiment components.</p></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="experiments" href="index.html">experiments</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="experiments.experiment_runner.ExperimentRunner" href="#experiments.experiment_runner.ExperimentRunner">ExperimentRunner</a></code></h4>
+<ul class="">
+<li><code><a title="experiments.experiment_runner.ExperimentRunner.run" href="#experiments.experiment_runner.ExperimentRunner.run">run</a></code></li>
+<li><code><a title="experiments.experiment_runner.ExperimentRunner.run_multiple_seeds" href="#experiments.experiment_runner.ExperimentRunner.run_multiple_seeds">run_multiple_seeds</a></code></li>
+<li><code><a title="experiments.experiment_runner.ExperimentRunner.setup_experiment" href="#experiments.experiment_runner.ExperimentRunner.setup_experiment">setup_experiment</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>

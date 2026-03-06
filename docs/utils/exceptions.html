@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>utils.exceptions API documentation</title>
+<meta name="description" content="Custom exceptions for the neural operator variance reduction framework.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>utils.exceptions</code></h1>
+</header>
+<section id="section-intro">
+<p>Custom exceptions for the neural operator variance reduction framework.</p>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="utils.exceptions.CheckpointCompatibilityError"><code class="flex name class">
+<span>class <span class="ident">CheckpointCompatibilityError</span></span>
+<span>(</span><span>message: str, checkpoint_info: dict = None, model_info: dict = None)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class CheckpointCompatibilityError(Exception):
+    &#34;&#34;&#34;Raised when checkpoint is incompatible with current model.
+    
+    This exception is raised when attempting to load a checkpoint
+    that doesn&#39;t match the current model architecture.
+    
+    Attributes
+    ----------
+    message : str
+        Error message describing the incompatibility.
+    checkpoint_info : dict
+        Information about the checkpoint.
+    model_info : dict
+        Information about the current model.
+    &#34;&#34;&#34;
+    
+    def __init__(
+        self,
+        message: str,
+        checkpoint_info: dict = None,
+        model_info: dict = None
+    ):
+        &#34;&#34;&#34;Initialize CheckpointCompatibilityError.
+        
+        Parameters
+        ----------
+        message : str
+            Error message describing the incompatibility.
+        checkpoint_info : dict, optional
+            Information about the checkpoint.
+        model_info : dict, optional
+            Information about the current model.
+        &#34;&#34;&#34;
+        super().__init__(message)
+        self.checkpoint_info = checkpoint_info or {}
+        self.model_info = model_info or {}
+    
+    def __str__(self):
+        &#34;&#34;&#34;Return formatted error message with compatibility information.&#34;&#34;&#34;
+        msg = super().__str__()
+        
+        if self.checkpoint_info:
+            msg += &#34;\n\nCheckpoint information:&#34;
+            for key, value in self.checkpoint_info.items():
+                msg += f&#34;\n  {key}: {value}&#34;
+        
+        if self.model_info:
+            msg += &#34;\n\nCurrent model information:&#34;
+            for key, value in self.model_info.items():
+                msg += f&#34;\n  {key}: {value}&#34;
+        
+        return msg</code></pre>
+</details>
+<div class="desc"><p>Raised when checkpoint is incompatible with current model.</p>
+<p>This exception is raised when attempting to load a checkpoint
+that doesn't match the current model architecture.</p>
+<h2 id="attributes">Attributes</h2>
+<dl>
+<dt><strong><code>message</code></strong> :&ensp;<code>str</code></dt>
+<dd>Error message describing the incompatibility.</dd>
+<dt><strong><code>checkpoint_info</code></strong> :&ensp;<code>dict</code></dt>
+<dd>Information about the checkpoint.</dd>
+<dt><strong><code>model_info</code></strong> :&ensp;<code>dict</code></dt>
+<dd>Information about the current model.</dd>
+</dl>
+<p>Initialize CheckpointCompatibilityError.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>message</code></strong> :&ensp;<code>str</code></dt>
+<dd>Error message describing the incompatibility.</dd>
+<dt><strong><code>checkpoint_info</code></strong> :&ensp;<code>dict</code>, optional</dt>
+<dd>Information about the checkpoint.</dd>
+<dt><strong><code>model_info</code></strong> :&ensp;<code>dict</code>, optional</dt>
+<dd>Information about the current model.</dd>
+</dl></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.Exception</li>
+<li>builtins.BaseException</li>
+</ul>
+</dd>
+<dt id="utils.exceptions.GPUMemoryError"><code class="flex name class">
+<span>class <span class="ident">GPUMemoryError</span></span>
+<span>(</span><span>message: str, memory_stats: dict = None, suggestions: list = None)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class GPUMemoryError(RuntimeError):
+    &#34;&#34;&#34;Raised when GPU memory is exhausted.
+    
+    This exception wraps torch.cuda.OutOfMemoryError and provides
+    additional context and suggestions for resolution.
+    
+    Attributes
+    ----------
+    message : str
+        Error message describing the memory issue.
+    memory_stats : dict
+        GPU memory usage statistics.
+    suggestions : list
+        List of suggested remedies.
+    &#34;&#34;&#34;
+    
+    def __init__(
+        self,
+        message: str,
+        memory_stats: dict = None,
+        suggestions: list = None
+    ):
+        &#34;&#34;&#34;Initialize GPUMemoryError.
+        
+        Parameters
+        ----------
+        message : str
+            Error message describing the memory issue.
+        memory_stats : dict, optional
+            GPU memory usage statistics.
+        suggestions : list, optional
+            List of suggested remedies.
+        &#34;&#34;&#34;
+        super().__init__(message)
+        self.memory_stats = memory_stats or {}
+        self.suggestions = suggestions or []
+    
+    def __str__(self):
+        &#34;&#34;&#34;Return formatted error message with memory stats and suggestions.&#34;&#34;&#34;
+        msg = super().__str__()
+        
+        if self.memory_stats:
+            msg += &#34;\n\nGPU Memory Statistics:&#34;
+            for key, value in self.memory_stats.items():
+                msg += f&#34;\n  {key}: {value}&#34;
+        
+        if self.suggestions:
+            msg += &#34;\n\nSuggestions:&#34;
+            for i, suggestion in enumerate(self.suggestions, 1):
+                msg += f&#34;\n  {i}. {suggestion}&#34;
+        
+        return msg</code></pre>
+</details>
+<div class="desc"><p>Raised when GPU memory is exhausted.</p>
+<p>This exception wraps torch.cuda.OutOfMemoryError and provides
+additional context and suggestions for resolution.</p>
+<h2 id="attributes">Attributes</h2>
+<dl>
+<dt><strong><code>message</code></strong> :&ensp;<code>str</code></dt>
+<dd>Error message describing the memory issue.</dd>
+<dt><strong><code>memory_stats</code></strong> :&ensp;<code>dict</code></dt>
+<dd>GPU memory usage statistics.</dd>
+<dt><strong><code>suggestions</code></strong> :&ensp;<code>list</code></dt>
+<dd>List of suggested remedies.</dd>
+</dl>
+<p>Initialize GPUMemoryError.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>message</code></strong> :&ensp;<code>str</code></dt>
+<dd>Error message describing the memory issue.</dd>
+<dt><strong><code>memory_stats</code></strong> :&ensp;<code>dict</code>, optional</dt>
+<dd>GPU memory usage statistics.</dd>
+<dt><strong><code>suggestions</code></strong> :&ensp;<code>list</code>, optional</dt>
+<dd>List of suggested remedies.</dd>
+</dl></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.RuntimeError</li>
+<li>builtins.Exception</li>
+<li>builtins.BaseException</li>
+</ul>
+</dd>
+<dt id="utils.exceptions.ShapeError"><code class="flex name class">
+<span>class <span class="ident">ShapeError</span></span>
+<span>(</span><span>message: str,<br>expected_shape: tuple = None,<br>actual_shape: tuple = None,<br>tensor_name: str = None)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class ShapeError(ValueError):
+    &#34;&#34;&#34;Raised when tensor shapes don&#39;t match expected dimensions.
+    
+    This exception is raised when tensor shape validation fails,
+    providing detailed information about expected vs actual shapes.
+    
+    Attributes
+    ----------
+    message : str
+        Error message describing the shape mismatch.
+    expected_shape : tuple
+        Expected tensor shape.
+    actual_shape : tuple
+        Actual tensor shape.
+    tensor_name : str
+        Name or description of the tensor.
+    &#34;&#34;&#34;
+    
+    def __init__(
+        self,
+        message: str,
+        expected_shape: tuple = None,
+        actual_shape: tuple = None,
+        tensor_name: str = None
+    ):
+        &#34;&#34;&#34;Initialize ShapeError.
+        
+        Parameters
+        ----------
+        message : str
+            Error message describing the shape mismatch.
+        expected_shape : tuple, optional
+            Expected tensor shape.
+        actual_shape : tuple, optional
+            Actual tensor shape.
+        tensor_name : str, optional
+            Name or description of the tensor.
+        &#34;&#34;&#34;
+        super().__init__(message)
+        self.expected_shape = expected_shape
+        self.actual_shape = actual_shape
+        self.tensor_name = tensor_name
+    
+    def __str__(self):
+        &#34;&#34;&#34;Return formatted error message with shape information.&#34;&#34;&#34;
+        msg = super().__str__()
+        
+        if self.tensor_name:
+            msg += f&#34;\n  Tensor: {self.tensor_name}&#34;
+        
+        if self.expected_shape is not None:
+            msg += f&#34;\n  Expected shape: {self.expected_shape}&#34;
+        
+        if self.actual_shape is not None:
+            msg += f&#34;\n  Actual shape: {self.actual_shape}&#34;
+        
+        return msg</code></pre>
+</details>
+<div class="desc"><p>Raised when tensor shapes don't match expected dimensions.</p>
+<p>This exception is raised when tensor shape validation fails,
+providing detailed information about expected vs actual shapes.</p>
+<h2 id="attributes">Attributes</h2>
+<dl>
+<dt><strong><code>message</code></strong> :&ensp;<code>str</code></dt>
+<dd>Error message describing the shape mismatch.</dd>
+<dt><strong><code>expected_shape</code></strong> :&ensp;<code>tuple</code></dt>
+<dd>Expected tensor shape.</dd>
+<dt><strong><code>actual_shape</code></strong> :&ensp;<code>tuple</code></dt>
+<dd>Actual tensor shape.</dd>
+<dt><strong><code>tensor_name</code></strong> :&ensp;<code>str</code></dt>
+<dd>Name or description of the tensor.</dd>
+</dl>
+<p>Initialize ShapeError.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>message</code></strong> :&ensp;<code>str</code></dt>
+<dd>Error message describing the shape mismatch.</dd>
+<dt><strong><code>expected_shape</code></strong> :&ensp;<code>tuple</code>, optional</dt>
+<dd>Expected tensor shape.</dd>
+<dt><strong><code>actual_shape</code></strong> :&ensp;<code>tuple</code>, optional</dt>
+<dd>Actual tensor shape.</dd>
+<dt><strong><code>tensor_name</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Name or description of the tensor.</dd>
+</dl></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.ValueError</li>
+<li>builtins.Exception</li>
+<li>builtins.BaseException</li>
+</ul>
+</dd>
+<dt id="utils.exceptions.TrainingDivergenceError"><code class="flex name class">
+<span>class <span class="ident">TrainingDivergenceError</span></span>
+<span>(</span><span>message: str, diagnostics: dict = None, suggestions: list = None)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class TrainingDivergenceError(Exception):
+    &#34;&#34;&#34;Raised when training diverges (NaN or infinite loss).
+    
+    This exception is raised when the training loop detects numerical
+    instability, typically indicated by NaN or infinite loss values.
+    
+    Attributes
+    ----------
+    message : str
+        Error message describing the divergence.
+    diagnostics : dict
+        Dictionary containing diagnostic information including:
+        - iteration: Current training iteration
+        - loss_value: The problematic loss value
+        - recent_losses: List of recent loss values
+        - gradient_norm: Current gradient norm
+        - learning_rate: Current learning rate
+        - batch_statistics: Statistics about the current batch
+    suggestions : list
+        List of suggested remedies.
+    &#34;&#34;&#34;
+    
+    def __init__(self, message: str, diagnostics: dict = None, suggestions: list = None):
+        &#34;&#34;&#34;Initialize TrainingDivergenceError.
+        
+        Parameters
+        ----------
+        message : str
+            Error message describing the divergence.
+        diagnostics : dict, optional
+            Diagnostic information about the divergence.
+        suggestions : list, optional
+            List of suggested remedies.
+        &#34;&#34;&#34;
+        super().__init__(message)
+        self.diagnostics = diagnostics or {}
+        self.suggestions = suggestions or []
+    
+    def __str__(self):
+        &#34;&#34;&#34;Return formatted error message with diagnostics and suggestions.&#34;&#34;&#34;
+        msg = super().__str__()
+        
+        if self.diagnostics:
+            msg += &#34;\n\nDiagnostics:&#34;
+            for key, value in self.diagnostics.items():
+                msg += f&#34;\n  {key}: {value}&#34;
+        
+        if self.suggestions:
+            msg += &#34;\n\nSuggestions:&#34;
+            for i, suggestion in enumerate(self.suggestions, 1):
+                msg += f&#34;\n  {i}. {suggestion}&#34;
+        
+        return msg</code></pre>
+</details>
+<div class="desc"><p>Raised when training diverges (NaN or infinite loss).</p>
+<p>This exception is raised when the training loop detects numerical
+instability, typically indicated by NaN or infinite loss values.</p>
+<h2 id="attributes">Attributes</h2>
+<dl>
+<dt><strong><code>message</code></strong> :&ensp;<code>str</code></dt>
+<dd>Error message describing the divergence.</dd>
+<dt><strong><code>diagnostics</code></strong> :&ensp;<code>dict</code></dt>
+<dd>Dictionary containing diagnostic information including:
+- iteration: Current training iteration
+- loss_value: The problematic loss value
+- recent_losses: List of recent loss values
+- gradient_norm: Current gradient norm
+- learning_rate: Current learning rate
+- batch_statistics: Statistics about the current batch</dd>
+<dt><strong><code>suggestions</code></strong> :&ensp;<code>list</code></dt>
+<dd>List of suggested remedies.</dd>
+</dl>
+<p>Initialize TrainingDivergenceError.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>message</code></strong> :&ensp;<code>str</code></dt>
+<dd>Error message describing the divergence.</dd>
+<dt><strong><code>diagnostics</code></strong> :&ensp;<code>dict</code>, optional</dt>
+<dd>Diagnostic information about the divergence.</dd>
+<dt><strong><code>suggestions</code></strong> :&ensp;<code>list</code>, optional</dt>
+<dd>List of suggested remedies.</dd>
+</dl></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.Exception</li>
+<li>builtins.BaseException</li>
+</ul>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="utils" href="index.html">utils</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="utils.exceptions.CheckpointCompatibilityError" href="#utils.exceptions.CheckpointCompatibilityError">CheckpointCompatibilityError</a></code></h4>
+</li>
+<li>
+<h4><code><a title="utils.exceptions.GPUMemoryError" href="#utils.exceptions.GPUMemoryError">GPUMemoryError</a></code></h4>
+</li>
+<li>
+<h4><code><a title="utils.exceptions.ShapeError" href="#utils.exceptions.ShapeError">ShapeError</a></code></h4>
+</li>
+<li>
+<h4><code><a title="utils.exceptions.TrainingDivergenceError" href="#utils.exceptions.TrainingDivergenceError">TrainingDivergenceError</a></code></h4>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>

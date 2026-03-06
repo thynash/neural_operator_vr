@@ -1,0 +1,2856 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>datasets API documentation</title>
+<meta name="description" content="Dynamical system data generators for neural operator learning.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Package <code>datasets</code></h1>
+</header>
+<section id="section-intro">
+<p>Dynamical system data generators for neural operator learning.</p>
+</section>
+<section>
+<h2 class="section-title" id="header-submodules">Sub-modules</h2>
+<dl>
+<dt><code class="name"><a title="datasets.base" href="base.html">datasets.base</a></code></dt>
+<dd>
+<div class="desc"><p>Abstract base class for dynamical system data generators.</p></div>
+</dd>
+<dt><code class="name"><a title="datasets.burgers_equation" href="burgers_equation.html">datasets.burgers_equation</a></code></dt>
+<dd>
+<div class="desc"><p>Burgers Equation dynamical system dataset.</p></div>
+</dd>
+<dt><code class="name"><a title="datasets.data_manager" href="data_manager.html">datasets.data_manager</a></code></dt>
+<dd>
+<div class="desc"><p>Data normalization and management utilities for neural operator datasets.</p></div>
+</dd>
+<dt><code class="name"><a title="datasets.logistic_map" href="logistic_map.html">datasets.logistic_map</a></code></dt>
+<dd>
+<div class="desc"><p>Logistic Map dynamical system dataset.</p></div>
+</dd>
+<dt><code class="name"><a title="datasets.lorenz_system" href="lorenz_system.html">datasets.lorenz_system</a></code></dt>
+<dd>
+<div class="desc"><p>Lorenz System dynamical system dataset.</p></div>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="datasets.create_dataloaders"><code class="name flex">
+<span>def <span class="ident">create_dataloaders</span></span>(<span>train_inputs: numpy.ndarray,<br>train_outputs: numpy.ndarray,<br>val_inputs: numpy.ndarray,<br>val_outputs: numpy.ndarray,<br>batch_size: int = 32,<br>shuffle_train: bool = True,<br>num_workers: int = 0,<br>normalize: bool = True) ‑> Tuple[torch.utils.data.dataloader.DataLoader, torch.utils.data.dataloader.DataLoader, Dict[str, numpy.ndarray]]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def create_dataloaders(
+    train_inputs: np.ndarray,
+    train_outputs: np.ndarray,
+    val_inputs: np.ndarray,
+    val_outputs: np.ndarray,
+    batch_size: int = 32,
+    shuffle_train: bool = True,
+    num_workers: int = 0,
+    normalize: bool = True
+) -&gt; Tuple[DataLoader, DataLoader, Dict[str, np.ndarray]]:
+    &#34;&#34;&#34;Create PyTorch DataLoaders for training and validation.
+    
+    Args:
+        train_inputs: Training input data
+        train_outputs: Training output data
+        val_inputs: Validation input data
+        val_outputs: Validation output data
+        batch_size: Batch size for DataLoader
+        shuffle_train: Whether to shuffle training data
+        num_workers: Number of worker processes for data loading
+        normalize: Whether to normalize the data
+    
+    Returns:
+        train_loader: DataLoader for training data
+        val_loader: DataLoader for validation data
+        normalization_stats: Dictionary of normalization statistics
+    &#34;&#34;&#34;
+    # Create training dataset (computes normalization statistics)
+    train_dataset = OperatorDataset(
+        train_inputs,
+        train_outputs,
+        normalize=normalize
+    )
+    
+    # Get normalization statistics from training data
+    normalization_stats = train_dataset.get_normalization_stats()
+    
+    # Create validation dataset (uses training statistics)
+    val_dataset = OperatorDataset(
+        val_inputs,
+        val_outputs,
+        normalize=normalize,
+        input_mean=normalization_stats[&#39;input_mean&#39;],
+        input_std=normalization_stats[&#39;input_std&#39;],
+        output_mean=normalization_stats[&#39;output_mean&#39;],
+        output_std=normalization_stats[&#39;output_std&#39;]
+    )
+    
+    # Create DataLoaders
+    train_loader = DataLoader(
+        train_dataset,
+        batch_size=batch_size,
+        shuffle=shuffle_train,
+        num_workers=num_workers,
+        pin_memory=torch.cuda.is_available()
+    )
+    
+    val_loader = DataLoader(
+        val_dataset,
+        batch_size=batch_size,
+        shuffle=False,
+        num_workers=num_workers,
+        pin_memory=torch.cuda.is_available()
+    )
+    
+    return train_loader, val_loader, normalization_stats</code></pre>
+</details>
+<div class="desc"><p>Create PyTorch DataLoaders for training and validation.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>train_inputs</code></strong></dt>
+<dd>Training input data</dd>
+<dt><strong><code>train_outputs</code></strong></dt>
+<dd>Training output data</dd>
+<dt><strong><code>val_inputs</code></strong></dt>
+<dd>Validation input data</dd>
+<dt><strong><code>val_outputs</code></strong></dt>
+<dd>Validation output data</dd>
+<dt><strong><code>batch_size</code></strong></dt>
+<dd>Batch size for DataLoader</dd>
+<dt><strong><code>shuffle_train</code></strong></dt>
+<dd>Whether to shuffle training data</dd>
+<dt><strong><code>num_workers</code></strong></dt>
+<dd>Number of worker processes for data loading</dd>
+<dt><strong><code>normalize</code></strong></dt>
+<dd>Whether to normalize the data</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>train_loader</code></dt>
+<dd>DataLoader for training data</dd>
+<dt><code>val_loader</code></dt>
+<dd>DataLoader for validation data</dd>
+<dt><code>normalization_stats</code></dt>
+<dd>Dictionary of normalization statistics</dd>
+</dl></div>
+</dd>
+<dt id="datasets.create_train_val_split"><code class="name flex">
+<span>def <span class="ident">create_train_val_split</span></span>(<span>inputs: numpy.ndarray,<br>outputs: numpy.ndarray,<br>train_ratio: float = 0.8,<br>shuffle: bool = True,<br>seed: int | None = None) ‑> Tuple[numpy.ndarray, numpy.ndarray, numpy.ndarray, numpy.ndarray]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def create_train_val_split(
+    inputs: np.ndarray,
+    outputs: np.ndarray,
+    train_ratio: float = 0.8,
+    shuffle: bool = True,
+    seed: Optional[int] = None
+) -&gt; Tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
+    &#34;&#34;&#34;Split data into training and validation sets.
+    
+    Args:
+        inputs: Input data array
+        outputs: Output data array
+        train_ratio: Fraction of data to use for training (default: 0.8)
+        shuffle: Whether to shuffle before splitting (default: True)
+        seed: Random seed for shuffling
+    
+    Returns:
+        train_inputs: Training input data
+        train_outputs: Training output data
+        val_inputs: Validation input data
+        val_outputs: Validation output data
+    &#34;&#34;&#34;
+    if not 0 &lt; train_ratio &lt; 1:
+        raise ValueError(f&#34;train_ratio must be in (0, 1), got {train_ratio}&#34;)
+    
+    num_samples = len(inputs)
+    train_size = int(train_ratio * num_samples)
+    
+    # Create indices
+    indices = np.arange(num_samples)
+    
+    # Shuffle if requested
+    if shuffle:
+        if seed is not None:
+            np.random.seed(seed)
+        np.random.shuffle(indices)
+    
+    # Split indices
+    train_indices = indices[:train_size]
+    val_indices = indices[train_size:]
+    
+    # Split data
+    train_inputs = inputs[train_indices]
+    train_outputs = outputs[train_indices]
+    val_inputs = inputs[val_indices]
+    val_outputs = outputs[val_indices]
+    
+    return train_inputs, train_outputs, val_inputs, val_outputs</code></pre>
+</details>
+<div class="desc"><p>Split data into training and validation sets.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>inputs</code></strong></dt>
+<dd>Input data array</dd>
+<dt><strong><code>outputs</code></strong></dt>
+<dd>Output data array</dd>
+<dt><strong><code>train_ratio</code></strong></dt>
+<dd>Fraction of data to use for training (default: 0.8)</dd>
+<dt><strong><code>shuffle</code></strong></dt>
+<dd>Whether to shuffle before splitting (default: True)</dd>
+<dt><strong><code>seed</code></strong></dt>
+<dd>Random seed for shuffling</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>train_inputs</code></dt>
+<dd>Training input data</dd>
+<dt><code>train_outputs</code></dt>
+<dd>Training output data</dd>
+<dt><code>val_inputs</code></dt>
+<dd>Validation input data</dd>
+<dt><code>val_outputs</code></dt>
+<dd>Validation output data</dd>
+</dl></div>
+</dd>
+<dt id="datasets.load_dataset"><code class="name flex">
+<span>def <span class="ident">load_dataset</span></span>(<span>filepath: str) ‑> Tuple[numpy.ndarray, numpy.ndarray, Dict[str, Any] | None]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def load_dataset(
+    filepath: str
+) -&gt; Tuple[np.ndarray, np.ndarray, Optional[Dict[str, Any]]]:
+    &#34;&#34;&#34;Load dataset from disk.
+    
+    Args:
+        filepath: Path to the dataset file (.npz)
+    
+    Returns:
+        inputs: Input data array
+        outputs: Output data array
+        metadata: Metadata dictionary (if available)
+    &#34;&#34;&#34;
+    data = np.load(filepath, allow_pickle=True)
+    
+    inputs = data[&#39;inputs&#39;]
+    outputs = data[&#39;outputs&#39;]
+    
+    metadata = None
+    if &#39;metadata&#39; in data:
+        metadata = data[&#39;metadata&#39;].item()
+    
+    return inputs, outputs, metadata</code></pre>
+</details>
+<div class="desc"><p>Load dataset from disk.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>filepath</code></strong></dt>
+<dd>Path to the dataset file (.npz)</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>inputs</code></dt>
+<dd>Input data array</dd>
+<dt><code>outputs</code></dt>
+<dd>Output data array</dd>
+<dt><code>metadata</code></dt>
+<dd>Metadata dictionary (if available)</dd>
+</dl></div>
+</dd>
+<dt id="datasets.save_dataset"><code class="name flex">
+<span>def <span class="ident">save_dataset</span></span>(<span>filepath: str,<br>inputs: numpy.ndarray,<br>outputs: numpy.ndarray,<br>metadata: Dict[str, Any] | None = None) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def save_dataset(
+    filepath: str,
+    inputs: np.ndarray,
+    outputs: np.ndarray,
+    metadata: Optional[Dict[str, Any]] = None
+) -&gt; None:
+    &#34;&#34;&#34;Save dataset to disk in NPZ format.
+    
+    Args:
+        filepath: Path to save the dataset (should end in .npz)
+        inputs: Input data array
+        outputs: Output data array
+        metadata: Optional metadata dictionary
+    &#34;&#34;&#34;
+    save_dict = {
+        &#39;inputs&#39;: inputs,
+        &#39;outputs&#39;: outputs
+    }
+    
+    if metadata is not None:
+        # Store metadata as a single pickled object
+        save_dict[&#39;metadata&#39;] = np.array([metadata], dtype=object)
+    
+    np.savez_compressed(filepath, **save_dict)</code></pre>
+</details>
+<div class="desc"><p>Save dataset to disk in NPZ format.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>filepath</code></strong></dt>
+<dd>Path to save the dataset (should end in .npz)</dd>
+<dt><strong><code>inputs</code></strong></dt>
+<dd>Input data array</dd>
+<dt><strong><code>outputs</code></strong></dt>
+<dd>Output data array</dd>
+<dt><strong><code>metadata</code></strong></dt>
+<dd>Optional metadata dictionary</dd>
+</dl></div>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="datasets.BurgersEquationDataset"><code class="flex name class">
+<span>class <span class="ident">BurgersEquationDataset</span></span>
+<span>(</span><span>seed: int | None = None)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class BurgersEquationDataset(DynamicalSystem):
+    &#34;&#34;&#34;Burgers Equation spatiotemporal dynamical system.
+    
+    The 1D Burgers equation is defined by:
+        ∂u/∂t + u * ∂u/∂x = ν * ∂²u/∂x²
+    
+    where u(x,t) is the velocity field, ν is the viscosity coefficient,
+    and the equation is solved on a periodic domain [0, 2π].
+    
+    This is a fundamental PDE in fluid dynamics that exhibits both
+    convection (nonlinear term) and diffusion (viscous term).
+    &#34;&#34;&#34;
+    
+    def __init__(self, seed: Optional[int] = None):
+        &#34;&#34;&#34;Initialize BurgersEquationDataset.
+        
+        Args:
+            seed: Random seed for reproducible data generation
+        &#34;&#34;&#34;
+        self.seed = seed
+        if seed is not None:
+            np.random.seed(seed)
+    
+    def _compute_spatial_derivative(
+        self,
+        u: np.ndarray,
+        dx: float,
+        order: int = 1
+    ) -&gt; np.ndarray:
+        &#34;&#34;&#34;Compute spatial derivative using finite differences.
+        
+        Uses central differences with periodic boundary conditions.
+        
+        Args:
+            u: Field values at spatial points
+            dx: Spatial grid spacing
+            order: Derivative order (1 or 2)
+        
+        Returns:
+            derivative: Spatial derivative of u
+        &#34;&#34;&#34;
+        if order == 1:
+            # Central difference: du/dx ≈ (u[i+1] - u[i-1]) / (2*dx)
+            du = np.roll(u, -1) - np.roll(u, 1)
+            return du / (2 * dx)
+        elif order == 2:
+            # Central difference: d²u/dx² ≈ (u[i+1] - 2*u[i] + u[i-1]) / dx²
+            d2u = np.roll(u, -1) - 2 * u + np.roll(u, 1)
+            return d2u / (dx ** 2)
+        else:
+            raise ValueError(f&#34;Unsupported derivative order: {order}&#34;)
+    
+    def _burgers_rhs(
+        self,
+        u: np.ndarray,
+        dx: float,
+        viscosity: float
+    ) -&gt; np.ndarray:
+        &#34;&#34;&#34;Compute right-hand side of Burgers equation.
+        
+        RHS = -u * ∂u/∂x + ν * ∂²u/∂x²
+        
+        Args:
+            u: Current velocity field
+            dx: Spatial grid spacing
+            viscosity: Viscosity coefficient ν
+        
+        Returns:
+            rhs: Time derivative ∂u/∂t
+        &#34;&#34;&#34;
+        # Convection term: -u * ∂u/∂x
+        du_dx = self._compute_spatial_derivative(u, dx, order=1)
+        convection = -u * du_dx
+        
+        # Diffusion term: ν * ∂²u/∂x²
+        d2u_dx2 = self._compute_spatial_derivative(u, dx, order=2)
+        diffusion = viscosity * d2u_dx2
+        
+        return convection + diffusion
+    
+    def generate_trajectory(
+        self,
+        initial_condition: np.ndarray,
+        length: int,
+        viscosity: float = 0.01,
+        spatial_resolution: int = 256,
+        dt: float = 0.001,
+        **params
+    ) -&gt; np.ndarray:
+        &#34;&#34;&#34;Generate a single trajectory from initial condition.
+        
+        Uses finite difference method with forward Euler time stepping
+        and periodic boundary conditions.
+        
+        Args:
+            initial_condition: Initial velocity field (1D array)
+            length: Number of time steps to generate
+            viscosity: Viscosity coefficient ν (default: 0.01)
+            spatial_resolution: Number of spatial grid points (default: 256)
+            dt: Time step size (default: 0.001)
+            **params: Additional parameters (ignored)
+        
+        Returns:
+            trajectory: Array of shape (length, spatial_resolution)
+        
+        Raises:
+            ValueError: If parameters are outside valid ranges
+        &#34;&#34;&#34;
+        # Validate parameters
+        if viscosity &lt; 0:
+            raise ValueError(
+                f&#34;Viscosity must be non-negative, got viscosity={viscosity}&#34;
+            )
+        
+        if spatial_resolution &lt;= 0:
+            raise ValueError(
+                f&#34;Spatial resolution must be positive, got spatial_resolution={spatial_resolution}&#34;
+            )
+        
+        if dt &lt;= 0:
+            raise ValueError(f&#34;Time step dt must be positive, got dt={dt}&#34;)
+        
+        if length &lt;= 0:
+            raise ValueError(f&#34;Trajectory length must be positive, got length={length}&#34;)
+        
+        # Ensure initial condition has correct shape
+        if isinstance(initial_condition, np.ndarray):
+            u = initial_condition.flatten()
+        else:
+            u = np.array(initial_condition).flatten()
+        
+        # If initial condition doesn&#39;t match spatial resolution, interpolate or pad
+        if len(u) != spatial_resolution:
+            if len(u) &lt; spatial_resolution:
+                # Pad with zeros
+                u_new = np.zeros(spatial_resolution)
+                u_new[:len(u)] = u
+                u = u_new
+            else:
+                # Truncate
+                u = u[:spatial_resolution]
+        
+        # Spatial grid
+        L = 2 * np.pi  # Domain length
+        dx = L / spatial_resolution
+        
+        # Check CFL condition for stability
+        cfl = np.max(np.abs(u)) * dt / dx
+        diffusion_number = viscosity * dt / (dx ** 2)
+        if cfl &gt; 1.0 or diffusion_number &gt; 0.5:
+            import warnings
+            warnings.warn(
+                f&#34;Stability conditions may be violated: CFL={cfl:.3f}, &#34;
+                f&#34;diffusion_number={diffusion_number:.3f}. &#34;
+                f&#34;Consider reducing dt or increasing spatial_resolution.&#34;
+            )
+        
+        # Preallocate trajectory
+        trajectory = np.zeros((length, spatial_resolution))
+        trajectory[0] = u
+        
+        # Time integration using forward Euler
+        for i in range(1, length):
+            rhs = self._burgers_rhs(u, dx, viscosity)
+            u = u + dt * rhs
+            trajectory[i] = u
+        
+        return trajectory
+    
+    def create_operator_dataset(
+        self,
+        num_trajectories: int,
+        trajectory_length: int,
+        input_horizon: int,
+        output_horizon: int,
+        viscosity: float = 0.01,
+        spatial_resolution: int = 256,
+        dt: float = 0.001,
+        initial_condition_type: str = &#34;random_fourier&#34;,
+        num_modes: int = 5,
+        **params
+    ) -&gt; Tuple[np.ndarray, np.ndarray]:
+        &#34;&#34;&#34;Create input-output pairs for operator learning.
+        
+        Generates multiple trajectories with random initial conditions and
+        creates sliding window input-output pairs for operator learning.
+        
+        Args:
+            num_trajectories: Number of trajectories to generate
+            trajectory_length: Length of each trajectory
+            input_horizon: Number of time steps in input
+            output_horizon: Number of time steps in output
+            viscosity: Viscosity coefficient ν
+            spatial_resolution: Number of spatial grid points
+            dt: Time step size
+            initial_condition_type: Type of initial condition (&#34;random_fourier&#34;, &#34;gaussian_bump&#34;)
+            num_modes: Number of Fourier modes for random initial conditions
+            **params: Additional parameters (ignored)
+        
+        Returns:
+            inputs: Array of shape (num_samples, input_horizon, spatial_resolution)
+            outputs: Array of shape (num_samples, output_horizon, spatial_resolution)
+        &#34;&#34;&#34;
+        # Set seed if provided
+        if self.seed is not None:
+            np.random.seed(self.seed)
+        
+        # Calculate number of samples per trajectory
+        samples_per_trajectory = trajectory_length - input_horizon - output_horizon + 1
+        if samples_per_trajectory &lt;= 0:
+            raise ValueError(
+                f&#34;trajectory_length ({trajectory_length}) must be &gt;= &#34;
+                f&#34;input_horizon ({input_horizon}) + output_horizon ({output_horizon})&#34;
+            )
+        
+        total_samples = num_trajectories * samples_per_trajectory
+        
+        # Preallocate arrays
+        inputs = np.zeros((total_samples, input_horizon, spatial_resolution))
+        outputs = np.zeros((total_samples, output_horizon, spatial_resolution))
+        
+        # Spatial grid
+        x = np.linspace(0, 2 * np.pi, spatial_resolution, endpoint=False)
+        
+        sample_idx = 0
+        for _ in range(num_trajectories):
+            # Generate random initial condition
+            if initial_condition_type == &#34;random_fourier&#34;:
+                # Random Fourier series
+                ic = np.zeros(spatial_resolution)
+                for k in range(1, num_modes + 1):
+                    amplitude = np.random.uniform(-1, 1)
+                    phase = np.random.uniform(0, 2 * np.pi)
+                    ic += amplitude * np.sin(k * x + phase)
+            elif initial_condition_type == &#34;gaussian_bump&#34;:
+                # Random Gaussian bump
+                center = np.random.uniform(0, 2 * np.pi)
+                width = np.random.uniform(0.5, 1.5)
+                amplitude = np.random.uniform(0.5, 2.0)
+                ic = amplitude * np.exp(-((x - center) ** 2) / (2 * width ** 2))
+            else:
+                raise ValueError(f&#34;Unknown initial condition type: {initial_condition_type}&#34;)
+            
+            # Generate trajectory
+            trajectory = self.generate_trajectory(
+                ic, trajectory_length,
+                viscosity=viscosity,
+                spatial_resolution=spatial_resolution,
+                dt=dt
+            )
+            
+            # Create sliding window samples
+            for t in range(samples_per_trajectory):
+                inputs[sample_idx] = trajectory[t:t + input_horizon]
+                outputs[sample_idx] = trajectory[
+                    t + input_horizon:t + input_horizon + output_horizon
+                ]
+                sample_idx += 1
+        
+        return inputs, outputs
+    
+    def get_true_eigenvalues(
+        self,
+        state: np.ndarray,
+        viscosity: float = 0.01,
+        spatial_resolution: int = 256,
+        num_eigenvalues: int = 10,
+        **params
+    ) -&gt; Optional[np.ndarray]:
+        &#34;&#34;&#34;Return true eigenvalues using spectral method.
+        
+        Computes eigenvalues of the linearized Burgers operator around
+        the given state using Fourier spectral method.
+        
+        The linearized operator is: L[v] = -u * ∂v/∂x - v * ∂u/∂x + ν * ∂²v/∂x²
+        
+        Args:
+            state: Velocity field at which to linearize
+            viscosity: Viscosity coefficient ν
+            spatial_resolution: Number of spatial grid points
+            num_eigenvalues: Number of eigenvalues to compute
+            **params: Additional parameters (ignored)
+        
+        Returns:
+            eigenvalues: Array of complex eigenvalues (largest magnitude)
+        &#34;&#34;&#34;
+        # Ensure state has correct shape
+        if isinstance(state, np.ndarray):
+            u = state.flatten()
+        else:
+            u = np.array(state).flatten()
+        
+        if len(u) != spatial_resolution:
+            raise ValueError(
+                f&#34;State length ({len(u)}) must match spatial_resolution ({spatial_resolution})&#34;
+            )
+        
+        # Spatial grid
+        L = 2 * np.pi
+        dx = L / spatial_resolution
+        
+        # Construct linearized operator matrix using finite differences
+        # This is a sparse matrix, but we&#39;ll use dense for simplicity
+        operator = np.zeros((spatial_resolution, spatial_resolution))
+        
+        for i in range(spatial_resolution):
+            # Indices with periodic boundary conditions
+            i_plus = (i + 1) % spatial_resolution
+            i_minus = (i - 1) % spatial_resolution
+            
+            # Convection terms: -u[i] * ∂v/∂x - v * ∂u/∂x
+            # ∂v/∂x at i: (v[i+1] - v[i-1]) / (2*dx)
+            operator[i, i_plus] += -u[i] / (2 * dx)
+            operator[i, i_minus] += u[i] / (2 * dx)
+            
+            # -v * ∂u/∂x at i
+            du_dx_i = (u[i_plus] - u[i_minus]) / (2 * dx)
+            operator[i, i] += -du_dx_i
+            
+            # Diffusion term: ν * ∂²v/∂x²
+            # ∂²v/∂x² at i: (v[i+1] - 2*v[i] + v[i-1]) / dx²
+            operator[i, i_plus] += viscosity / (dx ** 2)
+            operator[i, i] += -2 * viscosity / (dx ** 2)
+            operator[i, i_minus] += viscosity / (dx ** 2)
+        
+        # Compute eigenvalues
+        eigenvalues = np.linalg.eigvals(operator)
+        
+        # Sort by magnitude and return largest
+        eigenvalues = eigenvalues[np.argsort(np.abs(eigenvalues))[::-1]]
+        
+        # Ensure complex dtype for consistency
+        return eigenvalues[:num_eigenvalues].astype(np.complex128)</code></pre>
+</details>
+<div class="desc"><p>Burgers Equation spatiotemporal dynamical system.</p>
+<p>The 1D Burgers equation is defined by:
+∂u/∂t + u * ∂u/∂x = ν * ∂²u/∂x²</p>
+<p>where u(x,t) is the velocity field, ν is the viscosity coefficient,
+and the equation is solved on a periodic domain [0, 2π].</p>
+<p>This is a fundamental PDE in fluid dynamics that exhibits both
+convection (nonlinear term) and diffusion (viscous term).</p>
+<p>Initialize BurgersEquationDataset.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>seed</code></strong></dt>
+<dd>Random seed for reproducible data generation</dd>
+</dl></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="datasets.base.DynamicalSystem" href="base.html#datasets.base.DynamicalSystem">DynamicalSystem</a></li>
+<li>abc.ABC</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="datasets.BurgersEquationDataset.create_operator_dataset"><code class="name flex">
+<span>def <span class="ident">create_operator_dataset</span></span>(<span>self,<br>num_trajectories: int,<br>trajectory_length: int,<br>input_horizon: int,<br>output_horizon: int,<br>viscosity: float = 0.01,<br>spatial_resolution: int = 256,<br>dt: float = 0.001,<br>initial_condition_type: str = 'random_fourier',<br>num_modes: int = 5,<br>**params) ‑> Tuple[numpy.ndarray, numpy.ndarray]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def create_operator_dataset(
+    self,
+    num_trajectories: int,
+    trajectory_length: int,
+    input_horizon: int,
+    output_horizon: int,
+    viscosity: float = 0.01,
+    spatial_resolution: int = 256,
+    dt: float = 0.001,
+    initial_condition_type: str = &#34;random_fourier&#34;,
+    num_modes: int = 5,
+    **params
+) -&gt; Tuple[np.ndarray, np.ndarray]:
+    &#34;&#34;&#34;Create input-output pairs for operator learning.
+    
+    Generates multiple trajectories with random initial conditions and
+    creates sliding window input-output pairs for operator learning.
+    
+    Args:
+        num_trajectories: Number of trajectories to generate
+        trajectory_length: Length of each trajectory
+        input_horizon: Number of time steps in input
+        output_horizon: Number of time steps in output
+        viscosity: Viscosity coefficient ν
+        spatial_resolution: Number of spatial grid points
+        dt: Time step size
+        initial_condition_type: Type of initial condition (&#34;random_fourier&#34;, &#34;gaussian_bump&#34;)
+        num_modes: Number of Fourier modes for random initial conditions
+        **params: Additional parameters (ignored)
+    
+    Returns:
+        inputs: Array of shape (num_samples, input_horizon, spatial_resolution)
+        outputs: Array of shape (num_samples, output_horizon, spatial_resolution)
+    &#34;&#34;&#34;
+    # Set seed if provided
+    if self.seed is not None:
+        np.random.seed(self.seed)
+    
+    # Calculate number of samples per trajectory
+    samples_per_trajectory = trajectory_length - input_horizon - output_horizon + 1
+    if samples_per_trajectory &lt;= 0:
+        raise ValueError(
+            f&#34;trajectory_length ({trajectory_length}) must be &gt;= &#34;
+            f&#34;input_horizon ({input_horizon}) + output_horizon ({output_horizon})&#34;
+        )
+    
+    total_samples = num_trajectories * samples_per_trajectory
+    
+    # Preallocate arrays
+    inputs = np.zeros((total_samples, input_horizon, spatial_resolution))
+    outputs = np.zeros((total_samples, output_horizon, spatial_resolution))
+    
+    # Spatial grid
+    x = np.linspace(0, 2 * np.pi, spatial_resolution, endpoint=False)
+    
+    sample_idx = 0
+    for _ in range(num_trajectories):
+        # Generate random initial condition
+        if initial_condition_type == &#34;random_fourier&#34;:
+            # Random Fourier series
+            ic = np.zeros(spatial_resolution)
+            for k in range(1, num_modes + 1):
+                amplitude = np.random.uniform(-1, 1)
+                phase = np.random.uniform(0, 2 * np.pi)
+                ic += amplitude * np.sin(k * x + phase)
+        elif initial_condition_type == &#34;gaussian_bump&#34;:
+            # Random Gaussian bump
+            center = np.random.uniform(0, 2 * np.pi)
+            width = np.random.uniform(0.5, 1.5)
+            amplitude = np.random.uniform(0.5, 2.0)
+            ic = amplitude * np.exp(-((x - center) ** 2) / (2 * width ** 2))
+        else:
+            raise ValueError(f&#34;Unknown initial condition type: {initial_condition_type}&#34;)
+        
+        # Generate trajectory
+        trajectory = self.generate_trajectory(
+            ic, trajectory_length,
+            viscosity=viscosity,
+            spatial_resolution=spatial_resolution,
+            dt=dt
+        )
+        
+        # Create sliding window samples
+        for t in range(samples_per_trajectory):
+            inputs[sample_idx] = trajectory[t:t + input_horizon]
+            outputs[sample_idx] = trajectory[
+                t + input_horizon:t + input_horizon + output_horizon
+            ]
+            sample_idx += 1
+    
+    return inputs, outputs</code></pre>
+</details>
+<div class="desc"><p>Create input-output pairs for operator learning.</p>
+<p>Generates multiple trajectories with random initial conditions and
+creates sliding window input-output pairs for operator learning.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>num_trajectories</code></strong></dt>
+<dd>Number of trajectories to generate</dd>
+<dt><strong><code>trajectory_length</code></strong></dt>
+<dd>Length of each trajectory</dd>
+<dt><strong><code>input_horizon</code></strong></dt>
+<dd>Number of time steps in input</dd>
+<dt><strong><code>output_horizon</code></strong></dt>
+<dd>Number of time steps in output</dd>
+<dt><strong><code>viscosity</code></strong></dt>
+<dd>Viscosity coefficient ν</dd>
+<dt><strong><code>spatial_resolution</code></strong></dt>
+<dd>Number of spatial grid points</dd>
+<dt><strong><code>dt</code></strong></dt>
+<dd>Time step size</dd>
+<dt><strong><code>initial_condition_type</code></strong></dt>
+<dd>Type of initial condition ("random_fourier", "gaussian_bump")</dd>
+<dt><strong><code>num_modes</code></strong></dt>
+<dd>Number of Fourier modes for random initial conditions</dd>
+<dt><strong><code>**params</code></strong></dt>
+<dd>Additional parameters (ignored)</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>inputs</code></dt>
+<dd>Array of shape (num_samples, input_horizon, spatial_resolution)</dd>
+<dt><code>outputs</code></dt>
+<dd>Array of shape (num_samples, output_horizon, spatial_resolution)</dd>
+</dl></div>
+</dd>
+<dt id="datasets.BurgersEquationDataset.generate_trajectory"><code class="name flex">
+<span>def <span class="ident">generate_trajectory</span></span>(<span>self,<br>initial_condition: numpy.ndarray,<br>length: int,<br>viscosity: float = 0.01,<br>spatial_resolution: int = 256,<br>dt: float = 0.001,<br>**params) ‑> numpy.ndarray</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def generate_trajectory(
+    self,
+    initial_condition: np.ndarray,
+    length: int,
+    viscosity: float = 0.01,
+    spatial_resolution: int = 256,
+    dt: float = 0.001,
+    **params
+) -&gt; np.ndarray:
+    &#34;&#34;&#34;Generate a single trajectory from initial condition.
+    
+    Uses finite difference method with forward Euler time stepping
+    and periodic boundary conditions.
+    
+    Args:
+        initial_condition: Initial velocity field (1D array)
+        length: Number of time steps to generate
+        viscosity: Viscosity coefficient ν (default: 0.01)
+        spatial_resolution: Number of spatial grid points (default: 256)
+        dt: Time step size (default: 0.001)
+        **params: Additional parameters (ignored)
+    
+    Returns:
+        trajectory: Array of shape (length, spatial_resolution)
+    
+    Raises:
+        ValueError: If parameters are outside valid ranges
+    &#34;&#34;&#34;
+    # Validate parameters
+    if viscosity &lt; 0:
+        raise ValueError(
+            f&#34;Viscosity must be non-negative, got viscosity={viscosity}&#34;
+        )
+    
+    if spatial_resolution &lt;= 0:
+        raise ValueError(
+            f&#34;Spatial resolution must be positive, got spatial_resolution={spatial_resolution}&#34;
+        )
+    
+    if dt &lt;= 0:
+        raise ValueError(f&#34;Time step dt must be positive, got dt={dt}&#34;)
+    
+    if length &lt;= 0:
+        raise ValueError(f&#34;Trajectory length must be positive, got length={length}&#34;)
+    
+    # Ensure initial condition has correct shape
+    if isinstance(initial_condition, np.ndarray):
+        u = initial_condition.flatten()
+    else:
+        u = np.array(initial_condition).flatten()
+    
+    # If initial condition doesn&#39;t match spatial resolution, interpolate or pad
+    if len(u) != spatial_resolution:
+        if len(u) &lt; spatial_resolution:
+            # Pad with zeros
+            u_new = np.zeros(spatial_resolution)
+            u_new[:len(u)] = u
+            u = u_new
+        else:
+            # Truncate
+            u = u[:spatial_resolution]
+    
+    # Spatial grid
+    L = 2 * np.pi  # Domain length
+    dx = L / spatial_resolution
+    
+    # Check CFL condition for stability
+    cfl = np.max(np.abs(u)) * dt / dx
+    diffusion_number = viscosity * dt / (dx ** 2)
+    if cfl &gt; 1.0 or diffusion_number &gt; 0.5:
+        import warnings
+        warnings.warn(
+            f&#34;Stability conditions may be violated: CFL={cfl:.3f}, &#34;
+            f&#34;diffusion_number={diffusion_number:.3f}. &#34;
+            f&#34;Consider reducing dt or increasing spatial_resolution.&#34;
+        )
+    
+    # Preallocate trajectory
+    trajectory = np.zeros((length, spatial_resolution))
+    trajectory[0] = u
+    
+    # Time integration using forward Euler
+    for i in range(1, length):
+        rhs = self._burgers_rhs(u, dx, viscosity)
+        u = u + dt * rhs
+        trajectory[i] = u
+    
+    return trajectory</code></pre>
+</details>
+<div class="desc"><p>Generate a single trajectory from initial condition.</p>
+<p>Uses finite difference method with forward Euler time stepping
+and periodic boundary conditions.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>initial_condition</code></strong></dt>
+<dd>Initial velocity field (1D array)</dd>
+<dt><strong><code>length</code></strong></dt>
+<dd>Number of time steps to generate</dd>
+<dt><strong><code>viscosity</code></strong></dt>
+<dd>Viscosity coefficient ν (default: 0.01)</dd>
+<dt><strong><code>spatial_resolution</code></strong></dt>
+<dd>Number of spatial grid points (default: 256)</dd>
+<dt><strong><code>dt</code></strong></dt>
+<dd>Time step size (default: 0.001)</dd>
+<dt><strong><code>**params</code></strong></dt>
+<dd>Additional parameters (ignored)</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>trajectory</code></dt>
+<dd>Array of shape (length, spatial_resolution)</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>ValueError</code></dt>
+<dd>If parameters are outside valid ranges</dd>
+</dl></div>
+</dd>
+<dt id="datasets.BurgersEquationDataset.get_true_eigenvalues"><code class="name flex">
+<span>def <span class="ident">get_true_eigenvalues</span></span>(<span>self,<br>state: numpy.ndarray,<br>viscosity: float = 0.01,<br>spatial_resolution: int = 256,<br>num_eigenvalues: int = 10,<br>**params) ‑> numpy.ndarray | None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_true_eigenvalues(
+    self,
+    state: np.ndarray,
+    viscosity: float = 0.01,
+    spatial_resolution: int = 256,
+    num_eigenvalues: int = 10,
+    **params
+) -&gt; Optional[np.ndarray]:
+    &#34;&#34;&#34;Return true eigenvalues using spectral method.
+    
+    Computes eigenvalues of the linearized Burgers operator around
+    the given state using Fourier spectral method.
+    
+    The linearized operator is: L[v] = -u * ∂v/∂x - v * ∂u/∂x + ν * ∂²v/∂x²
+    
+    Args:
+        state: Velocity field at which to linearize
+        viscosity: Viscosity coefficient ν
+        spatial_resolution: Number of spatial grid points
+        num_eigenvalues: Number of eigenvalues to compute
+        **params: Additional parameters (ignored)
+    
+    Returns:
+        eigenvalues: Array of complex eigenvalues (largest magnitude)
+    &#34;&#34;&#34;
+    # Ensure state has correct shape
+    if isinstance(state, np.ndarray):
+        u = state.flatten()
+    else:
+        u = np.array(state).flatten()
+    
+    if len(u) != spatial_resolution:
+        raise ValueError(
+            f&#34;State length ({len(u)}) must match spatial_resolution ({spatial_resolution})&#34;
+        )
+    
+    # Spatial grid
+    L = 2 * np.pi
+    dx = L / spatial_resolution
+    
+    # Construct linearized operator matrix using finite differences
+    # This is a sparse matrix, but we&#39;ll use dense for simplicity
+    operator = np.zeros((spatial_resolution, spatial_resolution))
+    
+    for i in range(spatial_resolution):
+        # Indices with periodic boundary conditions
+        i_plus = (i + 1) % spatial_resolution
+        i_minus = (i - 1) % spatial_resolution
+        
+        # Convection terms: -u[i] * ∂v/∂x - v * ∂u/∂x
+        # ∂v/∂x at i: (v[i+1] - v[i-1]) / (2*dx)
+        operator[i, i_plus] += -u[i] / (2 * dx)
+        operator[i, i_minus] += u[i] / (2 * dx)
+        
+        # -v * ∂u/∂x at i
+        du_dx_i = (u[i_plus] - u[i_minus]) / (2 * dx)
+        operator[i, i] += -du_dx_i
+        
+        # Diffusion term: ν * ∂²v/∂x²
+        # ∂²v/∂x² at i: (v[i+1] - 2*v[i] + v[i-1]) / dx²
+        operator[i, i_plus] += viscosity / (dx ** 2)
+        operator[i, i] += -2 * viscosity / (dx ** 2)
+        operator[i, i_minus] += viscosity / (dx ** 2)
+    
+    # Compute eigenvalues
+    eigenvalues = np.linalg.eigvals(operator)
+    
+    # Sort by magnitude and return largest
+    eigenvalues = eigenvalues[np.argsort(np.abs(eigenvalues))[::-1]]
+    
+    # Ensure complex dtype for consistency
+    return eigenvalues[:num_eigenvalues].astype(np.complex128)</code></pre>
+</details>
+<div class="desc"><p>Return true eigenvalues using spectral method.</p>
+<p>Computes eigenvalues of the linearized Burgers operator around
+the given state using Fourier spectral method.</p>
+<p>The linearized operator is: L[v] = -u * ∂v/∂x - v * ∂u/∂x + ν * ∂²v/∂x²</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>state</code></strong></dt>
+<dd>Velocity field at which to linearize</dd>
+<dt><strong><code>viscosity</code></strong></dt>
+<dd>Viscosity coefficient ν</dd>
+<dt><strong><code>spatial_resolution</code></strong></dt>
+<dd>Number of spatial grid points</dd>
+<dt><strong><code>num_eigenvalues</code></strong></dt>
+<dd>Number of eigenvalues to compute</dd>
+<dt><strong><code>**params</code></strong></dt>
+<dd>Additional parameters (ignored)</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>eigenvalues</code></dt>
+<dd>Array of complex eigenvalues (largest magnitude)</dd>
+</dl></div>
+</dd>
+</dl>
+</dd>
+<dt id="datasets.DynamicalSystem"><code class="flex name class">
+<span>class <span class="ident">DynamicalSystem</span></span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class DynamicalSystem(ABC):
+    &#34;&#34;&#34;Abstract base for dynamical system data generators.
+    
+    This class defines the interface for generating training data from
+    dynamical systems for neural operator learning. Concrete implementations
+    should provide specific system dynamics (Logistic Map, Lorenz System, etc.).
+    &#34;&#34;&#34;
+    
+    @abstractmethod
+    def generate_trajectory(
+        self,
+        initial_condition: np.ndarray,
+        length: int,
+        **params: Any
+    ) -&gt; np.ndarray:
+        &#34;&#34;&#34;Generate a single trajectory from initial condition.
+        
+        Args:
+            initial_condition: Starting state of the system
+            length: Number of time steps to generate
+            **params: System-specific parameters (e.g., r for logistic map)
+        
+        Returns:
+            trajectory: Array of shape (length, state_dim) containing the trajectory
+        &#34;&#34;&#34;
+        pass
+    
+    @abstractmethod
+    def create_operator_dataset(
+        self,
+        num_trajectories: int,
+        trajectory_length: int,
+        input_horizon: int,
+        output_horizon: int,
+        **params: Any
+    ) -&gt; Tuple[np.ndarray, np.ndarray]:
+        &#34;&#34;&#34;Create input-output pairs for operator learning.
+        
+        Generates multiple trajectories and creates input-output pairs suitable
+        for training neural operators. Input consists of the system state over
+        input_horizon time steps, and output is the state over output_horizon
+        future time steps.
+        
+        Args:
+            num_trajectories: Number of trajectories to generate
+            trajectory_length: Length of each trajectory
+            input_horizon: Number of time steps in input
+            output_horizon: Number of time steps in output
+            **params: System-specific parameters
+        
+        Returns:
+            inputs: Array of shape (num_samples, input_horizon, state_dim)
+            outputs: Array of shape (num_samples, output_horizon, state_dim)
+        &#34;&#34;&#34;
+        pass
+    
+    @abstractmethod
+    def get_true_eigenvalues(
+        self,
+        state: np.ndarray,
+        **params: Any
+    ) -&gt; Optional[np.ndarray]:
+        &#34;&#34;&#34;Return true eigenvalues at given state (if analytically known).
+        
+        Computes the eigenvalues of the system&#39;s Jacobian at the specified state.
+        This is used for spectral analysis and validation of learned operators.
+        
+        Args:
+            state: State point at which to compute eigenvalues
+            **params: System-specific parameters
+        
+        Returns:
+            eigenvalues: Array of complex eigenvalues, or None if not analytically available
+        &#34;&#34;&#34;
+        pass</code></pre>
+</details>
+<div class="desc"><p>Abstract base for dynamical system data generators.</p>
+<p>This class defines the interface for generating training data from
+dynamical systems for neural operator learning. Concrete implementations
+should provide specific system dynamics (Logistic Map, Lorenz System, etc.).</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>abc.ABC</li>
+</ul>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="datasets.burgers_equation.BurgersEquationDataset" href="burgers_equation.html#datasets.burgers_equation.BurgersEquationDataset">BurgersEquationDataset</a></li>
+<li><a title="datasets.logistic_map.LogisticMapDataset" href="logistic_map.html#datasets.logistic_map.LogisticMapDataset">LogisticMapDataset</a></li>
+<li><a title="datasets.lorenz_system.LorenzSystemDataset" href="lorenz_system.html#datasets.lorenz_system.LorenzSystemDataset">LorenzSystemDataset</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="datasets.DynamicalSystem.create_operator_dataset"><code class="name flex">
+<span>def <span class="ident">create_operator_dataset</span></span>(<span>self,<br>num_trajectories: int,<br>trajectory_length: int,<br>input_horizon: int,<br>output_horizon: int,<br>**params: Any) ‑> Tuple[numpy.ndarray, numpy.ndarray]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@abstractmethod
+def create_operator_dataset(
+    self,
+    num_trajectories: int,
+    trajectory_length: int,
+    input_horizon: int,
+    output_horizon: int,
+    **params: Any
+) -&gt; Tuple[np.ndarray, np.ndarray]:
+    &#34;&#34;&#34;Create input-output pairs for operator learning.
+    
+    Generates multiple trajectories and creates input-output pairs suitable
+    for training neural operators. Input consists of the system state over
+    input_horizon time steps, and output is the state over output_horizon
+    future time steps.
+    
+    Args:
+        num_trajectories: Number of trajectories to generate
+        trajectory_length: Length of each trajectory
+        input_horizon: Number of time steps in input
+        output_horizon: Number of time steps in output
+        **params: System-specific parameters
+    
+    Returns:
+        inputs: Array of shape (num_samples, input_horizon, state_dim)
+        outputs: Array of shape (num_samples, output_horizon, state_dim)
+    &#34;&#34;&#34;
+    pass</code></pre>
+</details>
+<div class="desc"><p>Create input-output pairs for operator learning.</p>
+<p>Generates multiple trajectories and creates input-output pairs suitable
+for training neural operators. Input consists of the system state over
+input_horizon time steps, and output is the state over output_horizon
+future time steps.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>num_trajectories</code></strong></dt>
+<dd>Number of trajectories to generate</dd>
+<dt><strong><code>trajectory_length</code></strong></dt>
+<dd>Length of each trajectory</dd>
+<dt><strong><code>input_horizon</code></strong></dt>
+<dd>Number of time steps in input</dd>
+<dt><strong><code>output_horizon</code></strong></dt>
+<dd>Number of time steps in output</dd>
+<dt><strong><code>**params</code></strong></dt>
+<dd>System-specific parameters</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>inputs</code></dt>
+<dd>Array of shape (num_samples, input_horizon, state_dim)</dd>
+<dt><code>outputs</code></dt>
+<dd>Array of shape (num_samples, output_horizon, state_dim)</dd>
+</dl></div>
+</dd>
+<dt id="datasets.DynamicalSystem.generate_trajectory"><code class="name flex">
+<span>def <span class="ident">generate_trajectory</span></span>(<span>self, initial_condition: numpy.ndarray, length: int, **params: Any) ‑> numpy.ndarray</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@abstractmethod
+def generate_trajectory(
+    self,
+    initial_condition: np.ndarray,
+    length: int,
+    **params: Any
+) -&gt; np.ndarray:
+    &#34;&#34;&#34;Generate a single trajectory from initial condition.
+    
+    Args:
+        initial_condition: Starting state of the system
+        length: Number of time steps to generate
+        **params: System-specific parameters (e.g., r for logistic map)
+    
+    Returns:
+        trajectory: Array of shape (length, state_dim) containing the trajectory
+    &#34;&#34;&#34;
+    pass</code></pre>
+</details>
+<div class="desc"><p>Generate a single trajectory from initial condition.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>initial_condition</code></strong></dt>
+<dd>Starting state of the system</dd>
+<dt><strong><code>length</code></strong></dt>
+<dd>Number of time steps to generate</dd>
+<dt><strong><code>**params</code></strong></dt>
+<dd>System-specific parameters (e.g., r for logistic map)</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>trajectory</code></dt>
+<dd>Array of shape (length, state_dim) containing the trajectory</dd>
+</dl></div>
+</dd>
+<dt id="datasets.DynamicalSystem.get_true_eigenvalues"><code class="name flex">
+<span>def <span class="ident">get_true_eigenvalues</span></span>(<span>self, state: numpy.ndarray, **params: Any) ‑> numpy.ndarray | None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@abstractmethod
+def get_true_eigenvalues(
+    self,
+    state: np.ndarray,
+    **params: Any
+) -&gt; Optional[np.ndarray]:
+    &#34;&#34;&#34;Return true eigenvalues at given state (if analytically known).
+    
+    Computes the eigenvalues of the system&#39;s Jacobian at the specified state.
+    This is used for spectral analysis and validation of learned operators.
+    
+    Args:
+        state: State point at which to compute eigenvalues
+        **params: System-specific parameters
+    
+    Returns:
+        eigenvalues: Array of complex eigenvalues, or None if not analytically available
+    &#34;&#34;&#34;
+    pass</code></pre>
+</details>
+<div class="desc"><p>Return true eigenvalues at given state (if analytically known).</p>
+<p>Computes the eigenvalues of the system's Jacobian at the specified state.
+This is used for spectral analysis and validation of learned operators.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>state</code></strong></dt>
+<dd>State point at which to compute eigenvalues</dd>
+<dt><strong><code>**params</code></strong></dt>
+<dd>System-specific parameters</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>eigenvalues</code></dt>
+<dd>Array of complex eigenvalues, or None if not analytically available</dd>
+</dl></div>
+</dd>
+</dl>
+</dd>
+<dt id="datasets.LazyOperatorDataset"><code class="flex name class">
+<span>class <span class="ident">LazyOperatorDataset</span></span>
+<span>(</span><span>dynamical_system: Any,<br>num_samples: int,<br>input_horizon: int,<br>output_horizon: int,<br>system_params: Dict[str, Any],<br>normalize: bool = True,<br>normalization_stats: Dict[str, numpy.ndarray] | None = None,<br>seed: int | None = None)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class LazyOperatorDataset(Dataset):
+    &#34;&#34;&#34;Lazy-loading PyTorch Dataset for large operator learning datasets.
+    
+    Generates data on-the-fly instead of storing all trajectories in memory.
+    Useful for very large datasets that don&#39;t fit in RAM.
+    &#34;&#34;&#34;
+    
+    def __init__(
+        self,
+        dynamical_system: Any,
+        num_samples: int,
+        input_horizon: int,
+        output_horizon: int,
+        system_params: Dict[str, Any],
+        normalize: bool = True,
+        normalization_stats: Optional[Dict[str, np.ndarray]] = None,
+        seed: Optional[int] = None
+    ):
+        &#34;&#34;&#34;Initialize LazyOperatorDataset.
+        
+        Args:
+            dynamical_system: DynamicalSystem instance for generating data
+            num_samples: Total number of samples to generate
+            input_horizon: Number of time steps in input
+            output_horizon: Number of time steps in output
+            system_params: Parameters for the dynamical system
+            normalize: Whether to normalize the data
+            normalization_stats: Pre-computed normalization statistics
+            seed: Random seed for reproducibility
+        &#34;&#34;&#34;
+        self.dynamical_system = dynamical_system
+        self.num_samples = num_samples
+        self.input_horizon = input_horizon
+        self.output_horizon = output_horizon
+        self.system_params = system_params
+        self.normalize = normalize
+        self.seed = seed
+        
+        # Store normalization statistics
+        if normalize and normalization_stats is not None:
+            self.input_mean = normalization_stats.get(&#39;input_mean&#39;)
+            self.input_std = normalization_stats.get(&#39;input_std&#39;)
+            self.output_mean = normalization_stats.get(&#39;output_mean&#39;)
+            self.output_std = normalization_stats.get(&#39;output_std&#39;)
+        else:
+            self.input_mean = None
+            self.input_std = None
+            self.output_mean = None
+            self.output_std = None
+    
+    def __len__(self) -&gt; int:
+        &#34;&#34;&#34;Return number of samples.&#34;&#34;&#34;
+        return self.num_samples
+    
+    def __getitem__(self, idx: int) -&gt; Tuple[torch.Tensor, torch.Tensor]:
+        &#34;&#34;&#34;Generate and return a single sample on-the-fly.
+        
+        Args:
+            idx: Sample index (used as seed modifier)
+        
+        Returns:
+            input_tensor: Input tensor
+            output_tensor: Output tensor
+        &#34;&#34;&#34;
+        # Set seed based on index for reproducibility
+        if self.seed is not None:
+            np.random.seed(self.seed + idx)
+        
+        # Generate a short trajectory
+        trajectory_length = self.input_horizon + self.output_horizon
+        
+        # This is a simplified version - in practice, you&#39;d need to
+        # generate initial conditions and call the dynamical system
+        # For now, this is a placeholder that would need system-specific logic
+        raise NotImplementedError(
+            &#34;LazyOperatorDataset requires system-specific implementation&#34;
+        )</code></pre>
+</details>
+<div class="desc"><p>Lazy-loading PyTorch Dataset for large operator learning datasets.</p>
+<p>Generates data on-the-fly instead of storing all trajectories in memory.
+Useful for very large datasets that don't fit in RAM.</p>
+<p>Initialize LazyOperatorDataset.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>dynamical_system</code></strong></dt>
+<dd>DynamicalSystem instance for generating data</dd>
+<dt><strong><code>num_samples</code></strong></dt>
+<dd>Total number of samples to generate</dd>
+<dt><strong><code>input_horizon</code></strong></dt>
+<dd>Number of time steps in input</dd>
+<dt><strong><code>output_horizon</code></strong></dt>
+<dd>Number of time steps in output</dd>
+<dt><strong><code>system_params</code></strong></dt>
+<dd>Parameters for the dynamical system</dd>
+<dt><strong><code>normalize</code></strong></dt>
+<dd>Whether to normalize the data</dd>
+<dt><strong><code>normalization_stats</code></strong></dt>
+<dd>Pre-computed normalization statistics</dd>
+<dt><strong><code>seed</code></strong></dt>
+<dd>Random seed for reproducibility</dd>
+</dl></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>torch.utils.data.dataset.Dataset</li>
+<li>typing.Generic</li>
+</ul>
+</dd>
+<dt id="datasets.LogisticMapDataset"><code class="flex name class">
+<span>class <span class="ident">LogisticMapDataset</span></span>
+<span>(</span><span>seed: int | None = None)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class LogisticMapDataset(DynamicalSystem):
+    &#34;&#34;&#34;Logistic Map discrete-time dynamical system.
+    
+    The logistic map is defined by: x_{n+1} = r * x_n * (1 - x_n)
+    where r is the growth rate parameter and x is in [0, 1].
+    
+    This is a classic example of a chaotic dynamical system that exhibits
+    complex behavior including period-doubling bifurcations and chaos.
+    &#34;&#34;&#34;
+    
+    def __init__(self, seed: Optional[int] = None):
+        &#34;&#34;&#34;Initialize LogisticMapDataset.
+        
+        Args:
+            seed: Random seed for reproducible data generation
+        &#34;&#34;&#34;
+        self.seed = seed
+        if seed is not None:
+            np.random.seed(seed)
+    
+    def generate_trajectory(
+        self,
+        initial_condition: np.ndarray,
+        length: int,
+        r: float = 3.9,
+        **params
+    ) -&gt; np.ndarray:
+        &#34;&#34;&#34;Generate a single trajectory from initial condition.
+        
+        Args:
+            initial_condition: Starting state (scalar or 1D array)
+            length: Number of time steps to generate
+            r: Growth rate parameter (typically in [0, 4])
+            **params: Additional parameters (ignored)
+        
+        Returns:
+            trajectory: Array of shape (length, 1) containing the trajectory
+        
+        Raises:
+            ValueError: If parameters are outside valid ranges
+        &#34;&#34;&#34;
+        # Validate parameters
+        if r &lt; 0 or r &gt; 4:
+            raise ValueError(
+                f&#34;Growth rate parameter r must be in [0, 4], got r={r}. &#34;
+                f&#34;Values outside this range lead to unbounded dynamics.&#34;
+            )
+        
+        if length &lt;= 0:
+            raise ValueError(f&#34;Trajectory length must be positive, got length={length}&#34;)
+        
+        # Ensure initial condition is a scalar
+        if isinstance(initial_condition, np.ndarray):
+            x = float(initial_condition.flatten()[0])
+        else:
+            x = float(initial_condition)
+        
+        if x &lt; 0 or x &gt; 1:
+            raise ValueError(
+                f&#34;Initial condition must be in [0, 1] for logistic map, got x={x}&#34;
+            )
+        
+        # Generate trajectory
+        trajectory = np.zeros((length, 1))
+        trajectory[0, 0] = x
+        
+        for i in range(1, length):
+            x = r * x * (1 - x)
+            trajectory[i, 0] = x
+        
+        return trajectory
+    
+    def create_operator_dataset(
+        self,
+        num_trajectories: int,
+        trajectory_length: int,
+        input_horizon: int,
+        output_horizon: int,
+        r: float = 3.9,
+        initial_condition_range: Tuple[float, float] = (0.1, 0.9),
+        **params
+    ) -&gt; Tuple[np.ndarray, np.ndarray]:
+        &#34;&#34;&#34;Create input-output pairs for operator learning.
+        
+        Generates multiple trajectories with random initial conditions and
+        creates sliding window input-output pairs for operator learning.
+        
+        Args:
+            num_trajectories: Number of trajectories to generate
+            trajectory_length: Length of each trajectory
+            input_horizon: Number of time steps in input
+            output_horizon: Number of time steps in output
+            r: Growth rate parameter
+            initial_condition_range: Range for random initial conditions
+            **params: Additional parameters (ignored)
+        
+        Returns:
+            inputs: Array of shape (num_samples, input_horizon, 1)
+            outputs: Array of shape (num_samples, output_horizon, 1)
+        &#34;&#34;&#34;
+        # Set seed if provided
+        if self.seed is not None:
+            np.random.seed(self.seed)
+        
+        # Calculate number of samples per trajectory
+        samples_per_trajectory = trajectory_length - input_horizon - output_horizon + 1
+        if samples_per_trajectory &lt;= 0:
+            raise ValueError(
+                f&#34;trajectory_length ({trajectory_length}) must be &gt;= &#34;
+                f&#34;input_horizon ({input_horizon}) + output_horizon ({output_horizon})&#34;
+            )
+        
+        total_samples = num_trajectories * samples_per_trajectory
+        
+        # Preallocate arrays
+        inputs = np.zeros((total_samples, input_horizon, 1))
+        outputs = np.zeros((total_samples, output_horizon, 1))
+        
+        sample_idx = 0
+        for _ in range(num_trajectories):
+            # Random initial condition
+            ic = np.random.uniform(
+                initial_condition_range[0],
+                initial_condition_range[1]
+            )
+            
+            # Generate trajectory
+            trajectory = self.generate_trajectory(ic, trajectory_length, r=r)
+            
+            # Create sliding window samples
+            for t in range(samples_per_trajectory):
+                inputs[sample_idx] = trajectory[t:t + input_horizon]
+                outputs[sample_idx] = trajectory[
+                    t + input_horizon:t + input_horizon + output_horizon
+                ]
+                sample_idx += 1
+        
+        return inputs, outputs
+    
+    def get_true_eigenvalues(
+        self,
+        state: np.ndarray,
+        r: float = 3.9,
+        **params
+    ) -&gt; Optional[np.ndarray]:
+        &#34;&#34;&#34;Return true eigenvalues at given state.
+        
+        For the logistic map, the eigenvalue at a state x is the derivative:
+        λ = r * (1 - 2*x)
+        
+        Args:
+            state: State point (scalar or 1D array)
+            r: Growth rate parameter
+            **params: Additional parameters (ignored)
+        
+        Returns:
+            eigenvalues: Array containing single eigenvalue
+        &#34;&#34;&#34;
+        # Extract scalar state
+        if isinstance(state, np.ndarray):
+            x = float(state.flatten()[0])
+        else:
+            x = float(state)
+        
+        # Compute derivative (eigenvalue for 1D system)
+        eigenvalue = r * (1 - 2 * x)
+        
+        return np.array([eigenvalue], dtype=np.complex128)</code></pre>
+</details>
+<div class="desc"><p>Logistic Map discrete-time dynamical system.</p>
+<p>The logistic map is defined by: x_{n+1} = r * x_n * (1 - x_n)
+where r is the growth rate parameter and x is in [0, 1].</p>
+<p>This is a classic example of a chaotic dynamical system that exhibits
+complex behavior including period-doubling bifurcations and chaos.</p>
+<p>Initialize LogisticMapDataset.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>seed</code></strong></dt>
+<dd>Random seed for reproducible data generation</dd>
+</dl></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="datasets.base.DynamicalSystem" href="base.html#datasets.base.DynamicalSystem">DynamicalSystem</a></li>
+<li>abc.ABC</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="datasets.LogisticMapDataset.create_operator_dataset"><code class="name flex">
+<span>def <span class="ident">create_operator_dataset</span></span>(<span>self,<br>num_trajectories: int,<br>trajectory_length: int,<br>input_horizon: int,<br>output_horizon: int,<br>r: float = 3.9,<br>initial_condition_range: Tuple[float, float] = (0.1, 0.9),<br>**params) ‑> Tuple[numpy.ndarray, numpy.ndarray]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def create_operator_dataset(
+    self,
+    num_trajectories: int,
+    trajectory_length: int,
+    input_horizon: int,
+    output_horizon: int,
+    r: float = 3.9,
+    initial_condition_range: Tuple[float, float] = (0.1, 0.9),
+    **params
+) -&gt; Tuple[np.ndarray, np.ndarray]:
+    &#34;&#34;&#34;Create input-output pairs for operator learning.
+    
+    Generates multiple trajectories with random initial conditions and
+    creates sliding window input-output pairs for operator learning.
+    
+    Args:
+        num_trajectories: Number of trajectories to generate
+        trajectory_length: Length of each trajectory
+        input_horizon: Number of time steps in input
+        output_horizon: Number of time steps in output
+        r: Growth rate parameter
+        initial_condition_range: Range for random initial conditions
+        **params: Additional parameters (ignored)
+    
+    Returns:
+        inputs: Array of shape (num_samples, input_horizon, 1)
+        outputs: Array of shape (num_samples, output_horizon, 1)
+    &#34;&#34;&#34;
+    # Set seed if provided
+    if self.seed is not None:
+        np.random.seed(self.seed)
+    
+    # Calculate number of samples per trajectory
+    samples_per_trajectory = trajectory_length - input_horizon - output_horizon + 1
+    if samples_per_trajectory &lt;= 0:
+        raise ValueError(
+            f&#34;trajectory_length ({trajectory_length}) must be &gt;= &#34;
+            f&#34;input_horizon ({input_horizon}) + output_horizon ({output_horizon})&#34;
+        )
+    
+    total_samples = num_trajectories * samples_per_trajectory
+    
+    # Preallocate arrays
+    inputs = np.zeros((total_samples, input_horizon, 1))
+    outputs = np.zeros((total_samples, output_horizon, 1))
+    
+    sample_idx = 0
+    for _ in range(num_trajectories):
+        # Random initial condition
+        ic = np.random.uniform(
+            initial_condition_range[0],
+            initial_condition_range[1]
+        )
+        
+        # Generate trajectory
+        trajectory = self.generate_trajectory(ic, trajectory_length, r=r)
+        
+        # Create sliding window samples
+        for t in range(samples_per_trajectory):
+            inputs[sample_idx] = trajectory[t:t + input_horizon]
+            outputs[sample_idx] = trajectory[
+                t + input_horizon:t + input_horizon + output_horizon
+            ]
+            sample_idx += 1
+    
+    return inputs, outputs</code></pre>
+</details>
+<div class="desc"><p>Create input-output pairs for operator learning.</p>
+<p>Generates multiple trajectories with random initial conditions and
+creates sliding window input-output pairs for operator learning.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>num_trajectories</code></strong></dt>
+<dd>Number of trajectories to generate</dd>
+<dt><strong><code>trajectory_length</code></strong></dt>
+<dd>Length of each trajectory</dd>
+<dt><strong><code>input_horizon</code></strong></dt>
+<dd>Number of time steps in input</dd>
+<dt><strong><code>output_horizon</code></strong></dt>
+<dd>Number of time steps in output</dd>
+<dt><strong><code>r</code></strong></dt>
+<dd>Growth rate parameter</dd>
+<dt><strong><code>initial_condition_range</code></strong></dt>
+<dd>Range for random initial conditions</dd>
+<dt><strong><code>**params</code></strong></dt>
+<dd>Additional parameters (ignored)</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>inputs</code></dt>
+<dd>Array of shape (num_samples, input_horizon, 1)</dd>
+<dt><code>outputs</code></dt>
+<dd>Array of shape (num_samples, output_horizon, 1)</dd>
+</dl></div>
+</dd>
+<dt id="datasets.LogisticMapDataset.generate_trajectory"><code class="name flex">
+<span>def <span class="ident">generate_trajectory</span></span>(<span>self, initial_condition: numpy.ndarray, length: int, r: float = 3.9, **params) ‑> numpy.ndarray</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def generate_trajectory(
+    self,
+    initial_condition: np.ndarray,
+    length: int,
+    r: float = 3.9,
+    **params
+) -&gt; np.ndarray:
+    &#34;&#34;&#34;Generate a single trajectory from initial condition.
+    
+    Args:
+        initial_condition: Starting state (scalar or 1D array)
+        length: Number of time steps to generate
+        r: Growth rate parameter (typically in [0, 4])
+        **params: Additional parameters (ignored)
+    
+    Returns:
+        trajectory: Array of shape (length, 1) containing the trajectory
+    
+    Raises:
+        ValueError: If parameters are outside valid ranges
+    &#34;&#34;&#34;
+    # Validate parameters
+    if r &lt; 0 or r &gt; 4:
+        raise ValueError(
+            f&#34;Growth rate parameter r must be in [0, 4], got r={r}. &#34;
+            f&#34;Values outside this range lead to unbounded dynamics.&#34;
+        )
+    
+    if length &lt;= 0:
+        raise ValueError(f&#34;Trajectory length must be positive, got length={length}&#34;)
+    
+    # Ensure initial condition is a scalar
+    if isinstance(initial_condition, np.ndarray):
+        x = float(initial_condition.flatten()[0])
+    else:
+        x = float(initial_condition)
+    
+    if x &lt; 0 or x &gt; 1:
+        raise ValueError(
+            f&#34;Initial condition must be in [0, 1] for logistic map, got x={x}&#34;
+        )
+    
+    # Generate trajectory
+    trajectory = np.zeros((length, 1))
+    trajectory[0, 0] = x
+    
+    for i in range(1, length):
+        x = r * x * (1 - x)
+        trajectory[i, 0] = x
+    
+    return trajectory</code></pre>
+</details>
+<div class="desc"><p>Generate a single trajectory from initial condition.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>initial_condition</code></strong></dt>
+<dd>Starting state (scalar or 1D array)</dd>
+<dt><strong><code>length</code></strong></dt>
+<dd>Number of time steps to generate</dd>
+<dt><strong><code>r</code></strong></dt>
+<dd>Growth rate parameter (typically in [0, 4])</dd>
+<dt><strong><code>**params</code></strong></dt>
+<dd>Additional parameters (ignored)</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>trajectory</code></dt>
+<dd>Array of shape (length, 1) containing the trajectory</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>ValueError</code></dt>
+<dd>If parameters are outside valid ranges</dd>
+</dl></div>
+</dd>
+<dt id="datasets.LogisticMapDataset.get_true_eigenvalues"><code class="name flex">
+<span>def <span class="ident">get_true_eigenvalues</span></span>(<span>self, state: numpy.ndarray, r: float = 3.9, **params) ‑> numpy.ndarray | None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_true_eigenvalues(
+    self,
+    state: np.ndarray,
+    r: float = 3.9,
+    **params
+) -&gt; Optional[np.ndarray]:
+    &#34;&#34;&#34;Return true eigenvalues at given state.
+    
+    For the logistic map, the eigenvalue at a state x is the derivative:
+    λ = r * (1 - 2*x)
+    
+    Args:
+        state: State point (scalar or 1D array)
+        r: Growth rate parameter
+        **params: Additional parameters (ignored)
+    
+    Returns:
+        eigenvalues: Array containing single eigenvalue
+    &#34;&#34;&#34;
+    # Extract scalar state
+    if isinstance(state, np.ndarray):
+        x = float(state.flatten()[0])
+    else:
+        x = float(state)
+    
+    # Compute derivative (eigenvalue for 1D system)
+    eigenvalue = r * (1 - 2 * x)
+    
+    return np.array([eigenvalue], dtype=np.complex128)</code></pre>
+</details>
+<div class="desc"><p>Return true eigenvalues at given state.</p>
+<p>For the logistic map, the eigenvalue at a state x is the derivative:
+λ = r * (1 - 2*x)</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>state</code></strong></dt>
+<dd>State point (scalar or 1D array)</dd>
+<dt><strong><code>r</code></strong></dt>
+<dd>Growth rate parameter</dd>
+<dt><strong><code>**params</code></strong></dt>
+<dd>Additional parameters (ignored)</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>eigenvalues</code></dt>
+<dd>Array containing single eigenvalue</dd>
+</dl></div>
+</dd>
+</dl>
+</dd>
+<dt id="datasets.LorenzSystemDataset"><code class="flex name class">
+<span>class <span class="ident">LorenzSystemDataset</span></span>
+<span>(</span><span>seed: int | None = None)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class LorenzSystemDataset(DynamicalSystem):
+    &#34;&#34;&#34;Lorenz System continuous-time dynamical system.
+    
+    The Lorenz system is defined by:
+        dx/dt = σ(y - x)
+        dy/dt = x(ρ - z) - y
+        dz/dt = xy - βz
+    
+    where σ (sigma), ρ (rho), and β (beta) are system parameters.
+    This is a classic example of a chaotic attractor.
+    &#34;&#34;&#34;
+    
+    def __init__(self, seed: Optional[int] = None):
+        &#34;&#34;&#34;Initialize LorenzSystemDataset.
+        
+        Args:
+            seed: Random seed for reproducible data generation
+        &#34;&#34;&#34;
+        self.seed = seed
+        if seed is not None:
+            np.random.seed(seed)
+    
+    def _lorenz_ode(
+        self,
+        t: float,
+        state: np.ndarray,
+        sigma: float,
+        rho: float,
+        beta: float
+    ) -&gt; np.ndarray:
+        &#34;&#34;&#34;Lorenz system ODE right-hand side.
+        
+        Args:
+            t: Time (unused, system is autonomous)
+            state: Current state [x, y, z]
+            sigma: Prandtl number
+            rho: Rayleigh number
+            beta: Geometric parameter
+        
+        Returns:
+            derivatives: Time derivatives [dx/dt, dy/dt, dz/dt]
+        &#34;&#34;&#34;
+        x, y, z = state
+        dx = sigma * (y - x)
+        dy = x * (rho - z) - y
+        dz = x * y - beta * z
+        return np.array([dx, dy, dz])
+    
+    def generate_trajectory(
+        self,
+        initial_condition: np.ndarray,
+        length: int,
+        sigma: float = 10.0,
+        rho: float = 28.0,
+        beta: float = 8.0 / 3.0,
+        dt: float = 0.01,
+        **params
+    ) -&gt; np.ndarray:
+        &#34;&#34;&#34;Generate a single trajectory from initial condition.
+        
+        Uses scipy&#39;s solve_ivp with RK45 method for numerical integration.
+        
+        Args:
+            initial_condition: Starting state [x, y, z]
+            length: Number of time steps to generate
+            sigma: Prandtl number (default: 10.0)
+            rho: Rayleigh number (default: 28.0)
+            beta: Geometric parameter (default: 8/3)
+            dt: Time step size (default: 0.01)
+            **params: Additional parameters (ignored)
+        
+        Returns:
+            trajectory: Array of shape (length, 3) containing the trajectory
+        
+        Raises:
+            ValueError: If parameters are outside valid ranges
+        &#34;&#34;&#34;
+        # Validate parameters
+        if sigma &lt;= 0:
+            raise ValueError(f&#34;Prandtl number sigma must be positive, got sigma={sigma}&#34;)
+        
+        if rho &lt;= 0:
+            raise ValueError(f&#34;Rayleigh number rho must be positive, got rho={rho}&#34;)
+        
+        if beta &lt;= 0:
+            raise ValueError(f&#34;Geometric parameter beta must be positive, got beta={beta}&#34;)
+        
+        if dt &lt;= 0:
+            raise ValueError(f&#34;Time step dt must be positive, got dt={dt}&#34;)
+        
+        if length &lt;= 0:
+            raise ValueError(f&#34;Trajectory length must be positive, got length={length}&#34;)
+        
+        # Ensure initial condition is 3D
+        if isinstance(initial_condition, np.ndarray):
+            ic = initial_condition.flatten()[:3]
+        else:
+            ic = np.array(initial_condition).flatten()[:3]
+        
+        if len(ic) != 3:
+            raise ValueError(f&#34;Initial condition must be 3D, got shape {ic.shape}&#34;)
+        
+        # Time span
+        t_span = (0, (length - 1) * dt)
+        t_eval = np.linspace(0, (length - 1) * dt, length)
+        
+        # Solve ODE
+        solution = solve_ivp(
+            fun=lambda t, y: self._lorenz_ode(t, y, sigma, rho, beta),
+            t_span=t_span,
+            y0=ic,
+            method=&#39;RK45&#39;,
+            t_eval=t_eval,
+            rtol=1e-6,
+            atol=1e-9
+        )
+        
+        if not solution.success:
+            raise RuntimeError(f&#34;ODE integration failed: {solution.message}&#34;)
+        
+        # Transpose to get (length, 3) shape
+        trajectory = solution.y.T
+        
+        return trajectory
+    
+    def create_operator_dataset(
+        self,
+        num_trajectories: int,
+        trajectory_length: int,
+        input_horizon: int,
+        output_horizon: int,
+        sigma: float = 10.0,
+        rho: float = 28.0,
+        beta: float = 8.0 / 3.0,
+        dt: float = 0.01,
+        initial_condition_range: Tuple[Tuple[float, float], ...] = (
+            (-10.0, 10.0),
+            (-10.0, 10.0),
+            (0.0, 40.0)
+        ),
+        **params
+    ) -&gt; Tuple[np.ndarray, np.ndarray]:
+        &#34;&#34;&#34;Create input-output pairs for operator learning.
+        
+        Generates multiple trajectories with random initial conditions and
+        creates sliding window input-output pairs for operator learning.
+        
+        Args:
+            num_trajectories: Number of trajectories to generate
+            trajectory_length: Length of each trajectory
+            input_horizon: Number of time steps in input
+            output_horizon: Number of time steps in output
+            sigma: Prandtl number
+            rho: Rayleigh number
+            beta: Geometric parameter
+            dt: Time step size
+            initial_condition_range: Tuple of (min, max) ranges for each dimension
+            **params: Additional parameters (ignored)
+        
+        Returns:
+            inputs: Array of shape (num_samples, input_horizon, 3)
+            outputs: Array of shape (num_samples, output_horizon, 3)
+        &#34;&#34;&#34;
+        # Set seed if provided
+        if self.seed is not None:
+            np.random.seed(self.seed)
+        
+        # Calculate number of samples per trajectory
+        samples_per_trajectory = trajectory_length - input_horizon - output_horizon + 1
+        if samples_per_trajectory &lt;= 0:
+            raise ValueError(
+                f&#34;trajectory_length ({trajectory_length}) must be &gt;= &#34;
+                f&#34;input_horizon ({input_horizon}) + output_horizon ({output_horizon})&#34;
+            )
+        
+        total_samples = num_trajectories * samples_per_trajectory
+        
+        # Preallocate arrays
+        inputs = np.zeros((total_samples, input_horizon, 3))
+        outputs = np.zeros((total_samples, output_horizon, 3))
+        
+        sample_idx = 0
+        for _ in range(num_trajectories):
+            # Random initial condition
+            ic = np.array([
+                np.random.uniform(initial_condition_range[0][0], initial_condition_range[0][1]),
+                np.random.uniform(initial_condition_range[1][0], initial_condition_range[1][1]),
+                np.random.uniform(initial_condition_range[2][0], initial_condition_range[2][1])
+            ])
+            
+            # Generate trajectory
+            trajectory = self.generate_trajectory(
+                ic, trajectory_length, sigma=sigma, rho=rho, beta=beta, dt=dt
+            )
+            
+            # Create sliding window samples
+            for t in range(samples_per_trajectory):
+                inputs[sample_idx] = trajectory[t:t + input_horizon]
+                outputs[sample_idx] = trajectory[
+                    t + input_horizon:t + input_horizon + output_horizon
+                ]
+                sample_idx += 1
+        
+        return inputs, outputs
+    
+    def get_true_eigenvalues(
+        self,
+        state: np.ndarray,
+        sigma: float = 10.0,
+        rho: float = 28.0,
+        beta: float = 8.0 / 3.0,
+        **params
+    ) -&gt; Optional[np.ndarray]:
+        &#34;&#34;&#34;Return true eigenvalues at given state.
+        
+        Computes eigenvalues of the Jacobian matrix at the specified state.
+        The Jacobian of the Lorenz system is:
+            J = [[-σ,    σ,   0  ],
+                 [ρ-z,  -1,  -x  ],
+                 [y,     x,  -β  ]]
+        
+        Args:
+            state: State point [x, y, z]
+            sigma: Prandtl number
+            rho: Rayleigh number
+            beta: Geometric parameter
+            **params: Additional parameters (ignored)
+        
+        Returns:
+            eigenvalues: Array of complex eigenvalues
+        &#34;&#34;&#34;
+        # Extract state components
+        if isinstance(state, np.ndarray):
+            state = state.flatten()[:3]
+        else:
+            state = np.array(state).flatten()[:3]
+        
+        if len(state) != 3:
+            raise ValueError(f&#34;State must be 3D, got shape {state.shape}&#34;)
+        
+        x, y, z = state
+        
+        # Construct Jacobian matrix
+        jacobian = np.array([
+            [-sigma, sigma, 0],
+            [rho - z, -1, -x],
+            [y, x, -beta]
+        ])
+        
+        # Compute eigenvalues
+        eigenvalues = np.linalg.eigvals(jacobian)
+        
+        # Ensure complex dtype for consistency
+        return eigenvalues.astype(np.complex128)</code></pre>
+</details>
+<div class="desc"><p>Lorenz System continuous-time dynamical system.</p>
+<p>The Lorenz system is defined by:
+dx/dt = σ(y - x)
+dy/dt = x(ρ - z) - y
+dz/dt = xy - βz</p>
+<p>where σ (sigma), ρ (rho), and β (beta) are system parameters.
+This is a classic example of a chaotic attractor.</p>
+<p>Initialize LorenzSystemDataset.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>seed</code></strong></dt>
+<dd>Random seed for reproducible data generation</dd>
+</dl></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="datasets.base.DynamicalSystem" href="base.html#datasets.base.DynamicalSystem">DynamicalSystem</a></li>
+<li>abc.ABC</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="datasets.LorenzSystemDataset.create_operator_dataset"><code class="name flex">
+<span>def <span class="ident">create_operator_dataset</span></span>(<span>self,<br>num_trajectories: int,<br>trajectory_length: int,<br>input_horizon: int,<br>output_horizon: int,<br>sigma: float = 10.0,<br>rho: float = 28.0,<br>beta: float = 2.6666666666666665,<br>dt: float = 0.01,<br>initial_condition_range: Tuple[Tuple[float, float], ...] = ((-10.0, 10.0), (-10.0, 10.0), (0.0, 40.0)),<br>**params) ‑> Tuple[numpy.ndarray, numpy.ndarray]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def create_operator_dataset(
+    self,
+    num_trajectories: int,
+    trajectory_length: int,
+    input_horizon: int,
+    output_horizon: int,
+    sigma: float = 10.0,
+    rho: float = 28.0,
+    beta: float = 8.0 / 3.0,
+    dt: float = 0.01,
+    initial_condition_range: Tuple[Tuple[float, float], ...] = (
+        (-10.0, 10.0),
+        (-10.0, 10.0),
+        (0.0, 40.0)
+    ),
+    **params
+) -&gt; Tuple[np.ndarray, np.ndarray]:
+    &#34;&#34;&#34;Create input-output pairs for operator learning.
+    
+    Generates multiple trajectories with random initial conditions and
+    creates sliding window input-output pairs for operator learning.
+    
+    Args:
+        num_trajectories: Number of trajectories to generate
+        trajectory_length: Length of each trajectory
+        input_horizon: Number of time steps in input
+        output_horizon: Number of time steps in output
+        sigma: Prandtl number
+        rho: Rayleigh number
+        beta: Geometric parameter
+        dt: Time step size
+        initial_condition_range: Tuple of (min, max) ranges for each dimension
+        **params: Additional parameters (ignored)
+    
+    Returns:
+        inputs: Array of shape (num_samples, input_horizon, 3)
+        outputs: Array of shape (num_samples, output_horizon, 3)
+    &#34;&#34;&#34;
+    # Set seed if provided
+    if self.seed is not None:
+        np.random.seed(self.seed)
+    
+    # Calculate number of samples per trajectory
+    samples_per_trajectory = trajectory_length - input_horizon - output_horizon + 1
+    if samples_per_trajectory &lt;= 0:
+        raise ValueError(
+            f&#34;trajectory_length ({trajectory_length}) must be &gt;= &#34;
+            f&#34;input_horizon ({input_horizon}) + output_horizon ({output_horizon})&#34;
+        )
+    
+    total_samples = num_trajectories * samples_per_trajectory
+    
+    # Preallocate arrays
+    inputs = np.zeros((total_samples, input_horizon, 3))
+    outputs = np.zeros((total_samples, output_horizon, 3))
+    
+    sample_idx = 0
+    for _ in range(num_trajectories):
+        # Random initial condition
+        ic = np.array([
+            np.random.uniform(initial_condition_range[0][0], initial_condition_range[0][1]),
+            np.random.uniform(initial_condition_range[1][0], initial_condition_range[1][1]),
+            np.random.uniform(initial_condition_range[2][0], initial_condition_range[2][1])
+        ])
+        
+        # Generate trajectory
+        trajectory = self.generate_trajectory(
+            ic, trajectory_length, sigma=sigma, rho=rho, beta=beta, dt=dt
+        )
+        
+        # Create sliding window samples
+        for t in range(samples_per_trajectory):
+            inputs[sample_idx] = trajectory[t:t + input_horizon]
+            outputs[sample_idx] = trajectory[
+                t + input_horizon:t + input_horizon + output_horizon
+            ]
+            sample_idx += 1
+    
+    return inputs, outputs</code></pre>
+</details>
+<div class="desc"><p>Create input-output pairs for operator learning.</p>
+<p>Generates multiple trajectories with random initial conditions and
+creates sliding window input-output pairs for operator learning.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>num_trajectories</code></strong></dt>
+<dd>Number of trajectories to generate</dd>
+<dt><strong><code>trajectory_length</code></strong></dt>
+<dd>Length of each trajectory</dd>
+<dt><strong><code>input_horizon</code></strong></dt>
+<dd>Number of time steps in input</dd>
+<dt><strong><code>output_horizon</code></strong></dt>
+<dd>Number of time steps in output</dd>
+<dt><strong><code>sigma</code></strong></dt>
+<dd>Prandtl number</dd>
+<dt><strong><code>rho</code></strong></dt>
+<dd>Rayleigh number</dd>
+<dt><strong><code>beta</code></strong></dt>
+<dd>Geometric parameter</dd>
+<dt><strong><code>dt</code></strong></dt>
+<dd>Time step size</dd>
+<dt><strong><code>initial_condition_range</code></strong></dt>
+<dd>Tuple of (min, max) ranges for each dimension</dd>
+<dt><strong><code>**params</code></strong></dt>
+<dd>Additional parameters (ignored)</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>inputs</code></dt>
+<dd>Array of shape (num_samples, input_horizon, 3)</dd>
+<dt><code>outputs</code></dt>
+<dd>Array of shape (num_samples, output_horizon, 3)</dd>
+</dl></div>
+</dd>
+<dt id="datasets.LorenzSystemDataset.generate_trajectory"><code class="name flex">
+<span>def <span class="ident">generate_trajectory</span></span>(<span>self,<br>initial_condition: numpy.ndarray,<br>length: int,<br>sigma: float = 10.0,<br>rho: float = 28.0,<br>beta: float = 2.6666666666666665,<br>dt: float = 0.01,<br>**params) ‑> numpy.ndarray</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def generate_trajectory(
+    self,
+    initial_condition: np.ndarray,
+    length: int,
+    sigma: float = 10.0,
+    rho: float = 28.0,
+    beta: float = 8.0 / 3.0,
+    dt: float = 0.01,
+    **params
+) -&gt; np.ndarray:
+    &#34;&#34;&#34;Generate a single trajectory from initial condition.
+    
+    Uses scipy&#39;s solve_ivp with RK45 method for numerical integration.
+    
+    Args:
+        initial_condition: Starting state [x, y, z]
+        length: Number of time steps to generate
+        sigma: Prandtl number (default: 10.0)
+        rho: Rayleigh number (default: 28.0)
+        beta: Geometric parameter (default: 8/3)
+        dt: Time step size (default: 0.01)
+        **params: Additional parameters (ignored)
+    
+    Returns:
+        trajectory: Array of shape (length, 3) containing the trajectory
+    
+    Raises:
+        ValueError: If parameters are outside valid ranges
+    &#34;&#34;&#34;
+    # Validate parameters
+    if sigma &lt;= 0:
+        raise ValueError(f&#34;Prandtl number sigma must be positive, got sigma={sigma}&#34;)
+    
+    if rho &lt;= 0:
+        raise ValueError(f&#34;Rayleigh number rho must be positive, got rho={rho}&#34;)
+    
+    if beta &lt;= 0:
+        raise ValueError(f&#34;Geometric parameter beta must be positive, got beta={beta}&#34;)
+    
+    if dt &lt;= 0:
+        raise ValueError(f&#34;Time step dt must be positive, got dt={dt}&#34;)
+    
+    if length &lt;= 0:
+        raise ValueError(f&#34;Trajectory length must be positive, got length={length}&#34;)
+    
+    # Ensure initial condition is 3D
+    if isinstance(initial_condition, np.ndarray):
+        ic = initial_condition.flatten()[:3]
+    else:
+        ic = np.array(initial_condition).flatten()[:3]
+    
+    if len(ic) != 3:
+        raise ValueError(f&#34;Initial condition must be 3D, got shape {ic.shape}&#34;)
+    
+    # Time span
+    t_span = (0, (length - 1) * dt)
+    t_eval = np.linspace(0, (length - 1) * dt, length)
+    
+    # Solve ODE
+    solution = solve_ivp(
+        fun=lambda t, y: self._lorenz_ode(t, y, sigma, rho, beta),
+        t_span=t_span,
+        y0=ic,
+        method=&#39;RK45&#39;,
+        t_eval=t_eval,
+        rtol=1e-6,
+        atol=1e-9
+    )
+    
+    if not solution.success:
+        raise RuntimeError(f&#34;ODE integration failed: {solution.message}&#34;)
+    
+    # Transpose to get (length, 3) shape
+    trajectory = solution.y.T
+    
+    return trajectory</code></pre>
+</details>
+<div class="desc"><p>Generate a single trajectory from initial condition.</p>
+<p>Uses scipy's solve_ivp with RK45 method for numerical integration.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>initial_condition</code></strong></dt>
+<dd>Starting state [x, y, z]</dd>
+<dt><strong><code>length</code></strong></dt>
+<dd>Number of time steps to generate</dd>
+<dt><strong><code>sigma</code></strong></dt>
+<dd>Prandtl number (default: 10.0)</dd>
+<dt><strong><code>rho</code></strong></dt>
+<dd>Rayleigh number (default: 28.0)</dd>
+<dt><strong><code>beta</code></strong></dt>
+<dd>Geometric parameter (default: 8/3)</dd>
+<dt><strong><code>dt</code></strong></dt>
+<dd>Time step size (default: 0.01)</dd>
+<dt><strong><code>**params</code></strong></dt>
+<dd>Additional parameters (ignored)</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>trajectory</code></dt>
+<dd>Array of shape (length, 3) containing the trajectory</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>ValueError</code></dt>
+<dd>If parameters are outside valid ranges</dd>
+</dl></div>
+</dd>
+<dt id="datasets.LorenzSystemDataset.get_true_eigenvalues"><code class="name flex">
+<span>def <span class="ident">get_true_eigenvalues</span></span>(<span>self,<br>state: numpy.ndarray,<br>sigma: float = 10.0,<br>rho: float = 28.0,<br>beta: float = 2.6666666666666665,<br>**params) ‑> numpy.ndarray | None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_true_eigenvalues(
+    self,
+    state: np.ndarray,
+    sigma: float = 10.0,
+    rho: float = 28.0,
+    beta: float = 8.0 / 3.0,
+    **params
+) -&gt; Optional[np.ndarray]:
+    &#34;&#34;&#34;Return true eigenvalues at given state.
+    
+    Computes eigenvalues of the Jacobian matrix at the specified state.
+    The Jacobian of the Lorenz system is:
+        J = [[-σ,    σ,   0  ],
+             [ρ-z,  -1,  -x  ],
+             [y,     x,  -β  ]]
+    
+    Args:
+        state: State point [x, y, z]
+        sigma: Prandtl number
+        rho: Rayleigh number
+        beta: Geometric parameter
+        **params: Additional parameters (ignored)
+    
+    Returns:
+        eigenvalues: Array of complex eigenvalues
+    &#34;&#34;&#34;
+    # Extract state components
+    if isinstance(state, np.ndarray):
+        state = state.flatten()[:3]
+    else:
+        state = np.array(state).flatten()[:3]
+    
+    if len(state) != 3:
+        raise ValueError(f&#34;State must be 3D, got shape {state.shape}&#34;)
+    
+    x, y, z = state
+    
+    # Construct Jacobian matrix
+    jacobian = np.array([
+        [-sigma, sigma, 0],
+        [rho - z, -1, -x],
+        [y, x, -beta]
+    ])
+    
+    # Compute eigenvalues
+    eigenvalues = np.linalg.eigvals(jacobian)
+    
+    # Ensure complex dtype for consistency
+    return eigenvalues.astype(np.complex128)</code></pre>
+</details>
+<div class="desc"><p>Return true eigenvalues at given state.</p>
+<p>Computes eigenvalues of the Jacobian matrix at the specified state.
+The Jacobian of the Lorenz system is:
+J = [[-σ,
+σ,
+0
+],
+[ρ-z,
+-1,
+-x
+],
+[y,
+x,
+-β
+]]</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>state</code></strong></dt>
+<dd>State point [x, y, z]</dd>
+<dt><strong><code>sigma</code></strong></dt>
+<dd>Prandtl number</dd>
+<dt><strong><code>rho</code></strong></dt>
+<dd>Rayleigh number</dd>
+<dt><strong><code>beta</code></strong></dt>
+<dd>Geometric parameter</dd>
+<dt><strong><code>**params</code></strong></dt>
+<dd>Additional parameters (ignored)</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>eigenvalues</code></dt>
+<dd>Array of complex eigenvalues</dd>
+</dl></div>
+</dd>
+</dl>
+</dd>
+<dt id="datasets.OperatorDataset"><code class="flex name class">
+<span>class <span class="ident">OperatorDataset</span></span>
+<span>(</span><span>inputs: numpy.ndarray,<br>outputs: numpy.ndarray,<br>normalize: bool = True,<br>input_mean: numpy.ndarray | None = None,<br>input_std: numpy.ndarray | None = None,<br>output_mean: numpy.ndarray | None = None,<br>output_std: numpy.ndarray | None = None)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class OperatorDataset(Dataset):
+    &#34;&#34;&#34;PyTorch Dataset wrapper for operator learning data.
+    
+    Wraps input-output pairs from dynamical systems into a PyTorch Dataset
+    for use with DataLoader. Supports normalization and lazy loading.
+    &#34;&#34;&#34;
+    
+    def __init__(
+        self,
+        inputs: np.ndarray,
+        outputs: np.ndarray,
+        normalize: bool = True,
+        input_mean: Optional[np.ndarray] = None,
+        input_std: Optional[np.ndarray] = None,
+        output_mean: Optional[np.ndarray] = None,
+        output_std: Optional[np.ndarray] = None
+    ):
+        &#34;&#34;&#34;Initialize OperatorDataset.
+        
+        Args:
+            inputs: Input data array of shape (num_samples, input_horizon, state_dim)
+            outputs: Output data array of shape (num_samples, output_horizon, state_dim)
+            normalize: Whether to normalize the data
+            input_mean: Mean for input normalization (computed if None)
+            input_std: Std for input normalization (computed if None)
+            output_mean: Mean for output normalization (computed if None)
+            output_std: Std for output normalization (computed if None)
+        &#34;&#34;&#34;
+        self.inputs = inputs
+        self.outputs = outputs
+        self.normalize = normalize
+        
+        # Compute or use provided normalization statistics
+        if normalize:
+            if input_mean is None:
+                self.input_mean = np.mean(inputs, axis=(0, 1))
+            else:
+                self.input_mean = input_mean
+            
+            if input_std is None:
+                self.input_std = np.std(inputs, axis=(0, 1))
+                # Avoid division by zero
+                self.input_std = np.where(self.input_std &lt; 1e-8, 1.0, self.input_std)
+            else:
+                self.input_std = input_std
+            
+            if output_mean is None:
+                self.output_mean = np.mean(outputs, axis=(0, 1))
+            else:
+                self.output_mean = output_mean
+            
+            if output_std is None:
+                self.output_std = np.std(outputs, axis=(0, 1))
+                # Avoid division by zero
+                self.output_std = np.where(self.output_std &lt; 1e-8, 1.0, self.output_std)
+            else:
+                self.output_std = output_std
+        else:
+            self.input_mean = None
+            self.input_std = None
+            self.output_mean = None
+            self.output_std = None
+    
+    def __len__(self) -&gt; int:
+        &#34;&#34;&#34;Return number of samples.&#34;&#34;&#34;
+        return len(self.inputs)
+    
+    def __getitem__(self, idx: int) -&gt; Tuple[torch.Tensor, torch.Tensor]:
+        &#34;&#34;&#34;Get a single sample.
+        
+        Args:
+            idx: Sample index
+        
+        Returns:
+            input_tensor: Normalized input tensor
+            output_tensor: Normalized output tensor
+        &#34;&#34;&#34;
+        input_data = self.inputs[idx]
+        output_data = self.outputs[idx]
+        
+        # Normalize if enabled
+        if self.normalize:
+            input_data = (input_data - self.input_mean) / self.input_std
+            output_data = (output_data - self.output_mean) / self.output_std
+        
+        # Convert to tensors
+        input_tensor = torch.from_numpy(input_data).float()
+        output_tensor = torch.from_numpy(output_data).float()
+        
+        return input_tensor, output_tensor
+    
+    def get_normalization_stats(self) -&gt; Dict[str, Optional[np.ndarray]]:
+        &#34;&#34;&#34;Get normalization statistics.
+        
+        Returns:
+            stats: Dictionary containing mean and std for inputs and outputs
+        &#34;&#34;&#34;
+        return {
+            &#39;input_mean&#39;: self.input_mean,
+            &#39;input_std&#39;: self.input_std,
+            &#39;output_mean&#39;: self.output_mean,
+            &#39;output_std&#39;: self.output_std
+        }
+    
+    def denormalize_output(self, normalized_output: np.ndarray) -&gt; np.ndarray:
+        &#34;&#34;&#34;Denormalize output data.
+        
+        Args:
+            normalized_output: Normalized output array
+        
+        Returns:
+            denormalized: Original scale output
+        &#34;&#34;&#34;
+        if not self.normalize:
+            return normalized_output
+        
+        return normalized_output * self.output_std + self.output_mean
+    
+    def denormalize_input(self, normalized_input: np.ndarray) -&gt; np.ndarray:
+        &#34;&#34;&#34;Denormalize input data.
+        
+        Args:
+            normalized_input: Normalized input array
+        
+        Returns:
+            denormalized: Original scale input
+        &#34;&#34;&#34;
+        if not self.normalize:
+            return normalized_input
+        
+        return normalized_input * self.input_std + self.input_mean</code></pre>
+</details>
+<div class="desc"><p>PyTorch Dataset wrapper for operator learning data.</p>
+<p>Wraps input-output pairs from dynamical systems into a PyTorch Dataset
+for use with DataLoader. Supports normalization and lazy loading.</p>
+<p>Initialize OperatorDataset.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>inputs</code></strong></dt>
+<dd>Input data array of shape (num_samples, input_horizon, state_dim)</dd>
+<dt><strong><code>outputs</code></strong></dt>
+<dd>Output data array of shape (num_samples, output_horizon, state_dim)</dd>
+<dt><strong><code>normalize</code></strong></dt>
+<dd>Whether to normalize the data</dd>
+<dt><strong><code>input_mean</code></strong></dt>
+<dd>Mean for input normalization (computed if None)</dd>
+<dt><strong><code>input_std</code></strong></dt>
+<dd>Std for input normalization (computed if None)</dd>
+<dt><strong><code>output_mean</code></strong></dt>
+<dd>Mean for output normalization (computed if None)</dd>
+<dt><strong><code>output_std</code></strong></dt>
+<dd>Std for output normalization (computed if None)</dd>
+</dl></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>torch.utils.data.dataset.Dataset</li>
+<li>typing.Generic</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="datasets.OperatorDataset.denormalize_input"><code class="name flex">
+<span>def <span class="ident">denormalize_input</span></span>(<span>self, normalized_input: numpy.ndarray) ‑> numpy.ndarray</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def denormalize_input(self, normalized_input: np.ndarray) -&gt; np.ndarray:
+    &#34;&#34;&#34;Denormalize input data.
+    
+    Args:
+        normalized_input: Normalized input array
+    
+    Returns:
+        denormalized: Original scale input
+    &#34;&#34;&#34;
+    if not self.normalize:
+        return normalized_input
+    
+    return normalized_input * self.input_std + self.input_mean</code></pre>
+</details>
+<div class="desc"><p>Denormalize input data.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>normalized_input</code></strong></dt>
+<dd>Normalized input array</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>denormalized</code></dt>
+<dd>Original scale input</dd>
+</dl></div>
+</dd>
+<dt id="datasets.OperatorDataset.denormalize_output"><code class="name flex">
+<span>def <span class="ident">denormalize_output</span></span>(<span>self, normalized_output: numpy.ndarray) ‑> numpy.ndarray</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def denormalize_output(self, normalized_output: np.ndarray) -&gt; np.ndarray:
+    &#34;&#34;&#34;Denormalize output data.
+    
+    Args:
+        normalized_output: Normalized output array
+    
+    Returns:
+        denormalized: Original scale output
+    &#34;&#34;&#34;
+    if not self.normalize:
+        return normalized_output
+    
+    return normalized_output * self.output_std + self.output_mean</code></pre>
+</details>
+<div class="desc"><p>Denormalize output data.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>normalized_output</code></strong></dt>
+<dd>Normalized output array</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>denormalized</code></dt>
+<dd>Original scale output</dd>
+</dl></div>
+</dd>
+<dt id="datasets.OperatorDataset.get_normalization_stats"><code class="name flex">
+<span>def <span class="ident">get_normalization_stats</span></span>(<span>self) ‑> Dict[str, numpy.ndarray | None]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_normalization_stats(self) -&gt; Dict[str, Optional[np.ndarray]]:
+    &#34;&#34;&#34;Get normalization statistics.
+    
+    Returns:
+        stats: Dictionary containing mean and std for inputs and outputs
+    &#34;&#34;&#34;
+    return {
+        &#39;input_mean&#39;: self.input_mean,
+        &#39;input_std&#39;: self.input_std,
+        &#39;output_mean&#39;: self.output_mean,
+        &#39;output_std&#39;: self.output_std
+    }</code></pre>
+</details>
+<div class="desc"><p>Get normalization statistics.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>stats</code></dt>
+<dd>Dictionary containing mean and std for inputs and outputs</dd>
+</dl></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3><a href="#header-submodules">Sub-modules</a></h3>
+<ul>
+<li><code><a title="datasets.base" href="base.html">datasets.base</a></code></li>
+<li><code><a title="datasets.burgers_equation" href="burgers_equation.html">datasets.burgers_equation</a></code></li>
+<li><code><a title="datasets.data_manager" href="data_manager.html">datasets.data_manager</a></code></li>
+<li><code><a title="datasets.logistic_map" href="logistic_map.html">datasets.logistic_map</a></code></li>
+<li><code><a title="datasets.lorenz_system" href="lorenz_system.html">datasets.lorenz_system</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="datasets.create_dataloaders" href="#datasets.create_dataloaders">create_dataloaders</a></code></li>
+<li><code><a title="datasets.create_train_val_split" href="#datasets.create_train_val_split">create_train_val_split</a></code></li>
+<li><code><a title="datasets.load_dataset" href="#datasets.load_dataset">load_dataset</a></code></li>
+<li><code><a title="datasets.save_dataset" href="#datasets.save_dataset">save_dataset</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="datasets.BurgersEquationDataset" href="#datasets.BurgersEquationDataset">BurgersEquationDataset</a></code></h4>
+<ul class="">
+<li><code><a title="datasets.BurgersEquationDataset.create_operator_dataset" href="#datasets.BurgersEquationDataset.create_operator_dataset">create_operator_dataset</a></code></li>
+<li><code><a title="datasets.BurgersEquationDataset.generate_trajectory" href="#datasets.BurgersEquationDataset.generate_trajectory">generate_trajectory</a></code></li>
+<li><code><a title="datasets.BurgersEquationDataset.get_true_eigenvalues" href="#datasets.BurgersEquationDataset.get_true_eigenvalues">get_true_eigenvalues</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="datasets.DynamicalSystem" href="#datasets.DynamicalSystem">DynamicalSystem</a></code></h4>
+<ul class="">
+<li><code><a title="datasets.DynamicalSystem.create_operator_dataset" href="#datasets.DynamicalSystem.create_operator_dataset">create_operator_dataset</a></code></li>
+<li><code><a title="datasets.DynamicalSystem.generate_trajectory" href="#datasets.DynamicalSystem.generate_trajectory">generate_trajectory</a></code></li>
+<li><code><a title="datasets.DynamicalSystem.get_true_eigenvalues" href="#datasets.DynamicalSystem.get_true_eigenvalues">get_true_eigenvalues</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="datasets.LazyOperatorDataset" href="#datasets.LazyOperatorDataset">LazyOperatorDataset</a></code></h4>
+</li>
+<li>
+<h4><code><a title="datasets.LogisticMapDataset" href="#datasets.LogisticMapDataset">LogisticMapDataset</a></code></h4>
+<ul class="">
+<li><code><a title="datasets.LogisticMapDataset.create_operator_dataset" href="#datasets.LogisticMapDataset.create_operator_dataset">create_operator_dataset</a></code></li>
+<li><code><a title="datasets.LogisticMapDataset.generate_trajectory" href="#datasets.LogisticMapDataset.generate_trajectory">generate_trajectory</a></code></li>
+<li><code><a title="datasets.LogisticMapDataset.get_true_eigenvalues" href="#datasets.LogisticMapDataset.get_true_eigenvalues">get_true_eigenvalues</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="datasets.LorenzSystemDataset" href="#datasets.LorenzSystemDataset">LorenzSystemDataset</a></code></h4>
+<ul class="">
+<li><code><a title="datasets.LorenzSystemDataset.create_operator_dataset" href="#datasets.LorenzSystemDataset.create_operator_dataset">create_operator_dataset</a></code></li>
+<li><code><a title="datasets.LorenzSystemDataset.generate_trajectory" href="#datasets.LorenzSystemDataset.generate_trajectory">generate_trajectory</a></code></li>
+<li><code><a title="datasets.LorenzSystemDataset.get_true_eigenvalues" href="#datasets.LorenzSystemDataset.get_true_eigenvalues">get_true_eigenvalues</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="datasets.OperatorDataset" href="#datasets.OperatorDataset">OperatorDataset</a></code></h4>
+<ul class="">
+<li><code><a title="datasets.OperatorDataset.denormalize_input" href="#datasets.OperatorDataset.denormalize_input">denormalize_input</a></code></li>
+<li><code><a title="datasets.OperatorDataset.denormalize_output" href="#datasets.OperatorDataset.denormalize_output">denormalize_output</a></code></li>
+<li><code><a title="datasets.OperatorDataset.get_normalization_stats" href="#datasets.OperatorDataset.get_normalization_stats">get_normalization_stats</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>

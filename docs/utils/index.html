@@ -1,0 +1,1966 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>utils API documentation</title>
+<meta name="description" content="Logging, seeding, and device management utilities.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Package <code>utils</code></h1>
+</header>
+<section id="section-intro">
+<p>Logging, seeding, and device management utilities.</p>
+</section>
+<section>
+<h2 class="section-title" id="header-submodules">Sub-modules</h2>
+<dl>
+<dt><code class="name"><a title="utils.device" href="device.html">utils.device</a></code></dt>
+<dd>
+<div class="desc"><p>Device management utilities for CPU/GPU computation.</p></div>
+</dd>
+<dt><code class="name"><a title="utils.exceptions" href="exceptions.html">utils.exceptions</a></code></dt>
+<dd>
+<div class="desc"><p>Custom exceptions for the neural operator variance reduction framework.</p></div>
+</dd>
+<dt><code class="name"><a title="utils.logger" href="logger.html">utils.logger</a></code></dt>
+<dd>
+<div class="desc"><p>Metrics logging and training history management.</p></div>
+</dd>
+<dt><code class="name"><a title="utils.seed" href="seed.html">utils.seed</a></code></dt>
+<dd>
+<div class="desc"><p>Random seed management for reproducibility.</p></div>
+</dd>
+<dt><code class="name"><a title="utils.system_info" href="system_info.html">utils.system_info</a></code></dt>
+<dd>
+<div class="desc"><p>System information logging for reproducibility.</p></div>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="utils.format_system_info"><code class="name flex">
+<span>def <span class="ident">format_system_info</span></span>(<span>system_info: Dict[str, Any]) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def format_system_info(system_info: Dict[str, Any]) -&gt; str:
+    &#34;&#34;&#34;
+    Format system information as a human-readable string.
+    
+    Parameters
+    ----------
+    system_info : Dict[str, Any]
+        System information dictionary from log_system_info().
+    
+    Returns
+    -------
+    str
+        Formatted multi-line string with system information.
+    
+    Examples
+    --------
+    &gt;&gt;&gt; system_info = log_system_info()
+    &gt;&gt;&gt; print(format_system_info(system_info))
+    &#34;&#34;&#34;
+    lines = [
+        &#34;=&#34; * 60,
+        &#34;System Information&#34;,
+        &#34;=&#34; * 60,
+        f&#34;Python Version: {system_info[&#39;python_version&#39;]}&#34;,
+        f&#34;PyTorch Version: {system_info[&#39;pytorch_version&#39;]}&#34;,
+        f&#34;Operating System: {system_info[&#39;os&#39;]}&#34;,
+        f&#34;CPU: {system_info[&#39;cpu_info&#39;]}&#34;,
+        f&#34;CPU Cores: {system_info[&#39;num_cpu_cores&#39;]}&#34;,
+        &#34;&#34;,
+        f&#34;CUDA Available: {system_info[&#39;cuda_available&#39;]}&#34;,
+    ]
+    
+    if system_info[&#39;cuda_available&#39;]:
+        lines.extend([
+            f&#34;CUDA Version: {system_info[&#39;cuda_version&#39;]}&#34;,
+            f&#34;cuDNN Version: {system_info[&#39;cudnn_version&#39;]}&#34;,
+            f&#34;Number of GPUs: {system_info[&#39;num_gpus&#39;]}&#34;,
+        ])
+        
+        for i, (name, memory) in enumerate(zip(
+            system_info[&#39;gpu_names&#39;], 
+            system_info[&#39;gpu_memory_gb&#39;]
+        )):
+            lines.append(f&#34;  GPU {i}: {name} ({memory} GB)&#34;)
+    
+    lines.extend([
+        &#34;&#34;,
+        f&#34;Timestamp: {system_info[&#39;timestamp&#39;]}&#34;,
+        &#34;=&#34; * 60,
+    ])
+    
+    return &#34;\n&#34;.join(lines)</code></pre>
+</details>
+<div class="desc"><p>Format system information as a human-readable string.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>system_info</code></strong> :&ensp;<code>Dict[str, Any]</code></dt>
+<dd>System information dictionary from log_system_info().</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>str</code></dt>
+<dd>Formatted multi-line string with system information.</dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; system_info = log_system_info()
+&gt;&gt;&gt; print(format_system_info(system_info))
+</code></pre></div>
+</dd>
+<dt id="utils.get_device"><code class="name flex">
+<span>def <span class="ident">get_device</span></span>(<span>device_name: str = 'auto') ‑> torch.device</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_device(device_name: str = &#34;auto&#34;) -&gt; torch.device:
+    &#34;&#34;&#34;
+    Get PyTorch device for computation.
+    
+    Automatically detects CUDA availability when device_name is &#34;auto&#34;,
+    or returns the specified device.
+    
+    Parameters
+    ----------
+    device_name : str, optional
+        Device specification. Options:
+        - &#34;auto&#34;: Automatically select CUDA if available, otherwise CPU
+        - &#34;cuda&#34;: Use CUDA (raises error if not available)
+        - &#34;cpu&#34;: Use CPU
+        - &#34;cuda:0&#34;, &#34;cuda:1&#34;, etc.: Use specific GPU device
+        Default is &#34;auto&#34;.
+    
+    Returns
+    -------
+    torch.device
+        PyTorch device object for computation.
+    
+    Raises
+    ------
+    ValueError
+        If device_name is invalid or CUDA is requested but not available.
+    
+    Examples
+    --------
+    &gt;&gt;&gt; device = get_device(&#34;auto&#34;)
+    &gt;&gt;&gt; device = get_device(&#34;cuda:0&#34;)
+    &gt;&gt;&gt; device = get_device(&#34;cpu&#34;)
+    &#34;&#34;&#34;
+    if device_name == &#34;auto&#34;:
+        return torch.device(&#34;cuda&#34; if torch.cuda.is_available() else &#34;cpu&#34;)
+    elif device_name == &#34;cpu&#34;:
+        return torch.device(&#34;cpu&#34;)
+    elif device_name.startswith(&#34;cuda&#34;):
+        if not torch.cuda.is_available():
+            raise ValueError(
+                f&#34;CUDA device &#39;{device_name}&#39; requested but CUDA is not available. &#34;
+                &#34;Please check your PyTorch installation and GPU drivers.&#34;
+            )
+        return torch.device(device_name)
+    else:
+        raise ValueError(
+            f&#34;Invalid device name &#39;{device_name}&#39;. &#34;
+            &#34;Valid options: &#39;auto&#39;, &#39;cpu&#39;, &#39;cuda&#39;, &#39;cuda:0&#39;, etc.&#34;
+        )</code></pre>
+</details>
+<div class="desc"><p>Get PyTorch device for computation.</p>
+<p>Automatically detects CUDA availability when device_name is "auto",
+or returns the specified device.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>device_name</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Device specification. Options:
+- "auto": Automatically select CUDA if available, otherwise CPU
+- "cuda": Use CUDA (raises error if not available)
+- "cpu": Use CPU
+- "cuda:0", "cuda:1", etc.: Use specific GPU device
+Default is "auto".</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>torch.device</code></dt>
+<dd>PyTorch device object for computation.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>ValueError</code></dt>
+<dd>If device_name is invalid or CUDA is requested but not available.</dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; device = get_device(&quot;auto&quot;)
+&gt;&gt;&gt; device = get_device(&quot;cuda:0&quot;)
+&gt;&gt;&gt; device = get_device(&quot;cpu&quot;)
+</code></pre></div>
+</dd>
+<dt id="utils.log_system_info"><code class="name flex">
+<span>def <span class="ident">log_system_info</span></span>(<span>logger: Any = None) ‑> Dict[str, Any]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def log_system_info(logger: Any = None) -&gt; Dict[str, Any]:
+    &#34;&#34;&#34;
+    Capture and log system and environment information.
+    
+    Collects comprehensive system information including Python version,
+    PyTorch version, CUDA availability and version, GPU details, CPU info,
+    operating system, and timestamp. This information is crucial for
+    reproducibility and debugging.
+    
+    Parameters
+    ----------
+    logger : MetricsLogger or similar, optional
+        Logger object with a log_dict method. If provided, system info
+        will be logged. If None, only returns the info dictionary.
+    
+    Returns
+    -------
+    Dict[str, Any]
+        Dictionary containing system information with keys:
+        - python_version: Python version string
+        - pytorch_version: PyTorch version string
+        - cuda_available: Whether CUDA is available
+        - cuda_version: CUDA version string (if available)
+        - cudnn_version: cuDNN version (if available)
+        - num_gpus: Number of available GPUs
+        - gpu_names: List of GPU device names
+        - gpu_memory: List of GPU memory capacities in GB
+        - cpu_info: CPU model information
+        - num_cpu_cores: Number of CPU cores
+        - os: Operating system name and version
+        - timestamp: ISO format timestamp
+    
+    Examples
+    --------
+    &gt;&gt;&gt; from utils.logger import MetricsLogger
+    &gt;&gt;&gt; logger = MetricsLogger(&#34;./logs&#34;, &#34;experiment_1&#34;)
+    &gt;&gt;&gt; system_info = log_system_info(logger)
+    &gt;&gt;&gt; print(system_info[&#34;python_version&#34;])
+    &gt;&gt;&gt; print(system_info[&#34;cuda_available&#34;])
+    &#34;&#34;&#34;
+    system_info = {}
+    
+    # Python version
+    system_info[&#34;python_version&#34;] = sys.version.split()[0]
+    
+    # PyTorch version
+    system_info[&#34;pytorch_version&#34;] = torch.__version__
+    
+    # CUDA information
+    system_info[&#34;cuda_available&#34;] = torch.cuda.is_available()
+    
+    if torch.cuda.is_available():
+        system_info[&#34;cuda_version&#34;] = torch.version.cuda
+        system_info[&#34;cudnn_version&#34;] = torch.backends.cudnn.version()
+        system_info[&#34;num_gpus&#34;] = torch.cuda.device_count()
+        
+        # GPU names and memory
+        gpu_names = []
+        gpu_memory = []
+        for i in range(torch.cuda.device_count()):
+            gpu_names.append(torch.cuda.get_device_name(i))
+            # Get total memory in GB
+            total_memory = torch.cuda.get_device_properties(i).total_memory
+            gpu_memory.append(round(total_memory / (1024**3), 2))
+        
+        system_info[&#34;gpu_names&#34;] = gpu_names
+        system_info[&#34;gpu_memory_gb&#34;] = gpu_memory
+    else:
+        system_info[&#34;cuda_version&#34;] = None
+        system_info[&#34;cudnn_version&#34;] = None
+        system_info[&#34;num_gpus&#34;] = 0
+        system_info[&#34;gpu_names&#34;] = []
+        system_info[&#34;gpu_memory_gb&#34;] = []
+    
+    # CPU information
+    system_info[&#34;cpu_info&#34;] = platform.processor() or platform.machine()
+    system_info[&#34;num_cpu_cores&#34;] = torch.get_num_threads()
+    
+    # Operating system
+    system_info[&#34;os&#34;] = f&#34;{platform.system()} {platform.release()}&#34;
+    system_info[&#34;platform&#34;] = platform.platform()
+    
+    # Timestamp
+    system_info[&#34;timestamp&#34;] = datetime.now().isoformat()
+    
+    # Log to logger if provided
+    if logger is not None and hasattr(logger, &#39;log_dict&#39;):
+        # Convert to flat structure for logging
+        flat_info = {
+            f&#34;system_{key}&#34;: value 
+            for key, value in system_info.items()
+            if not isinstance(value, (list, dict))
+        }
+        logger.log_dict(flat_info, step=0)
+    
+    return system_info</code></pre>
+</details>
+<div class="desc"><p>Capture and log system and environment information.</p>
+<p>Collects comprehensive system information including Python version,
+PyTorch version, CUDA availability and version, GPU details, CPU info,
+operating system, and timestamp. This information is crucial for
+reproducibility and debugging.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>logger</code></strong> :&ensp;<code><a title="utils.MetricsLogger" href="#utils.MetricsLogger">MetricsLogger</a></code> or <code>similar</code>, optional</dt>
+<dd>Logger object with a log_dict method. If provided, system info
+will be logged. If None, only returns the info dictionary.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>Dict[str, Any]</code></dt>
+<dd>Dictionary containing system information with keys:
+- python_version: Python version string
+- pytorch_version: PyTorch version string
+- cuda_available: Whether CUDA is available
+- cuda_version: CUDA version string (if available)
+- cudnn_version: cuDNN version (if available)
+- num_gpus: Number of available GPUs
+- gpu_names: List of GPU device names
+- gpu_memory: List of GPU memory capacities in GB
+- cpu_info: CPU model information
+- num_cpu_cores: Number of CPU cores
+- os: Operating system name and version
+- timestamp: ISO format timestamp</dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; from utils.logger import MetricsLogger
+&gt;&gt;&gt; logger = MetricsLogger(&quot;./logs&quot;, &quot;experiment_1&quot;)
+&gt;&gt;&gt; system_info = log_system_info(logger)
+&gt;&gt;&gt; print(system_info[&quot;python_version&quot;])
+&gt;&gt;&gt; print(system_info[&quot;cuda_available&quot;])
+</code></pre></div>
+</dd>
+<dt id="utils.move_to_device"><code class="name flex">
+<span>def <span class="ident">move_to_device</span></span>(<span>obj: torch.Tensor | torch.nn.modules.module.Module | List | Dict | Any,<br>device: torch.device) ‑> torch.Tensor | torch.nn.modules.module.Module | List | Dict | Any</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def move_to_device(
+    obj: Union[torch.Tensor, nn.Module, List, Dict, Any],
+    device: torch.device
+) -&gt; Union[torch.Tensor, nn.Module, List, Dict, Any]:
+    &#34;&#34;&#34;
+    Move tensor, model, or collection to specified device.
+    
+    Handles tensors, nn.Module objects, lists, dictionaries, and nested
+    collections. Non-movable objects are returned unchanged.
+    
+    Parameters
+    ----------
+    obj : torch.Tensor, nn.Module, list, dict, or other
+        Object to move to device. Can be:
+        - torch.Tensor: Moved to device
+        - nn.Module: Moved to device
+        - list: Each element recursively moved
+        - dict: Each value recursively moved
+        - other: Returned unchanged
+    device : torch.device
+        Target device for computation.
+    
+    Returns
+    -------
+    Same type as input
+        Object moved to the specified device.
+    
+    Examples
+    --------
+    &gt;&gt;&gt; device = get_device(&#34;cuda&#34;)
+    &gt;&gt;&gt; tensor = torch.randn(3, 3)
+    &gt;&gt;&gt; tensor_gpu = move_to_device(tensor, device)
+    &gt;&gt;&gt; 
+    &gt;&gt;&gt; model = nn.Linear(10, 5)
+    &gt;&gt;&gt; model_gpu = move_to_device(model, device)
+    &gt;&gt;&gt; 
+    &gt;&gt;&gt; batch = {&#34;input&#34;: torch.randn(2, 10), &#34;target&#34;: torch.randn(2, 5)}
+    &gt;&gt;&gt; batch_gpu = move_to_device(batch, device)
+    &#34;&#34;&#34;
+    if isinstance(obj, torch.Tensor):
+        return obj.to(device)
+    elif isinstance(obj, nn.Module):
+        return obj.to(device)
+    elif isinstance(obj, list):
+        return [move_to_device(item, device) for item in obj]
+    elif isinstance(obj, tuple):
+        return tuple(move_to_device(item, device) for item in obj)
+    elif isinstance(obj, dict):
+        return {key: move_to_device(value, device) for key, value in obj.items()}
+    else:
+        # Return unchanged for non-movable objects (int, float, str, etc.)
+        return obj</code></pre>
+</details>
+<div class="desc"><p>Move tensor, model, or collection to specified device.</p>
+<p>Handles tensors, nn.Module objects, lists, dictionaries, and nested
+collections. Non-movable objects are returned unchanged.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>obj</code></strong> :&ensp;<code>torch.Tensor, nn.Module, list, dict,</code> or <code>other</code></dt>
+<dd>Object to move to device. Can be:
+- torch.Tensor: Moved to device
+- nn.Module: Moved to device
+- list: Each element recursively moved
+- dict: Each value recursively moved
+- other: Returned unchanged</dd>
+<dt><strong><code>device</code></strong> :&ensp;<code>torch.device</code></dt>
+<dd>Target device for computation.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>Same type as input</code></dt>
+<dd>Object moved to the specified device.</dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; device = get_device(&quot;cuda&quot;)
+&gt;&gt;&gt; tensor = torch.randn(3, 3)
+&gt;&gt;&gt; tensor_gpu = move_to_device(tensor, device)
+&gt;&gt;&gt; 
+&gt;&gt;&gt; model = nn.Linear(10, 5)
+&gt;&gt;&gt; model_gpu = move_to_device(model, device)
+&gt;&gt;&gt; 
+&gt;&gt;&gt; batch = {&quot;input&quot;: torch.randn(2, 10), &quot;target&quot;: torch.randn(2, 5)}
+&gt;&gt;&gt; batch_gpu = move_to_device(batch, device)
+</code></pre></div>
+</dd>
+<dt id="utils.set_random_seeds"><code class="name flex">
+<span>def <span class="ident">set_random_seeds</span></span>(<span>seed: int, deterministic: bool = True) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_random_seeds(seed: int, deterministic: bool = True) -&gt; None:
+    &#34;&#34;&#34;
+    Set all random seeds for reproducibility.
+    
+    Sets random seeds for Python&#39;s random module, NumPy, PyTorch CPU and CUDA.
+    Optionally enables deterministic algorithms for full reproducibility.
+    
+    Parameters
+    ----------
+    seed : int
+        Random seed value to set across all libraries.
+    deterministic : bool, optional
+        If True, enables PyTorch deterministic algorithms and disables CUDA
+        benchmarking for full reproducibility. May impact performance.
+        Default is True.
+    
+    Notes
+    -----
+    When deterministic=True, some PyTorch operations may be slower and some
+    operations may not be available. This ensures bit-exact reproducibility
+    across runs with the same seed.
+    
+    Examples
+    --------
+    &gt;&gt;&gt; set_random_seeds(42, deterministic=True)
+    &gt;&gt;&gt; # All random operations will now be reproducible
+    &#34;&#34;&#34;
+    # Set Python random seed
+    random.seed(seed)
+    
+    # Set NumPy random seed
+    np.random.seed(seed)
+    
+    # Set PyTorch random seed for CPU
+    torch.manual_seed(seed)
+    
+    # Set PyTorch random seed for CUDA (if available)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed(seed)
+        torch.cuda.manual_seed_all(seed)  # For multi-GPU setups
+    
+    # Enable deterministic algorithms if requested
+    if deterministic:
+        torch.use_deterministic_algorithms(True)
+        # Disable CUDA benchmarking for deterministic behavior
+        torch.backends.cudnn.benchmark = False
+        torch.backends.cudnn.deterministic = True</code></pre>
+</details>
+<div class="desc"><p>Set all random seeds for reproducibility.</p>
+<p>Sets random seeds for Python's random module, NumPy, PyTorch CPU and CUDA.
+Optionally enables deterministic algorithms for full reproducibility.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>seed</code></strong> :&ensp;<code>int</code></dt>
+<dd>Random seed value to set across all libraries.</dd>
+<dt><strong><code>deterministic</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>If True, enables PyTorch deterministic algorithms and disables CUDA
+benchmarking for full reproducibility. May impact performance.
+Default is True.</dd>
+</dl>
+<h2 id="notes">Notes</h2>
+<p>When deterministic=True, some PyTorch operations may be slower and some
+operations may not be available. This ensures bit-exact reproducibility
+across runs with the same seed.</p>
+<h2 id="examples">Examples</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; set_random_seeds(42, deterministic=True)
+&gt;&gt;&gt; # All random operations will now be reproducible
+</code></pre></div>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="utils.CheckpointCompatibilityError"><code class="flex name class">
+<span>class <span class="ident">CheckpointCompatibilityError</span></span>
+<span>(</span><span>message: str, checkpoint_info: dict = None, model_info: dict = None)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class CheckpointCompatibilityError(Exception):
+    &#34;&#34;&#34;Raised when checkpoint is incompatible with current model.
+    
+    This exception is raised when attempting to load a checkpoint
+    that doesn&#39;t match the current model architecture.
+    
+    Attributes
+    ----------
+    message : str
+        Error message describing the incompatibility.
+    checkpoint_info : dict
+        Information about the checkpoint.
+    model_info : dict
+        Information about the current model.
+    &#34;&#34;&#34;
+    
+    def __init__(
+        self,
+        message: str,
+        checkpoint_info: dict = None,
+        model_info: dict = None
+    ):
+        &#34;&#34;&#34;Initialize CheckpointCompatibilityError.
+        
+        Parameters
+        ----------
+        message : str
+            Error message describing the incompatibility.
+        checkpoint_info : dict, optional
+            Information about the checkpoint.
+        model_info : dict, optional
+            Information about the current model.
+        &#34;&#34;&#34;
+        super().__init__(message)
+        self.checkpoint_info = checkpoint_info or {}
+        self.model_info = model_info or {}
+    
+    def __str__(self):
+        &#34;&#34;&#34;Return formatted error message with compatibility information.&#34;&#34;&#34;
+        msg = super().__str__()
+        
+        if self.checkpoint_info:
+            msg += &#34;\n\nCheckpoint information:&#34;
+            for key, value in self.checkpoint_info.items():
+                msg += f&#34;\n  {key}: {value}&#34;
+        
+        if self.model_info:
+            msg += &#34;\n\nCurrent model information:&#34;
+            for key, value in self.model_info.items():
+                msg += f&#34;\n  {key}: {value}&#34;
+        
+        return msg</code></pre>
+</details>
+<div class="desc"><p>Raised when checkpoint is incompatible with current model.</p>
+<p>This exception is raised when attempting to load a checkpoint
+that doesn't match the current model architecture.</p>
+<h2 id="attributes">Attributes</h2>
+<dl>
+<dt><strong><code>message</code></strong> :&ensp;<code>str</code></dt>
+<dd>Error message describing the incompatibility.</dd>
+<dt><strong><code>checkpoint_info</code></strong> :&ensp;<code>dict</code></dt>
+<dd>Information about the checkpoint.</dd>
+<dt><strong><code>model_info</code></strong> :&ensp;<code>dict</code></dt>
+<dd>Information about the current model.</dd>
+</dl>
+<p>Initialize CheckpointCompatibilityError.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>message</code></strong> :&ensp;<code>str</code></dt>
+<dd>Error message describing the incompatibility.</dd>
+<dt><strong><code>checkpoint_info</code></strong> :&ensp;<code>dict</code>, optional</dt>
+<dd>Information about the checkpoint.</dd>
+<dt><strong><code>model_info</code></strong> :&ensp;<code>dict</code>, optional</dt>
+<dd>Information about the current model.</dd>
+</dl></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.Exception</li>
+<li>builtins.BaseException</li>
+</ul>
+</dd>
+<dt id="utils.GPUMemoryError"><code class="flex name class">
+<span>class <span class="ident">GPUMemoryError</span></span>
+<span>(</span><span>message: str, memory_stats: dict = None, suggestions: list = None)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class GPUMemoryError(RuntimeError):
+    &#34;&#34;&#34;Raised when GPU memory is exhausted.
+    
+    This exception wraps torch.cuda.OutOfMemoryError and provides
+    additional context and suggestions for resolution.
+    
+    Attributes
+    ----------
+    message : str
+        Error message describing the memory issue.
+    memory_stats : dict
+        GPU memory usage statistics.
+    suggestions : list
+        List of suggested remedies.
+    &#34;&#34;&#34;
+    
+    def __init__(
+        self,
+        message: str,
+        memory_stats: dict = None,
+        suggestions: list = None
+    ):
+        &#34;&#34;&#34;Initialize GPUMemoryError.
+        
+        Parameters
+        ----------
+        message : str
+            Error message describing the memory issue.
+        memory_stats : dict, optional
+            GPU memory usage statistics.
+        suggestions : list, optional
+            List of suggested remedies.
+        &#34;&#34;&#34;
+        super().__init__(message)
+        self.memory_stats = memory_stats or {}
+        self.suggestions = suggestions or []
+    
+    def __str__(self):
+        &#34;&#34;&#34;Return formatted error message with memory stats and suggestions.&#34;&#34;&#34;
+        msg = super().__str__()
+        
+        if self.memory_stats:
+            msg += &#34;\n\nGPU Memory Statistics:&#34;
+            for key, value in self.memory_stats.items():
+                msg += f&#34;\n  {key}: {value}&#34;
+        
+        if self.suggestions:
+            msg += &#34;\n\nSuggestions:&#34;
+            for i, suggestion in enumerate(self.suggestions, 1):
+                msg += f&#34;\n  {i}. {suggestion}&#34;
+        
+        return msg</code></pre>
+</details>
+<div class="desc"><p>Raised when GPU memory is exhausted.</p>
+<p>This exception wraps torch.cuda.OutOfMemoryError and provides
+additional context and suggestions for resolution.</p>
+<h2 id="attributes">Attributes</h2>
+<dl>
+<dt><strong><code>message</code></strong> :&ensp;<code>str</code></dt>
+<dd>Error message describing the memory issue.</dd>
+<dt><strong><code>memory_stats</code></strong> :&ensp;<code>dict</code></dt>
+<dd>GPU memory usage statistics.</dd>
+<dt><strong><code>suggestions</code></strong> :&ensp;<code>list</code></dt>
+<dd>List of suggested remedies.</dd>
+</dl>
+<p>Initialize GPUMemoryError.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>message</code></strong> :&ensp;<code>str</code></dt>
+<dd>Error message describing the memory issue.</dd>
+<dt><strong><code>memory_stats</code></strong> :&ensp;<code>dict</code>, optional</dt>
+<dd>GPU memory usage statistics.</dd>
+<dt><strong><code>suggestions</code></strong> :&ensp;<code>list</code>, optional</dt>
+<dd>List of suggested remedies.</dd>
+</dl></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.RuntimeError</li>
+<li>builtins.Exception</li>
+<li>builtins.BaseException</li>
+</ul>
+</dd>
+<dt id="utils.MetricsLogger"><code class="flex name class">
+<span>class <span class="ident">MetricsLogger</span></span>
+<span>(</span><span>log_dir: str | pathlib.Path, experiment_name: str)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class MetricsLogger:
+    &#34;&#34;&#34;
+    Logger for training metrics and history management.
+    
+    Tracks scalar metrics during training and provides serialization
+    to JSON format for persistence and analysis.
+    
+    Parameters
+    ----------
+    log_dir : str or Path
+        Directory where logs and history will be saved.
+    experiment_name : str
+        Name of the experiment for organizing logs.
+    
+    Attributes
+    ----------
+    log_dir : Path
+        Directory for log storage.
+    experiment_name : str
+        Experiment identifier.
+    history : Dict[str, List[Tuple[int, float]]]
+        Dictionary mapping metric names to lists of (step, value) tuples.
+    
+    Examples
+    --------
+    &gt;&gt;&gt; logger = MetricsLogger(&#34;./logs&#34;, &#34;experiment_1&#34;)
+    &gt;&gt;&gt; logger.log_scalar(&#34;train_loss&#34;, 0.5, step=0)
+    &gt;&gt;&gt; logger.log_dict({&#34;val_loss&#34;: 0.3, &#34;val_acc&#34;: 0.9}, step=100)
+    &gt;&gt;&gt; logger.save_history()
+    &#34;&#34;&#34;
+    
+    def __init__(self, log_dir: Union[str, Path], experiment_name: str):
+        &#34;&#34;&#34;Initialize logger with output directory and experiment name.&#34;&#34;&#34;
+        self.log_dir = Path(log_dir)
+        self.experiment_name = experiment_name
+        self.history: Dict[str, List[Tuple[int, float]]] = {}
+        self.timestamps: Dict[str, List[Tuple[int, str]]] = {}  # Track timestamps for each metric
+        
+        # Create log directory if it doesn&#39;t exist
+        self.log_dir.mkdir(parents=True, exist_ok=True)
+        
+        # Create structured log file
+        self.log_file = self.log_dir / f&#34;{experiment_name}_metrics.log&#34;
+    
+    def log_scalar(self, name: str, value: float, step: int) -&gt; None:
+        &#34;&#34;&#34;
+        Log a scalar metric value with timestamp.
+        
+        Parameters
+        ----------
+        name : str
+            Name of the metric (e.g., &#34;train_loss&#34;, &#34;val_accuracy&#34;).
+        value : float
+            Metric value to log.
+        step : int
+            Training step or iteration number.
+        
+        Examples
+        --------
+        &gt;&gt;&gt; logger.log_scalar(&#34;train_loss&#34;, 0.5, step=100)
+        &#34;&#34;&#34;
+        if name not in self.history:
+            self.history[name] = []
+            self.timestamps[name] = []
+        
+        timestamp = datetime.now().isoformat()
+        self.history[name].append((step, float(value)))
+        self.timestamps[name].append((step, timestamp))
+        
+        # Write to structured log file
+        self._write_to_log(name, value, step, timestamp)
+    
+    def log_dict(self, metrics_dict: Dict[str, float], step: int) -&gt; None:
+        &#34;&#34;&#34;
+        Log multiple metrics from a dictionary.
+        
+        Parameters
+        ----------
+        metrics_dict : Dict[str, float]
+            Dictionary mapping metric names to values.
+        step : int
+            Training step or iteration number.
+        
+        Examples
+        --------
+        &gt;&gt;&gt; metrics = {&#34;train_loss&#34;: 0.5, &#34;train_grad_norm&#34;: 1.2}
+        &gt;&gt;&gt; logger.log_dict(metrics, step=100)
+        &#34;&#34;&#34;
+        for name, value in metrics_dict.items():
+            self.log_scalar(name, value, step)
+    
+    def _write_to_log(self, name: str, value: float, step: int, timestamp: str) -&gt; None:
+        &#34;&#34;&#34;
+        Write a metric entry to the structured log file.
+        
+        Parameters
+        ----------
+        name : str
+            Metric name.
+        value : float
+            Metric value.
+        step : int
+            Training step.
+        timestamp : str
+            ISO format timestamp.
+        &#34;&#34;&#34;
+        log_entry = {
+            &#34;timestamp&#34;: timestamp,
+            &#34;step&#34;: step,
+            &#34;metric&#34;: name,
+            &#34;value&#34;: value
+        }
+        
+        with open(self.log_file, &#39;a&#39;) as f:
+            f.write(json.dumps(log_entry) + &#39;\n&#39;)
+    
+    def save_history(self, filename: str = None) -&gt; Path:
+        &#34;&#34;&#34;
+        Save complete training history to JSON file.
+        
+        Parameters
+        ----------
+        filename : str, optional
+            Name of the output file. If None, uses &#34;{experiment_name}_history.json&#34;.
+        
+        Returns
+        -------
+        Path
+            Path to the saved history file.
+        
+        Examples
+        --------
+        &gt;&gt;&gt; logger.save_history()
+        &gt;&gt;&gt; logger.save_history(&#34;custom_history.json&#34;)
+        &#34;&#34;&#34;
+        if filename is None:
+            filename = f&#34;{self.experiment_name}_history.json&#34;
+        
+        filepath = self.log_dir / filename
+        
+        # Convert history to JSON-serializable format
+        serializable_history = {
+            name: [[step, value] for step, value in values]
+            for name, values in self.history.items()
+        }
+        
+        with open(filepath, &#39;w&#39;) as f:
+            json.dump(serializable_history, f, indent=2)
+        
+        return filepath
+    
+    def save_results(
+        self,
+        config: Optional[Dict[str, Any]] = None,
+        system_info: Optional[Dict[str, Any]] = None,
+        convergence: Optional[Dict[str, Any]] = None,
+        eigenvalues: Optional[Dict[str, Any]] = None,
+        filename: str = None
+    ) -&gt; Path:
+        &#34;&#34;&#34;
+        Save complete training results with full structure.
+        
+        This method saves training history in the complete format specified
+        in the design document, including config, system_info, metrics,
+        convergence, and eigenvalues.
+        
+        Parameters
+        ----------
+        config : Dict[str, Any], optional
+            Complete experiment configuration.
+        system_info : Dict[str, Any], optional
+            System information (Python version, PyTorch version, GPU info, etc.).
+        convergence : Dict[str, Any], optional
+            Convergence metrics (iterations_to_target, time_to_target, etc.).
+        eigenvalues : Dict[str, Any], optional
+            Eigenvalue data (true and learned eigenvalues).
+        filename : str, optional
+            Name of the output file. If None, uses &#34;{experiment_name}_results.json&#34;.
+        
+        Returns
+        -------
+        Path
+            Path to the saved results file.
+        
+        Examples
+        --------
+        &gt;&gt;&gt; logger.save_results(
+        ...     config={&#34;model&#34;: &#34;deeponet&#34;, &#34;optimizer&#34;: &#34;svrg&#34;},
+        ...     system_info={&#34;python_version&#34;: &#34;3.9.0&#34;},
+        ...     convergence={&#34;iterations_to_target&#34;: 1000},
+        ...     eigenvalues={&#34;true&#34;: [[1.0, 0.0]], &#34;learned&#34;: [[0.98, 0.02]]}
+        ... )
+        &#34;&#34;&#34;
+        if filename is None:
+            filename = f&#34;{self.experiment_name}_results.json&#34;
+        
+        filepath = self.log_dir / filename
+        
+        # Convert history to JSON-serializable format with timestamps
+        metrics = {}
+        for name, values in self.history.items():
+            metrics[name] = [[step, value] for step, value in values]
+        
+        # Build complete structure
+        results = {
+            &#34;config&#34;: config or {},
+            &#34;system_info&#34;: system_info or {},
+            &#34;metrics&#34;: metrics,
+            &#34;convergence&#34;: convergence or {},
+            &#34;eigenvalues&#34;: eigenvalues or {}
+        }
+        
+        with open(filepath, &#39;w&#39;) as f:
+            json.dump(results, f, indent=2)
+        
+        return filepath
+    
+    def load_history(self, path: Union[str, Path]) -&gt; Dict[str, List[Tuple[int, float]]]:
+        &#34;&#34;&#34;
+        Load training history from JSON file.
+        
+        Parameters
+        ----------
+        path : str or Path
+            Path to the history JSON file.
+        
+        Returns
+        -------
+        Dict[str, List[Tuple[int, float]]]
+            Dictionary mapping metric names to lists of (step, value) tuples.
+        
+        Raises
+        ------
+        FileNotFoundError
+            If the specified file does not exist.
+        json.JSONDecodeError
+            If the file is not valid JSON.
+        
+        Examples
+        --------
+        &gt;&gt;&gt; history = logger.load_history(&#34;./logs/experiment_1_history.json&#34;)
+        &gt;&gt;&gt; train_loss = history[&#34;train_loss&#34;]
+        &#34;&#34;&#34;
+        path = Path(path)
+        
+        if not path.exists():
+            raise FileNotFoundError(f&#34;History file not found: {path}&#34;)
+        
+        with open(path, &#39;r&#39;) as f:
+            serializable_history = json.load(f)
+        
+        # Convert back to tuple format
+        history = {
+            name: [(step, value) for step, value in values]
+            for name, values in serializable_history.items()
+        }
+        
+        # Update internal history
+        self.history = history
+        
+        return history
+    
+    def load_results(self, path: Union[str, Path]) -&gt; Dict[str, Any]:
+        &#34;&#34;&#34;
+        Load complete training results for post-hoc analysis.
+        
+        This method loads the complete results structure saved by save_results(),
+        including config, system_info, metrics, convergence, and eigenvalues.
+        
+        Parameters
+        ----------
+        path : str or Path
+            Path to the results JSON file.
+        
+        Returns
+        -------
+        Dict[str, Any]
+            Dictionary containing:
+            - config: Experiment configuration
+            - system_info: System information
+            - metrics: Training metrics history
+            - convergence: Convergence metrics
+            - eigenvalues: Eigenvalue data
+        
+        Raises
+        ------
+        FileNotFoundError
+            If the specified file does not exist.
+        json.JSONDecodeError
+            If the file is not valid JSON.
+        KeyError
+            If the file is missing required structure fields.
+        
+        Examples
+        --------
+        &gt;&gt;&gt; results = logger.load_results(&#34;./logs/experiment_1_results.json&#34;)
+        &gt;&gt;&gt; config = results[&#34;config&#34;]
+        &gt;&gt;&gt; metrics = results[&#34;metrics&#34;]
+        &gt;&gt;&gt; train_loss = metrics[&#34;train_loss&#34;]
+        &gt;&gt;&gt; convergence = results[&#34;convergence&#34;]
+        &gt;&gt;&gt; iterations_to_target = convergence[&#34;iterations_to_target&#34;]
+        &#34;&#34;&#34;
+        path = Path(path)
+        
+        if not path.exists():
+            raise FileNotFoundError(f&#34;Results file not found: {path}&#34;)
+        
+        with open(path, &#39;r&#39;) as f:
+            results = json.load(f)
+        
+        # Validate structure
+        required_fields = [&#34;config&#34;, &#34;system_info&#34;, &#34;metrics&#34;, &#34;convergence&#34;, &#34;eigenvalues&#34;]
+        missing_fields = [field for field in required_fields if field not in results]
+        if missing_fields:
+            raise KeyError(f&#34;Results file missing required fields: {missing_fields}&#34;)
+        
+        # Convert metrics back to tuple format for internal use
+        if results[&#34;metrics&#34;]:
+            self.history = {
+                name: [(step, value) for step, value in values]
+                for name, values in results[&#34;metrics&#34;].items()
+            }
+        
+        return results
+    
+    def get_metric_history(self, name: str) -&gt; List[Tuple[int, float]]:
+        &#34;&#34;&#34;
+        Get history for a specific metric.
+        
+        Parameters
+        ----------
+        name : str
+            Name of the metric.
+        
+        Returns
+        -------
+        List[Tuple[int, float]]
+            List of (step, value) tuples for the metric.
+        
+        Raises
+        ------
+        KeyError
+            If the metric name is not found in history.
+        
+        Examples
+        --------
+        &gt;&gt;&gt; train_loss_history = logger.get_metric_history(&#34;train_loss&#34;)
+        &#34;&#34;&#34;
+        if name not in self.history:
+            raise KeyError(f&#34;Metric &#39;{name}&#39; not found in history&#34;)
+        return self.history[name]
+    
+    def get_latest_value(self, name: str) -&gt; float:
+        &#34;&#34;&#34;
+        Get the most recent value for a metric.
+        
+        Parameters
+        ----------
+        name : str
+            Name of the metric.
+        
+        Returns
+        -------
+        float
+            Most recent value logged for the metric.
+        
+        Raises
+        ------
+        KeyError
+            If the metric name is not found in history.
+        ValueError
+            If no values have been logged for the metric.
+        
+        Examples
+        --------
+        &gt;&gt;&gt; latest_loss = logger.get_latest_value(&#34;train_loss&#34;)
+        &#34;&#34;&#34;
+        if name not in self.history:
+            raise KeyError(f&#34;Metric &#39;{name}&#39; not found in history&#34;)
+        if not self.history[name]:
+            raise ValueError(f&#34;No values logged for metric &#39;{name}&#39;&#34;)
+        return self.history[name][-1][1]</code></pre>
+</details>
+<div class="desc"><p>Logger for training metrics and history management.</p>
+<p>Tracks scalar metrics during training and provides serialization
+to JSON format for persistence and analysis.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>log_dir</code></strong> :&ensp;<code>str</code> or <code>Path</code></dt>
+<dd>Directory where logs and history will be saved.</dd>
+<dt><strong><code>experiment_name</code></strong> :&ensp;<code>str</code></dt>
+<dd>Name of the experiment for organizing logs.</dd>
+</dl>
+<h2 id="attributes">Attributes</h2>
+<dl>
+<dt><strong><code>log_dir</code></strong> :&ensp;<code>Path</code></dt>
+<dd>Directory for log storage.</dd>
+<dt><strong><code>experiment_name</code></strong> :&ensp;<code>str</code></dt>
+<dd>Experiment identifier.</dd>
+<dt><strong><code>history</code></strong> :&ensp;<code>Dict[str, List[Tuple[int, float]]]</code></dt>
+<dd>Dictionary mapping metric names to lists of (step, value) tuples.</dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; logger = MetricsLogger(&quot;./logs&quot;, &quot;experiment_1&quot;)
+&gt;&gt;&gt; logger.log_scalar(&quot;train_loss&quot;, 0.5, step=0)
+&gt;&gt;&gt; logger.log_dict({&quot;val_loss&quot;: 0.3, &quot;val_acc&quot;: 0.9}, step=100)
+&gt;&gt;&gt; logger.save_history()
+</code></pre>
+<p>Initialize logger with output directory and experiment name.</p></div>
+<h3>Methods</h3>
+<dl>
+<dt id="utils.MetricsLogger.get_latest_value"><code class="name flex">
+<span>def <span class="ident">get_latest_value</span></span>(<span>self, name: str) ‑> float</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_latest_value(self, name: str) -&gt; float:
+    &#34;&#34;&#34;
+    Get the most recent value for a metric.
+    
+    Parameters
+    ----------
+    name : str
+        Name of the metric.
+    
+    Returns
+    -------
+    float
+        Most recent value logged for the metric.
+    
+    Raises
+    ------
+    KeyError
+        If the metric name is not found in history.
+    ValueError
+        If no values have been logged for the metric.
+    
+    Examples
+    --------
+    &gt;&gt;&gt; latest_loss = logger.get_latest_value(&#34;train_loss&#34;)
+    &#34;&#34;&#34;
+    if name not in self.history:
+        raise KeyError(f&#34;Metric &#39;{name}&#39; not found in history&#34;)
+    if not self.history[name]:
+        raise ValueError(f&#34;No values logged for metric &#39;{name}&#39;&#34;)
+    return self.history[name][-1][1]</code></pre>
+</details>
+<div class="desc"><p>Get the most recent value for a metric.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>name</code></strong> :&ensp;<code>str</code></dt>
+<dd>Name of the metric.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>float</code></dt>
+<dd>Most recent value logged for the metric.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>KeyError</code></dt>
+<dd>If the metric name is not found in history.</dd>
+<dt><code>ValueError</code></dt>
+<dd>If no values have been logged for the metric.</dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; latest_loss = logger.get_latest_value(&quot;train_loss&quot;)
+</code></pre></div>
+</dd>
+<dt id="utils.MetricsLogger.get_metric_history"><code class="name flex">
+<span>def <span class="ident">get_metric_history</span></span>(<span>self, name: str) ‑> List[Tuple[int, float]]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_metric_history(self, name: str) -&gt; List[Tuple[int, float]]:
+    &#34;&#34;&#34;
+    Get history for a specific metric.
+    
+    Parameters
+    ----------
+    name : str
+        Name of the metric.
+    
+    Returns
+    -------
+    List[Tuple[int, float]]
+        List of (step, value) tuples for the metric.
+    
+    Raises
+    ------
+    KeyError
+        If the metric name is not found in history.
+    
+    Examples
+    --------
+    &gt;&gt;&gt; train_loss_history = logger.get_metric_history(&#34;train_loss&#34;)
+    &#34;&#34;&#34;
+    if name not in self.history:
+        raise KeyError(f&#34;Metric &#39;{name}&#39; not found in history&#34;)
+    return self.history[name]</code></pre>
+</details>
+<div class="desc"><p>Get history for a specific metric.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>name</code></strong> :&ensp;<code>str</code></dt>
+<dd>Name of the metric.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>List[Tuple[int, float]]</code></dt>
+<dd>List of (step, value) tuples for the metric.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>KeyError</code></dt>
+<dd>If the metric name is not found in history.</dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; train_loss_history = logger.get_metric_history(&quot;train_loss&quot;)
+</code></pre></div>
+</dd>
+<dt id="utils.MetricsLogger.load_history"><code class="name flex">
+<span>def <span class="ident">load_history</span></span>(<span>self, path: str | pathlib.Path) ‑> Dict[str, List[Tuple[int, float]]]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def load_history(self, path: Union[str, Path]) -&gt; Dict[str, List[Tuple[int, float]]]:
+    &#34;&#34;&#34;
+    Load training history from JSON file.
+    
+    Parameters
+    ----------
+    path : str or Path
+        Path to the history JSON file.
+    
+    Returns
+    -------
+    Dict[str, List[Tuple[int, float]]]
+        Dictionary mapping metric names to lists of (step, value) tuples.
+    
+    Raises
+    ------
+    FileNotFoundError
+        If the specified file does not exist.
+    json.JSONDecodeError
+        If the file is not valid JSON.
+    
+    Examples
+    --------
+    &gt;&gt;&gt; history = logger.load_history(&#34;./logs/experiment_1_history.json&#34;)
+    &gt;&gt;&gt; train_loss = history[&#34;train_loss&#34;]
+    &#34;&#34;&#34;
+    path = Path(path)
+    
+    if not path.exists():
+        raise FileNotFoundError(f&#34;History file not found: {path}&#34;)
+    
+    with open(path, &#39;r&#39;) as f:
+        serializable_history = json.load(f)
+    
+    # Convert back to tuple format
+    history = {
+        name: [(step, value) for step, value in values]
+        for name, values in serializable_history.items()
+    }
+    
+    # Update internal history
+    self.history = history
+    
+    return history</code></pre>
+</details>
+<div class="desc"><p>Load training history from JSON file.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>path</code></strong> :&ensp;<code>str</code> or <code>Path</code></dt>
+<dd>Path to the history JSON file.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>Dict[str, List[Tuple[int, float]]]</code></dt>
+<dd>Dictionary mapping metric names to lists of (step, value) tuples.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>FileNotFoundError</code></dt>
+<dd>If the specified file does not exist.</dd>
+<dt><code>json.JSONDecodeError</code></dt>
+<dd>If the file is not valid JSON.</dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; history = logger.load_history(&quot;./logs/experiment_1_history.json&quot;)
+&gt;&gt;&gt; train_loss = history[&quot;train_loss&quot;]
+</code></pre></div>
+</dd>
+<dt id="utils.MetricsLogger.load_results"><code class="name flex">
+<span>def <span class="ident">load_results</span></span>(<span>self, path: str | pathlib.Path) ‑> Dict[str, Any]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def load_results(self, path: Union[str, Path]) -&gt; Dict[str, Any]:
+    &#34;&#34;&#34;
+    Load complete training results for post-hoc analysis.
+    
+    This method loads the complete results structure saved by save_results(),
+    including config, system_info, metrics, convergence, and eigenvalues.
+    
+    Parameters
+    ----------
+    path : str or Path
+        Path to the results JSON file.
+    
+    Returns
+    -------
+    Dict[str, Any]
+        Dictionary containing:
+        - config: Experiment configuration
+        - system_info: System information
+        - metrics: Training metrics history
+        - convergence: Convergence metrics
+        - eigenvalues: Eigenvalue data
+    
+    Raises
+    ------
+    FileNotFoundError
+        If the specified file does not exist.
+    json.JSONDecodeError
+        If the file is not valid JSON.
+    KeyError
+        If the file is missing required structure fields.
+    
+    Examples
+    --------
+    &gt;&gt;&gt; results = logger.load_results(&#34;./logs/experiment_1_results.json&#34;)
+    &gt;&gt;&gt; config = results[&#34;config&#34;]
+    &gt;&gt;&gt; metrics = results[&#34;metrics&#34;]
+    &gt;&gt;&gt; train_loss = metrics[&#34;train_loss&#34;]
+    &gt;&gt;&gt; convergence = results[&#34;convergence&#34;]
+    &gt;&gt;&gt; iterations_to_target = convergence[&#34;iterations_to_target&#34;]
+    &#34;&#34;&#34;
+    path = Path(path)
+    
+    if not path.exists():
+        raise FileNotFoundError(f&#34;Results file not found: {path}&#34;)
+    
+    with open(path, &#39;r&#39;) as f:
+        results = json.load(f)
+    
+    # Validate structure
+    required_fields = [&#34;config&#34;, &#34;system_info&#34;, &#34;metrics&#34;, &#34;convergence&#34;, &#34;eigenvalues&#34;]
+    missing_fields = [field for field in required_fields if field not in results]
+    if missing_fields:
+        raise KeyError(f&#34;Results file missing required fields: {missing_fields}&#34;)
+    
+    # Convert metrics back to tuple format for internal use
+    if results[&#34;metrics&#34;]:
+        self.history = {
+            name: [(step, value) for step, value in values]
+            for name, values in results[&#34;metrics&#34;].items()
+        }
+    
+    return results</code></pre>
+</details>
+<div class="desc"><p>Load complete training results for post-hoc analysis.</p>
+<p>This method loads the complete results structure saved by save_results(),
+including config, system_info, metrics, convergence, and eigenvalues.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>path</code></strong> :&ensp;<code>str</code> or <code>Path</code></dt>
+<dd>Path to the results JSON file.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>Dict[str, Any]</code></dt>
+<dd>Dictionary containing:
+- config: Experiment configuration
+- system_info: System information
+- metrics: Training metrics history
+- convergence: Convergence metrics
+- eigenvalues: Eigenvalue data</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>FileNotFoundError</code></dt>
+<dd>If the specified file does not exist.</dd>
+<dt><code>json.JSONDecodeError</code></dt>
+<dd>If the file is not valid JSON.</dd>
+<dt><code>KeyError</code></dt>
+<dd>If the file is missing required structure fields.</dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; results = logger.load_results(&quot;./logs/experiment_1_results.json&quot;)
+&gt;&gt;&gt; config = results[&quot;config&quot;]
+&gt;&gt;&gt; metrics = results[&quot;metrics&quot;]
+&gt;&gt;&gt; train_loss = metrics[&quot;train_loss&quot;]
+&gt;&gt;&gt; convergence = results[&quot;convergence&quot;]
+&gt;&gt;&gt; iterations_to_target = convergence[&quot;iterations_to_target&quot;]
+</code></pre></div>
+</dd>
+<dt id="utils.MetricsLogger.log_dict"><code class="name flex">
+<span>def <span class="ident">log_dict</span></span>(<span>self, metrics_dict: Dict[str, float], step: int) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def log_dict(self, metrics_dict: Dict[str, float], step: int) -&gt; None:
+    &#34;&#34;&#34;
+    Log multiple metrics from a dictionary.
+    
+    Parameters
+    ----------
+    metrics_dict : Dict[str, float]
+        Dictionary mapping metric names to values.
+    step : int
+        Training step or iteration number.
+    
+    Examples
+    --------
+    &gt;&gt;&gt; metrics = {&#34;train_loss&#34;: 0.5, &#34;train_grad_norm&#34;: 1.2}
+    &gt;&gt;&gt; logger.log_dict(metrics, step=100)
+    &#34;&#34;&#34;
+    for name, value in metrics_dict.items():
+        self.log_scalar(name, value, step)</code></pre>
+</details>
+<div class="desc"><p>Log multiple metrics from a dictionary.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>metrics_dict</code></strong> :&ensp;<code>Dict[str, float]</code></dt>
+<dd>Dictionary mapping metric names to values.</dd>
+<dt><strong><code>step</code></strong> :&ensp;<code>int</code></dt>
+<dd>Training step or iteration number.</dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; metrics = {&quot;train_loss&quot;: 0.5, &quot;train_grad_norm&quot;: 1.2}
+&gt;&gt;&gt; logger.log_dict(metrics, step=100)
+</code></pre></div>
+</dd>
+<dt id="utils.MetricsLogger.log_scalar"><code class="name flex">
+<span>def <span class="ident">log_scalar</span></span>(<span>self, name: str, value: float, step: int) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def log_scalar(self, name: str, value: float, step: int) -&gt; None:
+    &#34;&#34;&#34;
+    Log a scalar metric value with timestamp.
+    
+    Parameters
+    ----------
+    name : str
+        Name of the metric (e.g., &#34;train_loss&#34;, &#34;val_accuracy&#34;).
+    value : float
+        Metric value to log.
+    step : int
+        Training step or iteration number.
+    
+    Examples
+    --------
+    &gt;&gt;&gt; logger.log_scalar(&#34;train_loss&#34;, 0.5, step=100)
+    &#34;&#34;&#34;
+    if name not in self.history:
+        self.history[name] = []
+        self.timestamps[name] = []
+    
+    timestamp = datetime.now().isoformat()
+    self.history[name].append((step, float(value)))
+    self.timestamps[name].append((step, timestamp))
+    
+    # Write to structured log file
+    self._write_to_log(name, value, step, timestamp)</code></pre>
+</details>
+<div class="desc"><p>Log a scalar metric value with timestamp.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>name</code></strong> :&ensp;<code>str</code></dt>
+<dd>Name of the metric (e.g., "train_loss", "val_accuracy").</dd>
+<dt><strong><code>value</code></strong> :&ensp;<code>float</code></dt>
+<dd>Metric value to log.</dd>
+<dt><strong><code>step</code></strong> :&ensp;<code>int</code></dt>
+<dd>Training step or iteration number.</dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; logger.log_scalar(&quot;train_loss&quot;, 0.5, step=100)
+</code></pre></div>
+</dd>
+<dt id="utils.MetricsLogger.save_history"><code class="name flex">
+<span>def <span class="ident">save_history</span></span>(<span>self, filename: str = None) ‑> pathlib.Path</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def save_history(self, filename: str = None) -&gt; Path:
+    &#34;&#34;&#34;
+    Save complete training history to JSON file.
+    
+    Parameters
+    ----------
+    filename : str, optional
+        Name of the output file. If None, uses &#34;{experiment_name}_history.json&#34;.
+    
+    Returns
+    -------
+    Path
+        Path to the saved history file.
+    
+    Examples
+    --------
+    &gt;&gt;&gt; logger.save_history()
+    &gt;&gt;&gt; logger.save_history(&#34;custom_history.json&#34;)
+    &#34;&#34;&#34;
+    if filename is None:
+        filename = f&#34;{self.experiment_name}_history.json&#34;
+    
+    filepath = self.log_dir / filename
+    
+    # Convert history to JSON-serializable format
+    serializable_history = {
+        name: [[step, value] for step, value in values]
+        for name, values in self.history.items()
+    }
+    
+    with open(filepath, &#39;w&#39;) as f:
+        json.dump(serializable_history, f, indent=2)
+    
+    return filepath</code></pre>
+</details>
+<div class="desc"><p>Save complete training history to JSON file.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>filename</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Name of the output file. If None, uses "{experiment_name}_history.json".</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>Path</code></dt>
+<dd>Path to the saved history file.</dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; logger.save_history()
+&gt;&gt;&gt; logger.save_history(&quot;custom_history.json&quot;)
+</code></pre></div>
+</dd>
+<dt id="utils.MetricsLogger.save_results"><code class="name flex">
+<span>def <span class="ident">save_results</span></span>(<span>self,<br>config: Dict[str, Any] | None = None,<br>system_info: Dict[str, Any] | None = None,<br>convergence: Dict[str, Any] | None = None,<br>eigenvalues: Dict[str, Any] | None = None,<br>filename: str = None) ‑> pathlib.Path</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def save_results(
+    self,
+    config: Optional[Dict[str, Any]] = None,
+    system_info: Optional[Dict[str, Any]] = None,
+    convergence: Optional[Dict[str, Any]] = None,
+    eigenvalues: Optional[Dict[str, Any]] = None,
+    filename: str = None
+) -&gt; Path:
+    &#34;&#34;&#34;
+    Save complete training results with full structure.
+    
+    This method saves training history in the complete format specified
+    in the design document, including config, system_info, metrics,
+    convergence, and eigenvalues.
+    
+    Parameters
+    ----------
+    config : Dict[str, Any], optional
+        Complete experiment configuration.
+    system_info : Dict[str, Any], optional
+        System information (Python version, PyTorch version, GPU info, etc.).
+    convergence : Dict[str, Any], optional
+        Convergence metrics (iterations_to_target, time_to_target, etc.).
+    eigenvalues : Dict[str, Any], optional
+        Eigenvalue data (true and learned eigenvalues).
+    filename : str, optional
+        Name of the output file. If None, uses &#34;{experiment_name}_results.json&#34;.
+    
+    Returns
+    -------
+    Path
+        Path to the saved results file.
+    
+    Examples
+    --------
+    &gt;&gt;&gt; logger.save_results(
+    ...     config={&#34;model&#34;: &#34;deeponet&#34;, &#34;optimizer&#34;: &#34;svrg&#34;},
+    ...     system_info={&#34;python_version&#34;: &#34;3.9.0&#34;},
+    ...     convergence={&#34;iterations_to_target&#34;: 1000},
+    ...     eigenvalues={&#34;true&#34;: [[1.0, 0.0]], &#34;learned&#34;: [[0.98, 0.02]]}
+    ... )
+    &#34;&#34;&#34;
+    if filename is None:
+        filename = f&#34;{self.experiment_name}_results.json&#34;
+    
+    filepath = self.log_dir / filename
+    
+    # Convert history to JSON-serializable format with timestamps
+    metrics = {}
+    for name, values in self.history.items():
+        metrics[name] = [[step, value] for step, value in values]
+    
+    # Build complete structure
+    results = {
+        &#34;config&#34;: config or {},
+        &#34;system_info&#34;: system_info or {},
+        &#34;metrics&#34;: metrics,
+        &#34;convergence&#34;: convergence or {},
+        &#34;eigenvalues&#34;: eigenvalues or {}
+    }
+    
+    with open(filepath, &#39;w&#39;) as f:
+        json.dump(results, f, indent=2)
+    
+    return filepath</code></pre>
+</details>
+<div class="desc"><p>Save complete training results with full structure.</p>
+<p>This method saves training history in the complete format specified
+in the design document, including config, system_info, metrics,
+convergence, and eigenvalues.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>config</code></strong> :&ensp;<code>Dict[str, Any]</code>, optional</dt>
+<dd>Complete experiment configuration.</dd>
+<dt><strong><code>system_info</code></strong> :&ensp;<code>Dict[str, Any]</code>, optional</dt>
+<dd>System information (Python version, PyTorch version, GPU info, etc.).</dd>
+<dt><strong><code>convergence</code></strong> :&ensp;<code>Dict[str, Any]</code>, optional</dt>
+<dd>Convergence metrics (iterations_to_target, time_to_target, etc.).</dd>
+<dt><strong><code>eigenvalues</code></strong> :&ensp;<code>Dict[str, Any]</code>, optional</dt>
+<dd>Eigenvalue data (true and learned eigenvalues).</dd>
+<dt><strong><code>filename</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Name of the output file. If None, uses "{experiment_name}_results.json".</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>Path</code></dt>
+<dd>Path to the saved results file.</dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; logger.save_results(
+...     config={&quot;model&quot;: &quot;deeponet&quot;, &quot;optimizer&quot;: &quot;svrg&quot;},
+...     system_info={&quot;python_version&quot;: &quot;3.9.0&quot;},
+...     convergence={&quot;iterations_to_target&quot;: 1000},
+...     eigenvalues={&quot;true&quot;: [[1.0, 0.0]], &quot;learned&quot;: [[0.98, 0.02]]}
+... )
+</code></pre></div>
+</dd>
+</dl>
+</dd>
+<dt id="utils.ShapeError"><code class="flex name class">
+<span>class <span class="ident">ShapeError</span></span>
+<span>(</span><span>message: str,<br>expected_shape: tuple = None,<br>actual_shape: tuple = None,<br>tensor_name: str = None)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class ShapeError(ValueError):
+    &#34;&#34;&#34;Raised when tensor shapes don&#39;t match expected dimensions.
+    
+    This exception is raised when tensor shape validation fails,
+    providing detailed information about expected vs actual shapes.
+    
+    Attributes
+    ----------
+    message : str
+        Error message describing the shape mismatch.
+    expected_shape : tuple
+        Expected tensor shape.
+    actual_shape : tuple
+        Actual tensor shape.
+    tensor_name : str
+        Name or description of the tensor.
+    &#34;&#34;&#34;
+    
+    def __init__(
+        self,
+        message: str,
+        expected_shape: tuple = None,
+        actual_shape: tuple = None,
+        tensor_name: str = None
+    ):
+        &#34;&#34;&#34;Initialize ShapeError.
+        
+        Parameters
+        ----------
+        message : str
+            Error message describing the shape mismatch.
+        expected_shape : tuple, optional
+            Expected tensor shape.
+        actual_shape : tuple, optional
+            Actual tensor shape.
+        tensor_name : str, optional
+            Name or description of the tensor.
+        &#34;&#34;&#34;
+        super().__init__(message)
+        self.expected_shape = expected_shape
+        self.actual_shape = actual_shape
+        self.tensor_name = tensor_name
+    
+    def __str__(self):
+        &#34;&#34;&#34;Return formatted error message with shape information.&#34;&#34;&#34;
+        msg = super().__str__()
+        
+        if self.tensor_name:
+            msg += f&#34;\n  Tensor: {self.tensor_name}&#34;
+        
+        if self.expected_shape is not None:
+            msg += f&#34;\n  Expected shape: {self.expected_shape}&#34;
+        
+        if self.actual_shape is not None:
+            msg += f&#34;\n  Actual shape: {self.actual_shape}&#34;
+        
+        return msg</code></pre>
+</details>
+<div class="desc"><p>Raised when tensor shapes don't match expected dimensions.</p>
+<p>This exception is raised when tensor shape validation fails,
+providing detailed information about expected vs actual shapes.</p>
+<h2 id="attributes">Attributes</h2>
+<dl>
+<dt><strong><code>message</code></strong> :&ensp;<code>str</code></dt>
+<dd>Error message describing the shape mismatch.</dd>
+<dt><strong><code>expected_shape</code></strong> :&ensp;<code>tuple</code></dt>
+<dd>Expected tensor shape.</dd>
+<dt><strong><code>actual_shape</code></strong> :&ensp;<code>tuple</code></dt>
+<dd>Actual tensor shape.</dd>
+<dt><strong><code>tensor_name</code></strong> :&ensp;<code>str</code></dt>
+<dd>Name or description of the tensor.</dd>
+</dl>
+<p>Initialize ShapeError.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>message</code></strong> :&ensp;<code>str</code></dt>
+<dd>Error message describing the shape mismatch.</dd>
+<dt><strong><code>expected_shape</code></strong> :&ensp;<code>tuple</code>, optional</dt>
+<dd>Expected tensor shape.</dd>
+<dt><strong><code>actual_shape</code></strong> :&ensp;<code>tuple</code>, optional</dt>
+<dd>Actual tensor shape.</dd>
+<dt><strong><code>tensor_name</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Name or description of the tensor.</dd>
+</dl></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.ValueError</li>
+<li>builtins.Exception</li>
+<li>builtins.BaseException</li>
+</ul>
+</dd>
+<dt id="utils.TrainingDivergenceError"><code class="flex name class">
+<span>class <span class="ident">TrainingDivergenceError</span></span>
+<span>(</span><span>message: str, diagnostics: dict = None, suggestions: list = None)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class TrainingDivergenceError(Exception):
+    &#34;&#34;&#34;Raised when training diverges (NaN or infinite loss).
+    
+    This exception is raised when the training loop detects numerical
+    instability, typically indicated by NaN or infinite loss values.
+    
+    Attributes
+    ----------
+    message : str
+        Error message describing the divergence.
+    diagnostics : dict
+        Dictionary containing diagnostic information including:
+        - iteration: Current training iteration
+        - loss_value: The problematic loss value
+        - recent_losses: List of recent loss values
+        - gradient_norm: Current gradient norm
+        - learning_rate: Current learning rate
+        - batch_statistics: Statistics about the current batch
+    suggestions : list
+        List of suggested remedies.
+    &#34;&#34;&#34;
+    
+    def __init__(self, message: str, diagnostics: dict = None, suggestions: list = None):
+        &#34;&#34;&#34;Initialize TrainingDivergenceError.
+        
+        Parameters
+        ----------
+        message : str
+            Error message describing the divergence.
+        diagnostics : dict, optional
+            Diagnostic information about the divergence.
+        suggestions : list, optional
+            List of suggested remedies.
+        &#34;&#34;&#34;
+        super().__init__(message)
+        self.diagnostics = diagnostics or {}
+        self.suggestions = suggestions or []
+    
+    def __str__(self):
+        &#34;&#34;&#34;Return formatted error message with diagnostics and suggestions.&#34;&#34;&#34;
+        msg = super().__str__()
+        
+        if self.diagnostics:
+            msg += &#34;\n\nDiagnostics:&#34;
+            for key, value in self.diagnostics.items():
+                msg += f&#34;\n  {key}: {value}&#34;
+        
+        if self.suggestions:
+            msg += &#34;\n\nSuggestions:&#34;
+            for i, suggestion in enumerate(self.suggestions, 1):
+                msg += f&#34;\n  {i}. {suggestion}&#34;
+        
+        return msg</code></pre>
+</details>
+<div class="desc"><p>Raised when training diverges (NaN or infinite loss).</p>
+<p>This exception is raised when the training loop detects numerical
+instability, typically indicated by NaN or infinite loss values.</p>
+<h2 id="attributes">Attributes</h2>
+<dl>
+<dt><strong><code>message</code></strong> :&ensp;<code>str</code></dt>
+<dd>Error message describing the divergence.</dd>
+<dt><strong><code>diagnostics</code></strong> :&ensp;<code>dict</code></dt>
+<dd>Dictionary containing diagnostic information including:
+- iteration: Current training iteration
+- loss_value: The problematic loss value
+- recent_losses: List of recent loss values
+- gradient_norm: Current gradient norm
+- learning_rate: Current learning rate
+- batch_statistics: Statistics about the current batch</dd>
+<dt><strong><code>suggestions</code></strong> :&ensp;<code>list</code></dt>
+<dd>List of suggested remedies.</dd>
+</dl>
+<p>Initialize TrainingDivergenceError.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>message</code></strong> :&ensp;<code>str</code></dt>
+<dd>Error message describing the divergence.</dd>
+<dt><strong><code>diagnostics</code></strong> :&ensp;<code>dict</code>, optional</dt>
+<dd>Diagnostic information about the divergence.</dd>
+<dt><strong><code>suggestions</code></strong> :&ensp;<code>list</code>, optional</dt>
+<dd>List of suggested remedies.</dd>
+</dl></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.Exception</li>
+<li>builtins.BaseException</li>
+</ul>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3><a href="#header-submodules">Sub-modules</a></h3>
+<ul>
+<li><code><a title="utils.device" href="device.html">utils.device</a></code></li>
+<li><code><a title="utils.exceptions" href="exceptions.html">utils.exceptions</a></code></li>
+<li><code><a title="utils.logger" href="logger.html">utils.logger</a></code></li>
+<li><code><a title="utils.seed" href="seed.html">utils.seed</a></code></li>
+<li><code><a title="utils.system_info" href="system_info.html">utils.system_info</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="utils.format_system_info" href="#utils.format_system_info">format_system_info</a></code></li>
+<li><code><a title="utils.get_device" href="#utils.get_device">get_device</a></code></li>
+<li><code><a title="utils.log_system_info" href="#utils.log_system_info">log_system_info</a></code></li>
+<li><code><a title="utils.move_to_device" href="#utils.move_to_device">move_to_device</a></code></li>
+<li><code><a title="utils.set_random_seeds" href="#utils.set_random_seeds">set_random_seeds</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="utils.CheckpointCompatibilityError" href="#utils.CheckpointCompatibilityError">CheckpointCompatibilityError</a></code></h4>
+</li>
+<li>
+<h4><code><a title="utils.GPUMemoryError" href="#utils.GPUMemoryError">GPUMemoryError</a></code></h4>
+</li>
+<li>
+<h4><code><a title="utils.MetricsLogger" href="#utils.MetricsLogger">MetricsLogger</a></code></h4>
+<ul class="two-column">
+<li><code><a title="utils.MetricsLogger.get_latest_value" href="#utils.MetricsLogger.get_latest_value">get_latest_value</a></code></li>
+<li><code><a title="utils.MetricsLogger.get_metric_history" href="#utils.MetricsLogger.get_metric_history">get_metric_history</a></code></li>
+<li><code><a title="utils.MetricsLogger.load_history" href="#utils.MetricsLogger.load_history">load_history</a></code></li>
+<li><code><a title="utils.MetricsLogger.load_results" href="#utils.MetricsLogger.load_results">load_results</a></code></li>
+<li><code><a title="utils.MetricsLogger.log_dict" href="#utils.MetricsLogger.log_dict">log_dict</a></code></li>
+<li><code><a title="utils.MetricsLogger.log_scalar" href="#utils.MetricsLogger.log_scalar">log_scalar</a></code></li>
+<li><code><a title="utils.MetricsLogger.save_history" href="#utils.MetricsLogger.save_history">save_history</a></code></li>
+<li><code><a title="utils.MetricsLogger.save_results" href="#utils.MetricsLogger.save_results">save_results</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="utils.ShapeError" href="#utils.ShapeError">ShapeError</a></code></h4>
+</li>
+<li>
+<h4><code><a title="utils.TrainingDivergenceError" href="#utils.TrainingDivergenceError">TrainingDivergenceError</a></code></h4>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>

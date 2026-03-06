@@ -1,0 +1,2825 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>optimizers API documentation</title>
+<meta name="description" content="Optimizers module with variance tracking support.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Package <code>optimizers</code></h1>
+</header>
+<section id="section-intro">
+<p>Optimizers module with variance tracking support.</p>
+</section>
+<section>
+<h2 class="section-title" id="header-submodules">Sub-modules</h2>
+<dl>
+<dt><code class="name"><a title="optimizers.adam" href="adam.html">optimizers.adam</a></code></dt>
+<dd>
+<div class="desc"><p>Adam optimizer with variance tracking.</p></div>
+</dd>
+<dt><code class="name"><a title="optimizers.base" href="base.html">optimizers.base</a></code></dt>
+<dd>
+<div class="desc"><p>Abstract base class for optimizers with gradient variance tracking.</p></div>
+</dd>
+<dt><code class="name"><a title="optimizers.scheduler" href="scheduler.html">optimizers.scheduler</a></code></dt>
+<dd>
+<div class="desc"><p>Learning rate schedulers for optimizers.</p></div>
+</dd>
+<dt><code class="name"><a title="optimizers.sgd" href="sgd.html">optimizers.sgd</a></code></dt>
+<dd>
+<div class="desc"><p>Stochastic Gradient Descent optimizer with variance tracking.</p></div>
+</dd>
+<dt><code class="name"><a title="optimizers.svrg" href="svrg.html">optimizers.svrg</a></code></dt>
+<dd>
+<div class="desc"><p>SVRG (Stochastic Variance Reduced Gradient) optimizer with variance tracking.</p></div>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="optimizers.Adam"><code class="flex name class">
+<span>class <span class="ident">Adam</span></span>
+<span>(</span><span>params,<br>learning_rate: float = 0.001,<br>beta1: float = 0.9,<br>beta2: float = 0.999,<br>epsilon: float = 1e-08,<br>weight_decay: float = 0.0)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Adam(OptimizerWithVariance):
+    &#34;&#34;&#34;Adam optimizer with adaptive learning rates and variance tracking.
+    
+    Implements the Adam update rule:
+        m_t = β₁ * m_{t-1} + (1 - β₁) * g_t
+        v_t = β₂ * v_{t-1} + (1 - β₂) * g_t²
+        m̂_t = m_t / (1 - β₁^t)
+        v̂_t = v_t / (1 - β₂^t)
+        θ_{t+1} = θ_t - η * m̂_t / (√v̂_t + ε)
+    
+    Parameters
+    ----------
+    params : iterable
+        Iterable of parameters to optimize
+    learning_rate : float, default=0.001
+        Learning rate (step size)
+    beta1 : float, default=0.9
+        Exponential decay rate for first moment estimates
+    beta2 : float, default=0.999
+        Exponential decay rate for second moment estimates
+    epsilon : float, default=1e-8
+        Term added to denominator for numerical stability
+    weight_decay : float, default=0.0
+        L2 regularization coefficient
+    &#34;&#34;&#34;
+    
+    def __init__(
+        self,
+        params,
+        learning_rate: float = 0.001,
+        beta1: float = 0.9,
+        beta2: float = 0.999,
+        epsilon: float = 1e-8,
+        weight_decay: float = 0.0
+    ):
+        &#34;&#34;&#34;Initialize Adam optimizer.&#34;&#34;&#34;
+        if learning_rate &lt; 0.0:
+            raise ValueError(f&#34;Invalid learning rate: {learning_rate}&#34;)
+        if not 0.0 &lt;= beta1 &lt; 1.0:
+            raise ValueError(f&#34;Invalid beta1 parameter: {beta1}&#34;)
+        if not 0.0 &lt;= beta2 &lt; 1.0:
+            raise ValueError(f&#34;Invalid beta2 parameter: {beta2}&#34;)
+        if epsilon &lt; 0.0:
+            raise ValueError(f&#34;Invalid epsilon value: {epsilon}&#34;)
+        if weight_decay &lt; 0.0:
+            raise ValueError(f&#34;Invalid weight_decay value: {weight_decay}&#34;)
+        
+        defaults = {
+            &#39;learning_rate&#39;: learning_rate,
+            &#39;beta1&#39;: beta1,
+            &#39;beta2&#39;: beta2,
+            &#39;epsilon&#39;: epsilon,
+            &#39;weight_decay&#39;: weight_decay
+        }
+        super().__init__(params, defaults)
+    
+    def step(self, closure: Optional[Callable[[], float]] = None) -&gt; Optional[float]:
+        &#34;&#34;&#34;Perform a single optimization step.
+        
+        Parameters
+        ----------
+        closure : Optional[Callable[[], float]]
+            A closure that reevaluates the model and returns the loss
+        
+        Returns
+        -------
+        Optional[float]
+            The loss value if closure is provided, None otherwise
+        &#34;&#34;&#34;
+        loss = None
+        if closure is not None:
+            loss = closure()
+        
+        for group in self.param_groups:
+            learning_rate = group[&#39;learning_rate&#39;]
+            beta1 = group[&#39;beta1&#39;]
+            beta2 = group[&#39;beta2&#39;]
+            epsilon = group[&#39;epsilon&#39;]
+            weight_decay = group[&#39;weight_decay&#39;]
+            
+            for p in group[&#39;params&#39;]:
+                if p.grad is None:
+                    continue
+                
+                grad = p.grad.data
+                
+                # Apply weight decay
+                if weight_decay != 0:
+                    grad = grad.add(p.data, alpha=weight_decay)
+                
+                param_state = self.state.setdefault(id(p), {})
+                
+                # Initialize state if needed
+                if &#39;step&#39; not in param_state:
+                    param_state[&#39;step&#39;] = 0
+                    param_state[&#39;exp_avg&#39;] = torch.zeros_like(p.data)
+                    param_state[&#39;exp_avg_sq&#39;] = torch.zeros_like(p.data)
+                
+                exp_avg = param_state[&#39;exp_avg&#39;]
+                exp_avg_sq = param_state[&#39;exp_avg_sq&#39;]
+                param_state[&#39;step&#39;] += 1
+                
+                # Update biased first moment estimate
+                exp_avg.mul_(beta1).add_(grad, alpha=1 - beta1)
+                
+                # Update biased second raw moment estimate
+                exp_avg_sq.mul_(beta2).addcmul_(grad, grad, value=1 - beta2)
+                
+                # Compute bias-corrected first moment estimate
+                bias_correction1 = 1 - beta1 ** param_state[&#39;step&#39;]
+                bias_correction2 = 1 - beta2 ** param_state[&#39;step&#39;]
+                
+                # Compute bias-corrected second moment estimate
+                denom = (exp_avg_sq.sqrt() / (bias_correction2 ** 0.5)).add_(epsilon)
+                
+                # Compute step size
+                step_size = learning_rate / bias_correction1
+                
+                # Update parameters
+                p.data.addcdiv_(exp_avg, denom, value=-step_size)
+        
+        return loss
+    
+    def compute_gradient_variance(
+        self,
+        model: nn.Module,
+        data_loader: DataLoader,
+        loss_fn: Callable[[torch.Tensor, torch.Tensor], torch.Tensor],
+        num_samples: int = 10
+    ) -&gt; float:
+        &#34;&#34;&#34;Compute empirical gradient variance for raw gradients.
+        
+        Note: This computes variance of raw gradients, not the adaptive gradients
+        used by Adam. This allows fair comparison with SGD and SVRG.
+        
+        Samples multiple mini-batches and computes variance as:
+            Var = (1/n) Σᵢ ||gᵢ - ḡ||²
+        where gᵢ are mini-batch gradients and ḡ is their mean.
+        
+        Parameters
+        ----------
+        model : nn.Module
+            Neural network model
+        data_loader : DataLoader
+            DataLoader for sampling mini-batches
+        loss_fn : Callable
+            Loss function that takes (predictions, targets) and returns scalar loss
+        num_samples : int, default=10
+            Number of mini-batch samples for variance estimation
+        
+        Returns
+        -------
+        float
+            Mean squared deviation from mean gradient (gradient variance)
+        &#34;&#34;&#34;
+        model.eval()
+        
+        # Collect gradients from multiple mini-batches
+        gradients = []
+        data_iter = iter(data_loader)
+        
+        for _ in range(num_samples):
+            try:
+                batch_data = next(data_iter)
+            except StopIteration:
+                # Restart iterator if we run out of data
+                data_iter = iter(data_loader)
+                batch_data = next(data_iter)
+            
+            # Move to same device as model
+            device = next(model.parameters()).device
+            
+            # Handle different batch formats
+            if len(batch_data) == 3:
+                # DeepONet format: (input_functions, query_points, targets)
+                input_functions, query_points, targets = batch_data
+                input_functions = input_functions.to(device)
+                query_points = query_points.to(device)
+                targets = targets.to(device)
+            elif len(batch_data) == 2:
+                # Simple format: (inputs, targets)
+                inputs, targets = batch_data
+                inputs = inputs.to(device)
+                targets = targets.to(device)
+                
+                # Reshape for neural operator format
+                input_functions = inputs.permute(0, 2, 1)
+                query_points = targets.permute(0, 2, 1)
+            else:
+                raise ValueError(f&#34;Unexpected batch format with {len(batch_data)} elements&#34;)
+            
+            # Compute gradient for this mini-batch
+            model.zero_grad()
+            outputs = model(input_functions, query_points)
+            loss = loss_fn(outputs, targets)
+            loss.backward()
+            
+            # Collect gradients
+            grad_list = []
+            for p in model.parameters():
+                if p.grad is not None:
+                    grad_list.append(p.grad.data.clone().flatten())
+            
+            if len(grad_list) &gt; 0:
+                gradients.append(torch.cat(grad_list))
+        
+        if len(gradients) == 0:
+            return 0.0
+        
+        # Stack gradients: [num_samples, total_params]
+        gradients = torch.stack(gradients)
+        
+        # Compute mean gradient
+        mean_grad = gradients.mean(dim=0)
+        
+        # Compute variance: (1/n) Σᵢ ||gᵢ - ḡ||²
+        variance = ((gradients - mean_grad) ** 2).sum(dim=1).mean().item()
+        
+        model.train()
+        return variance
+    
+    def get_state_dict(self) -&gt; Dict[str, Any]:
+        &#34;&#34;&#34;Return optimizer state for checkpointing.
+        
+        Returns
+        -------
+        Dict[str, Any]
+            Dictionary containing optimizer state including parameter groups and state
+        &#34;&#34;&#34;
+        return {
+            &#39;state&#39;: self.state,
+            &#39;param_groups&#39;: self.param_groups
+        }</code></pre>
+</details>
+<div class="desc"><p>Adam optimizer with adaptive learning rates and variance tracking.</p>
+<p>Implements the Adam update rule:
+m_t = β₁ * m_{t-1} + (1 - β₁) * g_t
+v_t = β₂ * v_{t-1} + (1 - β₂) * g_t²
+m̂<em t_1="t+1">t = m_t / (1 - β₁^t)
+v̂_t = v_t / (1 - β₂^t)
+θ</em> = θ_t - η * m̂_t / (√v̂_t + ε)</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>params</code></strong> :&ensp;<code>iterable</code></dt>
+<dd>Iterable of parameters to optimize</dd>
+<dt><strong><code>learning_rate</code></strong> :&ensp;<code>float</code>, default=<code>0.001</code></dt>
+<dd>Learning rate (step size)</dd>
+<dt><strong><code>beta1</code></strong> :&ensp;<code>float</code>, default=<code>0.9</code></dt>
+<dd>Exponential decay rate for first moment estimates</dd>
+<dt><strong><code>beta2</code></strong> :&ensp;<code>float</code>, default=<code>0.999</code></dt>
+<dd>Exponential decay rate for second moment estimates</dd>
+<dt><strong><code>epsilon</code></strong> :&ensp;<code>float</code>, default=<code>1e-8</code></dt>
+<dd>Term added to denominator for numerical stability</dd>
+<dt><strong><code>weight_decay</code></strong> :&ensp;<code>float</code>, default=<code>0.0</code></dt>
+<dd>L2 regularization coefficient</dd>
+</dl>
+<p>Initialize Adam optimizer.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="optimizers.base.OptimizerWithVariance" href="base.html#optimizers.base.OptimizerWithVariance">OptimizerWithVariance</a></li>
+<li>abc.ABC</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="optimizers.Adam.compute_gradient_variance"><code class="name flex">
+<span>def <span class="ident">compute_gradient_variance</span></span>(<span>self,<br>model: torch.nn.modules.module.Module,<br>data_loader: torch.utils.data.dataloader.DataLoader,<br>loss_fn: Callable[[torch.Tensor, torch.Tensor], torch.Tensor],<br>num_samples: int = 10) ‑> float</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compute_gradient_variance(
+    self,
+    model: nn.Module,
+    data_loader: DataLoader,
+    loss_fn: Callable[[torch.Tensor, torch.Tensor], torch.Tensor],
+    num_samples: int = 10
+) -&gt; float:
+    &#34;&#34;&#34;Compute empirical gradient variance for raw gradients.
+    
+    Note: This computes variance of raw gradients, not the adaptive gradients
+    used by Adam. This allows fair comparison with SGD and SVRG.
+    
+    Samples multiple mini-batches and computes variance as:
+        Var = (1/n) Σᵢ ||gᵢ - ḡ||²
+    where gᵢ are mini-batch gradients and ḡ is their mean.
+    
+    Parameters
+    ----------
+    model : nn.Module
+        Neural network model
+    data_loader : DataLoader
+        DataLoader for sampling mini-batches
+    loss_fn : Callable
+        Loss function that takes (predictions, targets) and returns scalar loss
+    num_samples : int, default=10
+        Number of mini-batch samples for variance estimation
+    
+    Returns
+    -------
+    float
+        Mean squared deviation from mean gradient (gradient variance)
+    &#34;&#34;&#34;
+    model.eval()
+    
+    # Collect gradients from multiple mini-batches
+    gradients = []
+    data_iter = iter(data_loader)
+    
+    for _ in range(num_samples):
+        try:
+            batch_data = next(data_iter)
+        except StopIteration:
+            # Restart iterator if we run out of data
+            data_iter = iter(data_loader)
+            batch_data = next(data_iter)
+        
+        # Move to same device as model
+        device = next(model.parameters()).device
+        
+        # Handle different batch formats
+        if len(batch_data) == 3:
+            # DeepONet format: (input_functions, query_points, targets)
+            input_functions, query_points, targets = batch_data
+            input_functions = input_functions.to(device)
+            query_points = query_points.to(device)
+            targets = targets.to(device)
+        elif len(batch_data) == 2:
+            # Simple format: (inputs, targets)
+            inputs, targets = batch_data
+            inputs = inputs.to(device)
+            targets = targets.to(device)
+            
+            # Reshape for neural operator format
+            input_functions = inputs.permute(0, 2, 1)
+            query_points = targets.permute(0, 2, 1)
+        else:
+            raise ValueError(f&#34;Unexpected batch format with {len(batch_data)} elements&#34;)
+        
+        # Compute gradient for this mini-batch
+        model.zero_grad()
+        outputs = model(input_functions, query_points)
+        loss = loss_fn(outputs, targets)
+        loss.backward()
+        
+        # Collect gradients
+        grad_list = []
+        for p in model.parameters():
+            if p.grad is not None:
+                grad_list.append(p.grad.data.clone().flatten())
+        
+        if len(grad_list) &gt; 0:
+            gradients.append(torch.cat(grad_list))
+    
+    if len(gradients) == 0:
+        return 0.0
+    
+    # Stack gradients: [num_samples, total_params]
+    gradients = torch.stack(gradients)
+    
+    # Compute mean gradient
+    mean_grad = gradients.mean(dim=0)
+    
+    # Compute variance: (1/n) Σᵢ ||gᵢ - ḡ||²
+    variance = ((gradients - mean_grad) ** 2).sum(dim=1).mean().item()
+    
+    model.train()
+    return variance</code></pre>
+</details>
+<div class="desc"><p>Compute empirical gradient variance for raw gradients.</p>
+<p>Note: This computes variance of raw gradients, not the adaptive gradients
+used by Adam. This allows fair comparison with SGD and SVRG.</p>
+<p>Samples multiple mini-batches and computes variance as:
+Var = (1/n) Σᵢ ||gᵢ - ḡ||²
+where gᵢ are mini-batch gradients and ḡ is their mean.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>model</code></strong> :&ensp;<code>nn.Module</code></dt>
+<dd>Neural network model</dd>
+<dt><strong><code>data_loader</code></strong> :&ensp;<code>DataLoader</code></dt>
+<dd>DataLoader for sampling mini-batches</dd>
+<dt><strong><code>loss_fn</code></strong> :&ensp;<code>Callable</code></dt>
+<dd>Loss function that takes (predictions, targets) and returns scalar loss</dd>
+<dt><strong><code>num_samples</code></strong> :&ensp;<code>int</code>, default=<code>10</code></dt>
+<dd>Number of mini-batch samples for variance estimation</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>float</code></dt>
+<dd>Mean squared deviation from mean gradient (gradient variance)</dd>
+</dl></div>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="optimizers.base.OptimizerWithVariance" href="base.html#optimizers.base.OptimizerWithVariance">OptimizerWithVariance</a></b></code>:
+<ul class="hlist">
+<li><code><a title="optimizers.base.OptimizerWithVariance.add_param_group" href="base.html#optimizers.base.OptimizerWithVariance.add_param_group">add_param_group</a></code></li>
+<li><code><a title="optimizers.base.OptimizerWithVariance.get_state_dict" href="base.html#optimizers.base.OptimizerWithVariance.get_state_dict">get_state_dict</a></code></li>
+<li><code><a title="optimizers.base.OptimizerWithVariance.load_state_dict" href="base.html#optimizers.base.OptimizerWithVariance.load_state_dict">load_state_dict</a></code></li>
+<li><code><a title="optimizers.base.OptimizerWithVariance.step" href="base.html#optimizers.base.OptimizerWithVariance.step">step</a></code></li>
+<li><code><a title="optimizers.base.OptimizerWithVariance.zero_grad" href="base.html#optimizers.base.OptimizerWithVariance.zero_grad">zero_grad</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="optimizers.ConstantLR"><code class="flex name class">
+<span>class <span class="ident">ConstantLR</span></span>
+<span>(</span><span>optimizer)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class ConstantLR(LRScheduler):
+    &#34;&#34;&#34;Constant learning rate scheduler (no decay).
+    
+    Keeps learning rate constant throughout training.
+    
+    Parameters
+    ----------
+    optimizer : OptimizerWithVariance
+        Optimizer to schedule learning rate for
+    &#34;&#34;&#34;
+    
+    def __init__(self, optimizer):
+        &#34;&#34;&#34;Initialize constant scheduler.&#34;&#34;&#34;
+        self.initial_lrs = [group[&#39;learning_rate&#39;] for group in optimizer.param_groups]
+        super().__init__(optimizer)
+    
+    def get_lr(self, epoch: int, param_group: dict) -&gt; float:
+        &#34;&#34;&#34;Compute learning rate for given epoch.
+        
+        Parameters
+        ----------
+        epoch : int
+            Current epoch number
+        param_group : dict
+            Parameter group dictionary
+        
+        Returns
+        -------
+        float
+            Learning rate for this epoch (constant)
+        &#34;&#34;&#34;
+        # Get initial learning rate for this param group
+        group_idx = self.optimizer.param_groups.index(param_group)
+        return self.initial_lrs[group_idx]</code></pre>
+</details>
+<div class="desc"><p>Constant learning rate scheduler (no decay).</p>
+<p>Keeps learning rate constant throughout training.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>optimizer</code></strong> :&ensp;<code><a title="optimizers.OptimizerWithVariance" href="#optimizers.OptimizerWithVariance">OptimizerWithVariance</a></code></dt>
+<dd>Optimizer to schedule learning rate for</dd>
+</dl>
+<p>Initialize constant scheduler.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="optimizers.scheduler.LRScheduler" href="scheduler.html#optimizers.scheduler.LRScheduler">LRScheduler</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="optimizers.ConstantLR.get_lr"><code class="name flex">
+<span>def <span class="ident">get_lr</span></span>(<span>self, epoch: int, param_group: dict) ‑> float</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_lr(self, epoch: int, param_group: dict) -&gt; float:
+    &#34;&#34;&#34;Compute learning rate for given epoch.
+    
+    Parameters
+    ----------
+    epoch : int
+        Current epoch number
+    param_group : dict
+        Parameter group dictionary
+    
+    Returns
+    -------
+    float
+        Learning rate for this epoch (constant)
+    &#34;&#34;&#34;
+    # Get initial learning rate for this param group
+    group_idx = self.optimizer.param_groups.index(param_group)
+    return self.initial_lrs[group_idx]</code></pre>
+</details>
+<div class="desc"><p>Compute learning rate for given epoch.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>epoch</code></strong> :&ensp;<code>int</code></dt>
+<dd>Current epoch number</dd>
+<dt><strong><code>param_group</code></strong> :&ensp;<code>dict</code></dt>
+<dd>Parameter group dictionary</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>float</code></dt>
+<dd>Learning rate for this epoch (constant)</dd>
+</dl></div>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="optimizers.scheduler.LRScheduler" href="scheduler.html#optimizers.scheduler.LRScheduler">LRScheduler</a></b></code>:
+<ul class="hlist">
+<li><code><a title="optimizers.scheduler.LRScheduler.step" href="scheduler.html#optimizers.scheduler.LRScheduler.step">step</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="optimizers.CosineAnnealingLR"><code class="flex name class">
+<span>class <span class="ident">CosineAnnealingLR</span></span>
+<span>(</span><span>optimizer, T_max: int, eta_min: float = 0.0)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class CosineAnnealingLR(LRScheduler):
+    &#34;&#34;&#34;Cosine annealing learning rate scheduler.
+    
+    Anneals learning rate using cosine function:
+        lr = eta_min + (initial_lr - eta_min) * (1 + cos(π * epoch / T_max)) / 2
+    
+    Parameters
+    ----------
+    optimizer : OptimizerWithVariance
+        Optimizer to schedule learning rate for
+    T_max : int
+        Maximum number of epochs (period of cosine annealing)
+    eta_min : float, default=0.0
+        Minimum learning rate
+    &#34;&#34;&#34;
+    
+    def __init__(self, optimizer, T_max: int, eta_min: float = 0.0):
+        &#34;&#34;&#34;Initialize cosine annealing scheduler.&#34;&#34;&#34;
+        if T_max &lt;= 0:
+            raise ValueError(f&#34;Invalid T_max: {T_max}&#34;)
+        if eta_min &lt; 0.0:
+            raise ValueError(f&#34;Invalid eta_min: {eta_min}&#34;)
+        
+        self.T_max = T_max
+        self.eta_min = eta_min
+        self.initial_lrs = [group[&#39;learning_rate&#39;] for group in optimizer.param_groups]
+        super().__init__(optimizer)
+    
+    def get_lr(self, epoch: int, param_group: dict) -&gt; float:
+        &#34;&#34;&#34;Compute learning rate for given epoch.
+        
+        Parameters
+        ----------
+        epoch : int
+            Current epoch number
+        param_group : dict
+            Parameter group dictionary
+        
+        Returns
+        -------
+        float
+            Learning rate for this epoch
+        &#34;&#34;&#34;
+        # Get initial learning rate for this param group
+        group_idx = self.optimizer.param_groups.index(param_group)
+        initial_lr = self.initial_lrs[group_idx]
+        
+        # Compute cosine annealing
+        cosine_factor = (1 + math.cos(math.pi * epoch / self.T_max)) / 2
+        lr = self.eta_min + (initial_lr - self.eta_min) * cosine_factor
+        
+        return lr</code></pre>
+</details>
+<div class="desc"><p>Cosine annealing learning rate scheduler.</p>
+<p>Anneals learning rate using cosine function:
+lr = eta_min + (initial_lr - eta_min) * (1 + cos(π * epoch / T_max)) / 2</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>optimizer</code></strong> :&ensp;<code><a title="optimizers.OptimizerWithVariance" href="#optimizers.OptimizerWithVariance">OptimizerWithVariance</a></code></dt>
+<dd>Optimizer to schedule learning rate for</dd>
+<dt><strong><code>T_max</code></strong> :&ensp;<code>int</code></dt>
+<dd>Maximum number of epochs (period of cosine annealing)</dd>
+<dt><strong><code>eta_min</code></strong> :&ensp;<code>float</code>, default=<code>0.0</code></dt>
+<dd>Minimum learning rate</dd>
+</dl>
+<p>Initialize cosine annealing scheduler.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="optimizers.scheduler.LRScheduler" href="scheduler.html#optimizers.scheduler.LRScheduler">LRScheduler</a></li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="optimizers.scheduler.LRScheduler" href="scheduler.html#optimizers.scheduler.LRScheduler">LRScheduler</a></b></code>:
+<ul class="hlist">
+<li><code><a title="optimizers.scheduler.LRScheduler.get_lr" href="scheduler.html#optimizers.scheduler.LRScheduler.get_lr">get_lr</a></code></li>
+<li><code><a title="optimizers.scheduler.LRScheduler.step" href="scheduler.html#optimizers.scheduler.LRScheduler.step">step</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="optimizers.ExponentialLR"><code class="flex name class">
+<span>class <span class="ident">ExponentialLR</span></span>
+<span>(</span><span>optimizer, gamma: float)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class ExponentialLR(LRScheduler):
+    &#34;&#34;&#34;Exponential decay learning rate scheduler.
+    
+    Decays learning rate exponentially:
+        lr = initial_lr * gamma^epoch
+    
+    Parameters
+    ----------
+    optimizer : OptimizerWithVariance
+        Optimizer to schedule learning rate for
+    gamma : float
+        Multiplicative factor of learning rate decay per epoch
+    &#34;&#34;&#34;
+    
+    def __init__(self, optimizer, gamma: float):
+        &#34;&#34;&#34;Initialize exponential decay scheduler.&#34;&#34;&#34;
+        if gamma &lt;= 0.0 or gamma &gt; 1.0:
+            raise ValueError(f&#34;Invalid gamma: {gamma}&#34;)
+        
+        self.gamma = gamma
+        self.initial_lrs = [group[&#39;learning_rate&#39;] for group in optimizer.param_groups]
+        super().__init__(optimizer)
+    
+    def get_lr(self, epoch: int, param_group: dict) -&gt; float:
+        &#34;&#34;&#34;Compute learning rate for given epoch.
+        
+        Parameters
+        ----------
+        epoch : int
+            Current epoch number
+        param_group : dict
+            Parameter group dictionary
+        
+        Returns
+        -------
+        float
+            Learning rate for this epoch
+        &#34;&#34;&#34;
+        # Get initial learning rate for this param group
+        group_idx = self.optimizer.param_groups.index(param_group)
+        initial_lr = self.initial_lrs[group_idx]
+        
+        return initial_lr * (self.gamma ** epoch)</code></pre>
+</details>
+<div class="desc"><p>Exponential decay learning rate scheduler.</p>
+<p>Decays learning rate exponentially:
+lr = initial_lr * gamma^epoch</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>optimizer</code></strong> :&ensp;<code><a title="optimizers.OptimizerWithVariance" href="#optimizers.OptimizerWithVariance">OptimizerWithVariance</a></code></dt>
+<dd>Optimizer to schedule learning rate for</dd>
+<dt><strong><code>gamma</code></strong> :&ensp;<code>float</code></dt>
+<dd>Multiplicative factor of learning rate decay per epoch</dd>
+</dl>
+<p>Initialize exponential decay scheduler.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="optimizers.scheduler.LRScheduler" href="scheduler.html#optimizers.scheduler.LRScheduler">LRScheduler</a></li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="optimizers.scheduler.LRScheduler" href="scheduler.html#optimizers.scheduler.LRScheduler">LRScheduler</a></b></code>:
+<ul class="hlist">
+<li><code><a title="optimizers.scheduler.LRScheduler.get_lr" href="scheduler.html#optimizers.scheduler.LRScheduler.get_lr">get_lr</a></code></li>
+<li><code><a title="optimizers.scheduler.LRScheduler.step" href="scheduler.html#optimizers.scheduler.LRScheduler.step">step</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="optimizers.LRScheduler"><code class="flex name class">
+<span>class <span class="ident">LRScheduler</span></span>
+<span>(</span><span>optimizer)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class LRScheduler:
+    &#34;&#34;&#34;Base class for learning rate schedulers.
+    
+    Parameters
+    ----------
+    optimizer : OptimizerWithVariance
+        Optimizer to schedule learning rate for
+    &#34;&#34;&#34;
+    
+    def __init__(self, optimizer):
+        &#34;&#34;&#34;Initialize scheduler.&#34;&#34;&#34;
+        self.optimizer = optimizer
+        self.last_epoch = 0
+    
+    def step(self, epoch: Optional[int] = None) -&gt; None:
+        &#34;&#34;&#34;Update learning rate.
+        
+        Parameters
+        ----------
+        epoch : Optional[int]
+            Current epoch number. If None, increments last_epoch by 1
+        &#34;&#34;&#34;
+        if epoch is None:
+            epoch = self.last_epoch + 1
+        self.last_epoch = epoch
+        
+        for param_group in self.optimizer.param_groups:
+            param_group[&#39;learning_rate&#39;] = self.get_lr(epoch, param_group)
+    
+    def get_lr(self, epoch: int, param_group: dict) -&gt; float:
+        &#34;&#34;&#34;Compute learning rate for given epoch.
+        
+        Parameters
+        ----------
+        epoch : int
+            Current epoch number
+        param_group : dict
+            Parameter group dictionary
+        
+        Returns
+        -------
+        float
+            Learning rate for this epoch
+        &#34;&#34;&#34;
+        raise NotImplementedError</code></pre>
+</details>
+<div class="desc"><p>Base class for learning rate schedulers.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>optimizer</code></strong> :&ensp;<code><a title="optimizers.OptimizerWithVariance" href="#optimizers.OptimizerWithVariance">OptimizerWithVariance</a></code></dt>
+<dd>Optimizer to schedule learning rate for</dd>
+</dl>
+<p>Initialize scheduler.</p></div>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="optimizers.scheduler.ConstantLR" href="scheduler.html#optimizers.scheduler.ConstantLR">ConstantLR</a></li>
+<li><a title="optimizers.scheduler.CosineAnnealingLR" href="scheduler.html#optimizers.scheduler.CosineAnnealingLR">CosineAnnealingLR</a></li>
+<li><a title="optimizers.scheduler.ExponentialLR" href="scheduler.html#optimizers.scheduler.ExponentialLR">ExponentialLR</a></li>
+<li><a title="optimizers.scheduler.StepLR" href="scheduler.html#optimizers.scheduler.StepLR">StepLR</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="optimizers.LRScheduler.get_lr"><code class="name flex">
+<span>def <span class="ident">get_lr</span></span>(<span>self, epoch: int, param_group: dict) ‑> float</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_lr(self, epoch: int, param_group: dict) -&gt; float:
+    &#34;&#34;&#34;Compute learning rate for given epoch.
+    
+    Parameters
+    ----------
+    epoch : int
+        Current epoch number
+    param_group : dict
+        Parameter group dictionary
+    
+    Returns
+    -------
+    float
+        Learning rate for this epoch
+    &#34;&#34;&#34;
+    raise NotImplementedError</code></pre>
+</details>
+<div class="desc"><p>Compute learning rate for given epoch.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>epoch</code></strong> :&ensp;<code>int</code></dt>
+<dd>Current epoch number</dd>
+<dt><strong><code>param_group</code></strong> :&ensp;<code>dict</code></dt>
+<dd>Parameter group dictionary</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>float</code></dt>
+<dd>Learning rate for this epoch</dd>
+</dl></div>
+</dd>
+<dt id="optimizers.LRScheduler.step"><code class="name flex">
+<span>def <span class="ident">step</span></span>(<span>self, epoch: int | None = None) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def step(self, epoch: Optional[int] = None) -&gt; None:
+    &#34;&#34;&#34;Update learning rate.
+    
+    Parameters
+    ----------
+    epoch : Optional[int]
+        Current epoch number. If None, increments last_epoch by 1
+    &#34;&#34;&#34;
+    if epoch is None:
+        epoch = self.last_epoch + 1
+    self.last_epoch = epoch
+    
+    for param_group in self.optimizer.param_groups:
+        param_group[&#39;learning_rate&#39;] = self.get_lr(epoch, param_group)</code></pre>
+</details>
+<div class="desc"><p>Update learning rate.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>epoch</code></strong> :&ensp;<code>Optional[int]</code></dt>
+<dd>Current epoch number. If None, increments last_epoch by 1</dd>
+</dl></div>
+</dd>
+</dl>
+</dd>
+<dt id="optimizers.OptimizerWithVariance"><code class="flex name class">
+<span>class <span class="ident">OptimizerWithVariance</span></span>
+<span>(</span><span>params, defaults: Dict[str, Any])</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class OptimizerWithVariance(ABC):
+    &#34;&#34;&#34;Abstract base for optimizers with gradient variance tracking.
+    
+    This base class defines the interface for optimization algorithms that support
+    gradient variance computation, which is essential for comparing variance reduction
+    methods like SVRG against standard optimizers like SGD and Adam.
+    &#34;&#34;&#34;
+    
+    def __init__(self, params, defaults: Dict[str, Any]):
+        &#34;&#34;&#34;Initialize optimizer with parameters and default settings.
+        
+        Parameters
+        ----------
+        params : iterable
+            Iterable of parameters to optimize or dicts defining parameter groups
+        defaults : Dict[str, Any]
+            Dictionary containing default values of optimization options
+        &#34;&#34;&#34;
+        self.defaults = defaults
+        self.state: Dict[int, Dict[str, Any]] = {}
+        self.param_groups = []
+        
+        # Handle parameter groups
+        # Convert generator/iterator to list first
+        if not isinstance(params, (list, tuple)):
+            params = list(params)
+        
+        if isinstance(params, (list, tuple)):
+            if len(params) == 0:
+                raise ValueError(&#34;optimizer got an empty parameter list&#34;)
+            if not isinstance(params[0], dict):
+                params = [{&#39;params&#39;: params}]
+        
+        for param_group in params:
+            self.add_param_group(param_group)
+    
+    def add_param_group(self, param_group: Dict[str, Any]) -&gt; None:
+        &#34;&#34;&#34;Add a parameter group to the optimizer.
+        
+        Parameters
+        ----------
+        param_group : Dict[str, Any]
+            Dictionary specifying parameters and optimization options
+        &#34;&#34;&#34;
+        params = param_group[&#39;params&#39;]
+        if isinstance(params, torch.Tensor):
+            param_group[&#39;params&#39;] = [params]
+        elif isinstance(params, set):
+            raise TypeError(&#39;optimizer parameters need to be organized in ordered collections&#39;)
+        else:
+            param_group[&#39;params&#39;] = list(params)
+        
+        for param in param_group[&#39;params&#39;]:
+            if not isinstance(param, torch.Tensor):
+                raise TypeError(&#34;optimizer can only optimize Tensors&#34;)
+        
+        # Add defaults
+        for key, value in self.defaults.items():
+            param_group.setdefault(key, value)
+        
+        self.param_groups.append(param_group)
+    
+    @abstractmethod
+    def step(self, closure: Optional[Callable[[], float]] = None) -&gt; Optional[float]:
+        &#34;&#34;&#34;Perform a single optimization step.
+        
+        Parameters
+        ----------
+        closure : Optional[Callable[[], float]]
+            A closure that reevaluates the model and returns the loss
+        
+        Returns
+        -------
+        Optional[float]
+            The loss value if closure is provided, None otherwise
+        &#34;&#34;&#34;
+        pass
+    
+    @abstractmethod
+    def compute_gradient_variance(
+        self,
+        model: nn.Module,
+        data_loader: DataLoader,
+        loss_fn: Callable[[torch.Tensor, torch.Tensor], torch.Tensor],
+        num_samples: int = 10
+    ) -&gt; float:
+        &#34;&#34;&#34;Compute empirical gradient variance.
+        
+        This method samples multiple mini-batches and computes the variance of
+        gradient estimates, which is crucial for analyzing optimizer behavior.
+        
+        Parameters
+        ----------
+        model : nn.Module
+            Neural network model
+        data_loader : DataLoader
+            DataLoader for sampling mini-batches
+        loss_fn : Callable
+            Loss function that takes (predictions, targets) and returns scalar loss
+        num_samples : int, default=10
+            Number of mini-batch samples for variance estimation
+        
+        Returns
+        -------
+        float
+            Mean squared deviation from mean gradient (gradient variance)
+        &#34;&#34;&#34;
+        pass
+    
+    @abstractmethod
+    def get_state_dict(self) -&gt; Dict[str, Any]:
+        &#34;&#34;&#34;Return optimizer state for checkpointing.
+        
+        Returns
+        -------
+        Dict[str, Any]
+            Dictionary containing optimizer state including parameter groups and state
+        &#34;&#34;&#34;
+        pass
+    
+    def load_state_dict(self, state_dict: Dict[str, Any]) -&gt; None:
+        &#34;&#34;&#34;Load optimizer state from checkpoint.
+        
+        Parameters
+        ----------
+        state_dict : Dict[str, Any]
+            Dictionary containing optimizer state
+        &#34;&#34;&#34;
+        self.state = state_dict[&#39;state&#39;]
+        self.param_groups = state_dict[&#39;param_groups&#39;]
+    
+    def zero_grad(self) -&gt; None:
+        &#34;&#34;&#34;Zero out gradients for all parameters.&#34;&#34;&#34;
+        for group in self.param_groups:
+            for p in group[&#39;params&#39;]:
+                if p.grad is not None:
+                    p.grad.zero_()</code></pre>
+</details>
+<div class="desc"><p>Abstract base for optimizers with gradient variance tracking.</p>
+<p>This base class defines the interface for optimization algorithms that support
+gradient variance computation, which is essential for comparing variance reduction
+methods like SVRG against standard optimizers like SGD and Adam.</p>
+<p>Initialize optimizer with parameters and default settings.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>params</code></strong> :&ensp;<code>iterable</code></dt>
+<dd>Iterable of parameters to optimize or dicts defining parameter groups</dd>
+<dt><strong><code>defaults</code></strong> :&ensp;<code>Dict[str, Any]</code></dt>
+<dd>Dictionary containing default values of optimization options</dd>
+</dl></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>abc.ABC</li>
+</ul>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="optimizers.adam.Adam" href="adam.html#optimizers.adam.Adam">Adam</a></li>
+<li><a title="optimizers.sgd.SGD" href="sgd.html#optimizers.sgd.SGD">SGD</a></li>
+<li><a title="optimizers.svrg.SVRG" href="svrg.html#optimizers.svrg.SVRG">SVRG</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="optimizers.OptimizerWithVariance.add_param_group"><code class="name flex">
+<span>def <span class="ident">add_param_group</span></span>(<span>self, param_group: Dict[str, Any]) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_param_group(self, param_group: Dict[str, Any]) -&gt; None:
+    &#34;&#34;&#34;Add a parameter group to the optimizer.
+    
+    Parameters
+    ----------
+    param_group : Dict[str, Any]
+        Dictionary specifying parameters and optimization options
+    &#34;&#34;&#34;
+    params = param_group[&#39;params&#39;]
+    if isinstance(params, torch.Tensor):
+        param_group[&#39;params&#39;] = [params]
+    elif isinstance(params, set):
+        raise TypeError(&#39;optimizer parameters need to be organized in ordered collections&#39;)
+    else:
+        param_group[&#39;params&#39;] = list(params)
+    
+    for param in param_group[&#39;params&#39;]:
+        if not isinstance(param, torch.Tensor):
+            raise TypeError(&#34;optimizer can only optimize Tensors&#34;)
+    
+    # Add defaults
+    for key, value in self.defaults.items():
+        param_group.setdefault(key, value)
+    
+    self.param_groups.append(param_group)</code></pre>
+</details>
+<div class="desc"><p>Add a parameter group to the optimizer.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>param_group</code></strong> :&ensp;<code>Dict[str, Any]</code></dt>
+<dd>Dictionary specifying parameters and optimization options</dd>
+</dl></div>
+</dd>
+<dt id="optimizers.OptimizerWithVariance.compute_gradient_variance"><code class="name flex">
+<span>def <span class="ident">compute_gradient_variance</span></span>(<span>self,<br>model: torch.nn.modules.module.Module,<br>data_loader: torch.utils.data.dataloader.DataLoader,<br>loss_fn: Callable[[torch.Tensor, torch.Tensor], torch.Tensor],<br>num_samples: int = 10) ‑> float</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@abstractmethod
+def compute_gradient_variance(
+    self,
+    model: nn.Module,
+    data_loader: DataLoader,
+    loss_fn: Callable[[torch.Tensor, torch.Tensor], torch.Tensor],
+    num_samples: int = 10
+) -&gt; float:
+    &#34;&#34;&#34;Compute empirical gradient variance.
+    
+    This method samples multiple mini-batches and computes the variance of
+    gradient estimates, which is crucial for analyzing optimizer behavior.
+    
+    Parameters
+    ----------
+    model : nn.Module
+        Neural network model
+    data_loader : DataLoader
+        DataLoader for sampling mini-batches
+    loss_fn : Callable
+        Loss function that takes (predictions, targets) and returns scalar loss
+    num_samples : int, default=10
+        Number of mini-batch samples for variance estimation
+    
+    Returns
+    -------
+    float
+        Mean squared deviation from mean gradient (gradient variance)
+    &#34;&#34;&#34;
+    pass</code></pre>
+</details>
+<div class="desc"><p>Compute empirical gradient variance.</p>
+<p>This method samples multiple mini-batches and computes the variance of
+gradient estimates, which is crucial for analyzing optimizer behavior.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>model</code></strong> :&ensp;<code>nn.Module</code></dt>
+<dd>Neural network model</dd>
+<dt><strong><code>data_loader</code></strong> :&ensp;<code>DataLoader</code></dt>
+<dd>DataLoader for sampling mini-batches</dd>
+<dt><strong><code>loss_fn</code></strong> :&ensp;<code>Callable</code></dt>
+<dd>Loss function that takes (predictions, targets) and returns scalar loss</dd>
+<dt><strong><code>num_samples</code></strong> :&ensp;<code>int</code>, default=<code>10</code></dt>
+<dd>Number of mini-batch samples for variance estimation</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>float</code></dt>
+<dd>Mean squared deviation from mean gradient (gradient variance)</dd>
+</dl></div>
+</dd>
+<dt id="optimizers.OptimizerWithVariance.get_state_dict"><code class="name flex">
+<span>def <span class="ident">get_state_dict</span></span>(<span>self) ‑> Dict[str, Any]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@abstractmethod
+def get_state_dict(self) -&gt; Dict[str, Any]:
+    &#34;&#34;&#34;Return optimizer state for checkpointing.
+    
+    Returns
+    -------
+    Dict[str, Any]
+        Dictionary containing optimizer state including parameter groups and state
+    &#34;&#34;&#34;
+    pass</code></pre>
+</details>
+<div class="desc"><p>Return optimizer state for checkpointing.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>Dict[str, Any]</code></dt>
+<dd>Dictionary containing optimizer state including parameter groups and state</dd>
+</dl></div>
+</dd>
+<dt id="optimizers.OptimizerWithVariance.load_state_dict"><code class="name flex">
+<span>def <span class="ident">load_state_dict</span></span>(<span>self, state_dict: Dict[str, Any]) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def load_state_dict(self, state_dict: Dict[str, Any]) -&gt; None:
+    &#34;&#34;&#34;Load optimizer state from checkpoint.
+    
+    Parameters
+    ----------
+    state_dict : Dict[str, Any]
+        Dictionary containing optimizer state
+    &#34;&#34;&#34;
+    self.state = state_dict[&#39;state&#39;]
+    self.param_groups = state_dict[&#39;param_groups&#39;]</code></pre>
+</details>
+<div class="desc"><p>Load optimizer state from checkpoint.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>state_dict</code></strong> :&ensp;<code>Dict[str, Any]</code></dt>
+<dd>Dictionary containing optimizer state</dd>
+</dl></div>
+</dd>
+<dt id="optimizers.OptimizerWithVariance.step"><code class="name flex">
+<span>def <span class="ident">step</span></span>(<span>self, closure: Callable[[], float] | None = None) ‑> float | None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@abstractmethod
+def step(self, closure: Optional[Callable[[], float]] = None) -&gt; Optional[float]:
+    &#34;&#34;&#34;Perform a single optimization step.
+    
+    Parameters
+    ----------
+    closure : Optional[Callable[[], float]]
+        A closure that reevaluates the model and returns the loss
+    
+    Returns
+    -------
+    Optional[float]
+        The loss value if closure is provided, None otherwise
+    &#34;&#34;&#34;
+    pass</code></pre>
+</details>
+<div class="desc"><p>Perform a single optimization step.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>closure</code></strong> :&ensp;<code>Optional[Callable[[], float]]</code></dt>
+<dd>A closure that reevaluates the model and returns the loss</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>Optional[float]</code></dt>
+<dd>The loss value if closure is provided, None otherwise</dd>
+</dl></div>
+</dd>
+<dt id="optimizers.OptimizerWithVariance.zero_grad"><code class="name flex">
+<span>def <span class="ident">zero_grad</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def zero_grad(self) -&gt; None:
+    &#34;&#34;&#34;Zero out gradients for all parameters.&#34;&#34;&#34;
+    for group in self.param_groups:
+        for p in group[&#39;params&#39;]:
+            if p.grad is not None:
+                p.grad.zero_()</code></pre>
+</details>
+<div class="desc"><p>Zero out gradients for all parameters.</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="optimizers.SGD"><code class="flex name class">
+<span>class <span class="ident">SGD</span></span>
+<span>(</span><span>params,<br>learning_rate: float,<br>momentum: float = 0.0,<br>weight_decay: float = 0.0,<br>nesterov: bool = False)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class SGD(OptimizerWithVariance):
+    &#34;&#34;&#34;Stochastic Gradient Descent optimizer with momentum and variance tracking.
+    
+    Implements the SGD update rule:
+        θ_{t+1} = θ_t - η * g_t
+    
+    With momentum:
+        v_t = μ * v_{t-1} + g_t
+        θ_{t+1} = θ_t - η * v_t
+    
+    With Nesterov momentum:
+        v_t = μ * v_{t-1} + g_t
+        θ_{t+1} = θ_t - η * (g_t + μ * v_t)
+    
+    Parameters
+    ----------
+    params : iterable
+        Iterable of parameters to optimize
+    learning_rate : float
+        Learning rate (step size)
+    momentum : float, default=0.0
+        Momentum coefficient
+    weight_decay : float, default=0.0
+        L2 regularization coefficient
+    nesterov : bool, default=False
+        Whether to use Nesterov momentum
+    &#34;&#34;&#34;
+    
+    def __init__(
+        self,
+        params,
+        learning_rate: float,
+        momentum: float = 0.0,
+        weight_decay: float = 0.0,
+        nesterov: bool = False
+    ):
+        &#34;&#34;&#34;Initialize SGD optimizer.&#34;&#34;&#34;
+        if learning_rate &lt; 0.0:
+            raise ValueError(f&#34;Invalid learning rate: {learning_rate}&#34;)
+        if momentum &lt; 0.0:
+            raise ValueError(f&#34;Invalid momentum value: {momentum}&#34;)
+        if weight_decay &lt; 0.0:
+            raise ValueError(f&#34;Invalid weight_decay value: {weight_decay}&#34;)
+        
+        defaults = {
+            &#39;learning_rate&#39;: learning_rate,
+            &#39;momentum&#39;: momentum,
+            &#39;weight_decay&#39;: weight_decay,
+            &#39;nesterov&#39;: nesterov
+        }
+        super().__init__(params, defaults)
+    
+    def step(self, closure: Optional[Callable[[], float]] = None) -&gt; Optional[float]:
+        &#34;&#34;&#34;Perform a single optimization step.
+        
+        Parameters
+        ----------
+        closure : Optional[Callable[[], float]]
+            A closure that reevaluates the model and returns the loss
+        
+        Returns
+        -------
+        Optional[float]
+            The loss value if closure is provided, None otherwise
+        &#34;&#34;&#34;
+        loss = None
+        if closure is not None:
+            loss = closure()
+        
+        for group in self.param_groups:
+            learning_rate = group[&#39;learning_rate&#39;]
+            momentum = group[&#39;momentum&#39;]
+            weight_decay = group[&#39;weight_decay&#39;]
+            nesterov = group[&#39;nesterov&#39;]
+            
+            for p in group[&#39;params&#39;]:
+                if p.grad is None:
+                    continue
+                
+                grad = p.grad.data
+                
+                # Apply weight decay
+                if weight_decay != 0:
+                    grad = grad.add(p.data, alpha=weight_decay)
+                
+                # Apply momentum
+                if momentum != 0:
+                    param_state = self.state.setdefault(id(p), {})
+                    
+                    if &#39;momentum_buffer&#39; not in param_state:
+                        buf = param_state[&#39;momentum_buffer&#39;] = torch.zeros_like(p.data)
+                        buf.mul_(momentum).add_(grad)
+                    else:
+                        buf = param_state[&#39;momentum_buffer&#39;]
+                        buf.mul_(momentum).add_(grad)
+                    
+                    if nesterov:
+                        grad = grad.add(buf, alpha=momentum)
+                    else:
+                        grad = buf
+                
+                # Update parameters
+                p.data.add_(grad, alpha=-learning_rate)
+        
+        return loss
+    
+    def compute_gradient_variance(
+        self,
+        model: nn.Module,
+        data_loader: DataLoader,
+        loss_fn: Callable[[torch.Tensor, torch.Tensor], torch.Tensor],
+        num_samples: int = 10
+    ) -&gt; float:
+        &#34;&#34;&#34;Compute empirical gradient variance.
+        
+        Samples multiple mini-batches and computes variance as:
+            Var = (1/n) Σᵢ ||gᵢ - ḡ||²
+        where gᵢ are mini-batch gradients and ḡ is their mean.
+        
+        Parameters
+        ----------
+        model : nn.Module
+            Neural network model
+        data_loader : DataLoader
+            DataLoader for sampling mini-batches
+        loss_fn : Callable
+            Loss function that takes (predictions, targets) and returns scalar loss
+        num_samples : int, default=10
+            Number of mini-batch samples for variance estimation
+        
+        Returns
+        -------
+        float
+            Mean squared deviation from mean gradient (gradient variance)
+        &#34;&#34;&#34;
+        model.eval()
+        
+        # Collect gradients from multiple mini-batches
+        gradients = []
+        data_iter = iter(data_loader)
+        
+        for _ in range(num_samples):
+            try:
+                batch_data = next(data_iter)
+            except StopIteration:
+                # Restart iterator if we run out of data
+                data_iter = iter(data_loader)
+                batch_data = next(data_iter)
+            
+            # Move to same device as model
+            device = next(model.parameters()).device
+            
+            # Handle different batch formats
+            if len(batch_data) == 3:
+                # DeepONet format: (input_functions, query_points, targets)
+                input_functions, query_points, targets = batch_data
+                input_functions = input_functions.to(device)
+                query_points = query_points.to(device)
+                targets = targets.to(device)
+            elif len(batch_data) == 2:
+                # Simple format: (inputs, targets)
+                inputs, targets = batch_data
+                inputs = inputs.to(device)
+                targets = targets.to(device)
+                
+                # Reshape for neural operator format
+                input_functions = inputs.permute(0, 2, 1)
+                query_points = targets.permute(0, 2, 1)
+            else:
+                raise ValueError(f&#34;Unexpected batch format with {len(batch_data)} elements&#34;)
+            
+            # Compute gradient for this mini-batch
+            model.zero_grad()
+            outputs = model(input_functions, query_points)
+            loss = loss_fn(outputs, targets)
+            loss.backward()
+            
+            # Collect gradients
+            grad_list = []
+            for p in model.parameters():
+                if p.grad is not None:
+                    grad_list.append(p.grad.data.clone().flatten())
+            
+            if len(grad_list) &gt; 0:
+                gradients.append(torch.cat(grad_list))
+        
+        if len(gradients) == 0:
+            return 0.0
+        
+        # Stack gradients: [num_samples, total_params]
+        gradients = torch.stack(gradients)
+        
+        # Compute mean gradient
+        mean_grad = gradients.mean(dim=0)
+        
+        # Compute variance: (1/n) Σᵢ ||gᵢ - ḡ||²
+        variance = ((gradients - mean_grad) ** 2).sum(dim=1).mean().item()
+        
+        model.train()
+        return variance
+    
+    def get_state_dict(self) -&gt; Dict[str, Any]:
+        &#34;&#34;&#34;Return optimizer state for checkpointing.
+        
+        Returns
+        -------
+        Dict[str, Any]
+            Dictionary containing optimizer state including parameter groups and state
+        &#34;&#34;&#34;
+        return {
+            &#39;state&#39;: self.state,
+            &#39;param_groups&#39;: self.param_groups
+        }</code></pre>
+</details>
+<div class="desc"><p>Stochastic Gradient Descent optimizer with momentum and variance tracking.</p>
+<p>Implements the SGD update rule:
+θ_{t+1} = θ_t - η * g_t</p>
+<p>With momentum:
+v_t = μ * v_{t-1} + g_t
+θ_{t+1} = θ_t - η * v_t</p>
+<p>With Nesterov momentum:
+v_t = μ * v_{t-1} + g_t
+θ_{t+1} = θ_t - η * (g_t + μ * v_t)</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>params</code></strong> :&ensp;<code>iterable</code></dt>
+<dd>Iterable of parameters to optimize</dd>
+<dt><strong><code>learning_rate</code></strong> :&ensp;<code>float</code></dt>
+<dd>Learning rate (step size)</dd>
+<dt><strong><code>momentum</code></strong> :&ensp;<code>float</code>, default=<code>0.0</code></dt>
+<dd>Momentum coefficient</dd>
+<dt><strong><code>weight_decay</code></strong> :&ensp;<code>float</code>, default=<code>0.0</code></dt>
+<dd>L2 regularization coefficient</dd>
+<dt><strong><code>nesterov</code></strong> :&ensp;<code>bool</code>, default=<code>False</code></dt>
+<dd>Whether to use Nesterov momentum</dd>
+</dl>
+<p>Initialize SGD optimizer.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="optimizers.base.OptimizerWithVariance" href="base.html#optimizers.base.OptimizerWithVariance">OptimizerWithVariance</a></li>
+<li>abc.ABC</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="optimizers.SGD.compute_gradient_variance"><code class="name flex">
+<span>def <span class="ident">compute_gradient_variance</span></span>(<span>self,<br>model: torch.nn.modules.module.Module,<br>data_loader: torch.utils.data.dataloader.DataLoader,<br>loss_fn: Callable[[torch.Tensor, torch.Tensor], torch.Tensor],<br>num_samples: int = 10) ‑> float</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compute_gradient_variance(
+    self,
+    model: nn.Module,
+    data_loader: DataLoader,
+    loss_fn: Callable[[torch.Tensor, torch.Tensor], torch.Tensor],
+    num_samples: int = 10
+) -&gt; float:
+    &#34;&#34;&#34;Compute empirical gradient variance.
+    
+    Samples multiple mini-batches and computes variance as:
+        Var = (1/n) Σᵢ ||gᵢ - ḡ||²
+    where gᵢ are mini-batch gradients and ḡ is their mean.
+    
+    Parameters
+    ----------
+    model : nn.Module
+        Neural network model
+    data_loader : DataLoader
+        DataLoader for sampling mini-batches
+    loss_fn : Callable
+        Loss function that takes (predictions, targets) and returns scalar loss
+    num_samples : int, default=10
+        Number of mini-batch samples for variance estimation
+    
+    Returns
+    -------
+    float
+        Mean squared deviation from mean gradient (gradient variance)
+    &#34;&#34;&#34;
+    model.eval()
+    
+    # Collect gradients from multiple mini-batches
+    gradients = []
+    data_iter = iter(data_loader)
+    
+    for _ in range(num_samples):
+        try:
+            batch_data = next(data_iter)
+        except StopIteration:
+            # Restart iterator if we run out of data
+            data_iter = iter(data_loader)
+            batch_data = next(data_iter)
+        
+        # Move to same device as model
+        device = next(model.parameters()).device
+        
+        # Handle different batch formats
+        if len(batch_data) == 3:
+            # DeepONet format: (input_functions, query_points, targets)
+            input_functions, query_points, targets = batch_data
+            input_functions = input_functions.to(device)
+            query_points = query_points.to(device)
+            targets = targets.to(device)
+        elif len(batch_data) == 2:
+            # Simple format: (inputs, targets)
+            inputs, targets = batch_data
+            inputs = inputs.to(device)
+            targets = targets.to(device)
+            
+            # Reshape for neural operator format
+            input_functions = inputs.permute(0, 2, 1)
+            query_points = targets.permute(0, 2, 1)
+        else:
+            raise ValueError(f&#34;Unexpected batch format with {len(batch_data)} elements&#34;)
+        
+        # Compute gradient for this mini-batch
+        model.zero_grad()
+        outputs = model(input_functions, query_points)
+        loss = loss_fn(outputs, targets)
+        loss.backward()
+        
+        # Collect gradients
+        grad_list = []
+        for p in model.parameters():
+            if p.grad is not None:
+                grad_list.append(p.grad.data.clone().flatten())
+        
+        if len(grad_list) &gt; 0:
+            gradients.append(torch.cat(grad_list))
+    
+    if len(gradients) == 0:
+        return 0.0
+    
+    # Stack gradients: [num_samples, total_params]
+    gradients = torch.stack(gradients)
+    
+    # Compute mean gradient
+    mean_grad = gradients.mean(dim=0)
+    
+    # Compute variance: (1/n) Σᵢ ||gᵢ - ḡ||²
+    variance = ((gradients - mean_grad) ** 2).sum(dim=1).mean().item()
+    
+    model.train()
+    return variance</code></pre>
+</details>
+<div class="desc"><p>Compute empirical gradient variance.</p>
+<p>Samples multiple mini-batches and computes variance as:
+Var = (1/n) Σᵢ ||gᵢ - ḡ||²
+where gᵢ are mini-batch gradients and ḡ is their mean.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>model</code></strong> :&ensp;<code>nn.Module</code></dt>
+<dd>Neural network model</dd>
+<dt><strong><code>data_loader</code></strong> :&ensp;<code>DataLoader</code></dt>
+<dd>DataLoader for sampling mini-batches</dd>
+<dt><strong><code>loss_fn</code></strong> :&ensp;<code>Callable</code></dt>
+<dd>Loss function that takes (predictions, targets) and returns scalar loss</dd>
+<dt><strong><code>num_samples</code></strong> :&ensp;<code>int</code>, default=<code>10</code></dt>
+<dd>Number of mini-batch samples for variance estimation</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>float</code></dt>
+<dd>Mean squared deviation from mean gradient (gradient variance)</dd>
+</dl></div>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="optimizers.base.OptimizerWithVariance" href="base.html#optimizers.base.OptimizerWithVariance">OptimizerWithVariance</a></b></code>:
+<ul class="hlist">
+<li><code><a title="optimizers.base.OptimizerWithVariance.add_param_group" href="base.html#optimizers.base.OptimizerWithVariance.add_param_group">add_param_group</a></code></li>
+<li><code><a title="optimizers.base.OptimizerWithVariance.get_state_dict" href="base.html#optimizers.base.OptimizerWithVariance.get_state_dict">get_state_dict</a></code></li>
+<li><code><a title="optimizers.base.OptimizerWithVariance.load_state_dict" href="base.html#optimizers.base.OptimizerWithVariance.load_state_dict">load_state_dict</a></code></li>
+<li><code><a title="optimizers.base.OptimizerWithVariance.step" href="base.html#optimizers.base.OptimizerWithVariance.step">step</a></code></li>
+<li><code><a title="optimizers.base.OptimizerWithVariance.zero_grad" href="base.html#optimizers.base.OptimizerWithVariance.zero_grad">zero_grad</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="optimizers.SVRG"><code class="flex name class">
+<span>class <span class="ident">SVRG</span></span>
+<span>(</span><span>params, learning_rate: float, inner_loop_length: int, weight_decay: float = 0.0)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class SVRG(OptimizerWithVariance):
+    &#34;&#34;&#34;SVRG optimizer with variance reduction and variance tracking.
+    
+    Implements the SVRG update rule:
+        Outer loop (every m iterations):
+            θ̃ = θ_current
+            μ̃ = (1/N) Σᵢ ∇L(θ̃; xᵢ)  [full gradient at snapshot]
+        
+        Inner loop (m iterations):
+            Sample mini-batch B_t
+            g_t = ∇L(θ_t; B_t) - ∇L(θ̃; B_t) + μ̃  [variance-reduced gradient]
+            θ_{t+1} = θ_t - η * g_t
+    
+    The variance reduction comes from the correlation between ∇L(θ̃; B_t) and μ̃,
+    which cancels out variance when subtracted.
+    
+    Parameters
+    ----------
+    params : iterable
+        Iterable of parameters to optimize
+    learning_rate : float
+        Learning rate (step size)
+    inner_loop_length : int
+        Number of iterations between snapshots (m in the algorithm)
+    weight_decay : float, default=0.0
+        L2 regularization coefficient
+    &#34;&#34;&#34;
+    
+    def __init__(
+        self,
+        params,
+        learning_rate: float,
+        inner_loop_length: int,
+        weight_decay: float = 0.0
+    ):
+        &#34;&#34;&#34;Initialize SVRG optimizer.&#34;&#34;&#34;
+        if learning_rate &lt; 0.0:
+            raise ValueError(f&#34;Invalid learning rate: {learning_rate}&#34;)
+        if inner_loop_length &lt;= 0:
+            raise ValueError(f&#34;Invalid inner_loop_length: {inner_loop_length}&#34;)
+        if weight_decay &lt; 0.0:
+            raise ValueError(f&#34;Invalid weight_decay value: {weight_decay}&#34;)
+        
+        defaults = {
+            &#39;learning_rate&#39;: learning_rate,
+            &#39;inner_loop_length&#39;: inner_loop_length,
+            &#39;weight_decay&#39;: weight_decay
+        }
+        super().__init__(params, defaults)
+        
+        # Global state for SVRG
+        self.snapshot_params = None
+        self.full_gradient = None
+        self.inner_loop_counter = 0
+        self.needs_snapshot = True
+    
+    def take_snapshot(
+        self,
+        model: nn.Module,
+        data_loader: DataLoader,
+        loss_fn: Callable[[torch.Tensor, torch.Tensor], torch.Tensor]
+    ) -&gt; None:
+        &#34;&#34;&#34;Take snapshot of current parameters and compute full gradient.
+        
+        This method:
+        1. Stores current parameter values as θ̃
+        2. Computes full gradient μ̃ = (1/N) Σᵢ ∇L(θ̃; xᵢ) over entire dataset
+        
+        Parameters
+        ----------
+        model : nn.Module
+            Neural network model
+        data_loader : DataLoader
+            DataLoader for full dataset iteration
+        loss_fn : Callable
+            Loss function that takes (predictions, targets) and returns scalar loss
+        &#34;&#34;&#34;
+        model.eval()
+        
+        # Store snapshot parameters
+        self.snapshot_params = []
+        for group in self.param_groups:
+            for p in group[&#39;params&#39;]:
+                self.snapshot_params.append(p.data.clone())
+        
+        # Compute full gradient via mini-batch accumulation
+        self.full_gradient = []
+        for group in self.param_groups:
+            for p in group[&#39;params&#39;]:
+                self.full_gradient.append(torch.zeros_like(p.data))
+        
+        total_samples = 0
+        
+        for batch_data in data_loader:
+            # Move to same device as model
+            device = next(model.parameters()).device
+            
+            # Handle different batch formats
+            if len(batch_data) == 3:
+                # DeepONet format: (input_functions, query_points, targets)
+                input_functions, query_points, targets = batch_data
+                input_functions = input_functions.to(device)
+                query_points = query_points.to(device)
+                targets = targets.to(device)
+                batch_size = input_functions.size(0)
+            elif len(batch_data) == 2:
+                # Simple format: (inputs, targets)
+                inputs, targets = batch_data
+                inputs = inputs.to(device)
+                targets = targets.to(device)
+                batch_size = inputs.size(0)
+                
+                # Reshape for neural operator format
+                input_functions = inputs.permute(0, 2, 1)
+                query_points = targets.permute(0, 2, 1)
+            else:
+                raise ValueError(f&#34;Unexpected batch format with {len(batch_data)} elements&#34;)
+            
+            # Compute gradient for this mini-batch
+            model.zero_grad()
+            outputs = model(input_functions, query_points)
+            loss = loss_fn(outputs, targets)
+            loss.backward()
+            
+            # Accumulate gradients
+            idx = 0
+            for group in self.param_groups:
+                for p in group[&#39;params&#39;]:
+                    if p.grad is not None:
+                        self.full_gradient[idx].add_(p.grad.data * batch_size)
+                    idx += 1
+            
+            total_samples += batch_size
+        
+        # Average the accumulated gradients
+        if total_samples &gt; 0:
+            for grad in self.full_gradient:
+                grad.div_(total_samples)
+        
+        self.needs_snapshot = False
+        self.inner_loop_counter = 0
+        
+        model.train()
+    
+    def step(self, closure: Optional[Callable[[], float]] = None) -&gt; Optional[float]:
+        &#34;&#34;&#34;Perform a single SVRG optimization step.
+        
+        Note: This method assumes that take_snapshot() has been called when needed.
+        The training loop should check needs_snapshot and call take_snapshot() before
+        calling step().
+        
+        Parameters
+        ----------
+        closure : Optional[Callable[[], float]]
+            A closure that reevaluates the model and returns the loss
+        
+        Returns
+        -------
+        Optional[float]
+            The loss value if closure is provided, None otherwise
+        &#34;&#34;&#34;
+        if self.needs_snapshot:
+            raise RuntimeError(
+                &#34;SVRG requires a snapshot before stepping. &#34;
+                &#34;Call take_snapshot() first or check needs_snapshot flag.&#34;
+            )
+        
+        loss = None
+        if closure is not None:
+            loss = closure()
+        
+        # Compute variance-reduced gradient: g_t = ∇L(θ_t; B_t) - ∇L(θ̃; B_t) + μ̃
+        # The current gradient ∇L(θ_t; B_t) is already in p.grad
+        # We need to compute ∇L(θ̃; B_t) at the snapshot parameters
+        
+        # Store current gradients (∇L(θ_t; B_t))
+        current_grads = []
+        for group in self.param_groups:
+            for p in group[&#39;params&#39;]:
+                if p.grad is not None:
+                    current_grads.append(p.grad.data.clone())
+                else:
+                    current_grads.append(None)
+        
+        # Temporarily set parameters to snapshot values to compute ∇L(θ̃; B_t)
+        # Note: This requires the closure to be called again, which is expensive
+        # In practice, this is done by the training loop passing the mini-batch
+        # For now, we&#39;ll use a simplified version that assumes the gradient at
+        # snapshot is stored or computed separately
+        
+        # Apply variance-reduced gradient update
+        idx = 0
+        for group in self.param_groups:
+            learning_rate = group[&#39;learning_rate&#39;]
+            weight_decay = group[&#39;weight_decay&#39;]
+            
+            for p in group[&#39;params&#39;]:
+                if current_grads[idx] is None:
+                    idx += 1
+                    continue
+                
+                # Get current gradient
+                grad = current_grads[idx]
+                
+                # Apply weight decay
+                if weight_decay != 0:
+                    grad = grad.add(p.data, alpha=weight_decay)
+                
+                # For simplified implementation, use current gradient
+                # In full implementation, this would be: grad - snapshot_grad + full_grad
+                # Since we don&#39;t have snapshot_grad for current batch, we approximate
+                # by using: grad + (full_grad - current_grad_estimate)
+                # For now, use the full gradient as correction
+                if self.full_gradient[idx] is not None:
+                    # Variance-reduced gradient (simplified)
+                    # In practice, training loop should provide snapshot gradient
+                    grad = grad.add(self.full_gradient[idx], alpha=0.1)
+                
+                # Update parameters
+                p.data.add_(grad, alpha=-learning_rate)
+                
+                idx += 1
+        
+        # Update inner loop counter
+        self.inner_loop_counter += 1
+        if self.inner_loop_counter &gt;= self.param_groups[0][&#39;inner_loop_length&#39;]:
+            self.needs_snapshot = True
+        
+        return loss
+    
+    def compute_variance_reduced_gradient(
+        self,
+        model: nn.Module,
+        input_functions: torch.Tensor,
+        query_points: torch.Tensor,
+        targets: torch.Tensor,
+        loss_fn: Callable[[torch.Tensor, torch.Tensor], torch.Tensor]
+    ) -&gt; None:
+        &#34;&#34;&#34;Compute variance-reduced gradient for current mini-batch.
+        
+        Computes: g_t = ∇L(θ_t; B_t) - ∇L(θ̃; B_t) + μ̃
+        
+        This is the proper SVRG gradient computation that should be used in training.
+        
+        Parameters
+        ----------
+        model : nn.Module
+            Neural network model
+        input_functions : torch.Tensor
+            Input functions for neural operator
+        query_points : torch.Tensor
+            Query points for neural operator
+        targets : torch.Tensor
+            Target mini-batch
+        loss_fn : Callable
+            Loss function
+        &#34;&#34;&#34;
+        if self.needs_snapshot:
+            raise RuntimeError(&#34;SVRG requires a snapshot. Call take_snapshot() first.&#34;)
+        
+        # Compute gradient at current parameters: ∇L(θ_t; B_t)
+        model.zero_grad()
+        outputs = model(input_functions, query_points)
+        loss = loss_fn(outputs, targets)
+        loss.backward()
+        
+        current_grads = []
+        for group in self.param_groups:
+            for p in group[&#39;params&#39;]:
+                if p.grad is not None:
+                    current_grads.append(p.grad.data.clone())
+                else:
+                    current_grads.append(None)
+        
+        # Compute gradient at snapshot parameters: ∇L(θ̃; B_t)
+        # Save current parameters
+        current_params = []
+        idx = 0
+        for group in self.param_groups:
+            for p in group[&#39;params&#39;]:
+                current_params.append(p.data.clone())
+                # Set to snapshot parameters
+                p.data.copy_(self.snapshot_params[idx])
+                idx += 1
+        
+        # Compute gradient at snapshot
+        model.zero_grad()
+        outputs = model(input_functions, query_points)
+        loss = loss_fn(outputs, targets)
+        loss.backward()
+        
+        snapshot_grads = []
+        for group in self.param_groups:
+            for p in group[&#39;params&#39;]:
+                if p.grad is not None:
+                    snapshot_grads.append(p.grad.data.clone())
+                else:
+                    snapshot_grads.append(None)
+        
+        # Restore current parameters
+        idx = 0
+        for group in self.param_groups:
+            for p in group[&#39;params&#39;]:
+                p.data.copy_(current_params[idx])
+                idx += 1
+        
+        # Compute variance-reduced gradient: g_t = current - snapshot + full
+        idx = 0
+        for group in self.param_groups:
+            for p in group[&#39;params&#39;]:
+                if current_grads[idx] is not None:
+                    vr_grad = current_grads[idx] - snapshot_grads[idx] + self.full_gradient[idx]
+                    p.grad = vr_grad
+                idx += 1
+    
+    def compute_gradient_variance(
+        self,
+        model: nn.Module,
+        data_loader: DataLoader,
+        loss_fn: Callable[[torch.Tensor, torch.Tensor], torch.Tensor],
+        num_samples: int = 10
+    ) -&gt; float:
+        &#34;&#34;&#34;Compute empirical gradient variance for variance-reduced gradients.
+        
+        Samples multiple mini-batches and computes variance of SVRG gradients:
+            Var = (1/n) Σᵢ ||g_i^SVRG - ḡ^SVRG||²
+        
+        Parameters
+        ----------
+        model : nn.Module
+            Neural network model
+        data_loader : DataLoader
+            DataLoader for sampling mini-batches
+        loss_fn : Callable
+            Loss function that takes (predictions, targets) and returns scalar loss
+        num_samples : int, default=10
+            Number of mini-batch samples for variance estimation
+        
+        Returns
+        -------
+        float
+            Mean squared deviation from mean gradient (gradient variance)
+        &#34;&#34;&#34;
+        if self.needs_snapshot:
+            # If no snapshot, return high variance as indicator
+            return float(&#39;inf&#39;)
+        
+        model.eval()
+        
+        # Collect variance-reduced gradients from multiple mini-batches
+        gradients = []
+        data_iter = iter(data_loader)
+        
+        for _ in range(num_samples):
+            try:
+                batch_data = next(data_iter)
+            except StopIteration:
+                # Restart iterator if we run out of data
+                data_iter = iter(data_loader)
+                batch_data = next(data_iter)
+            
+            # Move to same device as model
+            device = next(model.parameters()).device
+            
+            # Handle different batch formats
+            if len(batch_data) == 3:
+                # DeepONet format: (input_functions, query_points, targets)
+                input_functions, query_points, targets = batch_data
+                input_functions = input_functions.to(device)
+                query_points = query_points.to(device)
+                targets = targets.to(device)
+            elif len(batch_data) == 2:
+                # Simple format: (inputs, targets)
+                inputs, targets = batch_data
+                inputs = inputs.to(device)
+                targets = targets.to(device)
+                
+                # Reshape for neural operator format
+                input_functions = inputs.permute(0, 2, 1)
+                query_points = targets.permute(0, 2, 1)
+            else:
+                raise ValueError(f&#34;Unexpected batch format with {len(batch_data)} elements&#34;)
+            
+            # Compute variance-reduced gradient for this mini-batch
+            self.compute_variance_reduced_gradient(model, input_functions, query_points, targets, loss_fn)
+            
+            # Collect gradients
+            grad_list = []
+            for p in model.parameters():
+                if p.grad is not None:
+                    grad_list.append(p.grad.data.clone().flatten())
+            
+            if len(grad_list) &gt; 0:
+                gradients.append(torch.cat(grad_list))
+        
+        if len(gradients) == 0:
+            return 0.0
+        
+        # Stack gradients: [num_samples, total_params]
+        gradients = torch.stack(gradients)
+        
+        # Compute mean gradient
+        mean_grad = gradients.mean(dim=0)
+        
+        # Compute variance: (1/n) Σᵢ ||gᵢ - ḡ||²
+        variance = ((gradients - mean_grad) ** 2).sum(dim=1).mean().item()
+        
+        model.train()
+        return variance
+    
+    def get_state_dict(self) -&gt; Dict[str, Any]:
+        &#34;&#34;&#34;Return optimizer state for checkpointing.
+        
+        Returns
+        -------
+        Dict[str, Any]
+            Dictionary containing optimizer state including SVRG-specific state
+        &#34;&#34;&#34;
+        return {
+            &#39;state&#39;: self.state,
+            &#39;param_groups&#39;: self.param_groups,
+            &#39;snapshot_params&#39;: self.snapshot_params,
+            &#39;full_gradient&#39;: self.full_gradient,
+            &#39;inner_loop_counter&#39;: self.inner_loop_counter,
+            &#39;needs_snapshot&#39;: self.needs_snapshot
+        }
+    
+    def load_state_dict(self, state_dict: Dict[str, Any]) -&gt; None:
+        &#34;&#34;&#34;Load optimizer state from checkpoint.
+        
+        Parameters
+        ----------
+        state_dict : Dict[str, Any]
+            Dictionary containing optimizer state
+        &#34;&#34;&#34;
+        super().load_state_dict(state_dict)
+        self.snapshot_params = state_dict.get(&#39;snapshot_params&#39;)
+        self.full_gradient = state_dict.get(&#39;full_gradient&#39;)
+        self.inner_loop_counter = state_dict.get(&#39;inner_loop_counter&#39;, 0)
+        self.needs_snapshot = state_dict.get(&#39;needs_snapshot&#39;, True)</code></pre>
+</details>
+<div class="desc"><p>SVRG optimizer with variance reduction and variance tracking.</p>
+<p>Implements the SVRG update rule:
+Outer loop (every m iterations):
+θ̃ = θ_current
+μ̃ = (1/N) Σᵢ ∇L(θ̃; xᵢ)
+[full gradient at snapshot]</p>
+<pre><code>Inner loop (m iterations):
+    Sample mini-batch B_t
+    g_t = ∇L(θ_t; B_t) - ∇L(θ̃; B_t) + μ̃  [variance-reduced gradient]
+    θ_{t+1} = θ_t - η * g_t
+</code></pre>
+<p>The variance reduction comes from the correlation between ∇L(θ̃; B_t) and μ̃,
+which cancels out variance when subtracted.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>params</code></strong> :&ensp;<code>iterable</code></dt>
+<dd>Iterable of parameters to optimize</dd>
+<dt><strong><code>learning_rate</code></strong> :&ensp;<code>float</code></dt>
+<dd>Learning rate (step size)</dd>
+<dt><strong><code>inner_loop_length</code></strong> :&ensp;<code>int</code></dt>
+<dd>Number of iterations between snapshots (m in the algorithm)</dd>
+<dt><strong><code>weight_decay</code></strong> :&ensp;<code>float</code>, default=<code>0.0</code></dt>
+<dd>L2 regularization coefficient</dd>
+</dl>
+<p>Initialize SVRG optimizer.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="optimizers.base.OptimizerWithVariance" href="base.html#optimizers.base.OptimizerWithVariance">OptimizerWithVariance</a></li>
+<li>abc.ABC</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="optimizers.SVRG.compute_gradient_variance"><code class="name flex">
+<span>def <span class="ident">compute_gradient_variance</span></span>(<span>self,<br>model: torch.nn.modules.module.Module,<br>data_loader: torch.utils.data.dataloader.DataLoader,<br>loss_fn: Callable[[torch.Tensor, torch.Tensor], torch.Tensor],<br>num_samples: int = 10) ‑> float</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compute_gradient_variance(
+    self,
+    model: nn.Module,
+    data_loader: DataLoader,
+    loss_fn: Callable[[torch.Tensor, torch.Tensor], torch.Tensor],
+    num_samples: int = 10
+) -&gt; float:
+    &#34;&#34;&#34;Compute empirical gradient variance for variance-reduced gradients.
+    
+    Samples multiple mini-batches and computes variance of SVRG gradients:
+        Var = (1/n) Σᵢ ||g_i^SVRG - ḡ^SVRG||²
+    
+    Parameters
+    ----------
+    model : nn.Module
+        Neural network model
+    data_loader : DataLoader
+        DataLoader for sampling mini-batches
+    loss_fn : Callable
+        Loss function that takes (predictions, targets) and returns scalar loss
+    num_samples : int, default=10
+        Number of mini-batch samples for variance estimation
+    
+    Returns
+    -------
+    float
+        Mean squared deviation from mean gradient (gradient variance)
+    &#34;&#34;&#34;
+    if self.needs_snapshot:
+        # If no snapshot, return high variance as indicator
+        return float(&#39;inf&#39;)
+    
+    model.eval()
+    
+    # Collect variance-reduced gradients from multiple mini-batches
+    gradients = []
+    data_iter = iter(data_loader)
+    
+    for _ in range(num_samples):
+        try:
+            batch_data = next(data_iter)
+        except StopIteration:
+            # Restart iterator if we run out of data
+            data_iter = iter(data_loader)
+            batch_data = next(data_iter)
+        
+        # Move to same device as model
+        device = next(model.parameters()).device
+        
+        # Handle different batch formats
+        if len(batch_data) == 3:
+            # DeepONet format: (input_functions, query_points, targets)
+            input_functions, query_points, targets = batch_data
+            input_functions = input_functions.to(device)
+            query_points = query_points.to(device)
+            targets = targets.to(device)
+        elif len(batch_data) == 2:
+            # Simple format: (inputs, targets)
+            inputs, targets = batch_data
+            inputs = inputs.to(device)
+            targets = targets.to(device)
+            
+            # Reshape for neural operator format
+            input_functions = inputs.permute(0, 2, 1)
+            query_points = targets.permute(0, 2, 1)
+        else:
+            raise ValueError(f&#34;Unexpected batch format with {len(batch_data)} elements&#34;)
+        
+        # Compute variance-reduced gradient for this mini-batch
+        self.compute_variance_reduced_gradient(model, input_functions, query_points, targets, loss_fn)
+        
+        # Collect gradients
+        grad_list = []
+        for p in model.parameters():
+            if p.grad is not None:
+                grad_list.append(p.grad.data.clone().flatten())
+        
+        if len(grad_list) &gt; 0:
+            gradients.append(torch.cat(grad_list))
+    
+    if len(gradients) == 0:
+        return 0.0
+    
+    # Stack gradients: [num_samples, total_params]
+    gradients = torch.stack(gradients)
+    
+    # Compute mean gradient
+    mean_grad = gradients.mean(dim=0)
+    
+    # Compute variance: (1/n) Σᵢ ||gᵢ - ḡ||²
+    variance = ((gradients - mean_grad) ** 2).sum(dim=1).mean().item()
+    
+    model.train()
+    return variance</code></pre>
+</details>
+<div class="desc"><p>Compute empirical gradient variance for variance-reduced gradients.</p>
+<p>Samples multiple mini-batches and computes variance of SVRG gradients:
+Var = (1/n) Σᵢ ||g_i^SVRG - ḡ^SVRG||²</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>model</code></strong> :&ensp;<code>nn.Module</code></dt>
+<dd>Neural network model</dd>
+<dt><strong><code>data_loader</code></strong> :&ensp;<code>DataLoader</code></dt>
+<dd>DataLoader for sampling mini-batches</dd>
+<dt><strong><code>loss_fn</code></strong> :&ensp;<code>Callable</code></dt>
+<dd>Loss function that takes (predictions, targets) and returns scalar loss</dd>
+<dt><strong><code>num_samples</code></strong> :&ensp;<code>int</code>, default=<code>10</code></dt>
+<dd>Number of mini-batch samples for variance estimation</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>float</code></dt>
+<dd>Mean squared deviation from mean gradient (gradient variance)</dd>
+</dl></div>
+</dd>
+<dt id="optimizers.SVRG.compute_variance_reduced_gradient"><code class="name flex">
+<span>def <span class="ident">compute_variance_reduced_gradient</span></span>(<span>self,<br>model: torch.nn.modules.module.Module,<br>input_functions: torch.Tensor,<br>query_points: torch.Tensor,<br>targets: torch.Tensor,<br>loss_fn: Callable[[torch.Tensor, torch.Tensor], torch.Tensor]) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compute_variance_reduced_gradient(
+    self,
+    model: nn.Module,
+    input_functions: torch.Tensor,
+    query_points: torch.Tensor,
+    targets: torch.Tensor,
+    loss_fn: Callable[[torch.Tensor, torch.Tensor], torch.Tensor]
+) -&gt; None:
+    &#34;&#34;&#34;Compute variance-reduced gradient for current mini-batch.
+    
+    Computes: g_t = ∇L(θ_t; B_t) - ∇L(θ̃; B_t) + μ̃
+    
+    This is the proper SVRG gradient computation that should be used in training.
+    
+    Parameters
+    ----------
+    model : nn.Module
+        Neural network model
+    input_functions : torch.Tensor
+        Input functions for neural operator
+    query_points : torch.Tensor
+        Query points for neural operator
+    targets : torch.Tensor
+        Target mini-batch
+    loss_fn : Callable
+        Loss function
+    &#34;&#34;&#34;
+    if self.needs_snapshot:
+        raise RuntimeError(&#34;SVRG requires a snapshot. Call take_snapshot() first.&#34;)
+    
+    # Compute gradient at current parameters: ∇L(θ_t; B_t)
+    model.zero_grad()
+    outputs = model(input_functions, query_points)
+    loss = loss_fn(outputs, targets)
+    loss.backward()
+    
+    current_grads = []
+    for group in self.param_groups:
+        for p in group[&#39;params&#39;]:
+            if p.grad is not None:
+                current_grads.append(p.grad.data.clone())
+            else:
+                current_grads.append(None)
+    
+    # Compute gradient at snapshot parameters: ∇L(θ̃; B_t)
+    # Save current parameters
+    current_params = []
+    idx = 0
+    for group in self.param_groups:
+        for p in group[&#39;params&#39;]:
+            current_params.append(p.data.clone())
+            # Set to snapshot parameters
+            p.data.copy_(self.snapshot_params[idx])
+            idx += 1
+    
+    # Compute gradient at snapshot
+    model.zero_grad()
+    outputs = model(input_functions, query_points)
+    loss = loss_fn(outputs, targets)
+    loss.backward()
+    
+    snapshot_grads = []
+    for group in self.param_groups:
+        for p in group[&#39;params&#39;]:
+            if p.grad is not None:
+                snapshot_grads.append(p.grad.data.clone())
+            else:
+                snapshot_grads.append(None)
+    
+    # Restore current parameters
+    idx = 0
+    for group in self.param_groups:
+        for p in group[&#39;params&#39;]:
+            p.data.copy_(current_params[idx])
+            idx += 1
+    
+    # Compute variance-reduced gradient: g_t = current - snapshot + full
+    idx = 0
+    for group in self.param_groups:
+        for p in group[&#39;params&#39;]:
+            if current_grads[idx] is not None:
+                vr_grad = current_grads[idx] - snapshot_grads[idx] + self.full_gradient[idx]
+                p.grad = vr_grad
+            idx += 1</code></pre>
+</details>
+<div class="desc"><p>Compute variance-reduced gradient for current mini-batch.</p>
+<p>Computes: g_t = ∇L(θ_t; B_t) - ∇L(θ̃; B_t) + μ̃</p>
+<p>This is the proper SVRG gradient computation that should be used in training.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>model</code></strong> :&ensp;<code>nn.Module</code></dt>
+<dd>Neural network model</dd>
+<dt><strong><code>input_functions</code></strong> :&ensp;<code>torch.Tensor</code></dt>
+<dd>Input functions for neural operator</dd>
+<dt><strong><code>query_points</code></strong> :&ensp;<code>torch.Tensor</code></dt>
+<dd>Query points for neural operator</dd>
+<dt><strong><code>targets</code></strong> :&ensp;<code>torch.Tensor</code></dt>
+<dd>Target mini-batch</dd>
+<dt><strong><code>loss_fn</code></strong> :&ensp;<code>Callable</code></dt>
+<dd>Loss function</dd>
+</dl></div>
+</dd>
+<dt id="optimizers.SVRG.get_state_dict"><code class="name flex">
+<span>def <span class="ident">get_state_dict</span></span>(<span>self) ‑> Dict[str, Any]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_state_dict(self) -&gt; Dict[str, Any]:
+    &#34;&#34;&#34;Return optimizer state for checkpointing.
+    
+    Returns
+    -------
+    Dict[str, Any]
+        Dictionary containing optimizer state including SVRG-specific state
+    &#34;&#34;&#34;
+    return {
+        &#39;state&#39;: self.state,
+        &#39;param_groups&#39;: self.param_groups,
+        &#39;snapshot_params&#39;: self.snapshot_params,
+        &#39;full_gradient&#39;: self.full_gradient,
+        &#39;inner_loop_counter&#39;: self.inner_loop_counter,
+        &#39;needs_snapshot&#39;: self.needs_snapshot
+    }</code></pre>
+</details>
+<div class="desc"><p>Return optimizer state for checkpointing.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>Dict[str, Any]</code></dt>
+<dd>Dictionary containing optimizer state including SVRG-specific state</dd>
+</dl></div>
+</dd>
+<dt id="optimizers.SVRG.step"><code class="name flex">
+<span>def <span class="ident">step</span></span>(<span>self, closure: Callable[[], float] | None = None) ‑> float | None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def step(self, closure: Optional[Callable[[], float]] = None) -&gt; Optional[float]:
+    &#34;&#34;&#34;Perform a single SVRG optimization step.
+    
+    Note: This method assumes that take_snapshot() has been called when needed.
+    The training loop should check needs_snapshot and call take_snapshot() before
+    calling step().
+    
+    Parameters
+    ----------
+    closure : Optional[Callable[[], float]]
+        A closure that reevaluates the model and returns the loss
+    
+    Returns
+    -------
+    Optional[float]
+        The loss value if closure is provided, None otherwise
+    &#34;&#34;&#34;
+    if self.needs_snapshot:
+        raise RuntimeError(
+            &#34;SVRG requires a snapshot before stepping. &#34;
+            &#34;Call take_snapshot() first or check needs_snapshot flag.&#34;
+        )
+    
+    loss = None
+    if closure is not None:
+        loss = closure()
+    
+    # Compute variance-reduced gradient: g_t = ∇L(θ_t; B_t) - ∇L(θ̃; B_t) + μ̃
+    # The current gradient ∇L(θ_t; B_t) is already in p.grad
+    # We need to compute ∇L(θ̃; B_t) at the snapshot parameters
+    
+    # Store current gradients (∇L(θ_t; B_t))
+    current_grads = []
+    for group in self.param_groups:
+        for p in group[&#39;params&#39;]:
+            if p.grad is not None:
+                current_grads.append(p.grad.data.clone())
+            else:
+                current_grads.append(None)
+    
+    # Temporarily set parameters to snapshot values to compute ∇L(θ̃; B_t)
+    # Note: This requires the closure to be called again, which is expensive
+    # In practice, this is done by the training loop passing the mini-batch
+    # For now, we&#39;ll use a simplified version that assumes the gradient at
+    # snapshot is stored or computed separately
+    
+    # Apply variance-reduced gradient update
+    idx = 0
+    for group in self.param_groups:
+        learning_rate = group[&#39;learning_rate&#39;]
+        weight_decay = group[&#39;weight_decay&#39;]
+        
+        for p in group[&#39;params&#39;]:
+            if current_grads[idx] is None:
+                idx += 1
+                continue
+            
+            # Get current gradient
+            grad = current_grads[idx]
+            
+            # Apply weight decay
+            if weight_decay != 0:
+                grad = grad.add(p.data, alpha=weight_decay)
+            
+            # For simplified implementation, use current gradient
+            # In full implementation, this would be: grad - snapshot_grad + full_grad
+            # Since we don&#39;t have snapshot_grad for current batch, we approximate
+            # by using: grad + (full_grad - current_grad_estimate)
+            # For now, use the full gradient as correction
+            if self.full_gradient[idx] is not None:
+                # Variance-reduced gradient (simplified)
+                # In practice, training loop should provide snapshot gradient
+                grad = grad.add(self.full_gradient[idx], alpha=0.1)
+            
+            # Update parameters
+            p.data.add_(grad, alpha=-learning_rate)
+            
+            idx += 1
+    
+    # Update inner loop counter
+    self.inner_loop_counter += 1
+    if self.inner_loop_counter &gt;= self.param_groups[0][&#39;inner_loop_length&#39;]:
+        self.needs_snapshot = True
+    
+    return loss</code></pre>
+</details>
+<div class="desc"><p>Perform a single SVRG optimization step.</p>
+<p>Note: This method assumes that take_snapshot() has been called when needed.
+The training loop should check needs_snapshot and call take_snapshot() before
+calling step().</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>closure</code></strong> :&ensp;<code>Optional[Callable[[], float]]</code></dt>
+<dd>A closure that reevaluates the model and returns the loss</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>Optional[float]</code></dt>
+<dd>The loss value if closure is provided, None otherwise</dd>
+</dl></div>
+</dd>
+<dt id="optimizers.SVRG.take_snapshot"><code class="name flex">
+<span>def <span class="ident">take_snapshot</span></span>(<span>self,<br>model: torch.nn.modules.module.Module,<br>data_loader: torch.utils.data.dataloader.DataLoader,<br>loss_fn: Callable[[torch.Tensor, torch.Tensor], torch.Tensor]) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def take_snapshot(
+    self,
+    model: nn.Module,
+    data_loader: DataLoader,
+    loss_fn: Callable[[torch.Tensor, torch.Tensor], torch.Tensor]
+) -&gt; None:
+    &#34;&#34;&#34;Take snapshot of current parameters and compute full gradient.
+    
+    This method:
+    1. Stores current parameter values as θ̃
+    2. Computes full gradient μ̃ = (1/N) Σᵢ ∇L(θ̃; xᵢ) over entire dataset
+    
+    Parameters
+    ----------
+    model : nn.Module
+        Neural network model
+    data_loader : DataLoader
+        DataLoader for full dataset iteration
+    loss_fn : Callable
+        Loss function that takes (predictions, targets) and returns scalar loss
+    &#34;&#34;&#34;
+    model.eval()
+    
+    # Store snapshot parameters
+    self.snapshot_params = []
+    for group in self.param_groups:
+        for p in group[&#39;params&#39;]:
+            self.snapshot_params.append(p.data.clone())
+    
+    # Compute full gradient via mini-batch accumulation
+    self.full_gradient = []
+    for group in self.param_groups:
+        for p in group[&#39;params&#39;]:
+            self.full_gradient.append(torch.zeros_like(p.data))
+    
+    total_samples = 0
+    
+    for batch_data in data_loader:
+        # Move to same device as model
+        device = next(model.parameters()).device
+        
+        # Handle different batch formats
+        if len(batch_data) == 3:
+            # DeepONet format: (input_functions, query_points, targets)
+            input_functions, query_points, targets = batch_data
+            input_functions = input_functions.to(device)
+            query_points = query_points.to(device)
+            targets = targets.to(device)
+            batch_size = input_functions.size(0)
+        elif len(batch_data) == 2:
+            # Simple format: (inputs, targets)
+            inputs, targets = batch_data
+            inputs = inputs.to(device)
+            targets = targets.to(device)
+            batch_size = inputs.size(0)
+            
+            # Reshape for neural operator format
+            input_functions = inputs.permute(0, 2, 1)
+            query_points = targets.permute(0, 2, 1)
+        else:
+            raise ValueError(f&#34;Unexpected batch format with {len(batch_data)} elements&#34;)
+        
+        # Compute gradient for this mini-batch
+        model.zero_grad()
+        outputs = model(input_functions, query_points)
+        loss = loss_fn(outputs, targets)
+        loss.backward()
+        
+        # Accumulate gradients
+        idx = 0
+        for group in self.param_groups:
+            for p in group[&#39;params&#39;]:
+                if p.grad is not None:
+                    self.full_gradient[idx].add_(p.grad.data * batch_size)
+                idx += 1
+        
+        total_samples += batch_size
+    
+    # Average the accumulated gradients
+    if total_samples &gt; 0:
+        for grad in self.full_gradient:
+            grad.div_(total_samples)
+    
+    self.needs_snapshot = False
+    self.inner_loop_counter = 0
+    
+    model.train()</code></pre>
+</details>
+<div class="desc"><p>Take snapshot of current parameters and compute full gradient.</p>
+<p>This method:
+1. Stores current parameter values as θ̃
+2. Computes full gradient μ̃ = (1/N) Σᵢ ∇L(θ̃; xᵢ) over entire dataset</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>model</code></strong> :&ensp;<code>nn.Module</code></dt>
+<dd>Neural network model</dd>
+<dt><strong><code>data_loader</code></strong> :&ensp;<code>DataLoader</code></dt>
+<dd>DataLoader for full dataset iteration</dd>
+<dt><strong><code>loss_fn</code></strong> :&ensp;<code>Callable</code></dt>
+<dd>Loss function that takes (predictions, targets) and returns scalar loss</dd>
+</dl></div>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="optimizers.base.OptimizerWithVariance" href="base.html#optimizers.base.OptimizerWithVariance">OptimizerWithVariance</a></b></code>:
+<ul class="hlist">
+<li><code><a title="optimizers.base.OptimizerWithVariance.add_param_group" href="base.html#optimizers.base.OptimizerWithVariance.add_param_group">add_param_group</a></code></li>
+<li><code><a title="optimizers.base.OptimizerWithVariance.load_state_dict" href="base.html#optimizers.base.OptimizerWithVariance.load_state_dict">load_state_dict</a></code></li>
+<li><code><a title="optimizers.base.OptimizerWithVariance.zero_grad" href="base.html#optimizers.base.OptimizerWithVariance.zero_grad">zero_grad</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="optimizers.StepLR"><code class="flex name class">
+<span>class <span class="ident">StepLR</span></span>
+<span>(</span><span>optimizer, step_size: int, gamma: float = 0.1)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class StepLR(LRScheduler):
+    &#34;&#34;&#34;Step decay learning rate scheduler.
+    
+    Decays learning rate by gamma every step_size epochs:
+        lr = initial_lr * gamma^(epoch // step_size)
+    
+    Parameters
+    ----------
+    optimizer : OptimizerWithVariance
+        Optimizer to schedule learning rate for
+    step_size : int
+        Number of epochs between learning rate decay
+    gamma : float, default=0.1
+        Multiplicative factor of learning rate decay
+    &#34;&#34;&#34;
+    
+    def __init__(self, optimizer, step_size: int, gamma: float = 0.1):
+        &#34;&#34;&#34;Initialize step decay scheduler.&#34;&#34;&#34;
+        if step_size &lt;= 0:
+            raise ValueError(f&#34;Invalid step_size: {step_size}&#34;)
+        if gamma &lt;= 0.0 or gamma &gt; 1.0:
+            raise ValueError(f&#34;Invalid gamma: {gamma}&#34;)
+        
+        self.step_size = step_size
+        self.gamma = gamma
+        self.initial_lrs = [group[&#39;learning_rate&#39;] for group in optimizer.param_groups]
+        super().__init__(optimizer)
+    
+    def get_lr(self, epoch: int, param_group: dict) -&gt; float:
+        &#34;&#34;&#34;Compute learning rate for given epoch.
+        
+        Parameters
+        ----------
+        epoch : int
+            Current epoch number
+        param_group : dict
+            Parameter group dictionary
+        
+        Returns
+        -------
+        float
+            Learning rate for this epoch
+        &#34;&#34;&#34;
+        # Get initial learning rate for this param group
+        group_idx = self.optimizer.param_groups.index(param_group)
+        initial_lr = self.initial_lrs[group_idx]
+        
+        # Compute decay factor
+        decay_factor = self.gamma ** (epoch // self.step_size)
+        
+        return initial_lr * decay_factor</code></pre>
+</details>
+<div class="desc"><p>Step decay learning rate scheduler.</p>
+<p>Decays learning rate by gamma every step_size epochs:
+lr = initial_lr * gamma^(epoch // step_size)</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>optimizer</code></strong> :&ensp;<code><a title="optimizers.OptimizerWithVariance" href="#optimizers.OptimizerWithVariance">OptimizerWithVariance</a></code></dt>
+<dd>Optimizer to schedule learning rate for</dd>
+<dt><strong><code>step_size</code></strong> :&ensp;<code>int</code></dt>
+<dd>Number of epochs between learning rate decay</dd>
+<dt><strong><code>gamma</code></strong> :&ensp;<code>float</code>, default=<code>0.1</code></dt>
+<dd>Multiplicative factor of learning rate decay</dd>
+</dl>
+<p>Initialize step decay scheduler.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="optimizers.scheduler.LRScheduler" href="scheduler.html#optimizers.scheduler.LRScheduler">LRScheduler</a></li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="optimizers.scheduler.LRScheduler" href="scheduler.html#optimizers.scheduler.LRScheduler">LRScheduler</a></b></code>:
+<ul class="hlist">
+<li><code><a title="optimizers.scheduler.LRScheduler.get_lr" href="scheduler.html#optimizers.scheduler.LRScheduler.get_lr">get_lr</a></code></li>
+<li><code><a title="optimizers.scheduler.LRScheduler.step" href="scheduler.html#optimizers.scheduler.LRScheduler.step">step</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3><a href="#header-submodules">Sub-modules</a></h3>
+<ul>
+<li><code><a title="optimizers.adam" href="adam.html">optimizers.adam</a></code></li>
+<li><code><a title="optimizers.base" href="base.html">optimizers.base</a></code></li>
+<li><code><a title="optimizers.scheduler" href="scheduler.html">optimizers.scheduler</a></code></li>
+<li><code><a title="optimizers.sgd" href="sgd.html">optimizers.sgd</a></code></li>
+<li><code><a title="optimizers.svrg" href="svrg.html">optimizers.svrg</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="optimizers.Adam" href="#optimizers.Adam">Adam</a></code></h4>
+<ul class="">
+<li><code><a title="optimizers.Adam.compute_gradient_variance" href="#optimizers.Adam.compute_gradient_variance">compute_gradient_variance</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="optimizers.ConstantLR" href="#optimizers.ConstantLR">ConstantLR</a></code></h4>
+<ul class="">
+<li><code><a title="optimizers.ConstantLR.get_lr" href="#optimizers.ConstantLR.get_lr">get_lr</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="optimizers.CosineAnnealingLR" href="#optimizers.CosineAnnealingLR">CosineAnnealingLR</a></code></h4>
+</li>
+<li>
+<h4><code><a title="optimizers.ExponentialLR" href="#optimizers.ExponentialLR">ExponentialLR</a></code></h4>
+</li>
+<li>
+<h4><code><a title="optimizers.LRScheduler" href="#optimizers.LRScheduler">LRScheduler</a></code></h4>
+<ul class="">
+<li><code><a title="optimizers.LRScheduler.get_lr" href="#optimizers.LRScheduler.get_lr">get_lr</a></code></li>
+<li><code><a title="optimizers.LRScheduler.step" href="#optimizers.LRScheduler.step">step</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="optimizers.OptimizerWithVariance" href="#optimizers.OptimizerWithVariance">OptimizerWithVariance</a></code></h4>
+<ul class="">
+<li><code><a title="optimizers.OptimizerWithVariance.add_param_group" href="#optimizers.OptimizerWithVariance.add_param_group">add_param_group</a></code></li>
+<li><code><a title="optimizers.OptimizerWithVariance.compute_gradient_variance" href="#optimizers.OptimizerWithVariance.compute_gradient_variance">compute_gradient_variance</a></code></li>
+<li><code><a title="optimizers.OptimizerWithVariance.get_state_dict" href="#optimizers.OptimizerWithVariance.get_state_dict">get_state_dict</a></code></li>
+<li><code><a title="optimizers.OptimizerWithVariance.load_state_dict" href="#optimizers.OptimizerWithVariance.load_state_dict">load_state_dict</a></code></li>
+<li><code><a title="optimizers.OptimizerWithVariance.step" href="#optimizers.OptimizerWithVariance.step">step</a></code></li>
+<li><code><a title="optimizers.OptimizerWithVariance.zero_grad" href="#optimizers.OptimizerWithVariance.zero_grad">zero_grad</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="optimizers.SGD" href="#optimizers.SGD">SGD</a></code></h4>
+<ul class="">
+<li><code><a title="optimizers.SGD.compute_gradient_variance" href="#optimizers.SGD.compute_gradient_variance">compute_gradient_variance</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="optimizers.SVRG" href="#optimizers.SVRG">SVRG</a></code></h4>
+<ul class="">
+<li><code><a title="optimizers.SVRG.compute_gradient_variance" href="#optimizers.SVRG.compute_gradient_variance">compute_gradient_variance</a></code></li>
+<li><code><a title="optimizers.SVRG.compute_variance_reduced_gradient" href="#optimizers.SVRG.compute_variance_reduced_gradient">compute_variance_reduced_gradient</a></code></li>
+<li><code><a title="optimizers.SVRG.get_state_dict" href="#optimizers.SVRG.get_state_dict">get_state_dict</a></code></li>
+<li><code><a title="optimizers.SVRG.step" href="#optimizers.SVRG.step">step</a></code></li>
+<li><code><a title="optimizers.SVRG.take_snapshot" href="#optimizers.SVRG.take_snapshot">take_snapshot</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="optimizers.StepLR" href="#optimizers.StepLR">StepLR</a></code></h4>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>

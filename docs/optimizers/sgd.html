@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>optimizers.sgd API documentation</title>
+<meta name="description" content="Stochastic Gradient Descent optimizer with variance tracking.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>optimizers.sgd</code></h1>
+</header>
+<section id="section-intro">
+<p>Stochastic Gradient Descent optimizer with variance tracking.</p>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="optimizers.sgd.SGD"><code class="flex name class">
+<span>class <span class="ident">SGD</span></span>
+<span>(</span><span>params,<br>learning_rate: float,<br>momentum: float = 0.0,<br>weight_decay: float = 0.0,<br>nesterov: bool = False)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class SGD(OptimizerWithVariance):
+    &#34;&#34;&#34;Stochastic Gradient Descent optimizer with momentum and variance tracking.
+    
+    Implements the SGD update rule:
+        θ_{t+1} = θ_t - η * g_t
+    
+    With momentum:
+        v_t = μ * v_{t-1} + g_t
+        θ_{t+1} = θ_t - η * v_t
+    
+    With Nesterov momentum:
+        v_t = μ * v_{t-1} + g_t
+        θ_{t+1} = θ_t - η * (g_t + μ * v_t)
+    
+    Parameters
+    ----------
+    params : iterable
+        Iterable of parameters to optimize
+    learning_rate : float
+        Learning rate (step size)
+    momentum : float, default=0.0
+        Momentum coefficient
+    weight_decay : float, default=0.0
+        L2 regularization coefficient
+    nesterov : bool, default=False
+        Whether to use Nesterov momentum
+    &#34;&#34;&#34;
+    
+    def __init__(
+        self,
+        params,
+        learning_rate: float,
+        momentum: float = 0.0,
+        weight_decay: float = 0.0,
+        nesterov: bool = False
+    ):
+        &#34;&#34;&#34;Initialize SGD optimizer.&#34;&#34;&#34;
+        if learning_rate &lt; 0.0:
+            raise ValueError(f&#34;Invalid learning rate: {learning_rate}&#34;)
+        if momentum &lt; 0.0:
+            raise ValueError(f&#34;Invalid momentum value: {momentum}&#34;)
+        if weight_decay &lt; 0.0:
+            raise ValueError(f&#34;Invalid weight_decay value: {weight_decay}&#34;)
+        
+        defaults = {
+            &#39;learning_rate&#39;: learning_rate,
+            &#39;momentum&#39;: momentum,
+            &#39;weight_decay&#39;: weight_decay,
+            &#39;nesterov&#39;: nesterov
+        }
+        super().__init__(params, defaults)
+    
+    def step(self, closure: Optional[Callable[[], float]] = None) -&gt; Optional[float]:
+        &#34;&#34;&#34;Perform a single optimization step.
+        
+        Parameters
+        ----------
+        closure : Optional[Callable[[], float]]
+            A closure that reevaluates the model and returns the loss
+        
+        Returns
+        -------
+        Optional[float]
+            The loss value if closure is provided, None otherwise
+        &#34;&#34;&#34;
+        loss = None
+        if closure is not None:
+            loss = closure()
+        
+        for group in self.param_groups:
+            learning_rate = group[&#39;learning_rate&#39;]
+            momentum = group[&#39;momentum&#39;]
+            weight_decay = group[&#39;weight_decay&#39;]
+            nesterov = group[&#39;nesterov&#39;]
+            
+            for p in group[&#39;params&#39;]:
+                if p.grad is None:
+                    continue
+                
+                grad = p.grad.data
+                
+                # Apply weight decay
+                if weight_decay != 0:
+                    grad = grad.add(p.data, alpha=weight_decay)
+                
+                # Apply momentum
+                if momentum != 0:
+                    param_state = self.state.setdefault(id(p), {})
+                    
+                    if &#39;momentum_buffer&#39; not in param_state:
+                        buf = param_state[&#39;momentum_buffer&#39;] = torch.zeros_like(p.data)
+                        buf.mul_(momentum).add_(grad)
+                    else:
+                        buf = param_state[&#39;momentum_buffer&#39;]
+                        buf.mul_(momentum).add_(grad)
+                    
+                    if nesterov:
+                        grad = grad.add(buf, alpha=momentum)
+                    else:
+                        grad = buf
+                
+                # Update parameters
+                p.data.add_(grad, alpha=-learning_rate)
+        
+        return loss
+    
+    def compute_gradient_variance(
+        self,
+        model: nn.Module,
+        data_loader: DataLoader,
+        loss_fn: Callable[[torch.Tensor, torch.Tensor], torch.Tensor],
+        num_samples: int = 10
+    ) -&gt; float:
+        &#34;&#34;&#34;Compute empirical gradient variance.
+        
+        Samples multiple mini-batches and computes variance as:
+            Var = (1/n) Σᵢ ||gᵢ - ḡ||²
+        where gᵢ are mini-batch gradients and ḡ is their mean.
+        
+        Parameters
+        ----------
+        model : nn.Module
+            Neural network model
+        data_loader : DataLoader
+            DataLoader for sampling mini-batches
+        loss_fn : Callable
+            Loss function that takes (predictions, targets) and returns scalar loss
+        num_samples : int, default=10
+            Number of mini-batch samples for variance estimation
+        
+        Returns
+        -------
+        float
+            Mean squared deviation from mean gradient (gradient variance)
+        &#34;&#34;&#34;
+        model.eval()
+        
+        # Collect gradients from multiple mini-batches
+        gradients = []
+        data_iter = iter(data_loader)
+        
+        for _ in range(num_samples):
+            try:
+                batch_data = next(data_iter)
+            except StopIteration:
+                # Restart iterator if we run out of data
+                data_iter = iter(data_loader)
+                batch_data = next(data_iter)
+            
+            # Move to same device as model
+            device = next(model.parameters()).device
+            
+            # Handle different batch formats
+            if len(batch_data) == 3:
+                # DeepONet format: (input_functions, query_points, targets)
+                input_functions, query_points, targets = batch_data
+                input_functions = input_functions.to(device)
+                query_points = query_points.to(device)
+                targets = targets.to(device)
+            elif len(batch_data) == 2:
+                # Simple format: (inputs, targets)
+                inputs, targets = batch_data
+                inputs = inputs.to(device)
+                targets = targets.to(device)
+                
+                # Reshape for neural operator format
+                input_functions = inputs.permute(0, 2, 1)
+                query_points = targets.permute(0, 2, 1)
+            else:
+                raise ValueError(f&#34;Unexpected batch format with {len(batch_data)} elements&#34;)
+            
+            # Compute gradient for this mini-batch
+            model.zero_grad()
+            outputs = model(input_functions, query_points)
+            loss = loss_fn(outputs, targets)
+            loss.backward()
+            
+            # Collect gradients
+            grad_list = []
+            for p in model.parameters():
+                if p.grad is not None:
+                    grad_list.append(p.grad.data.clone().flatten())
+            
+            if len(grad_list) &gt; 0:
+                gradients.append(torch.cat(grad_list))
+        
+        if len(gradients) == 0:
+            return 0.0
+        
+        # Stack gradients: [num_samples, total_params]
+        gradients = torch.stack(gradients)
+        
+        # Compute mean gradient
+        mean_grad = gradients.mean(dim=0)
+        
+        # Compute variance: (1/n) Σᵢ ||gᵢ - ḡ||²
+        variance = ((gradients - mean_grad) ** 2).sum(dim=1).mean().item()
+        
+        model.train()
+        return variance
+    
+    def get_state_dict(self) -&gt; Dict[str, Any]:
+        &#34;&#34;&#34;Return optimizer state for checkpointing.
+        
+        Returns
+        -------
+        Dict[str, Any]
+            Dictionary containing optimizer state including parameter groups and state
+        &#34;&#34;&#34;
+        return {
+            &#39;state&#39;: self.state,
+            &#39;param_groups&#39;: self.param_groups
+        }</code></pre>
+</details>
+<div class="desc"><p>Stochastic Gradient Descent optimizer with momentum and variance tracking.</p>
+<p>Implements the SGD update rule:
+θ_{t+1} = θ_t - η * g_t</p>
+<p>With momentum:
+v_t = μ * v_{t-1} + g_t
+θ_{t+1} = θ_t - η * v_t</p>
+<p>With Nesterov momentum:
+v_t = μ * v_{t-1} + g_t
+θ_{t+1} = θ_t - η * (g_t + μ * v_t)</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>params</code></strong> :&ensp;<code>iterable</code></dt>
+<dd>Iterable of parameters to optimize</dd>
+<dt><strong><code>learning_rate</code></strong> :&ensp;<code>float</code></dt>
+<dd>Learning rate (step size)</dd>
+<dt><strong><code>momentum</code></strong> :&ensp;<code>float</code>, default=<code>0.0</code></dt>
+<dd>Momentum coefficient</dd>
+<dt><strong><code>weight_decay</code></strong> :&ensp;<code>float</code>, default=<code>0.0</code></dt>
+<dd>L2 regularization coefficient</dd>
+<dt><strong><code>nesterov</code></strong> :&ensp;<code>bool</code>, default=<code>False</code></dt>
+<dd>Whether to use Nesterov momentum</dd>
+</dl>
+<p>Initialize SGD optimizer.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="optimizers.base.OptimizerWithVariance" href="base.html#optimizers.base.OptimizerWithVariance">OptimizerWithVariance</a></li>
+<li>abc.ABC</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="optimizers.sgd.SGD.compute_gradient_variance"><code class="name flex">
+<span>def <span class="ident">compute_gradient_variance</span></span>(<span>self,<br>model: torch.nn.modules.module.Module,<br>data_loader: torch.utils.data.dataloader.DataLoader,<br>loss_fn: Callable[[torch.Tensor, torch.Tensor], torch.Tensor],<br>num_samples: int = 10) ‑> float</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compute_gradient_variance(
+    self,
+    model: nn.Module,
+    data_loader: DataLoader,
+    loss_fn: Callable[[torch.Tensor, torch.Tensor], torch.Tensor],
+    num_samples: int = 10
+) -&gt; float:
+    &#34;&#34;&#34;Compute empirical gradient variance.
+    
+    Samples multiple mini-batches and computes variance as:
+        Var = (1/n) Σᵢ ||gᵢ - ḡ||²
+    where gᵢ are mini-batch gradients and ḡ is their mean.
+    
+    Parameters
+    ----------
+    model : nn.Module
+        Neural network model
+    data_loader : DataLoader
+        DataLoader for sampling mini-batches
+    loss_fn : Callable
+        Loss function that takes (predictions, targets) and returns scalar loss
+    num_samples : int, default=10
+        Number of mini-batch samples for variance estimation
+    
+    Returns
+    -------
+    float
+        Mean squared deviation from mean gradient (gradient variance)
+    &#34;&#34;&#34;
+    model.eval()
+    
+    # Collect gradients from multiple mini-batches
+    gradients = []
+    data_iter = iter(data_loader)
+    
+    for _ in range(num_samples):
+        try:
+            batch_data = next(data_iter)
+        except StopIteration:
+            # Restart iterator if we run out of data
+            data_iter = iter(data_loader)
+            batch_data = next(data_iter)
+        
+        # Move to same device as model
+        device = next(model.parameters()).device
+        
+        # Handle different batch formats
+        if len(batch_data) == 3:
+            # DeepONet format: (input_functions, query_points, targets)
+            input_functions, query_points, targets = batch_data
+            input_functions = input_functions.to(device)
+            query_points = query_points.to(device)
+            targets = targets.to(device)
+        elif len(batch_data) == 2:
+            # Simple format: (inputs, targets)
+            inputs, targets = batch_data
+            inputs = inputs.to(device)
+            targets = targets.to(device)
+            
+            # Reshape for neural operator format
+            input_functions = inputs.permute(0, 2, 1)
+            query_points = targets.permute(0, 2, 1)
+        else:
+            raise ValueError(f&#34;Unexpected batch format with {len(batch_data)} elements&#34;)
+        
+        # Compute gradient for this mini-batch
+        model.zero_grad()
+        outputs = model(input_functions, query_points)
+        loss = loss_fn(outputs, targets)
+        loss.backward()
+        
+        # Collect gradients
+        grad_list = []
+        for p in model.parameters():
+            if p.grad is not None:
+                grad_list.append(p.grad.data.clone().flatten())
+        
+        if len(grad_list) &gt; 0:
+            gradients.append(torch.cat(grad_list))
+    
+    if len(gradients) == 0:
+        return 0.0
+    
+    # Stack gradients: [num_samples, total_params]
+    gradients = torch.stack(gradients)
+    
+    # Compute mean gradient
+    mean_grad = gradients.mean(dim=0)
+    
+    # Compute variance: (1/n) Σᵢ ||gᵢ - ḡ||²
+    variance = ((gradients - mean_grad) ** 2).sum(dim=1).mean().item()
+    
+    model.train()
+    return variance</code></pre>
+</details>
+<div class="desc"><p>Compute empirical gradient variance.</p>
+<p>Samples multiple mini-batches and computes variance as:
+Var = (1/n) Σᵢ ||gᵢ - ḡ||²
+where gᵢ are mini-batch gradients and ḡ is their mean.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>model</code></strong> :&ensp;<code>nn.Module</code></dt>
+<dd>Neural network model</dd>
+<dt><strong><code>data_loader</code></strong> :&ensp;<code>DataLoader</code></dt>
+<dd>DataLoader for sampling mini-batches</dd>
+<dt><strong><code>loss_fn</code></strong> :&ensp;<code>Callable</code></dt>
+<dd>Loss function that takes (predictions, targets) and returns scalar loss</dd>
+<dt><strong><code>num_samples</code></strong> :&ensp;<code>int</code>, default=<code>10</code></dt>
+<dd>Number of mini-batch samples for variance estimation</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>float</code></dt>
+<dd>Mean squared deviation from mean gradient (gradient variance)</dd>
+</dl></div>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="optimizers.base.OptimizerWithVariance" href="base.html#optimizers.base.OptimizerWithVariance">OptimizerWithVariance</a></b></code>:
+<ul class="hlist">
+<li><code><a title="optimizers.base.OptimizerWithVariance.add_param_group" href="base.html#optimizers.base.OptimizerWithVariance.add_param_group">add_param_group</a></code></li>
+<li><code><a title="optimizers.base.OptimizerWithVariance.get_state_dict" href="base.html#optimizers.base.OptimizerWithVariance.get_state_dict">get_state_dict</a></code></li>
+<li><code><a title="optimizers.base.OptimizerWithVariance.load_state_dict" href="base.html#optimizers.base.OptimizerWithVariance.load_state_dict">load_state_dict</a></code></li>
+<li><code><a title="optimizers.base.OptimizerWithVariance.step" href="base.html#optimizers.base.OptimizerWithVariance.step">step</a></code></li>
+<li><code><a title="optimizers.base.OptimizerWithVariance.zero_grad" href="base.html#optimizers.base.OptimizerWithVariance.zero_grad">zero_grad</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="optimizers" href="index.html">optimizers</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="optimizers.sgd.SGD" href="#optimizers.sgd.SGD">SGD</a></code></h4>
+<ul class="">
+<li><code><a title="optimizers.sgd.SGD.compute_gradient_variance" href="#optimizers.sgd.SGD.compute_gradient_variance">compute_gradient_variance</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>analysis.baseline API documentation</title>
+<meta name="description" content="Baseline comparison utilities for theoretical analysis.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>analysis.baseline</code></h1>
+</header>
+<section id="section-intro">
+<p>Baseline comparison utilities for theoretical analysis.</p>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="analysis.baseline.compare_optimizer_efficiency"><code class="name flex">
+<span>def <span class="ident">compare_optimizer_efficiency</span></span>(<span>sgd_history: Dict, adam_history: Dict, svrg_history: Dict, target_loss: float) ‑> Dict[str, Dict[str, float]]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compare_optimizer_efficiency(
+    sgd_history: Dict,
+    adam_history: Dict,
+    svrg_history: Dict,
+    target_loss: float
+) -&gt; Dict[str, Dict[str, float]]:
+    &#34;&#34;&#34;
+    Compare optimizer efficiency across multiple metrics.
+    
+    Args:
+        sgd_history: Training history for SGD
+        adam_history: Training history for Adam
+        svrg_history: Training history for SVRG
+        target_loss: Target validation loss for convergence
+    
+    Returns:
+        Dictionary with efficiency metrics for each optimizer
+    
+    Validates: Requirements 18.1, 18.2
+    &#34;&#34;&#34;
+    from analysis.metrics import compute_convergence_metrics
+    
+    optimizers = {
+        &#39;SGD&#39;: sgd_history,
+        &#39;Adam&#39;: adam_history,
+        &#39;SVRG&#39;: svrg_history,
+    }
+    
+    efficiency_comparison = {}
+    
+    for opt_name, history in optimizers.items():
+        # Compute convergence metrics
+        convergence = compute_convergence_metrics(history, target_loss)
+        
+        # Extract final gradient variance
+        grad_var_history = history.get(&#39;train_grad_variance&#39;, [])
+        final_grad_variance = grad_var_history[-1][1] if grad_var_history else None
+        
+        efficiency_comparison[opt_name] = {
+            &#39;iterations_to_target&#39;: convergence[&#39;iterations_to_target&#39;],
+            &#39;time_to_target&#39;: convergence[&#39;time_to_target&#39;],
+            &#39;gradient_evals_to_target&#39;: convergence[&#39;gradient_evals_to_target&#39;],
+            &#39;final_val_loss&#39;: convergence[&#39;final_val_loss&#39;],
+            &#39;min_val_loss&#39;: convergence[&#39;min_val_loss&#39;],
+            &#39;final_grad_variance&#39;: final_grad_variance,
+        }
+    
+    # Compute variance reduction factors
+    sgd_var = efficiency_comparison[&#39;SGD&#39;][&#39;final_grad_variance&#39;]
+    svrg_var = efficiency_comparison[&#39;SVRG&#39;][&#39;final_grad_variance&#39;]
+    
+    if sgd_var is not None and svrg_var is not None:
+        efficiency_comparison[&#39;variance_reduction_factor&#39;] = compute_variance_reduction_factor(
+            sgd_var, svrg_var
+        )
+    
+    return efficiency_comparison</code></pre>
+</details>
+<div class="desc"><p>Compare optimizer efficiency across multiple metrics.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>sgd_history</code></strong></dt>
+<dd>Training history for SGD</dd>
+<dt><strong><code>adam_history</code></strong></dt>
+<dd>Training history for Adam</dd>
+<dt><strong><code>svrg_history</code></strong></dt>
+<dd>Training history for SVRG</dd>
+<dt><strong><code>target_loss</code></strong></dt>
+<dd>Target validation loss for convergence</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Dictionary with efficiency metrics for each optimizer
+Validates: Requirements 18.1, 18.2</p></div>
+</dd>
+<dt id="analysis.baseline.compute_spectral_approximation_quality"><code class="name flex">
+<span>def <span class="ident">compute_spectral_approximation_quality</span></span>(<span>learned_eigenvalues: torch.Tensor, true_eigenvalues: torch.Tensor) ‑> Dict[str, float]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compute_spectral_approximation_quality(
+    learned_eigenvalues: torch.Tensor,
+    true_eigenvalues: torch.Tensor
+) -&gt; Dict[str, float]:
+    &#34;&#34;&#34;
+    Compute spectral approximation quality metrics.
+    
+    Compares learned operator eigenvalues to true dynamical system eigenvalues.
+    
+    Args:
+        learned_eigenvalues: Eigenvalues from learned operator [n]
+        true_eigenvalues: True eigenvalues from dynamical system [m]
+    
+    Returns:
+        Dictionary containing:
+            - mean_absolute_error: Mean absolute error between matched eigenvalues
+            - max_absolute_error: Maximum absolute error
+            - relative_error: Relative error normalized by true eigenvalue magnitudes
+            - spectral_radius_error: Error in spectral radius
+    
+    Validates: Requirements 18.3
+    &#34;&#34;&#34;
+    from analysis.spectral import compute_eigenvalue_error, compute_spectral_radius
+    
+    # Convert to numpy for easier manipulation
+    learned = learned_eigenvalues.detach().cpu().numpy()
+    true = true_eigenvalues.detach().cpu().numpy()
+    
+    # Compute mean absolute error using optimal matching
+    mean_abs_error = compute_eigenvalue_error(
+        learned_eigenvalues, true_eigenvalues, method=&#39;hungarian&#39;
+    )
+    
+    # Compute maximum absolute error
+    from scipy.optimize import linear_sum_assignment
+    
+    n_learned = len(learned)
+    n_true = len(true)
+    
+    # Cost matrix
+    cost_matrix = np.zeros((n_learned, n_true))
+    for i in range(n_learned):
+        for j in range(n_true):
+            cost_matrix[i, j] = np.abs(learned[i] - true[j])
+    
+    # Optimal assignment
+    row_ind, col_ind = linear_sum_assignment(cost_matrix)
+    
+    # Maximum error
+    max_abs_error = cost_matrix[row_ind, col_ind].max()
+    
+    # Relative error (normalized by true eigenvalue magnitudes)
+    true_magnitudes = np.abs(true[col_ind])
+    relative_errors = cost_matrix[row_ind, col_ind] / (true_magnitudes + 1e-10)
+    mean_relative_error = relative_errors.mean()
+    
+    # Spectral radius error
+    learned_spectral_radius = compute_spectral_radius(learned_eigenvalues)
+    true_spectral_radius = compute_spectral_radius(true_eigenvalues)
+    spectral_radius_error = abs(learned_spectral_radius - true_spectral_radius)
+    
+    quality_metrics = {
+        &#39;mean_absolute_error&#39;: float(mean_abs_error),
+        &#39;max_absolute_error&#39;: float(max_abs_error),
+        &#39;relative_error&#39;: float(mean_relative_error),
+        &#39;spectral_radius_error&#39;: float(spectral_radius_error),
+    }
+    
+    return quality_metrics</code></pre>
+</details>
+<div class="desc"><p>Compute spectral approximation quality metrics.</p>
+<p>Compares learned operator eigenvalues to true dynamical system eigenvalues.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>learned_eigenvalues</code></strong></dt>
+<dd>Eigenvalues from learned operator [n]</dd>
+<dt><strong><code>true_eigenvalues</code></strong></dt>
+<dd>True eigenvalues from dynamical system [m]</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Dictionary containing:
+- mean_absolute_error: Mean absolute error between matched eigenvalues
+- max_absolute_error: Maximum absolute error
+- relative_error: Relative error normalized by true eigenvalue magnitudes
+- spectral_radius_error: Error in spectral radius
+Validates: Requirements 18.3</p></div>
+</dd>
+<dt id="analysis.baseline.compute_theoretical_sgd_convergence_rate"><code class="name flex">
+<span>def <span class="ident">compute_theoretical_sgd_convergence_rate</span></span>(<span>learning_rate: float,<br>strong_convexity: float,<br>smoothness: float,<br>gradient_variance: float,<br>num_iterations: int) ‑> float</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compute_theoretical_sgd_convergence_rate(
+    learning_rate: float,
+    strong_convexity: float,
+    smoothness: float,
+    gradient_variance: float,
+    num_iterations: int
+) -&gt; float:
+    &#34;&#34;&#34;
+    Compute theoretical convergence rate for SGD on strongly convex problems.
+    
+    For strongly convex functions with smoothness constant L and strong convexity μ,
+    SGD with learning rate η converges as:
+    E[f(x_t) - f(x*)] ≤ (1 - ημ)^t * [f(x_0) - f(x*)] + η*σ²/(2μ)
+    
+    where σ² is the gradient variance.
+    
+    Args:
+        learning_rate: Step size η
+        strong_convexity: Strong convexity parameter μ
+        smoothness: Smoothness constant L
+        gradient_variance: Gradient variance σ²
+        num_iterations: Number of iterations t
+    
+    Returns:
+        Theoretical convergence rate (expected suboptimality)
+    
+    Validates: Requirements 18.1
+    &#34;&#34;&#34;
+    # Convergence rate: (1 - η*μ)^t
+    convergence_factor = (1 - learning_rate * strong_convexity) ** num_iterations
+    
+    # Asymptotic error: η*σ²/(2μ)
+    asymptotic_error = learning_rate * gradient_variance / (2 * strong_convexity)
+    
+    # Total expected suboptimality (assuming f(x_0) - f(x*) = 1 for normalization)
+    expected_suboptimality = convergence_factor + asymptotic_error
+    
+    return expected_suboptimality</code></pre>
+</details>
+<div class="desc"><p>Compute theoretical convergence rate for SGD on strongly convex problems.</p>
+<p>For strongly convex functions with smoothness constant L and strong convexity μ,
+SGD with learning rate η converges as:
+E[f(x_t) - f(x<em>)] ≤ (1 - ημ)^t * [f(x_0) - f(x</em>)] + η*σ²/(2μ)</p>
+<p>where σ² is the gradient variance.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>learning_rate</code></strong></dt>
+<dd>Step size η</dd>
+<dt><strong><code>strong_convexity</code></strong></dt>
+<dd>Strong convexity parameter μ</dd>
+<dt><strong><code>smoothness</code></strong></dt>
+<dd>Smoothness constant L</dd>
+<dt><strong><code>gradient_variance</code></strong></dt>
+<dd>Gradient variance σ²</dd>
+<dt><strong><code>num_iterations</code></strong></dt>
+<dd>Number of iterations t</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Theoretical convergence rate (expected suboptimality)
+Validates: Requirements 18.1</p></div>
+</dd>
+<dt id="analysis.baseline.compute_theoretical_svrg_convergence_rate"><code class="name flex">
+<span>def <span class="ident">compute_theoretical_svrg_convergence_rate</span></span>(<span>learning_rate: float,<br>strong_convexity: float,<br>smoothness: float,<br>gradient_variance: float,<br>inner_loop_length: int,<br>num_epochs: int) ‑> float</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compute_theoretical_svrg_convergence_rate(
+    learning_rate: float,
+    strong_convexity: float,
+    smoothness: float,
+    gradient_variance: float,
+    inner_loop_length: int,
+    num_epochs: int
+) -&gt; float:
+    &#34;&#34;&#34;
+    Compute theoretical convergence rate for SVRG on strongly convex problems.
+    
+    SVRG achieves linear convergence with reduced variance:
+    E[f(x_t) - f(x*)] ≤ ρ^t * [f(x_0) - f(x*)]
+    
+    where ρ &lt; 1 depends on learning rate, strong convexity, and inner loop length.
+    
+    Args:
+        learning_rate: Step size η
+        strong_convexity: Strong convexity parameter μ
+        smoothness: Smoothness constant L
+        gradient_variance: Initial gradient variance σ²
+        inner_loop_length: Inner loop length m
+        num_epochs: Number of outer loop epochs
+    
+    Returns:
+        Theoretical convergence rate (expected suboptimality)
+    
+    Validates: Requirements 18.1
+    &#34;&#34;&#34;
+    # SVRG convergence rate (simplified)
+    # ρ ≈ 1 - μ*η*m / (1 + 2*L*η*m)
+    
+    numerator = strong_convexity * learning_rate * inner_loop_length
+    denominator = 1 + 2 * smoothness * learning_rate * inner_loop_length
+    
+    convergence_rate = 1 - numerator / denominator
+    
+    # Expected suboptimality after num_epochs
+    expected_suboptimality = convergence_rate ** num_epochs
+    
+    return expected_suboptimality</code></pre>
+</details>
+<div class="desc"><p>Compute theoretical convergence rate for SVRG on strongly convex problems.</p>
+<p>SVRG achieves linear convergence with reduced variance:
+E[f(x_t) - f(x<em>)] ≤ ρ^t * [f(x_0) - f(x</em>)]</p>
+<p>where ρ &lt; 1 depends on learning rate, strong convexity, and inner loop length.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>learning_rate</code></strong></dt>
+<dd>Step size η</dd>
+<dt><strong><code>strong_convexity</code></strong></dt>
+<dd>Strong convexity parameter μ</dd>
+<dt><strong><code>smoothness</code></strong></dt>
+<dd>Smoothness constant L</dd>
+<dt><strong><code>gradient_variance</code></strong></dt>
+<dd>Initial gradient variance σ²</dd>
+<dt><strong><code>inner_loop_length</code></strong></dt>
+<dd>Inner loop length m</dd>
+<dt><strong><code>num_epochs</code></strong></dt>
+<dd>Number of outer loop epochs</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Theoretical convergence rate (expected suboptimality)
+Validates: Requirements 18.1</p></div>
+</dd>
+<dt id="analysis.baseline.compute_variance_reduction_factor"><code class="name flex">
+<span>def <span class="ident">compute_variance_reduction_factor</span></span>(<span>sgd_variance: float, svrg_variance: float) ‑> float</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compute_variance_reduction_factor(
+    sgd_variance: float,
+    svrg_variance: float
+) -&gt; float:
+    &#34;&#34;&#34;
+    Compute variance reduction factor achieved by SVRG relative to SGD.
+    
+    Variance reduction factor = σ²_SGD / σ²_SVRG
+    
+    A factor &gt; 1 indicates SVRG reduces variance compared to SGD.
+    
+    Args:
+        sgd_variance: Gradient variance for SGD (σ²_SGD)
+        svrg_variance: Gradient variance for SVRG (σ²_SVRG)
+    
+    Returns:
+        Variance reduction factor
+    
+    Validates: Requirements 18.2
+    &#34;&#34;&#34;
+    if svrg_variance &lt; 1e-10:
+        # SVRG variance is essentially zero (perfect variance reduction)
+        return float(&#39;inf&#39;)
+    
+    reduction_factor = sgd_variance / svrg_variance
+    
+    return reduction_factor</code></pre>
+</details>
+<div class="desc"><p>Compute variance reduction factor achieved by SVRG relative to SGD.</p>
+<p>Variance reduction factor = σ²_SGD / σ²_SVRG</p>
+<p>A factor &gt; 1 indicates SVRG reduces variance compared to SGD.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>sgd_variance</code></strong></dt>
+<dd>Gradient variance for SGD (σ²_SGD)</dd>
+<dt><strong><code>svrg_variance</code></strong></dt>
+<dd>Gradient variance for SVRG (σ²_SVRG)</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Variance reduction factor
+Validates: Requirements 18.2</p></div>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="analysis" href="index.html">analysis</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="analysis.baseline.compare_optimizer_efficiency" href="#analysis.baseline.compare_optimizer_efficiency">compare_optimizer_efficiency</a></code></li>
+<li><code><a title="analysis.baseline.compute_spectral_approximation_quality" href="#analysis.baseline.compute_spectral_approximation_quality">compute_spectral_approximation_quality</a></code></li>
+<li><code><a title="analysis.baseline.compute_theoretical_sgd_convergence_rate" href="#analysis.baseline.compute_theoretical_sgd_convergence_rate">compute_theoretical_sgd_convergence_rate</a></code></li>
+<li><code><a title="analysis.baseline.compute_theoretical_svrg_convergence_rate" href="#analysis.baseline.compute_theoretical_svrg_convergence_rate">compute_theoretical_svrg_convergence_rate</a></code></li>
+<li><code><a title="analysis.baseline.compute_variance_reduction_factor" href="#analysis.baseline.compute_variance_reduction_factor">compute_variance_reduction_factor</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,1032 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>training.training_loop API documentation</title>
+<meta name="description" content="Training loop implementation for neural operator training.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>training.training_loop</code></h1>
+</header>
+<section id="section-intro">
+<p>Training loop implementation for neural operator training.</p>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="training.training_loop.TrainingLoop"><code class="flex name class">
+<span>class <span class="ident">TrainingLoop</span></span>
+<span>(</span><span>model: <a title="models.base.NeuralOperator" href="../models/base.html#models.base.NeuralOperator">NeuralOperator</a>,<br>optimizer: <a title="optimizers.base.OptimizerWithVariance" href="../optimizers/base.html#optimizers.base.OptimizerWithVariance">OptimizerWithVariance</a>,<br>train_loader: torch.utils.data.dataloader.DataLoader,<br>val_loader: torch.utils.data.dataloader.DataLoader,<br>config: Dict[str, Any],<br>logger: <a title="utils.logger.MetricsLogger" href="../utils/logger.html#utils.logger.MetricsLogger">MetricsLogger</a> | None = None,<br>checkpoint_manager: <a title="training.checkpoint_manager.CheckpointManager" href="checkpoint_manager.html#training.checkpoint_manager.CheckpointManager">CheckpointManager</a> | None = None)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class TrainingLoop:
+    &#34;&#34;&#34;
+    Training loop for neural operator models.
+    
+    Manages the complete training workflow including training iterations,
+    validation, gradient variance computation, checkpointing, and early stopping.
+    
+    Parameters
+    ----------
+    model : NeuralOperator
+        Neural operator model to train.
+    optimizer : OptimizerWithVariance
+        Optimizer with gradient variance tracking.
+    train_loader : DataLoader
+        DataLoader for training data.
+    val_loader : DataLoader
+        DataLoader for validation data.
+    config : Dict[str, Any]
+        Configuration dictionary containing training parameters.
+    logger : MetricsLogger, optional
+        Metrics logger for tracking training history.
+    checkpoint_manager : CheckpointManager, optional
+        Manager for saving and loading checkpoints.
+    
+    Attributes
+    ----------
+    model : NeuralOperator
+        The neural operator being trained.
+    optimizer : OptimizerWithVariance
+        The optimizer being used.
+    train_loader : DataLoader
+        Training data loader.
+    val_loader : DataLoader
+        Validation data loader.
+    config : Dict[str, Any]
+        Training configuration.
+    logger : MetricsLogger
+        Metrics logger.
+    checkpoint_manager : CheckpointManager
+        Checkpoint manager.
+    device : torch.device
+        Device for computation (CPU or CUDA).
+    loss_fn : Callable
+        Loss function (MSE).
+    current_iteration : int
+        Current training iteration number.
+    current_epoch : int
+        Current training epoch number.
+    best_val_loss : float
+        Best validation loss achieved.
+    patience_counter : int
+        Counter for early stopping patience.
+    
+    Examples
+    --------
+    &gt;&gt;&gt; training_loop = TrainingLoop(model, optimizer, train_loader, val_loader, config)
+    &gt;&gt;&gt; training_loop.run(num_epochs=100)
+    &#34;&#34;&#34;
+    
+    def __init__(
+        self,
+        model: NeuralOperator,
+        optimizer: OptimizerWithVariance,
+        train_loader: DataLoader,
+        val_loader: DataLoader,
+        config: Dict[str, Any],
+        logger: Optional[MetricsLogger] = None,
+        checkpoint_manager: Optional[CheckpointManager] = None
+    ):
+        &#34;&#34;&#34;Initialize training loop with all components.&#34;&#34;&#34;
+        self.model = model
+        self.optimizer = optimizer
+        self.train_loader = train_loader
+        self.val_loader = val_loader
+        self.config = config
+        
+        # Get device from config or auto-detect
+        device_name = config.get(&#39;device&#39;, &#39;cuda&#39; if torch.cuda.is_available() else &#39;cpu&#39;)
+        self.device = torch.device(device_name)
+        self.model.to(self.device)
+        
+        # Loss function (MSE)
+        self.loss_fn = nn.MSELoss()
+        
+        # Initialize logger if not provided
+        if logger is None:
+            log_dir = config.get(&#39;log_dir&#39;, &#39;./logs&#39;)
+            experiment_name = config.get(&#39;experiment_name&#39;, &#39;experiment&#39;)
+            self.logger = MetricsLogger(log_dir, experiment_name)
+        else:
+            self.logger = logger
+        
+        # Initialize checkpoint manager if not provided
+        if checkpoint_manager is None:
+            checkpoint_dir = config.get(&#39;checkpoint_dir&#39;, &#39;./checkpoints&#39;)
+            self.checkpoint_manager = CheckpointManager(checkpoint_dir)
+        else:
+            self.checkpoint_manager = checkpoint_manager
+        
+        # Training state
+        self.current_iteration = 0
+        self.current_epoch = 0
+        self.best_val_loss = float(&#39;inf&#39;)
+        self.patience_counter = 0
+        
+        # Extract training parameters from config
+        self.validation_interval = config.get(&#39;validation_interval&#39;, 100)
+        self.variance_interval = config.get(&#39;variance_interval&#39;, 500)
+        self.checkpoint_interval = config.get(&#39;checkpoint_interval&#39;, 1000)
+        self.early_stopping_patience = config.get(&#39;early_stopping_patience&#39;, 20)
+        self.num_variance_samples = config.get(&#39;num_variance_samples&#39;, 10)
+        
+        # Divergence detection
+        self.recent_losses = []
+        self.max_recent_losses = 10
+    
+    def train_epoch(self) -&gt; Dict[str, float]:
+        &#34;&#34;&#34;
+        Execute one full pass through training data.
+        
+        Returns
+        -------
+        Dict[str, float]
+            Dictionary containing epoch-level metrics (average loss, etc.).
+        
+        Examples
+        --------
+        &gt;&gt;&gt; epoch_metrics = training_loop.train_epoch()
+        &gt;&gt;&gt; print(f&#34;Epoch loss: {epoch_metrics[&#39;avg_loss&#39;]}&#34;)
+        &#34;&#34;&#34;
+        self.model.train()
+        epoch_loss = 0.0
+        num_batches = 0
+        
+        for batch_idx, batch_data in enumerate(self.train_loader):
+            try:
+                # Handle different batch formats
+                if len(batch_data) == 3:
+                    # DeepONet format: (input_functions, query_points, targets)
+                    input_functions, query_points, targets = batch_data
+                    input_functions = input_functions.to(self.device)
+                    query_points = query_points.to(self.device)
+                    targets = targets.to(self.device)
+                elif len(batch_data) == 2:
+                    # Simple format: (inputs, targets)
+                    # For DeepONet, use inputs as both input_functions and query_points
+                    inputs, targets = batch_data
+                    inputs = inputs.to(self.device)
+                    targets = targets.to(self.device)
+                    
+                    # Reshape for DeepONet if needed
+                    # inputs: [batch, input_horizon, state_dim]
+                    # DeepONet expects: input_functions [batch, state_dim, num_sensors]
+                    #                   query_points [batch, state_dim, num_queries]
+                    input_functions = inputs.permute(0, 2, 1)  # [batch, state_dim, input_horizon]
+                    query_points = targets.permute(0, 2, 1)  # [batch, state_dim, output_horizon]
+                else:
+                    raise ValueError(f&#34;Unexpected batch format with {len(batch_data)} elements&#34;)
+                
+                # Record iteration start time
+                iter_start_time = time.time()
+                
+                # Forward pass
+                self.optimizer.zero_grad()
+                predictions = self.model(input_functions, query_points)
+                
+                # Reshape targets to match predictions if needed
+                if targets.shape != predictions.shape:
+                    # targets: [batch, output_horizon, state_dim]
+                    # predictions: [batch, state_dim, output_horizon]
+                    if len(targets.shape) == 3 and len(predictions.shape) == 3:
+                        if targets.shape[1] != predictions.shape[1]:
+                            targets = targets.permute(0, 2, 1)
+                
+                loss = self.loss_fn(predictions, targets)
+                
+                # Check for divergence
+                self._check_divergence(loss, predictions, targets)
+                
+                # Backward pass
+                loss.backward()
+                
+                # Compute gradient norm
+                grad_norm = 0.0
+                for param in self.model.parameters():
+                    if param.grad is not None:
+                        grad_norm += param.grad.data.norm(2).item() ** 2
+                grad_norm = grad_norm ** 0.5
+                
+                # Handle SVRG snapshot if needed
+                if hasattr(self.optimizer, &#39;needs_snapshot&#39;) and self.optimizer.needs_snapshot:
+                    self.optimizer.take_snapshot(self.model, self.train_loader, self.loss_fn)
+                
+                # Optimizer step
+                self.optimizer.step()
+                
+                # Record iteration time
+                iter_time = time.time() - iter_start_time
+                
+                # Log metrics
+                self.logger.log_dict({
+                    &#39;train_loss&#39;: loss.item(),
+                    &#39;train_grad_norm&#39;: grad_norm,
+                    &#39;iteration_time&#39;: iter_time
+                }, step=self.current_iteration)
+                
+                # Track recent losses for divergence detection
+                self.recent_losses.append(loss.item())
+                if len(self.recent_losses) &gt; self.max_recent_losses:
+                    self.recent_losses.pop(0)
+                
+                epoch_loss += loss.item()
+                num_batches += 1
+                
+                # Validation at specified intervals
+                if self.current_iteration % self.validation_interval == 0:
+                    val_metrics = self.validate()
+                    self.logger.log_dict(val_metrics, step=self.current_iteration)
+                    
+                    # Check for early stopping
+                    if self._check_early_stopping(val_metrics[&#39;val_loss&#39;]):
+                        return {&#39;avg_loss&#39;: epoch_loss / num_batches, &#39;early_stop&#39;: True}
+                
+                # Gradient variance computation at specified intervals
+                if self.current_iteration % self.variance_interval == 0:
+                    variance = self._compute_variance()
+                    self.logger.log_scalar(&#39;train_grad_variance&#39;, variance, step=self.current_iteration)
+                
+                # Checkpoint saving at specified intervals
+                if self.current_iteration % self.checkpoint_interval == 0:
+                    self._save_checkpoint()
+                
+                self.current_iteration += 1
+            
+            except torch.cuda.OutOfMemoryError as e:
+                # Handle GPU memory errors
+                self._handle_gpu_memory_error(e)
+        
+        return {&#39;avg_loss&#39;: epoch_loss / num_batches, &#39;early_stop&#39;: False}
+    
+    def validate(self) -&gt; Dict[str, float]:
+        &#34;&#34;&#34;
+        Evaluate model on validation set.
+        
+        Returns
+        -------
+        Dict[str, float]
+            Dictionary containing validation metrics (loss, relative error, etc.).
+        
+        Examples
+        --------
+        &gt;&gt;&gt; val_metrics = training_loop.validate()
+        &gt;&gt;&gt; print(f&#34;Validation loss: {val_metrics[&#39;val_loss&#39;]}&#34;)
+        &#34;&#34;&#34;
+        self.model.eval()
+        total_loss = 0.0
+        total_relative_error = 0.0
+        total_max_error = 0.0
+        total_mae = 0.0
+        num_batches = 0
+        
+        with torch.no_grad():
+            for batch_data in self.val_loader:
+                # Handle different batch formats
+                if len(batch_data) == 3:
+                    input_functions, query_points, targets = batch_data
+                    input_functions = input_functions.to(self.device)
+                    query_points = query_points.to(self.device)
+                    targets = targets.to(self.device)
+                elif len(batch_data) == 2:
+                    inputs, targets = batch_data
+                    inputs = inputs.to(self.device)
+                    targets = targets.to(self.device)
+                    input_functions = inputs.permute(0, 2, 1)
+                    query_points = targets.permute(0, 2, 1)
+                else:
+                    raise ValueError(f&#34;Unexpected batch format with {len(batch_data)} elements&#34;)
+                
+                # Forward pass
+                predictions = self.model(input_functions, query_points)
+                
+                # Reshape targets to match predictions if needed
+                if targets.shape != predictions.shape:
+                    if len(targets.shape) == 3 and len(predictions.shape) == 3:
+                        if targets.shape[1] != predictions.shape[1]:
+                            targets = targets.permute(0, 2, 1)
+                
+                loss = self.loss_fn(predictions, targets)
+                
+                # Compute additional metrics
+                relative_error = torch.norm(predictions - targets) / (torch.norm(targets) + 1e-8)
+                max_error = torch.max(torch.abs(predictions - targets))
+                mae = torch.mean(torch.abs(predictions - targets))
+                
+                total_loss += loss.item()
+                total_relative_error += relative_error.item()
+                total_max_error += max_error.item()
+                total_mae += mae.item()
+                num_batches += 1
+        
+        self.model.train()
+        
+        return {
+            &#39;val_loss&#39;: total_loss / num_batches,
+            &#39;val_relative_error&#39;: total_relative_error / num_batches,
+            &#39;val_max_error&#39;: total_max_error / num_batches,
+            &#39;val_mean_absolute_error&#39;: total_mae / num_batches
+        }
+    
+    def run(self, num_epochs: int) -&gt; Dict[str, Any]:
+        &#34;&#34;&#34;
+        Execute full training run.
+        
+        Parameters
+        ----------
+        num_epochs : int
+            Number of epochs to train.
+        
+        Returns
+        -------
+        Dict[str, Any]
+            Dictionary containing final training results and history.
+        
+        Examples
+        --------
+        &gt;&gt;&gt; results = training_loop.run(num_epochs=100)
+        &gt;&gt;&gt; print(f&#34;Final validation loss: {results[&#39;final_val_loss&#39;]}&#34;)
+        &#34;&#34;&#34;
+        print(f&#34;Starting training for {num_epochs} epochs...&#34;)
+        print(f&#34;Device: {self.device}&#34;)
+        print(f&#34;Model parameters: {self.model.get_parameter_count()}&#34;)
+        
+        for epoch in range(num_epochs):
+            self.current_epoch = epoch
+            print(f&#34;\nEpoch {epoch + 1}/{num_epochs}&#34;)
+            
+            # Train one epoch
+            epoch_metrics = self.train_epoch()
+            print(f&#34;  Average training loss: {epoch_metrics[&#39;avg_loss&#39;]:.6f}&#34;)
+            
+            # Check for early stopping
+            if epoch_metrics.get(&#39;early_stop&#39;, False):
+                print(f&#34;Early stopping triggered at epoch {epoch + 1}&#34;)
+                break
+            
+            # Validate at end of epoch
+            val_metrics = self.validate()
+            self.logger.log_dict(val_metrics, step=self.current_iteration)
+            print(f&#34;  Validation loss: {val_metrics[&#39;val_loss&#39;]:.6f}&#34;)
+            print(f&#34;  Validation relative error: {val_metrics[&#39;val_relative_error&#39;]:.6f}&#34;)
+        
+        # Save final checkpoint
+        self._save_checkpoint(is_final=True)
+        
+        # Save training history
+        history_path = self.logger.save_history()
+        print(f&#34;\nTraining complete. History saved to {history_path}&#34;)
+        
+        # Get final validation metrics
+        final_val_metrics = self.validate()
+        
+        return {
+            &#39;final_val_loss&#39;: final_val_metrics[&#39;val_loss&#39;],
+            &#39;final_val_relative_error&#39;: final_val_metrics[&#39;val_relative_error&#39;],
+            &#39;best_val_loss&#39;: self.best_val_loss,
+            &#39;total_iterations&#39;: self.current_iteration,
+            &#39;total_epochs&#39;: self.current_epoch + 1,
+            &#39;history&#39;: self.logger.history
+        }
+    
+    def _compute_variance(self) -&gt; float:
+        &#34;&#34;&#34;
+        Compute gradient variance at current parameters.
+        
+        Returns
+        -------
+        float
+            Empirical gradient variance.
+        &#34;&#34;&#34;
+        variance = self.optimizer.compute_gradient_variance(
+            self.model,
+            self.train_loader,
+            self.loss_fn,
+            num_samples=self.num_variance_samples
+        )
+        return variance
+    
+    def _check_early_stopping(self, val_loss: float) -&gt; bool:
+        &#34;&#34;&#34;
+        Check if early stopping criteria are met.
+        
+        Parameters
+        ----------
+        val_loss : float
+            Current validation loss.
+        
+        Returns
+        -------
+        bool
+            True if training should stop, False otherwise.
+        &#34;&#34;&#34;
+        if val_loss &lt; self.best_val_loss:
+            self.best_val_loss = val_loss
+            self.patience_counter = 0
+            return False
+        else:
+            self.patience_counter += 1
+            if self.patience_counter &gt;= self.early_stopping_patience:
+                return True
+            return False
+    
+    def _save_checkpoint(self, is_final: bool = False) -&gt; None:
+        &#34;&#34;&#34;
+        Save training checkpoint.
+        
+        Parameters
+        ----------
+        is_final : bool, default=False
+            Whether this is the final checkpoint.
+        &#34;&#34;&#34;
+        checkpoint_name = &#39;final_checkpoint.pt&#39; if is_final else f&#39;checkpoint_iter_{self.current_iteration}.pt&#39;
+        
+        self.checkpoint_manager.save_checkpoint(
+            model=self.model,
+            optimizer=self.optimizer,
+            iteration=self.current_iteration,
+            epoch=self.current_epoch,
+            history=self.logger.history,
+            config=self.config,
+            filename=checkpoint_name
+        )
+        
+        if not is_final:
+            print(f&#34;  Checkpoint saved at iteration {self.current_iteration}&#34;)
+    
+    def _check_divergence(
+        self,
+        loss: torch.Tensor,
+        predictions: torch.Tensor,
+        targets: torch.Tensor
+    ) -&gt; None:
+        &#34;&#34;&#34;
+        Check for training divergence (NaN or infinite loss).
+        
+        Parameters
+        ----------
+        loss : torch.Tensor
+            Current loss value.
+        predictions : torch.Tensor
+            Model predictions.
+        targets : torch.Tensor
+            Target values.
+        
+        Raises
+        ------
+        TrainingDivergenceError
+            If loss is NaN or infinite.
+        &#34;&#34;&#34;
+        loss_value = loss.item()
+        
+        if torch.isnan(loss) or torch.isinf(loss):
+            # Compute gradient norm for diagnostics
+            grad_norm = 0.0
+            for param in self.model.parameters():
+                if param.grad is not None:
+                    grad_norm += param.grad.data.norm(2).item() ** 2
+            grad_norm = grad_norm ** 0.5
+            
+            # Get learning rate
+            lr = self.optimizer.get_learning_rate() if hasattr(self.optimizer, &#39;get_learning_rate&#39;) else &#39;unknown&#39;
+            
+            # Compute batch statistics
+            batch_stats = {
+                &#39;predictions_mean&#39;: predictions.mean().item(),
+                &#39;predictions_std&#39;: predictions.std().item(),
+                &#39;predictions_min&#39;: predictions.min().item(),
+                &#39;predictions_max&#39;: predictions.max().item(),
+                &#39;targets_mean&#39;: targets.mean().item(),
+                &#39;targets_std&#39;: targets.std().item(),
+                &#39;targets_min&#39;: targets.min().item(),
+                &#39;targets_max&#39;: targets.max().item(),
+            }
+            
+            # Prepare diagnostics
+            diagnostics = {
+                &#39;iteration&#39;: self.current_iteration,
+                &#39;epoch&#39;: self.current_epoch,
+                &#39;loss_value&#39;: loss_value,
+                &#39;recent_losses&#39;: self.recent_losses[-5:] if self.recent_losses else [],
+                &#39;gradient_norm&#39;: grad_norm,
+                &#39;learning_rate&#39;: lr,
+                &#39;batch_statistics&#39;: batch_stats,
+            }
+            
+            # Prepare suggestions
+            suggestions = [
+                &#34;Reduce the learning rate (try 10x smaller)&#34;,
+                &#34;Check for data normalization issues&#34;,
+                &#34;Reduce batch size to improve gradient stability&#34;,
+                &#34;Add gradient clipping to prevent exploding gradients&#34;,
+                &#34;Check for numerical instability in the model architecture&#34;,
+                &#34;Verify that input data doesn&#39;t contain NaN or infinite values&#34;,
+            ]
+            
+            # Save diagnostic checkpoint
+            try:
+                self._save_checkpoint(is_final=False)
+                diagnostics[&#39;checkpoint_saved&#39;] = True
+            except Exception as e:
+                diagnostics[&#39;checkpoint_saved&#39;] = False
+                diagnostics[&#39;checkpoint_error&#39;] = str(e)
+            
+            raise TrainingDivergenceError(
+                f&#34;Training diverged at iteration {self.current_iteration}: &#34;
+                f&#34;loss is {&#39;NaN&#39; if torch.isnan(loss) else &#39;infinite&#39;}&#34;,
+                diagnostics=diagnostics,
+                suggestions=suggestions
+            )
+    
+    def _handle_gpu_memory_error(self, error: Exception) -&gt; None:
+        &#34;&#34;&#34;
+        Handle GPU out of memory errors.
+        
+        Parameters
+        ----------
+        error : Exception
+            The CUDA out of memory error.
+        
+        Raises
+        ------
+        GPUMemoryError
+            Wrapped error with memory statistics and suggestions.
+        &#34;&#34;&#34;
+        # Get GPU memory statistics
+        memory_stats = {}
+        if torch.cuda.is_available():
+            try:
+                memory_stats = {
+                    &#39;allocated&#39;: f&#34;{torch.cuda.memory_allocated() / 1e9:.2f} GB&#34;,
+                    &#39;reserved&#39;: f&#34;{torch.cuda.memory_reserved() / 1e9:.2f} GB&#34;,
+                    &#39;max_allocated&#39;: f&#34;{torch.cuda.max_memory_allocated() / 1e9:.2f} GB&#34;,
+                    &#39;max_reserved&#39;: f&#34;{torch.cuda.max_memory_reserved() / 1e9:.2f} GB&#34;,
+                }
+                
+                # Get device properties
+                device_props = torch.cuda.get_device_properties(self.device)
+                memory_stats[&#39;total_memory&#39;] = f&#34;{device_props.total_memory / 1e9:.2f} GB&#34;
+                memory_stats[&#39;device_name&#39;] = device_props.name
+            except Exception:
+                pass
+        
+        # Prepare suggestions
+        current_batch_size = self.config.get(&#39;batch_size&#39;, &#39;unknown&#39;)
+        suggestions = [
+            f&#34;Reduce batch size (current: {current_batch_size}, try half: {current_batch_size // 2 if isinstance(current_batch_size, int) else &#39;N/A&#39;})&#34;,
+            &#34;Reduce model size (fewer layers or smaller hidden dimensions)&#34;,
+            &#34;Use gradient accumulation to simulate larger batches&#34;,
+            &#34;Enable mixed precision training (torch.cuda.amp)&#34;,
+            &#34;Clear CUDA cache: torch.cuda.empty_cache()&#34;,
+        ]
+        
+        raise GPUMemoryError(
+            f&#34;GPU out of memory at iteration {self.current_iteration}&#34;,
+            memory_stats=memory_stats,
+            suggestions=suggestions
+        ) from error</code></pre>
+</details>
+<div class="desc"><p>Training loop for neural operator models.</p>
+<p>Manages the complete training workflow including training iterations,
+validation, gradient variance computation, checkpointing, and early stopping.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>model</code></strong> :&ensp;<code>NeuralOperator</code></dt>
+<dd>Neural operator model to train.</dd>
+<dt><strong><code>optimizer</code></strong> :&ensp;<code>OptimizerWithVariance</code></dt>
+<dd>Optimizer with gradient variance tracking.</dd>
+<dt><strong><code>train_loader</code></strong> :&ensp;<code>DataLoader</code></dt>
+<dd>DataLoader for training data.</dd>
+<dt><strong><code>val_loader</code></strong> :&ensp;<code>DataLoader</code></dt>
+<dd>DataLoader for validation data.</dd>
+<dt><strong><code>config</code></strong> :&ensp;<code>Dict[str, Any]</code></dt>
+<dd>Configuration dictionary containing training parameters.</dd>
+<dt><strong><code>logger</code></strong> :&ensp;<code>MetricsLogger</code>, optional</dt>
+<dd>Metrics logger for tracking training history.</dd>
+<dt><strong><code>checkpoint_manager</code></strong> :&ensp;<code>CheckpointManager</code>, optional</dt>
+<dd>Manager for saving and loading checkpoints.</dd>
+</dl>
+<h2 id="attributes">Attributes</h2>
+<dl>
+<dt><strong><code>model</code></strong> :&ensp;<code>NeuralOperator</code></dt>
+<dd>The neural operator being trained.</dd>
+<dt><strong><code>optimizer</code></strong> :&ensp;<code>OptimizerWithVariance</code></dt>
+<dd>The optimizer being used.</dd>
+<dt><strong><code>train_loader</code></strong> :&ensp;<code>DataLoader</code></dt>
+<dd>Training data loader.</dd>
+<dt><strong><code>val_loader</code></strong> :&ensp;<code>DataLoader</code></dt>
+<dd>Validation data loader.</dd>
+<dt><strong><code>config</code></strong> :&ensp;<code>Dict[str, Any]</code></dt>
+<dd>Training configuration.</dd>
+<dt><strong><code>logger</code></strong> :&ensp;<code>MetricsLogger</code></dt>
+<dd>Metrics logger.</dd>
+<dt><strong><code>checkpoint_manager</code></strong> :&ensp;<code>CheckpointManager</code></dt>
+<dd>Checkpoint manager.</dd>
+<dt><strong><code>device</code></strong> :&ensp;<code>torch.device</code></dt>
+<dd>Device for computation (CPU or CUDA).</dd>
+<dt><strong><code>loss_fn</code></strong> :&ensp;<code>Callable</code></dt>
+<dd>Loss function (MSE).</dd>
+<dt><strong><code>current_iteration</code></strong> :&ensp;<code>int</code></dt>
+<dd>Current training iteration number.</dd>
+<dt><strong><code>current_epoch</code></strong> :&ensp;<code>int</code></dt>
+<dd>Current training epoch number.</dd>
+<dt><strong><code>best_val_loss</code></strong> :&ensp;<code>float</code></dt>
+<dd>Best validation loss achieved.</dd>
+<dt><strong><code>patience_counter</code></strong> :&ensp;<code>int</code></dt>
+<dd>Counter for early stopping patience.</dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; training_loop = TrainingLoop(model, optimizer, train_loader, val_loader, config)
+&gt;&gt;&gt; training_loop.run(num_epochs=100)
+</code></pre>
+<p>Initialize training loop with all components.</p></div>
+<h3>Methods</h3>
+<dl>
+<dt id="training.training_loop.TrainingLoop.run"><code class="name flex">
+<span>def <span class="ident">run</span></span>(<span>self, num_epochs: int) ‑> Dict[str, Any]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def run(self, num_epochs: int) -&gt; Dict[str, Any]:
+    &#34;&#34;&#34;
+    Execute full training run.
+    
+    Parameters
+    ----------
+    num_epochs : int
+        Number of epochs to train.
+    
+    Returns
+    -------
+    Dict[str, Any]
+        Dictionary containing final training results and history.
+    
+    Examples
+    --------
+    &gt;&gt;&gt; results = training_loop.run(num_epochs=100)
+    &gt;&gt;&gt; print(f&#34;Final validation loss: {results[&#39;final_val_loss&#39;]}&#34;)
+    &#34;&#34;&#34;
+    print(f&#34;Starting training for {num_epochs} epochs...&#34;)
+    print(f&#34;Device: {self.device}&#34;)
+    print(f&#34;Model parameters: {self.model.get_parameter_count()}&#34;)
+    
+    for epoch in range(num_epochs):
+        self.current_epoch = epoch
+        print(f&#34;\nEpoch {epoch + 1}/{num_epochs}&#34;)
+        
+        # Train one epoch
+        epoch_metrics = self.train_epoch()
+        print(f&#34;  Average training loss: {epoch_metrics[&#39;avg_loss&#39;]:.6f}&#34;)
+        
+        # Check for early stopping
+        if epoch_metrics.get(&#39;early_stop&#39;, False):
+            print(f&#34;Early stopping triggered at epoch {epoch + 1}&#34;)
+            break
+        
+        # Validate at end of epoch
+        val_metrics = self.validate()
+        self.logger.log_dict(val_metrics, step=self.current_iteration)
+        print(f&#34;  Validation loss: {val_metrics[&#39;val_loss&#39;]:.6f}&#34;)
+        print(f&#34;  Validation relative error: {val_metrics[&#39;val_relative_error&#39;]:.6f}&#34;)
+    
+    # Save final checkpoint
+    self._save_checkpoint(is_final=True)
+    
+    # Save training history
+    history_path = self.logger.save_history()
+    print(f&#34;\nTraining complete. History saved to {history_path}&#34;)
+    
+    # Get final validation metrics
+    final_val_metrics = self.validate()
+    
+    return {
+        &#39;final_val_loss&#39;: final_val_metrics[&#39;val_loss&#39;],
+        &#39;final_val_relative_error&#39;: final_val_metrics[&#39;val_relative_error&#39;],
+        &#39;best_val_loss&#39;: self.best_val_loss,
+        &#39;total_iterations&#39;: self.current_iteration,
+        &#39;total_epochs&#39;: self.current_epoch + 1,
+        &#39;history&#39;: self.logger.history
+    }</code></pre>
+</details>
+<div class="desc"><p>Execute full training run.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>num_epochs</code></strong> :&ensp;<code>int</code></dt>
+<dd>Number of epochs to train.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>Dict[str, Any]</code></dt>
+<dd>Dictionary containing final training results and history.</dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; results = training_loop.run(num_epochs=100)
+&gt;&gt;&gt; print(f&quot;Final validation loss: {results['final_val_loss']}&quot;)
+</code></pre></div>
+</dd>
+<dt id="training.training_loop.TrainingLoop.train_epoch"><code class="name flex">
+<span>def <span class="ident">train_epoch</span></span>(<span>self) ‑> Dict[str, float]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def train_epoch(self) -&gt; Dict[str, float]:
+    &#34;&#34;&#34;
+    Execute one full pass through training data.
+    
+    Returns
+    -------
+    Dict[str, float]
+        Dictionary containing epoch-level metrics (average loss, etc.).
+    
+    Examples
+    --------
+    &gt;&gt;&gt; epoch_metrics = training_loop.train_epoch()
+    &gt;&gt;&gt; print(f&#34;Epoch loss: {epoch_metrics[&#39;avg_loss&#39;]}&#34;)
+    &#34;&#34;&#34;
+    self.model.train()
+    epoch_loss = 0.0
+    num_batches = 0
+    
+    for batch_idx, batch_data in enumerate(self.train_loader):
+        try:
+            # Handle different batch formats
+            if len(batch_data) == 3:
+                # DeepONet format: (input_functions, query_points, targets)
+                input_functions, query_points, targets = batch_data
+                input_functions = input_functions.to(self.device)
+                query_points = query_points.to(self.device)
+                targets = targets.to(self.device)
+            elif len(batch_data) == 2:
+                # Simple format: (inputs, targets)
+                # For DeepONet, use inputs as both input_functions and query_points
+                inputs, targets = batch_data
+                inputs = inputs.to(self.device)
+                targets = targets.to(self.device)
+                
+                # Reshape for DeepONet if needed
+                # inputs: [batch, input_horizon, state_dim]
+                # DeepONet expects: input_functions [batch, state_dim, num_sensors]
+                #                   query_points [batch, state_dim, num_queries]
+                input_functions = inputs.permute(0, 2, 1)  # [batch, state_dim, input_horizon]
+                query_points = targets.permute(0, 2, 1)  # [batch, state_dim, output_horizon]
+            else:
+                raise ValueError(f&#34;Unexpected batch format with {len(batch_data)} elements&#34;)
+            
+            # Record iteration start time
+            iter_start_time = time.time()
+            
+            # Forward pass
+            self.optimizer.zero_grad()
+            predictions = self.model(input_functions, query_points)
+            
+            # Reshape targets to match predictions if needed
+            if targets.shape != predictions.shape:
+                # targets: [batch, output_horizon, state_dim]
+                # predictions: [batch, state_dim, output_horizon]
+                if len(targets.shape) == 3 and len(predictions.shape) == 3:
+                    if targets.shape[1] != predictions.shape[1]:
+                        targets = targets.permute(0, 2, 1)
+            
+            loss = self.loss_fn(predictions, targets)
+            
+            # Check for divergence
+            self._check_divergence(loss, predictions, targets)
+            
+            # Backward pass
+            loss.backward()
+            
+            # Compute gradient norm
+            grad_norm = 0.0
+            for param in self.model.parameters():
+                if param.grad is not None:
+                    grad_norm += param.grad.data.norm(2).item() ** 2
+            grad_norm = grad_norm ** 0.5
+            
+            # Handle SVRG snapshot if needed
+            if hasattr(self.optimizer, &#39;needs_snapshot&#39;) and self.optimizer.needs_snapshot:
+                self.optimizer.take_snapshot(self.model, self.train_loader, self.loss_fn)
+            
+            # Optimizer step
+            self.optimizer.step()
+            
+            # Record iteration time
+            iter_time = time.time() - iter_start_time
+            
+            # Log metrics
+            self.logger.log_dict({
+                &#39;train_loss&#39;: loss.item(),
+                &#39;train_grad_norm&#39;: grad_norm,
+                &#39;iteration_time&#39;: iter_time
+            }, step=self.current_iteration)
+            
+            # Track recent losses for divergence detection
+            self.recent_losses.append(loss.item())
+            if len(self.recent_losses) &gt; self.max_recent_losses:
+                self.recent_losses.pop(0)
+            
+            epoch_loss += loss.item()
+            num_batches += 1
+            
+            # Validation at specified intervals
+            if self.current_iteration % self.validation_interval == 0:
+                val_metrics = self.validate()
+                self.logger.log_dict(val_metrics, step=self.current_iteration)
+                
+                # Check for early stopping
+                if self._check_early_stopping(val_metrics[&#39;val_loss&#39;]):
+                    return {&#39;avg_loss&#39;: epoch_loss / num_batches, &#39;early_stop&#39;: True}
+            
+            # Gradient variance computation at specified intervals
+            if self.current_iteration % self.variance_interval == 0:
+                variance = self._compute_variance()
+                self.logger.log_scalar(&#39;train_grad_variance&#39;, variance, step=self.current_iteration)
+            
+            # Checkpoint saving at specified intervals
+            if self.current_iteration % self.checkpoint_interval == 0:
+                self._save_checkpoint()
+            
+            self.current_iteration += 1
+        
+        except torch.cuda.OutOfMemoryError as e:
+            # Handle GPU memory errors
+            self._handle_gpu_memory_error(e)
+    
+    return {&#39;avg_loss&#39;: epoch_loss / num_batches, &#39;early_stop&#39;: False}</code></pre>
+</details>
+<div class="desc"><p>Execute one full pass through training data.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>Dict[str, float]</code></dt>
+<dd>Dictionary containing epoch-level metrics (average loss, etc.).</dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; epoch_metrics = training_loop.train_epoch()
+&gt;&gt;&gt; print(f&quot;Epoch loss: {epoch_metrics['avg_loss']}&quot;)
+</code></pre></div>
+</dd>
+<dt id="training.training_loop.TrainingLoop.validate"><code class="name flex">
+<span>def <span class="ident">validate</span></span>(<span>self) ‑> Dict[str, float]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def validate(self) -&gt; Dict[str, float]:
+    &#34;&#34;&#34;
+    Evaluate model on validation set.
+    
+    Returns
+    -------
+    Dict[str, float]
+        Dictionary containing validation metrics (loss, relative error, etc.).
+    
+    Examples
+    --------
+    &gt;&gt;&gt; val_metrics = training_loop.validate()
+    &gt;&gt;&gt; print(f&#34;Validation loss: {val_metrics[&#39;val_loss&#39;]}&#34;)
+    &#34;&#34;&#34;
+    self.model.eval()
+    total_loss = 0.0
+    total_relative_error = 0.0
+    total_max_error = 0.0
+    total_mae = 0.0
+    num_batches = 0
+    
+    with torch.no_grad():
+        for batch_data in self.val_loader:
+            # Handle different batch formats
+            if len(batch_data) == 3:
+                input_functions, query_points, targets = batch_data
+                input_functions = input_functions.to(self.device)
+                query_points = query_points.to(self.device)
+                targets = targets.to(self.device)
+            elif len(batch_data) == 2:
+                inputs, targets = batch_data
+                inputs = inputs.to(self.device)
+                targets = targets.to(self.device)
+                input_functions = inputs.permute(0, 2, 1)
+                query_points = targets.permute(0, 2, 1)
+            else:
+                raise ValueError(f&#34;Unexpected batch format with {len(batch_data)} elements&#34;)
+            
+            # Forward pass
+            predictions = self.model(input_functions, query_points)
+            
+            # Reshape targets to match predictions if needed
+            if targets.shape != predictions.shape:
+                if len(targets.shape) == 3 and len(predictions.shape) == 3:
+                    if targets.shape[1] != predictions.shape[1]:
+                        targets = targets.permute(0, 2, 1)
+            
+            loss = self.loss_fn(predictions, targets)
+            
+            # Compute additional metrics
+            relative_error = torch.norm(predictions - targets) / (torch.norm(targets) + 1e-8)
+            max_error = torch.max(torch.abs(predictions - targets))
+            mae = torch.mean(torch.abs(predictions - targets))
+            
+            total_loss += loss.item()
+            total_relative_error += relative_error.item()
+            total_max_error += max_error.item()
+            total_mae += mae.item()
+            num_batches += 1
+    
+    self.model.train()
+    
+    return {
+        &#39;val_loss&#39;: total_loss / num_batches,
+        &#39;val_relative_error&#39;: total_relative_error / num_batches,
+        &#39;val_max_error&#39;: total_max_error / num_batches,
+        &#39;val_mean_absolute_error&#39;: total_mae / num_batches
+    }</code></pre>
+</details>
+<div class="desc"><p>Evaluate model on validation set.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>Dict[str, float]</code></dt>
+<dd>Dictionary containing validation metrics (loss, relative error, etc.).</dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; val_metrics = training_loop.validate()
+&gt;&gt;&gt; print(f&quot;Validation loss: {val_metrics['val_loss']}&quot;)
+</code></pre></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="training" href="index.html">training</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="training.training_loop.TrainingLoop" href="#training.training_loop.TrainingLoop">TrainingLoop</a></code></h4>
+<ul class="">
+<li><code><a title="training.training_loop.TrainingLoop.run" href="#training.training_loop.TrainingLoop.run">run</a></code></li>
+<li><code><a title="training.training_loop.TrainingLoop.train_epoch" href="#training.training_loop.TrainingLoop.train_epoch">train_epoch</a></code></li>
+<li><code><a title="training.training_loop.TrainingLoop.validate" href="#training.training_loop.TrainingLoop.validate">validate</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>

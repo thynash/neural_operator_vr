@@ -1,0 +1,14 @@
+Table 1: Comprehensive Results Summary
+================================================================================
+
+                             Adam           SGD           SVRG
+Final Train Loss         0.000002  7.593903e-08       0.000004
+Final Val Loss           0.000004  2.066017e-07       0.000002
+Total Iterations     15100.000000  1.453000e+05  125000.000000
+Final Grad Variance           NaN           NaN            NaN
+Mean Grad Variance            NaN           NaN            NaN
+
+SVRG Improvements over Baselines:
+--------------------------------------------------------------------------------
+Training Loss: -69.65% better than Adam, -5402.51% better than SGD
+Validation Loss: 37.92% better than Adam, -1059.03% better than SGD

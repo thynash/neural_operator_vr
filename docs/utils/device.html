@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>utils.device API documentation</title>
+<meta name="description" content="Device management utilities for CPU/GPU computation.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>utils.device</code></h1>
+</header>
+<section id="section-intro">
+<p>Device management utilities for CPU/GPU computation.</p>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="utils.device.get_device"><code class="name flex">
+<span>def <span class="ident">get_device</span></span>(<span>device_name: str = 'auto') ‑> torch.device</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_device(device_name: str = &#34;auto&#34;) -&gt; torch.device:
+    &#34;&#34;&#34;
+    Get PyTorch device for computation.
+    
+    Automatically detects CUDA availability when device_name is &#34;auto&#34;,
+    or returns the specified device.
+    
+    Parameters
+    ----------
+    device_name : str, optional
+        Device specification. Options:
+        - &#34;auto&#34;: Automatically select CUDA if available, otherwise CPU
+        - &#34;cuda&#34;: Use CUDA (raises error if not available)
+        - &#34;cpu&#34;: Use CPU
+        - &#34;cuda:0&#34;, &#34;cuda:1&#34;, etc.: Use specific GPU device
+        Default is &#34;auto&#34;.
+    
+    Returns
+    -------
+    torch.device
+        PyTorch device object for computation.
+    
+    Raises
+    ------
+    ValueError
+        If device_name is invalid or CUDA is requested but not available.
+    
+    Examples
+    --------
+    &gt;&gt;&gt; device = get_device(&#34;auto&#34;)
+    &gt;&gt;&gt; device = get_device(&#34;cuda:0&#34;)
+    &gt;&gt;&gt; device = get_device(&#34;cpu&#34;)
+    &#34;&#34;&#34;
+    if device_name == &#34;auto&#34;:
+        return torch.device(&#34;cuda&#34; if torch.cuda.is_available() else &#34;cpu&#34;)
+    elif device_name == &#34;cpu&#34;:
+        return torch.device(&#34;cpu&#34;)
+    elif device_name.startswith(&#34;cuda&#34;):
+        if not torch.cuda.is_available():
+            raise ValueError(
+                f&#34;CUDA device &#39;{device_name}&#39; requested but CUDA is not available. &#34;
+                &#34;Please check your PyTorch installation and GPU drivers.&#34;
+            )
+        return torch.device(device_name)
+    else:
+        raise ValueError(
+            f&#34;Invalid device name &#39;{device_name}&#39;. &#34;
+            &#34;Valid options: &#39;auto&#39;, &#39;cpu&#39;, &#39;cuda&#39;, &#39;cuda:0&#39;, etc.&#34;
+        )</code></pre>
+</details>
+<div class="desc"><p>Get PyTorch device for computation.</p>
+<p>Automatically detects CUDA availability when device_name is "auto",
+or returns the specified device.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>device_name</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Device specification. Options:
+- "auto": Automatically select CUDA if available, otherwise CPU
+- "cuda": Use CUDA (raises error if not available)
+- "cpu": Use CPU
+- "cuda:0", "cuda:1", etc.: Use specific GPU device
+Default is "auto".</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>torch.device</code></dt>
+<dd>PyTorch device object for computation.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>ValueError</code></dt>
+<dd>If device_name is invalid or CUDA is requested but not available.</dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; device = get_device(&quot;auto&quot;)
+&gt;&gt;&gt; device = get_device(&quot;cuda:0&quot;)
+&gt;&gt;&gt; device = get_device(&quot;cpu&quot;)
+</code></pre></div>
+</dd>
+<dt id="utils.device.move_to_device"><code class="name flex">
+<span>def <span class="ident">move_to_device</span></span>(<span>obj: torch.Tensor | torch.nn.modules.module.Module | List | Dict | Any,<br>device: torch.device) ‑> torch.Tensor | torch.nn.modules.module.Module | List | Dict | Any</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def move_to_device(
+    obj: Union[torch.Tensor, nn.Module, List, Dict, Any],
+    device: torch.device
+) -&gt; Union[torch.Tensor, nn.Module, List, Dict, Any]:
+    &#34;&#34;&#34;
+    Move tensor, model, or collection to specified device.
+    
+    Handles tensors, nn.Module objects, lists, dictionaries, and nested
+    collections. Non-movable objects are returned unchanged.
+    
+    Parameters
+    ----------
+    obj : torch.Tensor, nn.Module, list, dict, or other
+        Object to move to device. Can be:
+        - torch.Tensor: Moved to device
+        - nn.Module: Moved to device
+        - list: Each element recursively moved
+        - dict: Each value recursively moved
+        - other: Returned unchanged
+    device : torch.device
+        Target device for computation.
+    
+    Returns
+    -------
+    Same type as input
+        Object moved to the specified device.
+    
+    Examples
+    --------
+    &gt;&gt;&gt; device = get_device(&#34;cuda&#34;)
+    &gt;&gt;&gt; tensor = torch.randn(3, 3)
+    &gt;&gt;&gt; tensor_gpu = move_to_device(tensor, device)
+    &gt;&gt;&gt; 
+    &gt;&gt;&gt; model = nn.Linear(10, 5)
+    &gt;&gt;&gt; model_gpu = move_to_device(model, device)
+    &gt;&gt;&gt; 
+    &gt;&gt;&gt; batch = {&#34;input&#34;: torch.randn(2, 10), &#34;target&#34;: torch.randn(2, 5)}
+    &gt;&gt;&gt; batch_gpu = move_to_device(batch, device)
+    &#34;&#34;&#34;
+    if isinstance(obj, torch.Tensor):
+        return obj.to(device)
+    elif isinstance(obj, nn.Module):
+        return obj.to(device)
+    elif isinstance(obj, list):
+        return [move_to_device(item, device) for item in obj]
+    elif isinstance(obj, tuple):
+        return tuple(move_to_device(item, device) for item in obj)
+    elif isinstance(obj, dict):
+        return {key: move_to_device(value, device) for key, value in obj.items()}
+    else:
+        # Return unchanged for non-movable objects (int, float, str, etc.)
+        return obj</code></pre>
+</details>
+<div class="desc"><p>Move tensor, model, or collection to specified device.</p>
+<p>Handles tensors, nn.Module objects, lists, dictionaries, and nested
+collections. Non-movable objects are returned unchanged.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>obj</code></strong> :&ensp;<code>torch.Tensor, nn.Module, list, dict,</code> or <code>other</code></dt>
+<dd>Object to move to device. Can be:
+- torch.Tensor: Moved to device
+- nn.Module: Moved to device
+- list: Each element recursively moved
+- dict: Each value recursively moved
+- other: Returned unchanged</dd>
+<dt><strong><code>device</code></strong> :&ensp;<code>torch.device</code></dt>
+<dd>Target device for computation.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>Same type as input</code></dt>
+<dd>Object moved to the specified device.</dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; device = get_device(&quot;cuda&quot;)
+&gt;&gt;&gt; tensor = torch.randn(3, 3)
+&gt;&gt;&gt; tensor_gpu = move_to_device(tensor, device)
+&gt;&gt;&gt; 
+&gt;&gt;&gt; model = nn.Linear(10, 5)
+&gt;&gt;&gt; model_gpu = move_to_device(model, device)
+&gt;&gt;&gt; 
+&gt;&gt;&gt; batch = {&quot;input&quot;: torch.randn(2, 10), &quot;target&quot;: torch.randn(2, 5)}
+&gt;&gt;&gt; batch_gpu = move_to_device(batch, device)
+</code></pre></div>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="utils" href="index.html">utils</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="utils.device.get_device" href="#utils.device.get_device">get_device</a></code></li>
+<li><code><a title="utils.device.move_to_device" href="#utils.device.move_to_device">move_to_device</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,2067 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>experiments API documentation</title>
+<meta name="description" content="Experiments module for configuration and orchestration.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Package <code>experiments</code></h1>
+</header>
+<section id="section-intro">
+<p>Experiments module for configuration and orchestration.</p>
+</section>
+<section>
+<h2 class="section-title" id="header-submodules">Sub-modules</h2>
+<dl>
+<dt><code class="name"><a title="experiments.config_parser" href="config_parser.html">experiments.config_parser</a></code></dt>
+<dd>
+<div class="desc"><p>Configuration parser for neural operator experiments.</p></div>
+</dd>
+<dt><code class="name"><a title="experiments.config_schema" href="config_schema.html">experiments.config_schema</a></code></dt>
+<dd>
+<div class="desc"><p>Configuration schema for neural operator variance reduction experiments.</p></div>
+</dd>
+<dt><code class="name"><a title="experiments.config_serializer" href="config_serializer.html">experiments.config_serializer</a></code></dt>
+<dd>
+<div class="desc"><p>Configuration serializer for neural operator experiments.</p></div>
+</dd>
+<dt><code class="name"><a title="experiments.config_validator" href="config_validator.html">experiments.config_validator</a></code></dt>
+<dd>
+<div class="desc"><p>Configuration validation for neural operator experiments.</p></div>
+</dd>
+<dt><code class="name"><a title="experiments.experiment_runner" href="experiment_runner.html">experiments.experiment_runner</a></code></dt>
+<dd>
+<div class="desc"><p>Experiment runner for neural operator variance reduction experiments.</p></div>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="experiments.load_config"><code class="name flex">
+<span>def <span class="ident">load_config</span></span>(<span>config_path: str | pathlib.Path) ‑> <a title="experiments.config_schema.Config" href="config_schema.html#experiments.config_schema.Config">Config</a></span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def load_config(config_path: Union[str, Path]) -&gt; Config:
+    &#34;&#34;&#34;
+    Load and parse configuration from YAML or JSON file.
+    
+    Args:
+        config_path: Path to configuration file (.yaml, .yml, or .json)
+        
+    Returns:
+        Config object with parsed configuration
+        
+    Raises:
+        FileNotFoundError: If config file does not exist
+        ValueError: If config file is invalid with descriptive error message
+    &#34;&#34;&#34;
+    config_path = Path(config_path)
+    
+    if not config_path.exists():
+        raise FileNotFoundError(f&#34;Configuration file not found: {config_path}&#34;)
+    
+    # Load raw configuration
+    try:
+        with open(config_path, &#39;r&#39;) as f:
+            if config_path.suffix in [&#39;.yaml&#39;, &#39;.yml&#39;]:
+                raw_config = yaml.safe_load(f)
+            elif config_path.suffix == &#39;.json&#39;:
+                raw_config = json.load(f)
+            else:
+                raise ValueError(
+                    f&#34;Unsupported configuration file format: {config_path.suffix}. &#34;
+                    f&#34;Use .yaml, .yml, or .json&#34;
+                )
+    except yaml.YAMLError as e:
+        # Extract line number from YAML error if available
+        line_info = &#34;&#34;
+        if hasattr(e, &#39;problem_mark&#39;):
+            mark = e.problem_mark
+            line_info = f&#34; at line {mark.line + 1}, column {mark.column + 1}&#34;
+        raise ValueError(f&#34;Failed to parse YAML configuration{line_info}: {e}&#34;)
+    except json.JSONDecodeError as e:
+        raise ValueError(f&#34;Failed to parse JSON configuration at line {e.lineno}: {e.msg}&#34;)
+    except Exception as e:
+        raise ValueError(f&#34;Failed to read configuration file: {e}&#34;)
+    
+    # Parse into configuration objects
+    try:
+        config = _parse_config_dict(raw_config)
+    except KeyError as e:
+        raise ValueError(f&#34;Missing required configuration section: {e}&#34;)
+    except TypeError as e:
+        raise ValueError(f&#34;Invalid configuration structure: {e}&#34;)
+    except Exception as e:
+        raise ValueError(f&#34;Failed to parse configuration: {e}&#34;)
+    
+    return config</code></pre>
+</details>
+<div class="desc"><p>Load and parse configuration from YAML or JSON file.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>config_path</code></strong></dt>
+<dd>Path to configuration file (.yaml, .yml, or .json)</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Config object with parsed configuration</p>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>FileNotFoundError</code></dt>
+<dd>If config file does not exist</dd>
+<dt><code>ValueError</code></dt>
+<dd>If config file is invalid with descriptive error message</dd>
+</dl></div>
+</dd>
+<dt id="experiments.save_config"><code class="name flex">
+<span>def <span class="ident">save_config</span></span>(<span>config: <a title="experiments.config_schema.Config" href="config_schema.html#experiments.config_schema.Config">Config</a>,<br>output_path: str | pathlib.Path) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def save_config(config: Config, output_path: Union[str, Path]) -&gt; None:
+    &#34;&#34;&#34;
+    Save configuration to YAML or JSON file.
+    
+    Args:
+        config: Configuration object to save
+        output_path: Path to output file (.yaml, .yml, or .json)
+        
+    Raises:
+        ValueError: If output format is not supported
+        IOError: If file cannot be written
+    &#34;&#34;&#34;
+    output_path = Path(output_path)
+    
+    # Create parent directory if it doesn&#39;t exist
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    
+    # Convert config to dictionary
+    config_dict = config.to_dict()
+    
+    # Write to file based on extension
+    try:
+        with open(output_path, &#39;w&#39;) as f:
+            if output_path.suffix in [&#39;.yaml&#39;, &#39;.yml&#39;]:
+                yaml.dump(
+                    config_dict,
+                    f,
+                    default_flow_style=False,
+                    sort_keys=False,
+                    indent=2,
+                )
+            elif output_path.suffix == &#39;.json&#39;:
+                json.dump(config_dict, f, indent=2)
+            else:
+                raise ValueError(
+                    f&#34;Unsupported output format: {output_path.suffix}. &#34;
+                    f&#34;Use .yaml, .yml, or .json&#34;
+                )
+    except Exception as e:
+        raise IOError(f&#34;Failed to write configuration to {output_path}: {e}&#34;)</code></pre>
+</details>
+<div class="desc"><p>Save configuration to YAML or JSON file.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>config</code></strong></dt>
+<dd>Configuration object to save</dd>
+<dt><strong><code>output_path</code></strong></dt>
+<dd>Path to output file (.yaml, .yml, or .json)</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>ValueError</code></dt>
+<dd>If output format is not supported</dd>
+<dt><code>IOError</code></dt>
+<dd>If file cannot be written</dd>
+</dl></div>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="experiments.AnalysisConfig"><code class="flex name class">
+<span>class <span class="ident">AnalysisConfig</span></span>
+<span>(</span><span>compute_spectral_radius: bool = True,<br>spectral_interval: int = 1000,<br>long_horizon_steps: int = 100,<br>num_eigenvalues: int = 10)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@dataclass
+class AnalysisConfig:
+    &#34;&#34;&#34;Analysis configuration.&#34;&#34;&#34;
+    compute_spectral_radius: bool = True
+    spectral_interval: int = 1000
+    long_horizon_steps: int = 100
+    num_eigenvalues: int = 10</code></pre>
+</details>
+<div class="desc"><p>Analysis configuration.</p></div>
+<h3>Instance variables</h3>
+<dl>
+<dt id="experiments.AnalysisConfig.compute_spectral_radius"><code class="name">var <span class="ident">compute_spectral_radius</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="experiments.AnalysisConfig.long_horizon_steps"><code class="name">var <span class="ident">long_horizon_steps</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="experiments.AnalysisConfig.num_eigenvalues"><code class="name">var <span class="ident">num_eigenvalues</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="experiments.AnalysisConfig.spectral_interval"><code class="name">var <span class="ident">spectral_interval</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="experiments.Config"><code class="flex name class">
+<span>class <span class="ident">Config</span></span>
+<span>(</span><span>experiment: <a title="experiments.config_schema.ExperimentConfig" href="config_schema.html#experiments.config_schema.ExperimentConfig">ExperimentConfig</a>,<br>dataset: <a title="experiments.config_schema.DatasetConfig" href="config_schema.html#experiments.config_schema.DatasetConfig">DatasetConfig</a>,<br>model: <a title="experiments.config_schema.ModelConfig" href="config_schema.html#experiments.config_schema.ModelConfig">ModelConfig</a>,<br>optimizer: <a title="experiments.config_schema.OptimizerConfig" href="config_schema.html#experiments.config_schema.OptimizerConfig">OptimizerConfig</a>,<br>training: <a title="experiments.config_schema.TrainingConfig" href="config_schema.html#experiments.config_schema.TrainingConfig">TrainingConfig</a>,<br>logging: <a title="experiments.config_schema.LoggingConfig" href="config_schema.html#experiments.config_schema.LoggingConfig">LoggingConfig</a>,<br>analysis: <a title="experiments.config_schema.AnalysisConfig" href="config_schema.html#experiments.config_schema.AnalysisConfig">AnalysisConfig</a>,<br>visualization: <a title="experiments.config_schema.VisualizationConfig" href="config_schema.html#experiments.config_schema.VisualizationConfig">VisualizationConfig</a>,<br>scheduler: <a title="experiments.config_schema.SchedulerConfig" href="config_schema.html#experiments.config_schema.SchedulerConfig">SchedulerConfig</a> | None = None)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@dataclass
+class Config:
+    &#34;&#34;&#34;Complete experiment configuration.&#34;&#34;&#34;
+    experiment: ExperimentConfig
+    dataset: DatasetConfig
+    model: ModelConfig
+    optimizer: OptimizerConfig
+    training: TrainingConfig
+    logging: LoggingConfig
+    analysis: AnalysisConfig
+    visualization: VisualizationConfig
+    scheduler: Optional[SchedulerConfig] = None
+
+    def to_dict(self) -&gt; Dict[str, Any]:
+        &#34;&#34;&#34;Convert configuration to dictionary.&#34;&#34;&#34;
+        result = {
+            &#34;experiment&#34;: {
+                &#34;name&#34;: self.experiment.name,
+                &#34;seed&#34;: self.experiment.seed,
+                &#34;device&#34;: self.experiment.device,
+                &#34;deterministic&#34;: self.experiment.deterministic,
+            },
+            &#34;dataset&#34;: {
+                &#34;type&#34;: self.dataset.type,
+                &#34;params&#34;: self.dataset.params,
+                &#34;num_train_trajectories&#34;: self.dataset.num_train_trajectories,
+                &#34;num_val_trajectories&#34;: self.dataset.num_val_trajectories,
+                &#34;input_horizon&#34;: self.dataset.input_horizon,
+                &#34;output_horizon&#34;: self.dataset.output_horizon,
+                &#34;train_val_split&#34;: self.dataset.train_val_split,
+                &#34;batch_size&#34;: self.dataset.batch_size,
+                &#34;shuffle&#34;: self.dataset.shuffle,
+            },
+            &#34;model&#34;: {
+                &#34;type&#34;: self.model.type,
+                &#34;params&#34;: self.model.params,
+            },
+            &#34;optimizer&#34;: {
+                &#34;type&#34;: self.optimizer.type,
+                &#34;params&#34;: self.optimizer.params,
+            },
+            &#34;training&#34;: {
+                &#34;num_epochs&#34;: self.training.num_epochs,
+                &#34;batch_size&#34;: self.training.batch_size,
+                &#34;validation_interval&#34;: self.training.validation_interval,
+                &#34;variance_interval&#34;: self.training.variance_interval,
+                &#34;checkpoint_interval&#34;: self.training.checkpoint_interval,
+                &#34;early_stopping_patience&#34;: self.training.early_stopping_patience,
+                &#34;target_loss&#34;: self.training.target_loss,
+            },
+            &#34;logging&#34;: {
+                &#34;log_dir&#34;: self.logging.log_dir,
+                &#34;save_checkpoints&#34;: self.logging.save_checkpoints,
+                &#34;save_final_model&#34;: self.logging.save_final_model,
+                &#34;log_level&#34;: self.logging.log_level,
+            },
+            &#34;analysis&#34;: {
+                &#34;compute_spectral_radius&#34;: self.analysis.compute_spectral_radius,
+                &#34;spectral_interval&#34;: self.analysis.spectral_interval,
+                &#34;long_horizon_steps&#34;: self.analysis.long_horizon_steps,
+                &#34;num_eigenvalues&#34;: self.analysis.num_eigenvalues,
+            },
+            &#34;visualization&#34;: {
+                &#34;generate_plots&#34;: self.visualization.generate_plots,
+                &#34;plot_format&#34;: self.visualization.plot_format,
+                &#34;dpi&#34;: self.visualization.dpi,
+                &#34;output_dir&#34;: self.visualization.output_dir,
+            },
+        }
+        
+        if self.scheduler is not None:
+            result[&#34;scheduler&#34;] = {
+                &#34;type&#34;: self.scheduler.type,
+                &#34;params&#34;: self.scheduler.params,
+            }
+        
+        return result</code></pre>
+</details>
+<div class="desc"><p>Complete experiment configuration.</p></div>
+<h3>Instance variables</h3>
+<dl>
+<dt id="experiments.Config.analysis"><code class="name">var <span class="ident">analysis</span> : <a title="experiments.config_schema.AnalysisConfig" href="config_schema.html#experiments.config_schema.AnalysisConfig">AnalysisConfig</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="experiments.Config.dataset"><code class="name">var <span class="ident">dataset</span> : <a title="experiments.config_schema.DatasetConfig" href="config_schema.html#experiments.config_schema.DatasetConfig">DatasetConfig</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="experiments.Config.experiment"><code class="name">var <span class="ident">experiment</span> : <a title="experiments.config_schema.ExperimentConfig" href="config_schema.html#experiments.config_schema.ExperimentConfig">ExperimentConfig</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="experiments.Config.logging"><code class="name">var <span class="ident">logging</span> : <a title="experiments.config_schema.LoggingConfig" href="config_schema.html#experiments.config_schema.LoggingConfig">LoggingConfig</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="experiments.Config.model"><code class="name">var <span class="ident">model</span> : <a title="experiments.config_schema.ModelConfig" href="config_schema.html#experiments.config_schema.ModelConfig">ModelConfig</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="experiments.Config.optimizer"><code class="name">var <span class="ident">optimizer</span> : <a title="experiments.config_schema.OptimizerConfig" href="config_schema.html#experiments.config_schema.OptimizerConfig">OptimizerConfig</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="experiments.Config.scheduler"><code class="name">var <span class="ident">scheduler</span> : <a title="experiments.config_schema.SchedulerConfig" href="config_schema.html#experiments.config_schema.SchedulerConfig">SchedulerConfig</a> | None</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="experiments.Config.training"><code class="name">var <span class="ident">training</span> : <a title="experiments.config_schema.TrainingConfig" href="config_schema.html#experiments.config_schema.TrainingConfig">TrainingConfig</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="experiments.Config.visualization"><code class="name">var <span class="ident">visualization</span> : <a title="experiments.config_schema.VisualizationConfig" href="config_schema.html#experiments.config_schema.VisualizationConfig">VisualizationConfig</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="experiments.Config.to_dict"><code class="name flex">
+<span>def <span class="ident">to_dict</span></span>(<span>self) ‑> Dict[str, Any]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def to_dict(self) -&gt; Dict[str, Any]:
+    &#34;&#34;&#34;Convert configuration to dictionary.&#34;&#34;&#34;
+    result = {
+        &#34;experiment&#34;: {
+            &#34;name&#34;: self.experiment.name,
+            &#34;seed&#34;: self.experiment.seed,
+            &#34;device&#34;: self.experiment.device,
+            &#34;deterministic&#34;: self.experiment.deterministic,
+        },
+        &#34;dataset&#34;: {
+            &#34;type&#34;: self.dataset.type,
+            &#34;params&#34;: self.dataset.params,
+            &#34;num_train_trajectories&#34;: self.dataset.num_train_trajectories,
+            &#34;num_val_trajectories&#34;: self.dataset.num_val_trajectories,
+            &#34;input_horizon&#34;: self.dataset.input_horizon,
+            &#34;output_horizon&#34;: self.dataset.output_horizon,
+            &#34;train_val_split&#34;: self.dataset.train_val_split,
+            &#34;batch_size&#34;: self.dataset.batch_size,
+            &#34;shuffle&#34;: self.dataset.shuffle,
+        },
+        &#34;model&#34;: {
+            &#34;type&#34;: self.model.type,
+            &#34;params&#34;: self.model.params,
+        },
+        &#34;optimizer&#34;: {
+            &#34;type&#34;: self.optimizer.type,
+            &#34;params&#34;: self.optimizer.params,
+        },
+        &#34;training&#34;: {
+            &#34;num_epochs&#34;: self.training.num_epochs,
+            &#34;batch_size&#34;: self.training.batch_size,
+            &#34;validation_interval&#34;: self.training.validation_interval,
+            &#34;variance_interval&#34;: self.training.variance_interval,
+            &#34;checkpoint_interval&#34;: self.training.checkpoint_interval,
+            &#34;early_stopping_patience&#34;: self.training.early_stopping_patience,
+            &#34;target_loss&#34;: self.training.target_loss,
+        },
+        &#34;logging&#34;: {
+            &#34;log_dir&#34;: self.logging.log_dir,
+            &#34;save_checkpoints&#34;: self.logging.save_checkpoints,
+            &#34;save_final_model&#34;: self.logging.save_final_model,
+            &#34;log_level&#34;: self.logging.log_level,
+        },
+        &#34;analysis&#34;: {
+            &#34;compute_spectral_radius&#34;: self.analysis.compute_spectral_radius,
+            &#34;spectral_interval&#34;: self.analysis.spectral_interval,
+            &#34;long_horizon_steps&#34;: self.analysis.long_horizon_steps,
+            &#34;num_eigenvalues&#34;: self.analysis.num_eigenvalues,
+        },
+        &#34;visualization&#34;: {
+            &#34;generate_plots&#34;: self.visualization.generate_plots,
+            &#34;plot_format&#34;: self.visualization.plot_format,
+            &#34;dpi&#34;: self.visualization.dpi,
+            &#34;output_dir&#34;: self.visualization.output_dir,
+        },
+    }
+    
+    if self.scheduler is not None:
+        result[&#34;scheduler&#34;] = {
+            &#34;type&#34;: self.scheduler.type,
+            &#34;params&#34;: self.scheduler.params,
+        }
+    
+    return result</code></pre>
+</details>
+<div class="desc"><p>Convert configuration to dictionary.</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="experiments.ConfigValidator"><code class="flex name class">
+<span>class <span class="ident">ConfigValidator</span></span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class ConfigValidator:
+    &#34;&#34;&#34;Validates experiment configurations.&#34;&#34;&#34;
+    
+    # Valid values for categorical parameters
+    VALID_DATASET_TYPES = {&#34;logistic&#34;, &#34;lorenz&#34;, &#34;burgers&#34;}
+    VALID_MODEL_TYPES = {&#34;deeponet&#34;, &#34;fno&#34;}
+    VALID_OPTIMIZER_TYPES = {&#34;sgd&#34;, &#34;adam&#34;, &#34;svrg&#34;}
+    VALID_SCHEDULER_TYPES = {&#34;step&#34;, &#34;exponential&#34;, &#34;cosine&#34;, None}
+    VALID_DEVICES = {&#34;cpu&#34;, &#34;cuda&#34;, &#34;auto&#34;}
+    VALID_ACTIVATIONS = {&#34;relu&#34;, &#34;tanh&#34;, &#34;gelu&#34;, &#34;silu&#34;}
+    
+    # Parameter ranges for dynamical systems
+    LOGISTIC_PARAM_RANGES = {
+        &#34;r&#34;: (0.0, 4.0),
+        &#34;trajectory_length&#34;: (10, 100000),
+    }
+    
+    LORENZ_PARAM_RANGES = {
+        &#34;sigma&#34;: (0.0, 100.0),
+        &#34;rho&#34;: (0.0, 100.0),
+        &#34;beta&#34;: (0.0, 10.0),
+        &#34;dt&#34;: (1e-5, 1.0),
+        &#34;trajectory_length&#34;: (10, 100000),
+    }
+    
+    BURGERS_PARAM_RANGES = {
+        &#34;viscosity&#34;: (1e-5, 1.0),
+        &#34;spatial_resolution&#34;: (16, 1024),
+        &#34;temporal_resolution&#34;: (10, 10000),
+    }
+    
+    @staticmethod
+    def validate(config: Config) -&gt; None:
+        &#34;&#34;&#34;
+        Validate complete configuration.
+        
+        Args:
+            config: Configuration object to validate
+            
+        Raises:
+            ValueError: If configuration is invalid with descriptive message
+        &#34;&#34;&#34;
+        ConfigValidator._validate_experiment(config.experiment)
+        ConfigValidator._validate_dataset(config.dataset)
+        ConfigValidator._validate_model(config.model)
+        ConfigValidator._validate_optimizer(config.optimizer)
+        ConfigValidator._validate_training(config.training)
+        ConfigValidator._validate_logging(config.logging)
+        ConfigValidator._validate_analysis(config.analysis)
+        ConfigValidator._validate_visualization(config.visualization)
+        
+        if config.scheduler is not None:
+            ConfigValidator._validate_scheduler(config.scheduler)
+        
+        # Cross-component validation
+        ConfigValidator._validate_compatibility(config)
+    
+    @staticmethod
+    def _validate_experiment(exp_config) -&gt; None:
+        &#34;&#34;&#34;Validate experiment configuration.&#34;&#34;&#34;
+        if not exp_config.name:
+            raise ValueError(&#34;Missing required parameter: name in section experiment&#34;)
+        
+        if exp_config.seed &lt; 0:
+            raise ValueError(f&#34;Parameter seed must be non-negative, got {exp_config.seed}&#34;)
+        
+        device = exp_config.device.split(&#34;:&#34;)[0]  # Handle &#34;cuda:0&#34; format
+        if device not in ConfigValidator.VALID_DEVICES:
+            raise ValueError(
+                f&#34;Parameter device must be one of {ConfigValidator.VALID_DEVICES}, &#34;
+                f&#34;got {exp_config.device}&#34;
+            )
+    
+    @staticmethod
+    def _validate_dataset(dataset_config) -&gt; None:
+        &#34;&#34;&#34;Validate dataset configuration.&#34;&#34;&#34;
+        if dataset_config.type not in ConfigValidator.VALID_DATASET_TYPES:
+            raise ValueError(
+                f&#34;Parameter type in section dataset must be one of &#34;
+                f&#34;{ConfigValidator.VALID_DATASET_TYPES}, got {dataset_config.type}&#34;
+            )
+        
+        # Validate dataset-specific parameters
+        if dataset_config.type == &#34;logistic&#34;:
+            ConfigValidator._validate_logistic_params(dataset_config.params)
+        elif dataset_config.type == &#34;lorenz&#34;:
+            ConfigValidator._validate_lorenz_params(dataset_config.params)
+        elif dataset_config.type == &#34;burgers&#34;:
+            ConfigValidator._validate_burgers_params(dataset_config.params)
+        
+        # Validate common dataset parameters
+        if dataset_config.num_train_trajectories &lt;= 0:
+            raise ValueError(
+                f&#34;Parameter num_train_trajectories must be positive, &#34;
+                f&#34;got {dataset_config.num_train_trajectories}&#34;
+            )
+        
+        if dataset_config.num_val_trajectories &lt;= 0:
+            raise ValueError(
+                f&#34;Parameter num_val_trajectories must be positive, &#34;
+                f&#34;got {dataset_config.num_val_trajectories}&#34;
+            )
+        
+        if dataset_config.input_horizon &lt;= 0:
+            raise ValueError(
+                f&#34;Parameter input_horizon must be positive, &#34;
+                f&#34;got {dataset_config.input_horizon}&#34;
+            )
+        
+        if dataset_config.output_horizon &lt;= 0:
+            raise ValueError(
+                f&#34;Parameter output_horizon must be positive, &#34;
+                f&#34;got {dataset_config.output_horizon}&#34;
+            )
+        
+        if not 0.0 &lt; dataset_config.train_val_split &lt; 1.0:
+            raise ValueError(
+                f&#34;Parameter train_val_split must be in (0, 1), &#34;
+                f&#34;got {dataset_config.train_val_split}&#34;
+            )
+        
+        if dataset_config.batch_size &lt;= 0:
+            raise ValueError(
+                f&#34;Parameter batch_size must be positive, &#34;
+                f&#34;got {dataset_config.batch_size}&#34;
+            )
+    
+    @staticmethod
+    def _validate_logistic_params(params: Dict[str, Any]) -&gt; None:
+        &#34;&#34;&#34;Validate Logistic Map parameters.&#34;&#34;&#34;
+        if &#34;r&#34; in params:
+            r_min, r_max = ConfigValidator.LOGISTIC_PARAM_RANGES[&#34;r&#34;]
+            if not r_min &lt;= params[&#34;r&#34;] &lt;= r_max:
+                raise ValueError(
+                    f&#34;Parameter r must be in [{r_min}, {r_max}], got {params[&#39;r&#39;]}&#34;
+                )
+        
+        if &#34;trajectory_length&#34; in params:
+            t_min, t_max = ConfigValidator.LOGISTIC_PARAM_RANGES[&#34;trajectory_length&#34;]
+            if not t_min &lt;= params[&#34;trajectory_length&#34;] &lt;= t_max:
+                raise ValueError(
+                    f&#34;Parameter trajectory_length must be in [{t_min}, {t_max}], &#34;
+                    f&#34;got {params[&#39;trajectory_length&#39;]}&#34;
+                )
+    
+    @staticmethod
+    def _validate_lorenz_params(params: Dict[str, Any]) -&gt; None:
+        &#34;&#34;&#34;Validate Lorenz System parameters.&#34;&#34;&#34;
+        for param_name, (min_val, max_val) in ConfigValidator.LORENZ_PARAM_RANGES.items():
+            if param_name in params:
+                value = params[param_name]
+                if not min_val &lt;= value &lt;= max_val:
+                    raise ValueError(
+                        f&#34;Parameter {param_name} must be in [{min_val}, {max_val}], &#34;
+                        f&#34;got {value}&#34;
+                    )
+    
+    @staticmethod
+    def _validate_burgers_params(params: Dict[str, Any]) -&gt; None:
+        &#34;&#34;&#34;Validate Burgers Equation parameters.&#34;&#34;&#34;
+        for param_name, (min_val, max_val) in ConfigValidator.BURGERS_PARAM_RANGES.items():
+            if param_name in params:
+                value = params[param_name]
+                if not min_val &lt;= value &lt;= max_val:
+                    raise ValueError(
+                        f&#34;Parameter {param_name} must be in [{min_val}, {max_val}], &#34;
+                        f&#34;got {value}&#34;
+                    )
+    
+    @staticmethod
+    def _validate_model(model_config) -&gt; None:
+        &#34;&#34;&#34;Validate model configuration.&#34;&#34;&#34;
+        if model_config.type not in ConfigValidator.VALID_MODEL_TYPES:
+            raise ValueError(
+                f&#34;Parameter type in section model must be one of &#34;
+                f&#34;{ConfigValidator.VALID_MODEL_TYPES}, got {model_config.type}&#34;
+            )
+        
+        # Validate model-specific parameters
+        if model_config.type == &#34;deeponet&#34;:
+            ConfigValidator._validate_deeponet_params(model_config.params)
+        elif model_config.type == &#34;fno&#34;:
+            ConfigValidator._validate_fno_params(model_config.params)
+    
+    @staticmethod
+    def _validate_deeponet_params(params: Dict[str, Any]) -&gt; None:
+        &#34;&#34;&#34;Validate DeepONet parameters.&#34;&#34;&#34;
+        if &#34;branch_layers&#34; in params:
+            if not isinstance(params[&#34;branch_layers&#34;], list) or not params[&#34;branch_layers&#34;]:
+                raise ValueError(&#34;Parameter branch_layers must be a non-empty list&#34;)
+            if any(layer &lt;= 0 for layer in params[&#34;branch_layers&#34;]):
+                raise ValueError(&#34;All branch_layers must be positive&#34;)
+        
+        if &#34;trunk_layers&#34; in params:
+            if not isinstance(params[&#34;trunk_layers&#34;], list) or not params[&#34;trunk_layers&#34;]:
+                raise ValueError(&#34;Parameter trunk_layers must be a non-empty list&#34;)
+            if any(layer &lt;= 0 for layer in params[&#34;trunk_layers&#34;]):
+                raise ValueError(&#34;All trunk_layers must be positive&#34;)
+        
+        if &#34;basis_dim&#34; in params and params[&#34;basis_dim&#34;] &lt;= 0:
+            raise ValueError(f&#34;Parameter basis_dim must be positive, got {params[&#39;basis_dim&#39;]}&#34;)
+        
+        if &#34;activation&#34; in params and params[&#34;activation&#34;] not in ConfigValidator.VALID_ACTIVATIONS:
+            raise ValueError(
+                f&#34;Parameter activation must be one of {ConfigValidator.VALID_ACTIVATIONS}, &#34;
+                f&#34;got {params[&#39;activation&#39;]}&#34;
+            )
+    
+    @staticmethod
+    def _validate_fno_params(params: Dict[str, Any]) -&gt; None:
+        &#34;&#34;&#34;Validate FNO parameters.&#34;&#34;&#34;
+        if &#34;modes&#34; in params and params[&#34;modes&#34;] &lt;= 0:
+            raise ValueError(f&#34;Parameter modes must be positive, got {params[&#39;modes&#39;]}&#34;)
+        
+        if &#34;width&#34; in params and params[&#34;width&#34;] &lt;= 0:
+            raise ValueError(f&#34;Parameter width must be positive, got {params[&#39;width&#39;]}&#34;)
+        
+        if &#34;num_layers&#34; in params and params[&#34;num_layers&#34;] &lt;= 0:
+            raise ValueError(f&#34;Parameter num_layers must be positive, got {params[&#39;num_layers&#39;]}&#34;)
+        
+        if &#34;activation&#34; in params and params[&#34;activation&#34;] not in ConfigValidator.VALID_ACTIVATIONS:
+            raise ValueError(
+                f&#34;Parameter activation must be one of {ConfigValidator.VALID_ACTIVATIONS}, &#34;
+                f&#34;got {params[&#39;activation&#39;]}&#34;
+            )
+    
+    @staticmethod
+    def _validate_optimizer(opt_config) -&gt; None:
+        &#34;&#34;&#34;Validate optimizer configuration.&#34;&#34;&#34;
+        if opt_config.type not in ConfigValidator.VALID_OPTIMIZER_TYPES:
+            raise ValueError(
+                f&#34;Parameter type in section optimizer must be one of &#34;
+                f&#34;{ConfigValidator.VALID_OPTIMIZER_TYPES}, got {opt_config.type}&#34;
+            )
+        
+        params = opt_config.params
+        
+        # Validate learning rate (common to all optimizers)
+        if &#34;learning_rate&#34; in params:
+            if params[&#34;learning_rate&#34;] &lt;= 0:
+                raise ValueError(
+                    f&#34;Parameter learning_rate must be positive, got {params[&#39;learning_rate&#39;]}&#34;
+                )
+        
+        # Validate optimizer-specific parameters
+        if opt_config.type == &#34;sgd&#34;:
+            if &#34;momentum&#34; in params and not 0 &lt;= params[&#34;momentum&#34;] &lt; 1:
+                raise ValueError(
+                    f&#34;Parameter momentum must be in [0, 1), got {params[&#39;momentum&#39;]}&#34;
+                )
+        
+        elif opt_config.type == &#34;adam&#34;:
+            if &#34;beta1&#34; in params and not 0 &lt;= params[&#34;beta1&#34;] &lt; 1:
+                raise ValueError(
+                    f&#34;Parameter beta1 must be in [0, 1), got {params[&#39;beta1&#39;]}&#34;
+                )
+            if &#34;beta2&#34; in params and not 0 &lt;= params[&#34;beta2&#34;] &lt; 1:
+                raise ValueError(
+                    f&#34;Parameter beta2 must be in [0, 1), got {params[&#39;beta2&#39;]}&#34;
+                )
+            if &#34;epsilon&#34; in params and params[&#34;epsilon&#34;] &lt;= 0:
+                raise ValueError(
+                    f&#34;Parameter epsilon must be positive, got {params[&#39;epsilon&#39;]}&#34;
+                )
+        
+        elif opt_config.type == &#34;svrg&#34;:
+            if &#34;inner_loop_length&#34; in params and params[&#34;inner_loop_length&#34;] &lt;= 0:
+                raise ValueError(
+                    f&#34;Parameter inner_loop_length must be positive, &#34;
+                    f&#34;got {params[&#39;inner_loop_length&#39;]}&#34;
+                )
+        
+        # Validate weight decay (common to all)
+        if &#34;weight_decay&#34; in params and params[&#34;weight_decay&#34;] &lt; 0:
+            raise ValueError(
+                f&#34;Parameter weight_decay must be non-negative, got {params[&#39;weight_decay&#39;]}&#34;
+            )
+    
+    @staticmethod
+    def _validate_scheduler(sched_config) -&gt; None:
+        &#34;&#34;&#34;Validate scheduler configuration.&#34;&#34;&#34;
+        if sched_config.type not in ConfigValidator.VALID_SCHEDULER_TYPES:
+            raise ValueError(
+                f&#34;Parameter type in section scheduler must be one of &#34;
+                f&#34;{ConfigValidator.VALID_SCHEDULER_TYPES}, got {sched_config.type}&#34;
+            )
+    
+    @staticmethod
+    def _validate_training(train_config) -&gt; None:
+        &#34;&#34;&#34;Validate training configuration.&#34;&#34;&#34;
+        if train_config.num_epochs &lt;= 0:
+            raise ValueError(
+                f&#34;Parameter num_epochs must be positive, got {train_config.num_epochs}&#34;
+            )
+        
+        if train_config.batch_size &lt;= 0:
+            raise ValueError(
+                f&#34;Parameter batch_size must be positive, got {train_config.batch_size}&#34;
+            )
+        
+        if train_config.validation_interval &lt;= 0:
+            raise ValueError(
+                f&#34;Parameter validation_interval must be positive, &#34;
+                f&#34;got {train_config.validation_interval}&#34;
+            )
+        
+        if train_config.variance_interval &lt;= 0:
+            raise ValueError(
+                f&#34;Parameter variance_interval must be positive, &#34;
+                f&#34;got {train_config.variance_interval}&#34;
+            )
+        
+        if train_config.checkpoint_interval &lt;= 0:
+            raise ValueError(
+                f&#34;Parameter checkpoint_interval must be positive, &#34;
+                f&#34;got {train_config.checkpoint_interval}&#34;
+            )
+        
+        if train_config.early_stopping_patience is not None:
+            if train_config.early_stopping_patience &lt;= 0:
+                raise ValueError(
+                    f&#34;Parameter early_stopping_patience must be positive, &#34;
+                    f&#34;got {train_config.early_stopping_patience}&#34;
+                )
+        
+        if train_config.target_loss is not None:
+            if train_config.target_loss &lt;= 0:
+                raise ValueError(
+                    f&#34;Parameter target_loss must be positive, &#34;
+                    f&#34;got {train_config.target_loss}&#34;
+                )
+    
+    @staticmethod
+    def _validate_logging(log_config) -&gt; None:
+        &#34;&#34;&#34;Validate logging configuration.&#34;&#34;&#34;
+        if not log_config.log_dir:
+            raise ValueError(&#34;Missing required parameter: log_dir in section logging&#34;)
+        
+        valid_log_levels = {&#34;DEBUG&#34;, &#34;INFO&#34;, &#34;WARNING&#34;, &#34;ERROR&#34;, &#34;CRITICAL&#34;}
+        if log_config.log_level not in valid_log_levels:
+            raise ValueError(
+                f&#34;Parameter log_level must be one of {valid_log_levels}, &#34;
+                f&#34;got {log_config.log_level}&#34;
+            )
+    
+    @staticmethod
+    def _validate_analysis(analysis_config) -&gt; None:
+        &#34;&#34;&#34;Validate analysis configuration.&#34;&#34;&#34;
+        if analysis_config.spectral_interval &lt;= 0:
+            raise ValueError(
+                f&#34;Parameter spectral_interval must be positive, &#34;
+                f&#34;got {analysis_config.spectral_interval}&#34;
+            )
+        
+        if analysis_config.long_horizon_steps &lt;= 0:
+            raise ValueError(
+                f&#34;Parameter long_horizon_steps must be positive, &#34;
+                f&#34;got {analysis_config.long_horizon_steps}&#34;
+            )
+        
+        if analysis_config.num_eigenvalues &lt;= 0:
+            raise ValueError(
+                f&#34;Parameter num_eigenvalues must be positive, &#34;
+                f&#34;got {analysis_config.num_eigenvalues}&#34;
+            )
+    
+    @staticmethod
+    def _validate_visualization(vis_config) -&gt; None:
+        &#34;&#34;&#34;Validate visualization configuration.&#34;&#34;&#34;
+        valid_formats = {&#34;pdf&#34;, &#34;png&#34;, &#34;svg&#34;, &#34;eps&#34;}
+        if vis_config.plot_format not in valid_formats:
+            raise ValueError(
+                f&#34;Parameter plot_format must be one of {valid_formats}, &#34;
+                f&#34;got {vis_config.plot_format}&#34;
+            )
+        
+        if vis_config.dpi &lt;= 0:
+            raise ValueError(f&#34;Parameter dpi must be positive, got {vis_config.dpi}&#34;)
+        
+        if not vis_config.output_dir:
+            raise ValueError(&#34;Missing required parameter: output_dir in section visualization&#34;)
+    
+    @staticmethod
+    def _validate_compatibility(config: Config) -&gt; None:
+        &#34;&#34;&#34;Validate cross-component compatibility.&#34;&#34;&#34;
+        # Ensure batch size is consistent
+        if config.dataset.batch_size != config.training.batch_size:
+            raise ValueError(
+                f&#34;Batch size mismatch: dataset.batch_size={config.dataset.batch_size} &#34;
+                f&#34;but training.batch_size={config.training.batch_size}&#34;
+            )
+        
+        # Warn if SVRG inner loop length is too large
+        if config.optimizer.type == &#34;svrg&#34;:
+            inner_loop = config.optimizer.params.get(&#34;inner_loop_length&#34;, 100)
+            total_batches = config.dataset.num_train_trajectories // config.training.batch_size
+            if inner_loop &gt; total_batches:
+                raise ValueError(
+                    f&#34;SVRG inner_loop_length ({inner_loop}) exceeds number of training &#34;
+                    f&#34;batches ({total_batches}). Consider reducing inner_loop_length.&#34;
+                )</code></pre>
+</details>
+<div class="desc"><p>Validates experiment configurations.</p></div>
+<h3>Class variables</h3>
+<dl>
+<dt id="experiments.ConfigValidator.BURGERS_PARAM_RANGES"><code class="name">var <span class="ident">BURGERS_PARAM_RANGES</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="experiments.ConfigValidator.LOGISTIC_PARAM_RANGES"><code class="name">var <span class="ident">LOGISTIC_PARAM_RANGES</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="experiments.ConfigValidator.LORENZ_PARAM_RANGES"><code class="name">var <span class="ident">LORENZ_PARAM_RANGES</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="experiments.ConfigValidator.VALID_ACTIVATIONS"><code class="name">var <span class="ident">VALID_ACTIVATIONS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="experiments.ConfigValidator.VALID_DATASET_TYPES"><code class="name">var <span class="ident">VALID_DATASET_TYPES</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="experiments.ConfigValidator.VALID_DEVICES"><code class="name">var <span class="ident">VALID_DEVICES</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="experiments.ConfigValidator.VALID_MODEL_TYPES"><code class="name">var <span class="ident">VALID_MODEL_TYPES</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="experiments.ConfigValidator.VALID_OPTIMIZER_TYPES"><code class="name">var <span class="ident">VALID_OPTIMIZER_TYPES</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="experiments.ConfigValidator.VALID_SCHEDULER_TYPES"><code class="name">var <span class="ident">VALID_SCHEDULER_TYPES</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+<h3>Static methods</h3>
+<dl>
+<dt id="experiments.ConfigValidator.validate"><code class="name flex">
+<span>def <span class="ident">validate</span></span>(<span>config: <a title="experiments.config_schema.Config" href="config_schema.html#experiments.config_schema.Config">Config</a>) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@staticmethod
+def validate(config: Config) -&gt; None:
+    &#34;&#34;&#34;
+    Validate complete configuration.
+    
+    Args:
+        config: Configuration object to validate
+        
+    Raises:
+        ValueError: If configuration is invalid with descriptive message
+    &#34;&#34;&#34;
+    ConfigValidator._validate_experiment(config.experiment)
+    ConfigValidator._validate_dataset(config.dataset)
+    ConfigValidator._validate_model(config.model)
+    ConfigValidator._validate_optimizer(config.optimizer)
+    ConfigValidator._validate_training(config.training)
+    ConfigValidator._validate_logging(config.logging)
+    ConfigValidator._validate_analysis(config.analysis)
+    ConfigValidator._validate_visualization(config.visualization)
+    
+    if config.scheduler is not None:
+        ConfigValidator._validate_scheduler(config.scheduler)
+    
+    # Cross-component validation
+    ConfigValidator._validate_compatibility(config)</code></pre>
+</details>
+<div class="desc"><p>Validate complete configuration.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>config</code></strong></dt>
+<dd>Configuration object to validate</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>ValueError</code></dt>
+<dd>If configuration is invalid with descriptive message</dd>
+</dl></div>
+</dd>
+</dl>
+</dd>
+<dt id="experiments.DatasetConfig"><code class="flex name class">
+<span>class <span class="ident">DatasetConfig</span></span>
+<span>(</span><span>type: str,<br>params: Dict[str, Any] = &lt;factory&gt;,<br>num_train_trajectories: int = 1000,<br>num_val_trajectories: int = 200,<br>input_horizon: int = 10,<br>output_horizon: int = 1,<br>train_val_split: float = 0.8,<br>batch_size: int = 32,<br>shuffle: bool = True)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@dataclass
+class DatasetConfig:
+    &#34;&#34;&#34;Dataset configuration.&#34;&#34;&#34;
+    type: str  # &#34;logistic&#34;, &#34;lorenz&#34;, &#34;burgers&#34;
+    params: Dict[str, Any] = field(default_factory=dict)
+    num_train_trajectories: int = 1000
+    num_val_trajectories: int = 200
+    input_horizon: int = 10
+    output_horizon: int = 1
+    train_val_split: float = 0.8
+    batch_size: int = 32
+    shuffle: bool = True</code></pre>
+</details>
+<div class="desc"><p>Dataset configuration.</p></div>
+<h3>Instance variables</h3>
+<dl>
+<dt id="experiments.DatasetConfig.batch_size"><code class="name">var <span class="ident">batch_size</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="experiments.DatasetConfig.input_horizon"><code class="name">var <span class="ident">input_horizon</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="experiments.DatasetConfig.num_train_trajectories"><code class="name">var <span class="ident">num_train_trajectories</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="experiments.DatasetConfig.num_val_trajectories"><code class="name">var <span class="ident">num_val_trajectories</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="experiments.DatasetConfig.output_horizon"><code class="name">var <span class="ident">output_horizon</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="experiments.DatasetConfig.params"><code class="name">var <span class="ident">params</span> : Dict[str, Any]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="experiments.DatasetConfig.shuffle"><code class="name">var <span class="ident">shuffle</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="experiments.DatasetConfig.train_val_split"><code class="name">var <span class="ident">train_val_split</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="experiments.DatasetConfig.type"><code class="name">var <span class="ident">type</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="experiments.ExperimentConfig"><code class="flex name class">
+<span>class <span class="ident">ExperimentConfig</span></span>
+<span>(</span><span>name: str, seed: int = 42, device: str = 'cuda', deterministic: bool = True)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@dataclass
+class ExperimentConfig:
+    &#34;&#34;&#34;Top-level experiment configuration.&#34;&#34;&#34;
+    name: str
+    seed: int = 42
+    device: str = &#34;cuda&#34;
+    deterministic: bool = True</code></pre>
+</details>
+<div class="desc"><p>Top-level experiment configuration.</p></div>
+<h3>Instance variables</h3>
+<dl>
+<dt id="experiments.ExperimentConfig.deterministic"><code class="name">var <span class="ident">deterministic</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="experiments.ExperimentConfig.device"><code class="name">var <span class="ident">device</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="experiments.ExperimentConfig.name"><code class="name">var <span class="ident">name</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="experiments.ExperimentConfig.seed"><code class="name">var <span class="ident">seed</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="experiments.ExperimentRunner"><code class="flex name class">
+<span>class <span class="ident">ExperimentRunner</span></span>
+<span>(</span><span>config_path: str | pathlib.Path)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class ExperimentRunner:
+    &#34;&#34;&#34;Orchestrates complete neural operator experiments.&#34;&#34;&#34;
+    
+    def __init__(self, config_path: Union[str, Path]):
+        &#34;&#34;&#34;
+        Initialize experiment runner.
+        
+        Args:
+            config_path: Path to configuration file
+        &#34;&#34;&#34;
+        self.config_path = Path(config_path)
+        self.config = load_config(config_path)
+        ConfigValidator.validate(self.config)
+        
+        self.logger = None
+        self.device = None
+        self.dataset = None
+        self.train_loader = None
+        self.val_loader = None
+        self.model = None
+        self.optimizer = None
+        self.scheduler = None
+        self.training_loop = None
+        
+        # Setup logging
+        self._setup_logging()
+    
+    def _setup_logging(self) -&gt; None:
+        &#34;&#34;&#34;Setup Python logging.&#34;&#34;&#34;
+        log_level = getattr(logging, self.config.logging.log_level)
+        logging.basicConfig(
+            level=log_level,
+            format=&#39;%(asctime)s - %(name)s - %(levelname)s - %(message)s&#39;
+        )
+        self.logger = logging.getLogger(__name__)
+    
+    def setup_experiment(self) -&gt; None:
+        &#34;&#34;&#34;Initialize all experiment components.&#34;&#34;&#34;
+        self.logger.info(f&#34;Setting up experiment: {self.config.experiment.name}&#34;)
+        
+        # Set random seeds
+        set_random_seeds(
+            self.config.experiment.seed,
+            deterministic=self.config.experiment.deterministic
+        )
+        self.logger.info(f&#34;Random seed set to {self.config.experiment.seed}&#34;)
+        
+        # Setup device
+        self.device = get_device(self.config.experiment.device)
+        self.logger.info(f&#34;Using device: {self.device}&#34;)
+        
+        # Log system info
+        log_system_info(self.logger)
+        
+        # Create dataset
+        self._create_dataset()
+        
+        # Create model
+        self._create_model()
+        
+        # Create optimizer
+        self._create_optimizer()
+        
+        # Create scheduler (if specified)
+        if self.config.scheduler is not None:
+            self._create_scheduler()
+        
+        # Create metrics logger
+        log_dir = Path(self.config.logging.log_dir) / self.config.experiment.name
+        self.metrics_logger = MetricsLogger(
+            log_dir=str(log_dir),
+            experiment_name=self.config.experiment.name
+        )
+        
+        # Create training loop
+        self._create_training_loop()
+        
+        # Save configuration
+        config_save_path = log_dir / &#34;config.yaml&#34;
+        save_config(self.config, config_save_path)
+        self.logger.info(f&#34;Configuration saved to {config_save_path}&#34;)
+    
+    def _create_dataset(self) -&gt; None:
+        &#34;&#34;&#34;Create dataset and data loaders.&#34;&#34;&#34;
+        self.logger.info(f&#34;Creating {self.config.dataset.type} dataset&#34;)
+        
+        dataset_type = self.config.dataset.type
+        params = self.config.dataset.params
+        
+        # Extract seed from experiment config
+        seed = self.config.experiment.seed
+        
+        if dataset_type == &#34;logistic&#34;:
+            self.dataset = LogisticMapDataset(seed=seed)
+        elif dataset_type == &#34;lorenz&#34;:
+            self.dataset = LorenzSystemDataset(seed=seed)
+        elif dataset_type == &#34;burgers&#34;:
+            self.dataset = BurgersEquationDataset(seed=seed)
+        else:
+            raise ValueError(f&#34;Unknown dataset type: {dataset_type}&#34;)
+        
+        # Generate data - pass params to create_operator_dataset
+        self.logger.info(&#34;Generating training and validation data&#34;)
+        
+        # Prepare params for create_operator_dataset
+        dataset_params = dict(params)  # Copy params
+        
+        train_data = self.dataset.create_operator_dataset(
+            num_trajectories=self.config.dataset.num_train_trajectories,
+            input_horizon=self.config.dataset.input_horizon,
+            output_horizon=self.config.dataset.output_horizon,
+            **dataset_params  # Pass all params including trajectory_length
+        )
+        
+        val_data = self.dataset.create_operator_dataset(
+            num_trajectories=self.config.dataset.num_val_trajectories,
+            input_horizon=self.config.dataset.input_horizon,
+            output_horizon=self.config.dataset.output_horizon,
+            **dataset_params  # Pass all params including trajectory_length
+        )
+        
+        # Create data loaders
+        train_inputs, train_outputs = train_data
+        val_inputs, val_outputs = val_data
+        
+        self.train_loader, self.val_loader, self.normalization_stats = create_dataloaders(
+            train_inputs=train_inputs,
+            train_outputs=train_outputs,
+            val_inputs=val_inputs,
+            val_outputs=val_outputs,
+            batch_size=self.config.training.batch_size,
+            shuffle_train=self.config.dataset.shuffle,
+        )
+        
+        self.logger.info(
+            f&#34;Created data loaders: {len(self.train_loader)} train batches, &#34;
+            f&#34;{len(self.val_loader)} val batches&#34;
+        )
+    
+    def _create_model(self) -&gt; None:
+        &#34;&#34;&#34;Create neural operator model.&#34;&#34;&#34;
+        self.logger.info(f&#34;Creating {self.config.model.type} model&#34;)
+        
+        model_type = self.config.model.type
+        params = dict(self.config.model.params)  # Copy params
+        
+        # Infer input/output dimensions from data
+        sample_batch = next(iter(self.train_loader))
+        sample_input, sample_output = sample_batch
+        
+        # For DeepONet: input_dim and output_dim are the feature dimensions
+        # For FNO: in_channels and out_channels
+        if model_type == &#34;deeponet&#34;:
+            # Input shape: [batch, input_horizon, state_dim]
+            # We need to reshape for DeepONet: [batch, state_dim, input_horizon]
+            params[&#39;input_dim&#39;] = sample_input.shape[2]  # state_dim
+            params[&#39;output_dim&#39;] = sample_output.shape[2]  # state_dim
+            self.model = DeepONet(**params)
+        elif model_type == &#34;fno&#34;:
+            # FNO expects [batch, channels, spatial_dim]
+            params[&#39;in_channels&#39;] = sample_input.shape[1]
+            params[&#39;out_channels&#39;] = sample_output.shape[1]
+            self.model = FNO(**params)
+        else:
+            raise ValueError(f&#34;Unknown model type: {model_type}&#34;)
+        
+        self.model = self.model.to(self.device)
+        
+        param_count = self.model.get_parameter_count()
+        self.logger.info(f&#34;Model created with {param_count:,} parameters&#34;)
+    
+    def _create_optimizer(self) -&gt; None:
+        &#34;&#34;&#34;Create optimizer.&#34;&#34;&#34;
+        self.logger.info(f&#34;Creating {self.config.optimizer.type} optimizer&#34;)
+        
+        opt_type = self.config.optimizer.type
+        params = self.config.optimizer.params.copy()
+        
+        if opt_type == &#34;sgd&#34;:
+            self.optimizer = SGD(self.model.parameters(), **params)
+        elif opt_type == &#34;adam&#34;:
+            self.optimizer = Adam(self.model.parameters(), **params)
+        elif opt_type == &#34;svrg&#34;:
+            # SVRG doesn&#39;t take train_loader in __init__
+            self.optimizer = SVRG(self.model.parameters(), **params)
+        else:
+            raise ValueError(f&#34;Unknown optimizer type: {opt_type}&#34;)
+        
+        self.logger.info(f&#34;Optimizer created: {opt_type}&#34;)
+    
+    def _create_scheduler(self) -&gt; None:
+        &#34;&#34;&#34;Create learning rate scheduler.&#34;&#34;&#34;
+        sched_type = self.config.scheduler.type
+        params = self.config.scheduler.params
+        
+        self.logger.info(f&#34;Creating {sched_type} scheduler&#34;)
+        
+        if sched_type == &#34;step&#34;:
+            self.scheduler = StepLR(self.optimizer, **params)
+        elif sched_type == &#34;exponential&#34;:
+            self.scheduler = ExponentialLR(self.optimizer, **params)
+        elif sched_type == &#34;cosine&#34;:
+            self.scheduler = CosineAnnealingLR(self.optimizer, **params)
+        else:
+            raise ValueError(f&#34;Unknown scheduler type: {sched_type}&#34;)
+    
+    def _create_training_loop(self) -&gt; None:
+        &#34;&#34;&#34;Create training loop.&#34;&#34;&#34;
+        # Prepare config dict for training loop
+        training_config = {
+            &#39;device&#39;: str(self.device),
+            &#39;log_dir&#39;: self.config.logging.log_dir,
+            &#39;experiment_name&#39;: self.config.experiment.name,
+            &#39;checkpoint_dir&#39;: self.config.logging.log_dir,
+            &#39;validation_interval&#39;: self.config.training.validation_interval,
+            &#39;variance_interval&#39;: self.config.training.variance_interval,
+            &#39;checkpoint_interval&#39;: self.config.training.checkpoint_interval,
+            &#39;early_stopping_patience&#39;: self.config.training.early_stopping_patience,
+        }
+        
+        self.training_loop = TrainingLoop(
+            model=self.model,
+            optimizer=self.optimizer,
+            train_loader=self.train_loader,
+            val_loader=self.val_loader,
+            config=training_config,
+            logger=self.metrics_logger,
+        )
+    
+    def run(self) -&gt; Dict[str, Any]:
+        &#34;&#34;&#34;
+        Execute complete experiment.
+        
+        Returns:
+            Dictionary containing experiment results
+        &#34;&#34;&#34;
+        self.logger.info(&#34;Starting experiment execution&#34;)
+        
+        # Setup experiment if not already done
+        if self.training_loop is None:
+            self.setup_experiment()
+        
+        # Run training
+        self.logger.info(&#34;Starting training&#34;)
+        history = self.training_loop.run(num_epochs=self.config.training.num_epochs)
+        
+        # Compute analysis metrics
+        if self.config.analysis.compute_spectral_radius:
+            self.logger.info(&#34;Computing spectral analysis&#34;)
+            self._compute_spectral_analysis(history)
+        
+        # Generate visualizations
+        if self.config.visualization.generate_plots:
+            self.logger.info(&#34;Generating visualizations&#34;)
+            self._generate_visualizations(history)
+        
+        # Save results
+        self.logger.info(&#34;Saving results&#34;)
+        results = self._save_results(history)
+        
+        self.logger.info(&#34;Experiment completed successfully&#34;)
+        return results
+    
+    def _compute_spectral_analysis(self, history: Dict[str, Any]) -&gt; None:
+        &#34;&#34;&#34;Compute spectral analysis of learned operator.&#34;&#34;&#34;
+        analyzer = SpectralAnalyzer(
+            model=self.model,
+            dataset=self.dataset,
+            device=self.device,
+        )
+        
+        # Get a sample state point
+        sample_batch = next(iter(self.val_loader))
+        sample_input = sample_batch[0][0:1]  # First sample
+        
+        # Compute eigenvalues
+        eigenvalues = analyzer.compute_operator_eigenvalues(
+            state_point=sample_input,
+            num_eigenvalues=self.config.analysis.num_eigenvalues,
+        )
+        
+        spectral_radius = analyzer.compute_spectral_radius(eigenvalues)
+        
+        # Convert complex eigenvalues to JSON-serializable format
+        if torch.is_complex(eigenvalues):
+            eigenvalues_list = [
+                {&#34;real&#34;: float(ev.real), &#34;imag&#34;: float(ev.imag)}
+                for ev in eigenvalues
+            ]
+        else:
+            eigenvalues_list = eigenvalues.tolist() if hasattr(eigenvalues, &#39;tolist&#39;) else eigenvalues
+        
+        # Store in history
+        history[&#34;spectral_analysis&#34;] = {
+            &#34;eigenvalues&#34;: eigenvalues_list,
+            &#34;spectral_radius&#34;: float(spectral_radius),
+        }
+        
+        # Get true eigenvalues if available
+        try:
+            true_eigenvalues = self.dataset.get_true_eigenvalues(sample_input)
+            if true_eigenvalues is not None:
+                eigenvalue_error = analyzer.compute_eigenvalue_error(
+                    learned_eigenvalues=eigenvalues,
+                    true_eigenvalues=true_eigenvalues,
+                )
+                history[&#34;spectral_analysis&#34;][&#34;true_eigenvalues&#34;] = (
+                    true_eigenvalues.tolist() if hasattr(true_eigenvalues, &#39;tolist&#39;)
+                    else true_eigenvalues
+                )
+                history[&#34;spectral_analysis&#34;][&#34;eigenvalue_error&#34;] = float(eigenvalue_error)
+        except Exception as e:
+            self.logger.warning(f&#34;Could not compute true eigenvalues: {e}&#34;)
+    
+    def _generate_visualizations(self, history: Dict[str, Any]) -&gt; None:
+        &#34;&#34;&#34;Generate publication-quality visualizations.&#34;&#34;&#34;
+        output_dir = Path(self.config.visualization.output_dir)
+        output_dir.mkdir(parents=True, exist_ok=True)
+        
+        plot_gen = PlotGenerator(
+            output_dir=str(output_dir),
+            plot_format=self.config.visualization.plot_format,
+            dpi=self.config.visualization.dpi,
+        )
+        
+        # Training curves
+        if &#34;train_loss&#34; in history:
+            plot_gen.plot_training_curves(
+                histories={&#34;current&#34;: history},
+                optimizer_names=[self.config.optimizer.type],
+            )
+        
+        # Gradient variance
+        if &#34;train_grad_variance&#34; in history:
+            plot_gen.plot_gradient_variance(
+                histories={&#34;current&#34;: history},
+                optimizer_names=[self.config.optimizer.type],
+            )
+        
+        # Validation error
+        if &#34;val_loss&#34; in history:
+            plot_gen.plot_validation_error(
+                histories={&#34;current&#34;: history},
+                optimizer_names=[self.config.optimizer.type],
+            )
+        
+        self.logger.info(f&#34;Visualizations saved to {output_dir}&#34;)
+    
+    def _save_results(self, history: Dict[str, Any]) -&gt; Dict[str, Any]:
+        &#34;&#34;&#34;Save experiment results.&#34;&#34;&#34;
+        log_dir = Path(self.config.logging.log_dir) / self.config.experiment.name
+        log_dir.mkdir(parents=True, exist_ok=True)
+        
+        # Save training history
+        history_path = log_dir / &#34;training_history.json&#34;
+        with open(history_path, &#39;w&#39;) as f:
+            json.dump(history, f, indent=2)
+        
+        # Save final model if requested
+        if self.config.logging.save_final_model:
+            model_path = log_dir / &#34;final_model.pt&#34;
+            torch.save(self.model.state_dict(), model_path)
+            self.logger.info(f&#34;Final model saved to {model_path}&#34;)
+        
+        # Prepare results summary
+        val_loss_list = history.get(&#34;val_loss&#34;, [])
+        final_val_loss = val_loss_list[-1] if val_loss_list else None
+        
+        results = {
+            &#34;experiment_name&#34;: self.config.experiment.name,
+            &#34;config&#34;: self.config.to_dict(),
+            &#34;history&#34;: history,
+            &#34;final_val_loss&#34;: final_val_loss,
+        }
+        
+        return results
+    
+    def run_multiple_seeds(self, seeds: List[int]) -&gt; Dict[str, Any]:
+        &#34;&#34;&#34;
+        Run experiment with multiple random seeds for statistical analysis.
+        
+        Args:
+            seeds: List of random seeds to use
+            
+        Returns:
+            Dictionary containing aggregated results across all seeds
+        &#34;&#34;&#34;
+        self.logger.info(f&#34;Running experiment with {len(seeds)} different seeds&#34;)
+        
+        all_results = []
+        
+        for seed in seeds:
+            self.logger.info(f&#34;Running with seed {seed}&#34;)
+            
+            # Update config with new seed
+            self.config.experiment.seed = seed
+            self.config.experiment.name = f&#34;{self.config.experiment.name}_seed{seed}&#34;
+            
+            # Reset components
+            self.dataset = None
+            self.model = None
+            self.optimizer = None
+            self.scheduler = None
+            self.training_loop = None
+            
+            # Run experiment
+            results = self.run()
+            all_results.append(results)
+        
+        # Aggregate results
+        aggregated = self._aggregate_results(all_results)
+        
+        # Save aggregated results
+        log_dir = Path(self.config.logging.log_dir) / &#34;aggregated&#34;
+        log_dir.mkdir(parents=True, exist_ok=True)
+        
+        agg_path = log_dir / &#34;aggregated_results.json&#34;
+        with open(agg_path, &#39;w&#39;) as f:
+            json.dump(aggregated, f, indent=2)
+        
+        self.logger.info(f&#34;Aggregated results saved to {agg_path}&#34;)
+        
+        return aggregated
+    
+    def _aggregate_results(self, all_results: List[Dict[str, Any]]) -&gt; Dict[str, Any]:
+        &#34;&#34;&#34;Aggregate results across multiple runs.&#34;&#34;&#34;
+        import numpy as np
+        
+        # Extract final validation losses
+        final_losses = [
+            r[&#34;final_val_loss&#34;] for r in all_results
+            if r[&#34;final_val_loss&#34;] is not None
+        ]
+        
+        aggregated = {
+            &#34;num_runs&#34;: len(all_results),
+            &#34;seeds&#34;: [r[&#34;config&#34;][&#34;experiment&#34;][&#34;seed&#34;] for r in all_results],
+            &#34;final_val_loss&#34;: {
+                &#34;mean&#34;: float(np.mean(final_losses)) if final_losses else None,
+                &#34;std&#34;: float(np.std(final_losses)) if final_losses else None,
+                &#34;min&#34;: float(np.min(final_losses)) if final_losses else None,
+                &#34;max&#34;: float(np.max(final_losses)) if final_losses else None,
+            },
+            &#34;individual_results&#34;: all_results,
+        }
+        
+        return aggregated</code></pre>
+</details>
+<div class="desc"><p>Orchestrates complete neural operator experiments.</p>
+<p>Initialize experiment runner.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>config_path</code></strong></dt>
+<dd>Path to configuration file</dd>
+</dl></div>
+<h3>Methods</h3>
+<dl>
+<dt id="experiments.ExperimentRunner.run"><code class="name flex">
+<span>def <span class="ident">run</span></span>(<span>self) ‑> Dict[str, Any]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def run(self) -&gt; Dict[str, Any]:
+    &#34;&#34;&#34;
+    Execute complete experiment.
+    
+    Returns:
+        Dictionary containing experiment results
+    &#34;&#34;&#34;
+    self.logger.info(&#34;Starting experiment execution&#34;)
+    
+    # Setup experiment if not already done
+    if self.training_loop is None:
+        self.setup_experiment()
+    
+    # Run training
+    self.logger.info(&#34;Starting training&#34;)
+    history = self.training_loop.run(num_epochs=self.config.training.num_epochs)
+    
+    # Compute analysis metrics
+    if self.config.analysis.compute_spectral_radius:
+        self.logger.info(&#34;Computing spectral analysis&#34;)
+        self._compute_spectral_analysis(history)
+    
+    # Generate visualizations
+    if self.config.visualization.generate_plots:
+        self.logger.info(&#34;Generating visualizations&#34;)
+        self._generate_visualizations(history)
+    
+    # Save results
+    self.logger.info(&#34;Saving results&#34;)
+    results = self._save_results(history)
+    
+    self.logger.info(&#34;Experiment completed successfully&#34;)
+    return results</code></pre>
+</details>
+<div class="desc"><p>Execute complete experiment.</p>
+<h2 id="returns">Returns</h2>
+<p>Dictionary containing experiment results</p></div>
+</dd>
+<dt id="experiments.ExperimentRunner.run_multiple_seeds"><code class="name flex">
+<span>def <span class="ident">run_multiple_seeds</span></span>(<span>self, seeds: List[int]) ‑> Dict[str, Any]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def run_multiple_seeds(self, seeds: List[int]) -&gt; Dict[str, Any]:
+    &#34;&#34;&#34;
+    Run experiment with multiple random seeds for statistical analysis.
+    
+    Args:
+        seeds: List of random seeds to use
+        
+    Returns:
+        Dictionary containing aggregated results across all seeds
+    &#34;&#34;&#34;
+    self.logger.info(f&#34;Running experiment with {len(seeds)} different seeds&#34;)
+    
+    all_results = []
+    
+    for seed in seeds:
+        self.logger.info(f&#34;Running with seed {seed}&#34;)
+        
+        # Update config with new seed
+        self.config.experiment.seed = seed
+        self.config.experiment.name = f&#34;{self.config.experiment.name}_seed{seed}&#34;
+        
+        # Reset components
+        self.dataset = None
+        self.model = None
+        self.optimizer = None
+        self.scheduler = None
+        self.training_loop = None
+        
+        # Run experiment
+        results = self.run()
+        all_results.append(results)
+    
+    # Aggregate results
+    aggregated = self._aggregate_results(all_results)
+    
+    # Save aggregated results
+    log_dir = Path(self.config.logging.log_dir) / &#34;aggregated&#34;
+    log_dir.mkdir(parents=True, exist_ok=True)
+    
+    agg_path = log_dir / &#34;aggregated_results.json&#34;
+    with open(agg_path, &#39;w&#39;) as f:
+        json.dump(aggregated, f, indent=2)
+    
+    self.logger.info(f&#34;Aggregated results saved to {agg_path}&#34;)
+    
+    return aggregated</code></pre>
+</details>
+<div class="desc"><p>Run experiment with multiple random seeds for statistical analysis.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>seeds</code></strong></dt>
+<dd>List of random seeds to use</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Dictionary containing aggregated results across all seeds</p></div>
+</dd>
+<dt id="experiments.ExperimentRunner.setup_experiment"><code class="name flex">
+<span>def <span class="ident">setup_experiment</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def setup_experiment(self) -&gt; None:
+    &#34;&#34;&#34;Initialize all experiment components.&#34;&#34;&#34;
+    self.logger.info(f&#34;Setting up experiment: {self.config.experiment.name}&#34;)
+    
+    # Set random seeds
+    set_random_seeds(
+        self.config.experiment.seed,
+        deterministic=self.config.experiment.deterministic
+    )
+    self.logger.info(f&#34;Random seed set to {self.config.experiment.seed}&#34;)
+    
+    # Setup device
+    self.device = get_device(self.config.experiment.device)
+    self.logger.info(f&#34;Using device: {self.device}&#34;)
+    
+    # Log system info
+    log_system_info(self.logger)
+    
+    # Create dataset
+    self._create_dataset()
+    
+    # Create model
+    self._create_model()
+    
+    # Create optimizer
+    self._create_optimizer()
+    
+    # Create scheduler (if specified)
+    if self.config.scheduler is not None:
+        self._create_scheduler()
+    
+    # Create metrics logger
+    log_dir = Path(self.config.logging.log_dir) / self.config.experiment.name
+    self.metrics_logger = MetricsLogger(
+        log_dir=str(log_dir),
+        experiment_name=self.config.experiment.name
+    )
+    
+    # Create training loop
+    self._create_training_loop()
+    
+    # Save configuration
+    config_save_path = log_dir / &#34;config.yaml&#34;
+    save_config(self.config, config_save_path)
+    self.logger.info(f&#34;Configuration saved to {config_save_path}&#34;)</code></pre>
+</details>
+<div class="desc"><p>Initialize all experiment components.</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="experiments.LoggingConfig"><code class="flex name class">
+<span>class <span class="ident">LoggingConfig</span></span>
+<span>(</span><span>log_dir: str = './logs',<br>save_checkpoints: bool = True,<br>save_final_model: bool = True,<br>log_level: str = 'INFO')</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@dataclass
+class LoggingConfig:
+    &#34;&#34;&#34;Logging configuration.&#34;&#34;&#34;
+    log_dir: str = &#34;./logs&#34;
+    save_checkpoints: bool = True
+    save_final_model: bool = True
+    log_level: str = &#34;INFO&#34;</code></pre>
+</details>
+<div class="desc"><p>Logging configuration.</p></div>
+<h3>Instance variables</h3>
+<dl>
+<dt id="experiments.LoggingConfig.log_dir"><code class="name">var <span class="ident">log_dir</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="experiments.LoggingConfig.log_level"><code class="name">var <span class="ident">log_level</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="experiments.LoggingConfig.save_checkpoints"><code class="name">var <span class="ident">save_checkpoints</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="experiments.LoggingConfig.save_final_model"><code class="name">var <span class="ident">save_final_model</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="experiments.ModelConfig"><code class="flex name class">
+<span>class <span class="ident">ModelConfig</span></span>
+<span>(</span><span>type: str, params: Dict[str, Any] = &lt;factory&gt;)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@dataclass
+class ModelConfig:
+    &#34;&#34;&#34;Model architecture configuration.&#34;&#34;&#34;
+    type: str  # &#34;deeponet&#34;, &#34;fno&#34;
+    params: Dict[str, Any] = field(default_factory=dict)</code></pre>
+</details>
+<div class="desc"><p>Model architecture configuration.</p></div>
+<h3>Instance variables</h3>
+<dl>
+<dt id="experiments.ModelConfig.params"><code class="name">var <span class="ident">params</span> : Dict[str, Any]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="experiments.ModelConfig.type"><code class="name">var <span class="ident">type</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="experiments.OptimizerConfig"><code class="flex name class">
+<span>class <span class="ident">OptimizerConfig</span></span>
+<span>(</span><span>type: str, params: Dict[str, Any] = &lt;factory&gt;)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@dataclass
+class OptimizerConfig:
+    &#34;&#34;&#34;Optimizer configuration.&#34;&#34;&#34;
+    type: str  # &#34;sgd&#34;, &#34;adam&#34;, &#34;svrg&#34;
+    params: Dict[str, Any] = field(default_factory=dict)</code></pre>
+</details>
+<div class="desc"><p>Optimizer configuration.</p></div>
+<h3>Instance variables</h3>
+<dl>
+<dt id="experiments.OptimizerConfig.params"><code class="name">var <span class="ident">params</span> : Dict[str, Any]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="experiments.OptimizerConfig.type"><code class="name">var <span class="ident">type</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="experiments.SchedulerConfig"><code class="flex name class">
+<span>class <span class="ident">SchedulerConfig</span></span>
+<span>(</span><span>type: str | None = None, params: Dict[str, Any] = &lt;factory&gt;)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@dataclass
+class SchedulerConfig:
+    &#34;&#34;&#34;Learning rate scheduler configuration.&#34;&#34;&#34;
+    type: Optional[str] = None  # &#34;step&#34;, &#34;exponential&#34;, &#34;cosine&#34;
+    params: Dict[str, Any] = field(default_factory=dict)</code></pre>
+</details>
+<div class="desc"><p>Learning rate scheduler configuration.</p></div>
+<h3>Instance variables</h3>
+<dl>
+<dt id="experiments.SchedulerConfig.params"><code class="name">var <span class="ident">params</span> : Dict[str, Any]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="experiments.SchedulerConfig.type"><code class="name">var <span class="ident">type</span> : str | None</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="experiments.TrainingConfig"><code class="flex name class">
+<span>class <span class="ident">TrainingConfig</span></span>
+<span>(</span><span>num_epochs: int = 100,<br>batch_size: int = 32,<br>validation_interval: int = 100,<br>variance_interval: int = 500,<br>checkpoint_interval: int = 1000,<br>early_stopping_patience: int | None = 20,<br>target_loss: float | None = 0.0001)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@dataclass
+class TrainingConfig:
+    &#34;&#34;&#34;Training procedure configuration.&#34;&#34;&#34;
+    num_epochs: int = 100
+    batch_size: int = 32
+    validation_interval: int = 100
+    variance_interval: int = 500
+    checkpoint_interval: int = 1000
+    early_stopping_patience: Optional[int] = 20
+    target_loss: Optional[float] = 1e-4</code></pre>
+</details>
+<div class="desc"><p>Training procedure configuration.</p></div>
+<h3>Instance variables</h3>
+<dl>
+<dt id="experiments.TrainingConfig.batch_size"><code class="name">var <span class="ident">batch_size</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="experiments.TrainingConfig.checkpoint_interval"><code class="name">var <span class="ident">checkpoint_interval</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="experiments.TrainingConfig.early_stopping_patience"><code class="name">var <span class="ident">early_stopping_patience</span> : int | None</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="experiments.TrainingConfig.num_epochs"><code class="name">var <span class="ident">num_epochs</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="experiments.TrainingConfig.target_loss"><code class="name">var <span class="ident">target_loss</span> : float | None</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="experiments.TrainingConfig.validation_interval"><code class="name">var <span class="ident">validation_interval</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="experiments.TrainingConfig.variance_interval"><code class="name">var <span class="ident">variance_interval</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="experiments.VisualizationConfig"><code class="flex name class">
+<span>class <span class="ident">VisualizationConfig</span></span>
+<span>(</span><span>generate_plots: bool = True,<br>plot_format: str = 'pdf',<br>dpi: int = 300,<br>output_dir: str = './visualization_output')</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@dataclass
+class VisualizationConfig:
+    &#34;&#34;&#34;Visualization configuration.&#34;&#34;&#34;
+    generate_plots: bool = True
+    plot_format: str = &#34;pdf&#34;
+    dpi: int = 300
+    output_dir: str = &#34;./visualization_output&#34;</code></pre>
+</details>
+<div class="desc"><p>Visualization configuration.</p></div>
+<h3>Instance variables</h3>
+<dl>
+<dt id="experiments.VisualizationConfig.dpi"><code class="name">var <span class="ident">dpi</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="experiments.VisualizationConfig.generate_plots"><code class="name">var <span class="ident">generate_plots</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="experiments.VisualizationConfig.output_dir"><code class="name">var <span class="ident">output_dir</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="experiments.VisualizationConfig.plot_format"><code class="name">var <span class="ident">plot_format</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3><a href="#header-submodules">Sub-modules</a></h3>
+<ul>
+<li><code><a title="experiments.config_parser" href="config_parser.html">experiments.config_parser</a></code></li>
+<li><code><a title="experiments.config_schema" href="config_schema.html">experiments.config_schema</a></code></li>
+<li><code><a title="experiments.config_serializer" href="config_serializer.html">experiments.config_serializer</a></code></li>
+<li><code><a title="experiments.config_validator" href="config_validator.html">experiments.config_validator</a></code></li>
+<li><code><a title="experiments.experiment_runner" href="experiment_runner.html">experiments.experiment_runner</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="experiments.load_config" href="#experiments.load_config">load_config</a></code></li>
+<li><code><a title="experiments.save_config" href="#experiments.save_config">save_config</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="experiments.AnalysisConfig" href="#experiments.AnalysisConfig">AnalysisConfig</a></code></h4>
+<ul class="">
+<li><code><a title="experiments.AnalysisConfig.compute_spectral_radius" href="#experiments.AnalysisConfig.compute_spectral_radius">compute_spectral_radius</a></code></li>
+<li><code><a title="experiments.AnalysisConfig.long_horizon_steps" href="#experiments.AnalysisConfig.long_horizon_steps">long_horizon_steps</a></code></li>
+<li><code><a title="experiments.AnalysisConfig.num_eigenvalues" href="#experiments.AnalysisConfig.num_eigenvalues">num_eigenvalues</a></code></li>
+<li><code><a title="experiments.AnalysisConfig.spectral_interval" href="#experiments.AnalysisConfig.spectral_interval">spectral_interval</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="experiments.Config" href="#experiments.Config">Config</a></code></h4>
+<ul class="two-column">
+<li><code><a title="experiments.Config.analysis" href="#experiments.Config.analysis">analysis</a></code></li>
+<li><code><a title="experiments.Config.dataset" href="#experiments.Config.dataset">dataset</a></code></li>
+<li><code><a title="experiments.Config.experiment" href="#experiments.Config.experiment">experiment</a></code></li>
+<li><code><a title="experiments.Config.logging" href="#experiments.Config.logging">logging</a></code></li>
+<li><code><a title="experiments.Config.model" href="#experiments.Config.model">model</a></code></li>
+<li><code><a title="experiments.Config.optimizer" href="#experiments.Config.optimizer">optimizer</a></code></li>
+<li><code><a title="experiments.Config.scheduler" href="#experiments.Config.scheduler">scheduler</a></code></li>
+<li><code><a title="experiments.Config.to_dict" href="#experiments.Config.to_dict">to_dict</a></code></li>
+<li><code><a title="experiments.Config.training" href="#experiments.Config.training">training</a></code></li>
+<li><code><a title="experiments.Config.visualization" href="#experiments.Config.visualization">visualization</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="experiments.ConfigValidator" href="#experiments.ConfigValidator">ConfigValidator</a></code></h4>
+<ul class="">
+<li><code><a title="experiments.ConfigValidator.BURGERS_PARAM_RANGES" href="#experiments.ConfigValidator.BURGERS_PARAM_RANGES">BURGERS_PARAM_RANGES</a></code></li>
+<li><code><a title="experiments.ConfigValidator.LOGISTIC_PARAM_RANGES" href="#experiments.ConfigValidator.LOGISTIC_PARAM_RANGES">LOGISTIC_PARAM_RANGES</a></code></li>
+<li><code><a title="experiments.ConfigValidator.LORENZ_PARAM_RANGES" href="#experiments.ConfigValidator.LORENZ_PARAM_RANGES">LORENZ_PARAM_RANGES</a></code></li>
+<li><code><a title="experiments.ConfigValidator.VALID_ACTIVATIONS" href="#experiments.ConfigValidator.VALID_ACTIVATIONS">VALID_ACTIVATIONS</a></code></li>
+<li><code><a title="experiments.ConfigValidator.VALID_DATASET_TYPES" href="#experiments.ConfigValidator.VALID_DATASET_TYPES">VALID_DATASET_TYPES</a></code></li>
+<li><code><a title="experiments.ConfigValidator.VALID_DEVICES" href="#experiments.ConfigValidator.VALID_DEVICES">VALID_DEVICES</a></code></li>
+<li><code><a title="experiments.ConfigValidator.VALID_MODEL_TYPES" href="#experiments.ConfigValidator.VALID_MODEL_TYPES">VALID_MODEL_TYPES</a></code></li>
+<li><code><a title="experiments.ConfigValidator.VALID_OPTIMIZER_TYPES" href="#experiments.ConfigValidator.VALID_OPTIMIZER_TYPES">VALID_OPTIMIZER_TYPES</a></code></li>
+<li><code><a title="experiments.ConfigValidator.VALID_SCHEDULER_TYPES" href="#experiments.ConfigValidator.VALID_SCHEDULER_TYPES">VALID_SCHEDULER_TYPES</a></code></li>
+<li><code><a title="experiments.ConfigValidator.validate" href="#experiments.ConfigValidator.validate">validate</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="experiments.DatasetConfig" href="#experiments.DatasetConfig">DatasetConfig</a></code></h4>
+<ul class="">
+<li><code><a title="experiments.DatasetConfig.batch_size" href="#experiments.DatasetConfig.batch_size">batch_size</a></code></li>
+<li><code><a title="experiments.DatasetConfig.input_horizon" href="#experiments.DatasetConfig.input_horizon">input_horizon</a></code></li>
+<li><code><a title="experiments.DatasetConfig.num_train_trajectories" href="#experiments.DatasetConfig.num_train_trajectories">num_train_trajectories</a></code></li>
+<li><code><a title="experiments.DatasetConfig.num_val_trajectories" href="#experiments.DatasetConfig.num_val_trajectories">num_val_trajectories</a></code></li>
+<li><code><a title="experiments.DatasetConfig.output_horizon" href="#experiments.DatasetConfig.output_horizon">output_horizon</a></code></li>
+<li><code><a title="experiments.DatasetConfig.params" href="#experiments.DatasetConfig.params">params</a></code></li>
+<li><code><a title="experiments.DatasetConfig.shuffle" href="#experiments.DatasetConfig.shuffle">shuffle</a></code></li>
+<li><code><a title="experiments.DatasetConfig.train_val_split" href="#experiments.DatasetConfig.train_val_split">train_val_split</a></code></li>
+<li><code><a title="experiments.DatasetConfig.type" href="#experiments.DatasetConfig.type">type</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="experiments.ExperimentConfig" href="#experiments.ExperimentConfig">ExperimentConfig</a></code></h4>
+<ul class="">
+<li><code><a title="experiments.ExperimentConfig.deterministic" href="#experiments.ExperimentConfig.deterministic">deterministic</a></code></li>
+<li><code><a title="experiments.ExperimentConfig.device" href="#experiments.ExperimentConfig.device">device</a></code></li>
+<li><code><a title="experiments.ExperimentConfig.name" href="#experiments.ExperimentConfig.name">name</a></code></li>
+<li><code><a title="experiments.ExperimentConfig.seed" href="#experiments.ExperimentConfig.seed">seed</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="experiments.ExperimentRunner" href="#experiments.ExperimentRunner">ExperimentRunner</a></code></h4>
+<ul class="">
+<li><code><a title="experiments.ExperimentRunner.run" href="#experiments.ExperimentRunner.run">run</a></code></li>
+<li><code><a title="experiments.ExperimentRunner.run_multiple_seeds" href="#experiments.ExperimentRunner.run_multiple_seeds">run_multiple_seeds</a></code></li>
+<li><code><a title="experiments.ExperimentRunner.setup_experiment" href="#experiments.ExperimentRunner.setup_experiment">setup_experiment</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="experiments.LoggingConfig" href="#experiments.LoggingConfig">LoggingConfig</a></code></h4>
+<ul class="">
+<li><code><a title="experiments.LoggingConfig.log_dir" href="#experiments.LoggingConfig.log_dir">log_dir</a></code></li>
+<li><code><a title="experiments.LoggingConfig.log_level" href="#experiments.LoggingConfig.log_level">log_level</a></code></li>
+<li><code><a title="experiments.LoggingConfig.save_checkpoints" href="#experiments.LoggingConfig.save_checkpoints">save_checkpoints</a></code></li>
+<li><code><a title="experiments.LoggingConfig.save_final_model" href="#experiments.LoggingConfig.save_final_model">save_final_model</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="experiments.ModelConfig" href="#experiments.ModelConfig">ModelConfig</a></code></h4>
+<ul class="">
+<li><code><a title="experiments.ModelConfig.params" href="#experiments.ModelConfig.params">params</a></code></li>
+<li><code><a title="experiments.ModelConfig.type" href="#experiments.ModelConfig.type">type</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="experiments.OptimizerConfig" href="#experiments.OptimizerConfig">OptimizerConfig</a></code></h4>
+<ul class="">
+<li><code><a title="experiments.OptimizerConfig.params" href="#experiments.OptimizerConfig.params">params</a></code></li>
+<li><code><a title="experiments.OptimizerConfig.type" href="#experiments.OptimizerConfig.type">type</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="experiments.SchedulerConfig" href="#experiments.SchedulerConfig">SchedulerConfig</a></code></h4>
+<ul class="">
+<li><code><a title="experiments.SchedulerConfig.params" href="#experiments.SchedulerConfig.params">params</a></code></li>
+<li><code><a title="experiments.SchedulerConfig.type" href="#experiments.SchedulerConfig.type">type</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="experiments.TrainingConfig" href="#experiments.TrainingConfig">TrainingConfig</a></code></h4>
+<ul class="">
+<li><code><a title="experiments.TrainingConfig.batch_size" href="#experiments.TrainingConfig.batch_size">batch_size</a></code></li>
+<li><code><a title="experiments.TrainingConfig.checkpoint_interval" href="#experiments.TrainingConfig.checkpoint_interval">checkpoint_interval</a></code></li>
+<li><code><a title="experiments.TrainingConfig.early_stopping_patience" href="#experiments.TrainingConfig.early_stopping_patience">early_stopping_patience</a></code></li>
+<li><code><a title="experiments.TrainingConfig.num_epochs" href="#experiments.TrainingConfig.num_epochs">num_epochs</a></code></li>
+<li><code><a title="experiments.TrainingConfig.target_loss" href="#experiments.TrainingConfig.target_loss">target_loss</a></code></li>
+<li><code><a title="experiments.TrainingConfig.validation_interval" href="#experiments.TrainingConfig.validation_interval">validation_interval</a></code></li>
+<li><code><a title="experiments.TrainingConfig.variance_interval" href="#experiments.TrainingConfig.variance_interval">variance_interval</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="experiments.VisualizationConfig" href="#experiments.VisualizationConfig">VisualizationConfig</a></code></h4>
+<ul class="">
+<li><code><a title="experiments.VisualizationConfig.dpi" href="#experiments.VisualizationConfig.dpi">dpi</a></code></li>
+<li><code><a title="experiments.VisualizationConfig.generate_plots" href="#experiments.VisualizationConfig.generate_plots">generate_plots</a></code></li>
+<li><code><a title="experiments.VisualizationConfig.output_dir" href="#experiments.VisualizationConfig.output_dir">output_dir</a></code></li>
+<li><code><a title="experiments.VisualizationConfig.plot_format" href="#experiments.VisualizationConfig.plot_format">plot_format</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>

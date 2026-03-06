@@ -1,0 +1,11 @@
+================================================================================
+LOGISTIC MAP - RESULTS SUMMARY
+================================================================================
+
+Optimizer  Final Val Loss  Total Iterations  Total Epochs  Mean Grad Variance
+     Adam    3.857339e-06             15100             1        3.076953e-05
+      SGD    2.066017e-07            145300             5        1.802388e-06
+     SVRG    2.394572e-06            125000             5        2.444414e-07
+
+Variance Reduction (SVRG vs SGD): 86.44%
+Variance Reduction (SVRG vs Adam): 99.21%

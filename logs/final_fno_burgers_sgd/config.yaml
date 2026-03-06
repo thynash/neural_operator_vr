@@ -1,0 +1,62 @@
+experiment:
+  name: final_fno_burgers_sgd
+  seed: 42
+  device: cpu
+  deterministic: true
+dataset:
+  type: burgers
+  params:
+    viscosity: 0.05
+    initial_condition_type: random_fourier
+    num_modes: 8
+    trajectory_length: 100
+    dt: 0.0001
+    spatial_resolution: 128
+  num_train_trajectories: 2000
+  num_val_trajectories: 400
+  input_horizon: 10
+  output_horizon: 10
+  train_val_split: 0.8
+  batch_size: 64
+  shuffle: true
+model:
+  type: fno
+  params:
+    modes: 12
+    width: 48
+    num_layers: 3
+    activation: gelu
+optimizer:
+  type: sgd
+  params:
+    learning_rate: 0.01
+    momentum: 0.9
+    weight_decay: 0.0001
+training:
+  num_epochs: 30
+  batch_size: 64
+  validation_interval: 100
+  variance_interval: 200
+  checkpoint_interval: 1000
+  early_stopping_patience: 8
+  target_loss: 0.001
+logging:
+  log_dir: ./logs
+  save_checkpoints: false
+  save_final_model: true
+  log_level: INFO
+analysis:
+  compute_spectral_radius: true
+  spectral_interval: 5000
+  long_horizon_steps: 50
+  num_eigenvalues: 5
+visualization:
+  generate_plots: false
+  plot_format: pdf
+  dpi: 300
+  output_dir: ./visualization_output
+scheduler:
+  type: cosine
+  params:
+    T_max: 5000
+    eta_min: 1.0e-06

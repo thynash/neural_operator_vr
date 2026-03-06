@@ -1,0 +1,589 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>experiments.config_validator API documentation</title>
+<meta name="description" content="Configuration validation for neural operator experiments.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>experiments.config_validator</code></h1>
+</header>
+<section id="section-intro">
+<p>Configuration validation for neural operator experiments.</p>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="experiments.config_validator.ConfigValidator"><code class="flex name class">
+<span>class <span class="ident">ConfigValidator</span></span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class ConfigValidator:
+    &#34;&#34;&#34;Validates experiment configurations.&#34;&#34;&#34;
+    
+    # Valid values for categorical parameters
+    VALID_DATASET_TYPES = {&#34;logistic&#34;, &#34;lorenz&#34;, &#34;burgers&#34;}
+    VALID_MODEL_TYPES = {&#34;deeponet&#34;, &#34;fno&#34;}
+    VALID_OPTIMIZER_TYPES = {&#34;sgd&#34;, &#34;adam&#34;, &#34;svrg&#34;}
+    VALID_SCHEDULER_TYPES = {&#34;step&#34;, &#34;exponential&#34;, &#34;cosine&#34;, None}
+    VALID_DEVICES = {&#34;cpu&#34;, &#34;cuda&#34;, &#34;auto&#34;}
+    VALID_ACTIVATIONS = {&#34;relu&#34;, &#34;tanh&#34;, &#34;gelu&#34;, &#34;silu&#34;}
+    
+    # Parameter ranges for dynamical systems
+    LOGISTIC_PARAM_RANGES = {
+        &#34;r&#34;: (0.0, 4.0),
+        &#34;trajectory_length&#34;: (10, 100000),
+    }
+    
+    LORENZ_PARAM_RANGES = {
+        &#34;sigma&#34;: (0.0, 100.0),
+        &#34;rho&#34;: (0.0, 100.0),
+        &#34;beta&#34;: (0.0, 10.0),
+        &#34;dt&#34;: (1e-5, 1.0),
+        &#34;trajectory_length&#34;: (10, 100000),
+    }
+    
+    BURGERS_PARAM_RANGES = {
+        &#34;viscosity&#34;: (1e-5, 1.0),
+        &#34;spatial_resolution&#34;: (16, 1024),
+        &#34;temporal_resolution&#34;: (10, 10000),
+    }
+    
+    @staticmethod
+    def validate(config: Config) -&gt; None:
+        &#34;&#34;&#34;
+        Validate complete configuration.
+        
+        Args:
+            config: Configuration object to validate
+            
+        Raises:
+            ValueError: If configuration is invalid with descriptive message
+        &#34;&#34;&#34;
+        ConfigValidator._validate_experiment(config.experiment)
+        ConfigValidator._validate_dataset(config.dataset)
+        ConfigValidator._validate_model(config.model)
+        ConfigValidator._validate_optimizer(config.optimizer)
+        ConfigValidator._validate_training(config.training)
+        ConfigValidator._validate_logging(config.logging)
+        ConfigValidator._validate_analysis(config.analysis)
+        ConfigValidator._validate_visualization(config.visualization)
+        
+        if config.scheduler is not None:
+            ConfigValidator._validate_scheduler(config.scheduler)
+        
+        # Cross-component validation
+        ConfigValidator._validate_compatibility(config)
+    
+    @staticmethod
+    def _validate_experiment(exp_config) -&gt; None:
+        &#34;&#34;&#34;Validate experiment configuration.&#34;&#34;&#34;
+        if not exp_config.name:
+            raise ValueError(&#34;Missing required parameter: name in section experiment&#34;)
+        
+        if exp_config.seed &lt; 0:
+            raise ValueError(f&#34;Parameter seed must be non-negative, got {exp_config.seed}&#34;)
+        
+        device = exp_config.device.split(&#34;:&#34;)[0]  # Handle &#34;cuda:0&#34; format
+        if device not in ConfigValidator.VALID_DEVICES:
+            raise ValueError(
+                f&#34;Parameter device must be one of {ConfigValidator.VALID_DEVICES}, &#34;
+                f&#34;got {exp_config.device}&#34;
+            )
+    
+    @staticmethod
+    def _validate_dataset(dataset_config) -&gt; None:
+        &#34;&#34;&#34;Validate dataset configuration.&#34;&#34;&#34;
+        if dataset_config.type not in ConfigValidator.VALID_DATASET_TYPES:
+            raise ValueError(
+                f&#34;Parameter type in section dataset must be one of &#34;
+                f&#34;{ConfigValidator.VALID_DATASET_TYPES}, got {dataset_config.type}&#34;
+            )
+        
+        # Validate dataset-specific parameters
+        if dataset_config.type == &#34;logistic&#34;:
+            ConfigValidator._validate_logistic_params(dataset_config.params)
+        elif dataset_config.type == &#34;lorenz&#34;:
+            ConfigValidator._validate_lorenz_params(dataset_config.params)
+        elif dataset_config.type == &#34;burgers&#34;:
+            ConfigValidator._validate_burgers_params(dataset_config.params)
+        
+        # Validate common dataset parameters
+        if dataset_config.num_train_trajectories &lt;= 0:
+            raise ValueError(
+                f&#34;Parameter num_train_trajectories must be positive, &#34;
+                f&#34;got {dataset_config.num_train_trajectories}&#34;
+            )
+        
+        if dataset_config.num_val_trajectories &lt;= 0:
+            raise ValueError(
+                f&#34;Parameter num_val_trajectories must be positive, &#34;
+                f&#34;got {dataset_config.num_val_trajectories}&#34;
+            )
+        
+        if dataset_config.input_horizon &lt;= 0:
+            raise ValueError(
+                f&#34;Parameter input_horizon must be positive, &#34;
+                f&#34;got {dataset_config.input_horizon}&#34;
+            )
+        
+        if dataset_config.output_horizon &lt;= 0:
+            raise ValueError(
+                f&#34;Parameter output_horizon must be positive, &#34;
+                f&#34;got {dataset_config.output_horizon}&#34;
+            )
+        
+        if not 0.0 &lt; dataset_config.train_val_split &lt; 1.0:
+            raise ValueError(
+                f&#34;Parameter train_val_split must be in (0, 1), &#34;
+                f&#34;got {dataset_config.train_val_split}&#34;
+            )
+        
+        if dataset_config.batch_size &lt;= 0:
+            raise ValueError(
+                f&#34;Parameter batch_size must be positive, &#34;
+                f&#34;got {dataset_config.batch_size}&#34;
+            )
+    
+    @staticmethod
+    def _validate_logistic_params(params: Dict[str, Any]) -&gt; None:
+        &#34;&#34;&#34;Validate Logistic Map parameters.&#34;&#34;&#34;
+        if &#34;r&#34; in params:
+            r_min, r_max = ConfigValidator.LOGISTIC_PARAM_RANGES[&#34;r&#34;]
+            if not r_min &lt;= params[&#34;r&#34;] &lt;= r_max:
+                raise ValueError(
+                    f&#34;Parameter r must be in [{r_min}, {r_max}], got {params[&#39;r&#39;]}&#34;
+                )
+        
+        if &#34;trajectory_length&#34; in params:
+            t_min, t_max = ConfigValidator.LOGISTIC_PARAM_RANGES[&#34;trajectory_length&#34;]
+            if not t_min &lt;= params[&#34;trajectory_length&#34;] &lt;= t_max:
+                raise ValueError(
+                    f&#34;Parameter trajectory_length must be in [{t_min}, {t_max}], &#34;
+                    f&#34;got {params[&#39;trajectory_length&#39;]}&#34;
+                )
+    
+    @staticmethod
+    def _validate_lorenz_params(params: Dict[str, Any]) -&gt; None:
+        &#34;&#34;&#34;Validate Lorenz System parameters.&#34;&#34;&#34;
+        for param_name, (min_val, max_val) in ConfigValidator.LORENZ_PARAM_RANGES.items():
+            if param_name in params:
+                value = params[param_name]
+                if not min_val &lt;= value &lt;= max_val:
+                    raise ValueError(
+                        f&#34;Parameter {param_name} must be in [{min_val}, {max_val}], &#34;
+                        f&#34;got {value}&#34;
+                    )
+    
+    @staticmethod
+    def _validate_burgers_params(params: Dict[str, Any]) -&gt; None:
+        &#34;&#34;&#34;Validate Burgers Equation parameters.&#34;&#34;&#34;
+        for param_name, (min_val, max_val) in ConfigValidator.BURGERS_PARAM_RANGES.items():
+            if param_name in params:
+                value = params[param_name]
+                if not min_val &lt;= value &lt;= max_val:
+                    raise ValueError(
+                        f&#34;Parameter {param_name} must be in [{min_val}, {max_val}], &#34;
+                        f&#34;got {value}&#34;
+                    )
+    
+    @staticmethod
+    def _validate_model(model_config) -&gt; None:
+        &#34;&#34;&#34;Validate model configuration.&#34;&#34;&#34;
+        if model_config.type not in ConfigValidator.VALID_MODEL_TYPES:
+            raise ValueError(
+                f&#34;Parameter type in section model must be one of &#34;
+                f&#34;{ConfigValidator.VALID_MODEL_TYPES}, got {model_config.type}&#34;
+            )
+        
+        # Validate model-specific parameters
+        if model_config.type == &#34;deeponet&#34;:
+            ConfigValidator._validate_deeponet_params(model_config.params)
+        elif model_config.type == &#34;fno&#34;:
+            ConfigValidator._validate_fno_params(model_config.params)
+    
+    @staticmethod
+    def _validate_deeponet_params(params: Dict[str, Any]) -&gt; None:
+        &#34;&#34;&#34;Validate DeepONet parameters.&#34;&#34;&#34;
+        if &#34;branch_layers&#34; in params:
+            if not isinstance(params[&#34;branch_layers&#34;], list) or not params[&#34;branch_layers&#34;]:
+                raise ValueError(&#34;Parameter branch_layers must be a non-empty list&#34;)
+            if any(layer &lt;= 0 for layer in params[&#34;branch_layers&#34;]):
+                raise ValueError(&#34;All branch_layers must be positive&#34;)
+        
+        if &#34;trunk_layers&#34; in params:
+            if not isinstance(params[&#34;trunk_layers&#34;], list) or not params[&#34;trunk_layers&#34;]:
+                raise ValueError(&#34;Parameter trunk_layers must be a non-empty list&#34;)
+            if any(layer &lt;= 0 for layer in params[&#34;trunk_layers&#34;]):
+                raise ValueError(&#34;All trunk_layers must be positive&#34;)
+        
+        if &#34;basis_dim&#34; in params and params[&#34;basis_dim&#34;] &lt;= 0:
+            raise ValueError(f&#34;Parameter basis_dim must be positive, got {params[&#39;basis_dim&#39;]}&#34;)
+        
+        if &#34;activation&#34; in params and params[&#34;activation&#34;] not in ConfigValidator.VALID_ACTIVATIONS:
+            raise ValueError(
+                f&#34;Parameter activation must be one of {ConfigValidator.VALID_ACTIVATIONS}, &#34;
+                f&#34;got {params[&#39;activation&#39;]}&#34;
+            )
+    
+    @staticmethod
+    def _validate_fno_params(params: Dict[str, Any]) -&gt; None:
+        &#34;&#34;&#34;Validate FNO parameters.&#34;&#34;&#34;
+        if &#34;modes&#34; in params and params[&#34;modes&#34;] &lt;= 0:
+            raise ValueError(f&#34;Parameter modes must be positive, got {params[&#39;modes&#39;]}&#34;)
+        
+        if &#34;width&#34; in params and params[&#34;width&#34;] &lt;= 0:
+            raise ValueError(f&#34;Parameter width must be positive, got {params[&#39;width&#39;]}&#34;)
+        
+        if &#34;num_layers&#34; in params and params[&#34;num_layers&#34;] &lt;= 0:
+            raise ValueError(f&#34;Parameter num_layers must be positive, got {params[&#39;num_layers&#39;]}&#34;)
+        
+        if &#34;activation&#34; in params and params[&#34;activation&#34;] not in ConfigValidator.VALID_ACTIVATIONS:
+            raise ValueError(
+                f&#34;Parameter activation must be one of {ConfigValidator.VALID_ACTIVATIONS}, &#34;
+                f&#34;got {params[&#39;activation&#39;]}&#34;
+            )
+    
+    @staticmethod
+    def _validate_optimizer(opt_config) -&gt; None:
+        &#34;&#34;&#34;Validate optimizer configuration.&#34;&#34;&#34;
+        if opt_config.type not in ConfigValidator.VALID_OPTIMIZER_TYPES:
+            raise ValueError(
+                f&#34;Parameter type in section optimizer must be one of &#34;
+                f&#34;{ConfigValidator.VALID_OPTIMIZER_TYPES}, got {opt_config.type}&#34;
+            )
+        
+        params = opt_config.params
+        
+        # Validate learning rate (common to all optimizers)
+        if &#34;learning_rate&#34; in params:
+            if params[&#34;learning_rate&#34;] &lt;= 0:
+                raise ValueError(
+                    f&#34;Parameter learning_rate must be positive, got {params[&#39;learning_rate&#39;]}&#34;
+                )
+        
+        # Validate optimizer-specific parameters
+        if opt_config.type == &#34;sgd&#34;:
+            if &#34;momentum&#34; in params and not 0 &lt;= params[&#34;momentum&#34;] &lt; 1:
+                raise ValueError(
+                    f&#34;Parameter momentum must be in [0, 1), got {params[&#39;momentum&#39;]}&#34;
+                )
+        
+        elif opt_config.type == &#34;adam&#34;:
+            if &#34;beta1&#34; in params and not 0 &lt;= params[&#34;beta1&#34;] &lt; 1:
+                raise ValueError(
+                    f&#34;Parameter beta1 must be in [0, 1), got {params[&#39;beta1&#39;]}&#34;
+                )
+            if &#34;beta2&#34; in params and not 0 &lt;= params[&#34;beta2&#34;] &lt; 1:
+                raise ValueError(
+                    f&#34;Parameter beta2 must be in [0, 1), got {params[&#39;beta2&#39;]}&#34;
+                )
+            if &#34;epsilon&#34; in params and params[&#34;epsilon&#34;] &lt;= 0:
+                raise ValueError(
+                    f&#34;Parameter epsilon must be positive, got {params[&#39;epsilon&#39;]}&#34;
+                )
+        
+        elif opt_config.type == &#34;svrg&#34;:
+            if &#34;inner_loop_length&#34; in params and params[&#34;inner_loop_length&#34;] &lt;= 0:
+                raise ValueError(
+                    f&#34;Parameter inner_loop_length must be positive, &#34;
+                    f&#34;got {params[&#39;inner_loop_length&#39;]}&#34;
+                )
+        
+        # Validate weight decay (common to all)
+        if &#34;weight_decay&#34; in params and params[&#34;weight_decay&#34;] &lt; 0:
+            raise ValueError(
+                f&#34;Parameter weight_decay must be non-negative, got {params[&#39;weight_decay&#39;]}&#34;
+            )
+    
+    @staticmethod
+    def _validate_scheduler(sched_config) -&gt; None:
+        &#34;&#34;&#34;Validate scheduler configuration.&#34;&#34;&#34;
+        if sched_config.type not in ConfigValidator.VALID_SCHEDULER_TYPES:
+            raise ValueError(
+                f&#34;Parameter type in section scheduler must be one of &#34;
+                f&#34;{ConfigValidator.VALID_SCHEDULER_TYPES}, got {sched_config.type}&#34;
+            )
+    
+    @staticmethod
+    def _validate_training(train_config) -&gt; None:
+        &#34;&#34;&#34;Validate training configuration.&#34;&#34;&#34;
+        if train_config.num_epochs &lt;= 0:
+            raise ValueError(
+                f&#34;Parameter num_epochs must be positive, got {train_config.num_epochs}&#34;
+            )
+        
+        if train_config.batch_size &lt;= 0:
+            raise ValueError(
+                f&#34;Parameter batch_size must be positive, got {train_config.batch_size}&#34;
+            )
+        
+        if train_config.validation_interval &lt;= 0:
+            raise ValueError(
+                f&#34;Parameter validation_interval must be positive, &#34;
+                f&#34;got {train_config.validation_interval}&#34;
+            )
+        
+        if train_config.variance_interval &lt;= 0:
+            raise ValueError(
+                f&#34;Parameter variance_interval must be positive, &#34;
+                f&#34;got {train_config.variance_interval}&#34;
+            )
+        
+        if train_config.checkpoint_interval &lt;= 0:
+            raise ValueError(
+                f&#34;Parameter checkpoint_interval must be positive, &#34;
+                f&#34;got {train_config.checkpoint_interval}&#34;
+            )
+        
+        if train_config.early_stopping_patience is not None:
+            if train_config.early_stopping_patience &lt;= 0:
+                raise ValueError(
+                    f&#34;Parameter early_stopping_patience must be positive, &#34;
+                    f&#34;got {train_config.early_stopping_patience}&#34;
+                )
+        
+        if train_config.target_loss is not None:
+            if train_config.target_loss &lt;= 0:
+                raise ValueError(
+                    f&#34;Parameter target_loss must be positive, &#34;
+                    f&#34;got {train_config.target_loss}&#34;
+                )
+    
+    @staticmethod
+    def _validate_logging(log_config) -&gt; None:
+        &#34;&#34;&#34;Validate logging configuration.&#34;&#34;&#34;
+        if not log_config.log_dir:
+            raise ValueError(&#34;Missing required parameter: log_dir in section logging&#34;)
+        
+        valid_log_levels = {&#34;DEBUG&#34;, &#34;INFO&#34;, &#34;WARNING&#34;, &#34;ERROR&#34;, &#34;CRITICAL&#34;}
+        if log_config.log_level not in valid_log_levels:
+            raise ValueError(
+                f&#34;Parameter log_level must be one of {valid_log_levels}, &#34;
+                f&#34;got {log_config.log_level}&#34;
+            )
+    
+    @staticmethod
+    def _validate_analysis(analysis_config) -&gt; None:
+        &#34;&#34;&#34;Validate analysis configuration.&#34;&#34;&#34;
+        if analysis_config.spectral_interval &lt;= 0:
+            raise ValueError(
+                f&#34;Parameter spectral_interval must be positive, &#34;
+                f&#34;got {analysis_config.spectral_interval}&#34;
+            )
+        
+        if analysis_config.long_horizon_steps &lt;= 0:
+            raise ValueError(
+                f&#34;Parameter long_horizon_steps must be positive, &#34;
+                f&#34;got {analysis_config.long_horizon_steps}&#34;
+            )
+        
+        if analysis_config.num_eigenvalues &lt;= 0:
+            raise ValueError(
+                f&#34;Parameter num_eigenvalues must be positive, &#34;
+                f&#34;got {analysis_config.num_eigenvalues}&#34;
+            )
+    
+    @staticmethod
+    def _validate_visualization(vis_config) -&gt; None:
+        &#34;&#34;&#34;Validate visualization configuration.&#34;&#34;&#34;
+        valid_formats = {&#34;pdf&#34;, &#34;png&#34;, &#34;svg&#34;, &#34;eps&#34;}
+        if vis_config.plot_format not in valid_formats:
+            raise ValueError(
+                f&#34;Parameter plot_format must be one of {valid_formats}, &#34;
+                f&#34;got {vis_config.plot_format}&#34;
+            )
+        
+        if vis_config.dpi &lt;= 0:
+            raise ValueError(f&#34;Parameter dpi must be positive, got {vis_config.dpi}&#34;)
+        
+        if not vis_config.output_dir:
+            raise ValueError(&#34;Missing required parameter: output_dir in section visualization&#34;)
+    
+    @staticmethod
+    def _validate_compatibility(config: Config) -&gt; None:
+        &#34;&#34;&#34;Validate cross-component compatibility.&#34;&#34;&#34;
+        # Ensure batch size is consistent
+        if config.dataset.batch_size != config.training.batch_size:
+            raise ValueError(
+                f&#34;Batch size mismatch: dataset.batch_size={config.dataset.batch_size} &#34;
+                f&#34;but training.batch_size={config.training.batch_size}&#34;
+            )
+        
+        # Warn if SVRG inner loop length is too large
+        if config.optimizer.type == &#34;svrg&#34;:
+            inner_loop = config.optimizer.params.get(&#34;inner_loop_length&#34;, 100)
+            total_batches = config.dataset.num_train_trajectories // config.training.batch_size
+            if inner_loop &gt; total_batches:
+                raise ValueError(
+                    f&#34;SVRG inner_loop_length ({inner_loop}) exceeds number of training &#34;
+                    f&#34;batches ({total_batches}). Consider reducing inner_loop_length.&#34;
+                )</code></pre>
+</details>
+<div class="desc"><p>Validates experiment configurations.</p></div>
+<h3>Class variables</h3>
+<dl>
+<dt id="experiments.config_validator.ConfigValidator.BURGERS_PARAM_RANGES"><code class="name">var <span class="ident">BURGERS_PARAM_RANGES</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="experiments.config_validator.ConfigValidator.LOGISTIC_PARAM_RANGES"><code class="name">var <span class="ident">LOGISTIC_PARAM_RANGES</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="experiments.config_validator.ConfigValidator.LORENZ_PARAM_RANGES"><code class="name">var <span class="ident">LORENZ_PARAM_RANGES</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="experiments.config_validator.ConfigValidator.VALID_ACTIVATIONS"><code class="name">var <span class="ident">VALID_ACTIVATIONS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="experiments.config_validator.ConfigValidator.VALID_DATASET_TYPES"><code class="name">var <span class="ident">VALID_DATASET_TYPES</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="experiments.config_validator.ConfigValidator.VALID_DEVICES"><code class="name">var <span class="ident">VALID_DEVICES</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="experiments.config_validator.ConfigValidator.VALID_MODEL_TYPES"><code class="name">var <span class="ident">VALID_MODEL_TYPES</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="experiments.config_validator.ConfigValidator.VALID_OPTIMIZER_TYPES"><code class="name">var <span class="ident">VALID_OPTIMIZER_TYPES</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="experiments.config_validator.ConfigValidator.VALID_SCHEDULER_TYPES"><code class="name">var <span class="ident">VALID_SCHEDULER_TYPES</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+<h3>Static methods</h3>
+<dl>
+<dt id="experiments.config_validator.ConfigValidator.validate"><code class="name flex">
+<span>def <span class="ident">validate</span></span>(<span>config: <a title="experiments.config_schema.Config" href="config_schema.html#experiments.config_schema.Config">Config</a>) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@staticmethod
+def validate(config: Config) -&gt; None:
+    &#34;&#34;&#34;
+    Validate complete configuration.
+    
+    Args:
+        config: Configuration object to validate
+        
+    Raises:
+        ValueError: If configuration is invalid with descriptive message
+    &#34;&#34;&#34;
+    ConfigValidator._validate_experiment(config.experiment)
+    ConfigValidator._validate_dataset(config.dataset)
+    ConfigValidator._validate_model(config.model)
+    ConfigValidator._validate_optimizer(config.optimizer)
+    ConfigValidator._validate_training(config.training)
+    ConfigValidator._validate_logging(config.logging)
+    ConfigValidator._validate_analysis(config.analysis)
+    ConfigValidator._validate_visualization(config.visualization)
+    
+    if config.scheduler is not None:
+        ConfigValidator._validate_scheduler(config.scheduler)
+    
+    # Cross-component validation
+    ConfigValidator._validate_compatibility(config)</code></pre>
+</details>
+<div class="desc"><p>Validate complete configuration.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>config</code></strong></dt>
+<dd>Configuration object to validate</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>ValueError</code></dt>
+<dd>If configuration is invalid with descriptive message</dd>
+</dl></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="experiments" href="index.html">experiments</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="experiments.config_validator.ConfigValidator" href="#experiments.config_validator.ConfigValidator">ConfigValidator</a></code></h4>
+<ul class="">
+<li><code><a title="experiments.config_validator.ConfigValidator.BURGERS_PARAM_RANGES" href="#experiments.config_validator.ConfigValidator.BURGERS_PARAM_RANGES">BURGERS_PARAM_RANGES</a></code></li>
+<li><code><a title="experiments.config_validator.ConfigValidator.LOGISTIC_PARAM_RANGES" href="#experiments.config_validator.ConfigValidator.LOGISTIC_PARAM_RANGES">LOGISTIC_PARAM_RANGES</a></code></li>
+<li><code><a title="experiments.config_validator.ConfigValidator.LORENZ_PARAM_RANGES" href="#experiments.config_validator.ConfigValidator.LORENZ_PARAM_RANGES">LORENZ_PARAM_RANGES</a></code></li>
+<li><code><a title="experiments.config_validator.ConfigValidator.VALID_ACTIVATIONS" href="#experiments.config_validator.ConfigValidator.VALID_ACTIVATIONS">VALID_ACTIVATIONS</a></code></li>
+<li><code><a title="experiments.config_validator.ConfigValidator.VALID_DATASET_TYPES" href="#experiments.config_validator.ConfigValidator.VALID_DATASET_TYPES">VALID_DATASET_TYPES</a></code></li>
+<li><code><a title="experiments.config_validator.ConfigValidator.VALID_DEVICES" href="#experiments.config_validator.ConfigValidator.VALID_DEVICES">VALID_DEVICES</a></code></li>
+<li><code><a title="experiments.config_validator.ConfigValidator.VALID_MODEL_TYPES" href="#experiments.config_validator.ConfigValidator.VALID_MODEL_TYPES">VALID_MODEL_TYPES</a></code></li>
+<li><code><a title="experiments.config_validator.ConfigValidator.VALID_OPTIMIZER_TYPES" href="#experiments.config_validator.ConfigValidator.VALID_OPTIMIZER_TYPES">VALID_OPTIMIZER_TYPES</a></code></li>
+<li><code><a title="experiments.config_validator.ConfigValidator.VALID_SCHEDULER_TYPES" href="#experiments.config_validator.ConfigValidator.VALID_SCHEDULER_TYPES">VALID_SCHEDULER_TYPES</a></code></li>
+<li><code><a title="experiments.config_validator.ConfigValidator.validate" href="#experiments.config_validator.ConfigValidator.validate">validate</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>

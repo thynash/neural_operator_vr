@@ -1,0 +1,663 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>analysis.statistics API documentation</title>
+<meta name="description" content="Statistical analysis for multi-seed experiments.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>analysis.statistics</code></h1>
+</header>
+<section id="section-intro">
+<p>Statistical analysis for multi-seed experiments.</p>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="analysis.statistics.aggregate_results"><code class="name flex">
+<span>def <span class="ident">aggregate_results</span></span>(<span>results_list: List[Dict[str, Any]],<br>metrics_to_aggregate: List[str] | None = None) ‑> Dict[str, Dict[str, float]]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def aggregate_results(
+    results_list: List[Dict[str, Any]],
+    metrics_to_aggregate: Optional[List[str]] = None
+) -&gt; Dict[str, Dict[str, float]]:
+    &#34;&#34;&#34;
+    Aggregate results across multiple experimental runs.
+    
+    Computes mean and standard deviation for each metric across runs.
+    
+    Args:
+        results_list: List of result dictionaries from multiple runs
+        metrics_to_aggregate: List of metric names to aggregate. If None, aggregates all numeric metrics.
+    
+    Returns:
+        Dictionary mapping metric names to aggregated statistics:
+            {
+                &#39;metric_name&#39;: {
+                    &#39;mean&#39;: float,
+                    &#39;std&#39;: float,
+                    &#39;min&#39;: float,
+                    &#39;max&#39;: float,
+                    &#39;count&#39;: int,
+                    &#39;ci_95_lower&#39;: float,  # 95% confidence interval lower bound
+                    &#39;ci_95_upper&#39;: float,  # 95% confidence interval upper bound
+                }
+            }
+    
+    Validates: Requirements 15.2, 15.4
+    
+    Example:
+        &gt;&gt;&gt; results = [
+        ...     {&#39;val_loss&#39;: 0.1, &#39;iterations_to_target&#39;: 1000},
+        ...     {&#39;val_loss&#39;: 0.12, &#39;iterations_to_target&#39;: 1100},
+        ...     {&#39;val_loss&#39;: 0.11, &#39;iterations_to_target&#39;: 1050},
+        ... ]
+        &gt;&gt;&gt; aggregated = aggregate_results(results)
+        &gt;&gt;&gt; print(aggregated[&#39;val_loss&#39;][&#39;mean&#39;])
+        0.11
+    &#34;&#34;&#34;
+    if not results_list:
+        return {}
+    
+    # Determine which metrics to aggregate
+    if metrics_to_aggregate is None:
+        # Aggregate all numeric metrics found in the first result
+        metrics_to_aggregate = []
+        for key, value in results_list[0].items():
+            if isinstance(value, (int, float, np.number)):
+                metrics_to_aggregate.append(key)
+    
+    aggregated = {}
+    
+    for metric_name in metrics_to_aggregate:
+        # Collect values for this metric across all runs
+        values = []
+        for result in results_list:
+            if metric_name in result and result[metric_name] is not None:
+                values.append(float(result[metric_name]))
+        
+        if not values:
+            continue
+        
+        # Compute statistics
+        values_array = np.array(values)
+        mean_val = np.mean(values_array)
+        std_val = np.std(values_array, ddof=1) if len(values) &gt; 1 else 0.0
+        min_val = np.min(values_array)
+        max_val = np.max(values_array)
+        count = len(values)
+        
+        # Compute 95% confidence interval using t-distribution
+        if count &gt; 1:
+            confidence_level = 0.95
+            degrees_freedom = count - 1
+            t_critical = stats.t.ppf((1 + confidence_level) / 2, degrees_freedom)
+            margin_error = t_critical * (std_val / np.sqrt(count))
+            ci_lower = mean_val - margin_error
+            ci_upper = mean_val + margin_error
+        else:
+            ci_lower = mean_val
+            ci_upper = mean_val
+        
+        aggregated[metric_name] = {
+            &#39;mean&#39;: float(mean_val),
+            &#39;std&#39;: float(std_val),
+            &#39;min&#39;: float(min_val),
+            &#39;max&#39;: float(max_val),
+            &#39;count&#39;: count,
+            &#39;ci_95_lower&#39;: float(ci_lower),
+            &#39;ci_95_upper&#39;: float(ci_upper),
+        }
+    
+    return aggregated</code></pre>
+</details>
+<div class="desc"><p>Aggregate results across multiple experimental runs.</p>
+<p>Computes mean and standard deviation for each metric across runs.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>results_list</code></strong></dt>
+<dd>List of result dictionaries from multiple runs</dd>
+<dt><strong><code>metrics_to_aggregate</code></strong></dt>
+<dd>List of metric names to aggregate. If None, aggregates all numeric metrics.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Dictionary mapping metric names to aggregated statistics:
+{
+'metric_name': {
+'mean': float,
+'std': float,
+'min': float,
+'max': float,
+'count': int,
+'ci_95_lower': float,
+# 95% confidence interval lower bound
+'ci_95_upper': float,
+# 95% confidence interval upper bound
+}
+}
+Validates: Requirements 15.2, 15.4</p>
+<h2 id="example">Example</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; results = [
+...     {'val_loss': 0.1, 'iterations_to_target': 1000},
+...     {'val_loss': 0.12, 'iterations_to_target': 1100},
+...     {'val_loss': 0.11, 'iterations_to_target': 1050},
+... ]
+&gt;&gt;&gt; aggregated = aggregate_results(results)
+&gt;&gt;&gt; print(aggregated['val_loss']['mean'])
+0.11
+</code></pre></div>
+</dd>
+<dt id="analysis.statistics.compare_optimizers"><code class="name flex">
+<span>def <span class="ident">compare_optimizers</span></span>(<span>results_by_optimizer: Dict[str, List[Dict[str, Any]]],<br>metric_name: str,<br>test_type: str = 'auto',<br>alpha: float = 0.05) ‑> Dict[str, Any]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compare_optimizers(
+    results_by_optimizer: Dict[str, List[Dict[str, Any]]],
+    metric_name: str,
+    test_type: str = &#39;auto&#39;,
+    alpha: float = 0.05
+) -&gt; Dict[str, Any]:
+    &#34;&#34;&#34;
+    Perform statistical significance testing comparing optimizer performance.
+    
+    Args:
+        results_by_optimizer: Dictionary mapping optimizer names to lists of results
+            {
+                &#39;SGD&#39;: [result1, result2, ...],
+                &#39;Adam&#39;: [result1, result2, ...],
+                &#39;SVRG&#39;: [result1, result2, ...],
+            }
+        metric_name: Name of the metric to compare (e.g., &#39;val_loss&#39;, &#39;iterations_to_target&#39;)
+        test_type: Type of statistical test to perform:
+            - &#39;auto&#39;: Automatically choose based on data (default)
+            - &#39;t-test&#39;: Paired or unpaired t-test
+            - &#39;wilcoxon&#39;: Wilcoxon signed-rank test (non-parametric)
+            - &#39;mann-whitney&#39;: Mann-Whitney U test (non-parametric)
+        alpha: Significance level (default: 0.05)
+    
+    Returns:
+        Dictionary containing:
+            - &#39;comparisons&#39;: List of pairwise comparison results
+            - &#39;test_type&#39;: Type of test performed
+            - &#39;metric&#39;: Metric name
+            - &#39;alpha&#39;: Significance level
+    
+    Validates: Requirements 15.3
+    
+    Example:
+        &gt;&gt;&gt; results = {
+        ...     &#39;SGD&#39;: [{&#39;val_loss&#39;: 0.1}, {&#39;val_loss&#39;: 0.12}],
+        ...     &#39;Adam&#39;: [{&#39;val_loss&#39;: 0.08}, {&#39;val_loss&#39;: 0.09}],
+        ... }
+        &gt;&gt;&gt; comparison = compare_optimizers(results, &#39;val_loss&#39;)
+        &gt;&gt;&gt; print(comparison[&#39;comparisons&#39;][0][&#39;significant&#39;])
+    &#34;&#34;&#34;
+    # Extract metric values for each optimizer
+    optimizer_values = {}
+    for optimizer_name, results_list in results_by_optimizer.items():
+        values = []
+        for result in results_list:
+            if metric_name in result and result[metric_name] is not None:
+                values.append(float(result[metric_name]))
+        if values:
+            optimizer_values[optimizer_name] = np.array(values)
+    
+    if len(optimizer_values) &lt; 2:
+        return {
+            &#39;comparisons&#39;: [],
+            &#39;test_type&#39;: test_type,
+            &#39;metric&#39;: metric_name,
+            &#39;alpha&#39;: alpha,
+            &#39;error&#39;: &#39;Need at least 2 optimizers with valid data for comparison&#39;
+        }
+    
+    # Determine test type
+    if test_type == &#39;auto&#39;:
+        # Use t-test if sample sizes are reasonable (&gt;= 5), otherwise use non-parametric
+        min_sample_size = min(len(values) for values in optimizer_values.values())
+        if min_sample_size &gt;= 5:
+            test_type = &#39;t-test&#39;
+        else:
+            test_type = &#39;mann-whitney&#39;
+    
+    # Perform pairwise comparisons
+    comparisons = []
+    optimizer_names = sorted(optimizer_values.keys())
+    
+    for i in range(len(optimizer_names)):
+        for j in range(i + 1, len(optimizer_names)):
+            opt1_name = optimizer_names[i]
+            opt2_name = optimizer_names[j]
+            values1 = optimizer_values[opt1_name]
+            values2 = optimizer_values[opt2_name]
+            
+            # Perform statistical test
+            if test_type == &#39;t-test&#39;:
+                # Independent samples t-test
+                statistic, p_value = stats.ttest_ind(values1, values2)
+                test_name = &#34;Independent t-test&#34;
+            elif test_type == &#39;wilcoxon&#39;:
+                # Wilcoxon signed-rank test (requires paired samples)
+                if len(values1) == len(values2):
+                    statistic, p_value = stats.wilcoxon(values1, values2)
+                    test_name = &#34;Wilcoxon signed-rank test&#34;
+                else:
+                    # Fall back to Mann-Whitney if not paired
+                    statistic, p_value = stats.mannwhitneyu(values1, values2, alternative=&#39;two-sided&#39;)
+                    test_name = &#34;Mann-Whitney U test (fallback)&#34;
+            elif test_type == &#39;mann-whitney&#39;:
+                # Mann-Whitney U test
+                statistic, p_value = stats.mannwhitneyu(values1, values2, alternative=&#39;two-sided&#39;)
+                test_name = &#34;Mann-Whitney U test&#34;
+            else:
+                raise ValueError(f&#34;Unknown test type: {test_type}&#34;)
+            
+            # Determine significance
+            significant = p_value &lt; alpha
+            
+            # Compute effect size (Cohen&#39;s d for t-test)
+            mean1 = np.mean(values1)
+            mean2 = np.mean(values2)
+            if test_type == &#39;t-test&#39;:
+                pooled_std = np.sqrt(((len(values1) - 1) * np.var(values1, ddof=1) + 
+                                     (len(values2) - 1) * np.var(values2, ddof=1)) / 
+                                    (len(values1) + len(values2) - 2))
+                effect_size = (mean1 - mean2) / pooled_std if pooled_std &gt; 0 else 0.0
+            else:
+                effect_size = None
+            
+            comparison = {
+                &#39;optimizer1&#39;: opt1_name,
+                &#39;optimizer2&#39;: opt2_name,
+                &#39;mean1&#39;: float(mean1),
+                &#39;mean2&#39;: float(mean2),
+                &#39;statistic&#39;: float(statistic),
+                &#39;p_value&#39;: float(p_value),
+                &#39;significant&#39;: significant,
+                &#39;test_name&#39;: test_name,
+            }
+            
+            if effect_size is not None:
+                comparison[&#39;effect_size&#39;] = float(effect_size)
+            
+            comparisons.append(comparison)
+    
+    return {
+        &#39;comparisons&#39;: comparisons,
+        &#39;test_type&#39;: test_type,
+        &#39;metric&#39;: metric_name,
+        &#39;alpha&#39;: alpha,
+    }</code></pre>
+</details>
+<div class="desc"><p>Perform statistical significance testing comparing optimizer performance.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>results_by_optimizer</code></strong></dt>
+<dd>Dictionary mapping optimizer names to lists of results
+{
+'SGD': [result1, result2, &hellip;],
+'Adam': [result1, result2, &hellip;],
+'SVRG': [result1, result2, &hellip;],
+}</dd>
+<dt><strong><code>metric_name</code></strong></dt>
+<dd>Name of the metric to compare (e.g., 'val_loss', 'iterations_to_target')</dd>
+<dt><strong><code>test_type</code></strong></dt>
+<dd>Type of statistical test to perform:
+- 'auto': Automatically choose based on data (default)
+- 't-test': Paired or unpaired t-test
+- 'wilcoxon': Wilcoxon signed-rank test (non-parametric)
+- 'mann-whitney': Mann-Whitney U test (non-parametric)</dd>
+<dt><strong><code>alpha</code></strong></dt>
+<dd>Significance level (default: 0.05)</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Dictionary containing:
+- 'comparisons': List of pairwise comparison results
+- 'test_type': Type of test performed
+- 'metric': Metric name
+- 'alpha': Significance level
+Validates: Requirements 15.3</p>
+<h2 id="example">Example</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; results = {
+...     'SGD': [{'val_loss': 0.1}, {'val_loss': 0.12}],
+...     'Adam': [{'val_loss': 0.08}, {'val_loss': 0.09}],
+... }
+&gt;&gt;&gt; comparison = compare_optimizers(results, 'val_loss')
+&gt;&gt;&gt; print(comparison['comparisons'][0]['significant'])
+</code></pre></div>
+</dd>
+<dt id="analysis.statistics.generate_summary_table"><code class="name flex">
+<span>def <span class="ident">generate_summary_table</span></span>(<span>aggregated_results: Dict[str, Dict[str, Dict[str, float]]],<br>output_path: pathlib.Path | None = None) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def generate_summary_table(
+    aggregated_results: Dict[str, Dict[str, Dict[str, float]]],
+    output_path: Optional[Path] = None
+) -&gt; str:
+    &#34;&#34;&#34;
+    Generate a formatted summary table from aggregated results.
+    
+    Args:
+        aggregated_results: Dictionary mapping optimizer names to aggregated statistics
+            {
+                &#39;optimizer_name&#39;: {
+                    &#39;metric_name&#39;: {&#39;mean&#39;: ..., &#39;std&#39;: ..., &#39;ci_95_lower&#39;: ..., &#39;ci_95_upper&#39;: ...}
+                }
+            }
+        output_path: Optional path to save the table as text file
+    
+    Returns:
+        Formatted string table
+    
+    Validates: Requirements 15.4
+    
+    Example:
+        &gt;&gt;&gt; results = {
+        ...     &#39;SGD&#39;: {&#39;val_loss&#39;: {&#39;mean&#39;: 0.1, &#39;std&#39;: 0.01, &#39;ci_95_lower&#39;: 0.09, &#39;ci_95_upper&#39;: 0.11}},
+        ...     &#39;Adam&#39;: {&#39;val_loss&#39;: {&#39;mean&#39;: 0.08, &#39;std&#39;: 0.015, &#39;ci_95_lower&#39;: 0.065, &#39;ci_95_upper&#39;: 0.095}},
+        ... }
+        &gt;&gt;&gt; table = generate_summary_table(results)
+    &#34;&#34;&#34;
+    if not aggregated_results:
+        return &#34;No results to display&#34;
+    
+    # Collect all unique metrics
+    all_metrics = set()
+    for optimizer_stats in aggregated_results.values():
+        all_metrics.update(optimizer_stats.keys())
+    all_metrics = sorted(all_metrics)
+    
+    # Build table
+    lines = []
+    lines.append(&#34;=&#34; * 100)
+    lines.append(&#34;Summary Statistics Across Multiple Runs&#34;)
+    lines.append(&#34;=&#34; * 100)
+    lines.append(&#34;&#34;)
+    
+    for metric_name in all_metrics:
+        lines.append(f&#34;Metric: {metric_name}&#34;)
+        lines.append(&#34;-&#34; * 100)
+        lines.append(f&#34;{&#39;Optimizer&#39;:&lt;15} {&#39;Mean&#39;:&lt;12} {&#39;Std Dev&#39;:&lt;12} {&#39;95% CI Lower&#39;:&lt;15} {&#39;95% CI Upper&#39;:&lt;15} {&#39;Count&#39;:&lt;8}&#34;)
+        lines.append(&#34;-&#34; * 100)
+        
+        for optimizer_name, optimizer_stats in aggregated_results.items():
+            if metric_name in optimizer_stats:
+                stats_dict = optimizer_stats[metric_name]
+                mean_val = stats_dict[&#39;mean&#39;]
+                std_val = stats_dict[&#39;std&#39;]
+                ci_lower = stats_dict[&#39;ci_95_lower&#39;]
+                ci_upper = stats_dict[&#39;ci_95_upper&#39;]
+                count = stats_dict[&#39;count&#39;]
+                
+                lines.append(
+                    f&#34;{optimizer_name:&lt;15} {mean_val:&lt;12.6f} {std_val:&lt;12.6f} &#34;
+                    f&#34;{ci_lower:&lt;15.6f} {ci_upper:&lt;15.6f} {count:&lt;8}&#34;
+                )
+        
+        lines.append(&#34;&#34;)
+    
+    lines.append(&#34;=&#34; * 100)
+    
+    table_str = &#34;\n&#34;.join(lines)
+    
+    # Save to file if path provided
+    if output_path is not None:
+        output_path = Path(output_path)
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        with open(output_path, &#39;w&#39;) as f:
+            f.write(table_str)
+    
+    return table_str</code></pre>
+</details>
+<div class="desc"><p>Generate a formatted summary table from aggregated results.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>aggregated_results</code></strong></dt>
+<dd>Dictionary mapping optimizer names to aggregated statistics
+{
+'optimizer_name': {
+'metric_name': {'mean': &hellip;, 'std': &hellip;, 'ci_95_lower': &hellip;, 'ci_95_upper': &hellip;}
+}
+}</dd>
+<dt><strong><code>output_path</code></strong></dt>
+<dd>Optional path to save the table as text file</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Formatted string table
+Validates: Requirements 15.4</p>
+<h2 id="example">Example</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; results = {
+...     'SGD': {'val_loss': {'mean': 0.1, 'std': 0.01, 'ci_95_lower': 0.09, 'ci_95_upper': 0.11}},
+...     'Adam': {'val_loss': {'mean': 0.08, 'std': 0.015, 'ci_95_lower': 0.065, 'ci_95_upper': 0.095}},
+... }
+&gt;&gt;&gt; table = generate_summary_table(results)
+</code></pre></div>
+</dd>
+<dt id="analysis.statistics.save_aggregated_statistics_csv"><code class="name flex">
+<span>def <span class="ident">save_aggregated_statistics_csv</span></span>(<span>aggregated_results: Dict[str, Dict[str, Dict[str, float]]],<br>output_path: pathlib.Path) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def save_aggregated_statistics_csv(
+    aggregated_results: Dict[str, Dict[str, Dict[str, float]]],
+    output_path: Path
+) -&gt; None:
+    &#34;&#34;&#34;
+    Save aggregated statistics to CSV format.
+    
+    Args:
+        aggregated_results: Dictionary mapping optimizer names to aggregated statistics
+            {
+                &#39;optimizer_name&#39;: {
+                    &#39;metric_name&#39;: {&#39;mean&#39;: ..., &#39;std&#39;: ..., &#39;ci_95_lower&#39;: ..., &#39;ci_95_upper&#39;: ...}
+                }
+            }
+        output_path: Path to save CSV file
+    
+    Validates: Requirements 15.5
+    
+    Example:
+        &gt;&gt;&gt; results = {
+        ...     &#39;SGD&#39;: {&#39;val_loss&#39;: {&#39;mean&#39;: 0.1, &#39;std&#39;: 0.01}},
+        ...     &#39;Adam&#39;: {&#39;val_loss&#39;: {&#39;mean&#39;: 0.08, &#39;std&#39;: 0.015}},
+        ... }
+        &gt;&gt;&gt; save_aggregated_statistics_csv(results, Path(&#39;results.csv&#39;))
+    &#34;&#34;&#34;
+    output_path = Path(output_path)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    
+    # Collect all unique metrics
+    all_metrics = set()
+    for optimizer_stats in aggregated_results.values():
+        all_metrics.update(optimizer_stats.keys())
+    all_metrics = sorted(all_metrics)
+    
+    # Write CSV
+    with open(output_path, &#39;w&#39;, newline=&#39;&#39;) as csvfile:
+        fieldnames = [&#39;optimizer&#39;, &#39;metric&#39;, &#39;mean&#39;, &#39;std&#39;, &#39;min&#39;, &#39;max&#39;, &#39;count&#39;, &#39;ci_95_lower&#39;, &#39;ci_95_upper&#39;]
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        
+        writer.writeheader()
+        
+        for optimizer_name, optimizer_stats in aggregated_results.items():
+            for metric_name in all_metrics:
+                if metric_name in optimizer_stats:
+                    stats_dict = optimizer_stats[metric_name]
+                    row = {
+                        &#39;optimizer&#39;: optimizer_name,
+                        &#39;metric&#39;: metric_name,
+                        &#39;mean&#39;: stats_dict[&#39;mean&#39;],
+                        &#39;std&#39;: stats_dict[&#39;std&#39;],
+                        &#39;min&#39;: stats_dict[&#39;min&#39;],
+                        &#39;max&#39;: stats_dict[&#39;max&#39;],
+                        &#39;count&#39;: stats_dict[&#39;count&#39;],
+                        &#39;ci_95_lower&#39;: stats_dict[&#39;ci_95_lower&#39;],
+                        &#39;ci_95_upper&#39;: stats_dict[&#39;ci_95_upper&#39;],
+                    }
+                    writer.writerow(row)</code></pre>
+</details>
+<div class="desc"><p>Save aggregated statistics to CSV format.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>aggregated_results</code></strong></dt>
+<dd>Dictionary mapping optimizer names to aggregated statistics
+{
+'optimizer_name': {
+'metric_name': {'mean': &hellip;, 'std': &hellip;, 'ci_95_lower': &hellip;, 'ci_95_upper': &hellip;}
+}
+}</dd>
+<dt><strong><code>output_path</code></strong></dt>
+<dd>Path to save CSV file</dd>
+</dl>
+<p>Validates: Requirements 15.5</p>
+<h2 id="example">Example</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; results = {
+...     'SGD': {'val_loss': {'mean': 0.1, 'std': 0.01}},
+...     'Adam': {'val_loss': {'mean': 0.08, 'std': 0.015}},
+... }
+&gt;&gt;&gt; save_aggregated_statistics_csv(results, Path('results.csv'))
+</code></pre></div>
+</dd>
+<dt id="analysis.statistics.save_comparison_results_csv"><code class="name flex">
+<span>def <span class="ident">save_comparison_results_csv</span></span>(<span>comparison_results: Dict[str, Any], output_path: pathlib.Path) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def save_comparison_results_csv(
+    comparison_results: Dict[str, Any],
+    output_path: Path
+) -&gt; None:
+    &#34;&#34;&#34;
+    Save statistical comparison results to CSV format.
+    
+    Args:
+        comparison_results: Dictionary from compare_optimizers()
+        output_path: Path to save CSV file
+    
+    Example:
+        &gt;&gt;&gt; comparison = compare_optimizers(results, &#39;val_loss&#39;)
+        &gt;&gt;&gt; save_comparison_results_csv(comparison, Path(&#39;comparisons.csv&#39;))
+    &#34;&#34;&#34;
+    output_path = Path(output_path)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    
+    comparisons = comparison_results.get(&#39;comparisons&#39;, [])
+    
+    if not comparisons:
+        # Write empty file with header
+        with open(output_path, &#39;w&#39;, newline=&#39;&#39;) as csvfile:
+            fieldnames = [&#39;optimizer1&#39;, &#39;optimizer2&#39;, &#39;mean1&#39;, &#39;mean2&#39;, &#39;statistic&#39;, 
+                         &#39;p_value&#39;, &#39;significant&#39;, &#39;effect_size&#39;, &#39;test_name&#39;]
+            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+            writer.writeheader()
+        return
+    
+    # Determine fieldnames based on first comparison
+    fieldnames = [&#39;optimizer1&#39;, &#39;optimizer2&#39;, &#39;mean1&#39;, &#39;mean2&#39;, &#39;statistic&#39;, 
+                 &#39;p_value&#39;, &#39;significant&#39;, &#39;test_name&#39;]
+    if &#39;effect_size&#39; in comparisons[0]:
+        fieldnames.insert(-1, &#39;effect_size&#39;)
+    
+    with open(output_path, &#39;w&#39;, newline=&#39;&#39;) as csvfile:
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        writer.writeheader()
+        
+        for comparison in comparisons:
+            row = {key: comparison.get(key, &#39;&#39;) for key in fieldnames}
+            writer.writerow(row)</code></pre>
+</details>
+<div class="desc"><p>Save statistical comparison results to CSV format.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>comparison_results</code></strong></dt>
+<dd>Dictionary from compare_optimizers()</dd>
+<dt><strong><code>output_path</code></strong></dt>
+<dd>Path to save CSV file</dd>
+</dl>
+<h2 id="example">Example</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; comparison = compare_optimizers(results, 'val_loss')
+&gt;&gt;&gt; save_comparison_results_csv(comparison, Path('comparisons.csv'))
+</code></pre></div>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="analysis" href="index.html">analysis</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="analysis.statistics.aggregate_results" href="#analysis.statistics.aggregate_results">aggregate_results</a></code></li>
+<li><code><a title="analysis.statistics.compare_optimizers" href="#analysis.statistics.compare_optimizers">compare_optimizers</a></code></li>
+<li><code><a title="analysis.statistics.generate_summary_table" href="#analysis.statistics.generate_summary_table">generate_summary_table</a></code></li>
+<li><code><a title="analysis.statistics.save_aggregated_statistics_csv" href="#analysis.statistics.save_aggregated_statistics_csv">save_aggregated_statistics_csv</a></code></li>
+<li><code><a title="analysis.statistics.save_comparison_results_csv" href="#analysis.statistics.save_comparison_results_csv">save_comparison_results_csv</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>

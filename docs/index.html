@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Neural Operator Variance Reduction Framework - API Documentation</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #333;
+            border-bottom: 3px solid #4CAF50;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #555;
+            margin-top: 30px;
+        }
+        .module-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .module-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+        .module-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .module-card a {
+            text-decoration: none;
+            color: #4CAF50;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .module-card p {
+            color: #666;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        .footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            text-align: center;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <h1>Neural Operator Variance Reduction Framework</h1>
+    <p>Research-grade experimental framework for comparing SVRG, SGD, and Adam optimizers 
+    when training neural operators (DeepONet and FNO) on dynamical systems.</p>
+    
+    <h2>API Documentation</h2>
+    <div class="module-list">
+
+        <div class="module-card">
+            <a href="datasets/index.html">datasets</a>
+            <p>Dynamical system data generators (Logistic Map, Lorenz, Burgers)</p>
+        </div>
+
+        <div class="module-card">
+            <a href="models/index.html">models</a>
+            <p>Neural operator architectures (DeepONet, FNO)</p>
+        </div>
+
+        <div class="module-card">
+            <a href="optimizers/index.html">optimizers</a>
+            <p>Optimization algorithms with variance tracking (SGD, Adam, SVRG)</p>
+        </div>
+
+        <div class="module-card">
+            <a href="training/index.html">training</a>
+            <p>Training loop and checkpoint management</p>
+        </div>
+
+        <div class="module-card">
+            <a href="analysis/index.html">analysis</a>
+            <p>Metrics computation and spectral analysis</p>
+        </div>
+
+        <div class="module-card">
+            <a href="visualization/index.html">visualization</a>
+            <p>Publication-quality plotting utilities</p>
+        </div>
+
+        <div class="module-card">
+            <a href="experiments/index.html">experiments</a>
+            <p>Configuration management and experiment runners</p>
+        </div>
+
+        <div class="module-card">
+            <a href="utils/index.html">utils</a>
+            <p>Logging, seeding, device management utilities</p>
+        </div>
+
+    </div>
+    
+    <div class="footer">
+        <p>Generated with pdoc3 | Neural Operator Variance Reduction Framework</p>
+    </div>
+</body>
+</html>

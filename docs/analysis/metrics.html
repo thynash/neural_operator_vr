@@ -1,0 +1,490 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>analysis.metrics API documentation</title>
+<meta name="description" content="Metrics computation for training, validation, and convergence analysis.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>analysis.metrics</code></h1>
+</header>
+<section id="section-intro">
+<p>Metrics computation for training, validation, and convergence analysis.</p>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="analysis.metrics.compute_convergence_metrics"><code class="name flex">
+<span>def <span class="ident">compute_convergence_metrics</span></span>(<span>training_history: Dict[str, List[Tuple[int, float]]], target_loss: float) ‑> Dict[str, Any]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compute_convergence_metrics(
+    training_history: Dict[str, List[Tuple[int, float]]],
+    target_loss: float
+) -&gt; Dict[str, Any]:
+    &#34;&#34;&#34;
+    Compute convergence metrics from training history.
+    
+    Args:
+        training_history: Dictionary containing metric histories with (iteration, value) tuples
+        target_loss: Target validation loss threshold
+    
+    Returns:
+        Dictionary containing:
+            - iterations_to_target: Iterations to reach target loss (or None)
+            - time_to_target: Wall-clock time to reach target loss (or None)
+            - gradient_evals_to_target: Gradient evaluations to reach target (or None)
+            - final_val_loss: Final validation loss achieved
+            - min_val_loss: Minimum validation loss achieved
+    
+    Validates: Requirements 8.1, 8.2, 8.3, 8.4
+    &#34;&#34;&#34;
+    val_loss_history = training_history.get(&#39;val_loss&#39;, [])
+    iteration_time_history = training_history.get(&#39;iteration_time&#39;, [])
+    
+    if not val_loss_history:
+        return {
+            &#39;iterations_to_target&#39;: None,
+            &#39;time_to_target&#39;: None,
+            &#39;gradient_evals_to_target&#39;: None,
+            &#39;final_val_loss&#39;: None,
+            &#39;min_val_loss&#39;: None,
+        }
+    
+    # Find minimum validation loss
+    min_val_loss = min(loss for _, loss in val_loss_history)
+    final_val_loss = val_loss_history[-1][1]
+    
+    # Find first iteration where target loss is reached
+    iterations_to_target = None
+    time_to_target = None
+    gradient_evals_to_target = None
+    
+    for iteration, loss in val_loss_history:
+        if loss &lt; target_loss:
+            iterations_to_target = iteration
+            
+            # Compute wall-clock time up to this iteration
+            time_to_target = sum(
+                time_val for iter_val, time_val in iteration_time_history
+                if iter_val &lt;= iteration
+            )
+            
+            # Gradient evaluations equal iterations (one gradient per iteration)
+            gradient_evals_to_target = iteration
+            break
+    
+    metrics = {
+        &#39;iterations_to_target&#39;: iterations_to_target,
+        &#39;time_to_target&#39;: time_to_target,
+        &#39;gradient_evals_to_target&#39;: gradient_evals_to_target,
+        &#39;final_val_loss&#39;: final_val_loss,
+        &#39;min_val_loss&#39;: min_val_loss,
+    }
+    
+    return metrics</code></pre>
+</details>
+<div class="desc"><p>Compute convergence metrics from training history.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>training_history</code></strong></dt>
+<dd>Dictionary containing metric histories with (iteration, value) tuples</dd>
+<dt><strong><code>target_loss</code></strong></dt>
+<dd>Target validation loss threshold</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Dictionary containing:
+- iterations_to_target: Iterations to reach target loss (or None)
+- time_to_target: Wall-clock time to reach target loss (or None)
+- gradient_evals_to_target: Gradient evaluations to reach target (or None)
+- final_val_loss: Final validation loss achieved
+- min_val_loss: Minimum validation loss achieved
+Validates: Requirements 8.1, 8.2, 8.3, 8.4</p></div>
+</dd>
+<dt id="analysis.metrics.compute_long_horizon_metrics"><code class="name flex">
+<span>def <span class="ident">compute_long_horizon_metrics</span></span>(<span>model: torch.nn.modules.module.Module,<br>initial_state: torch.Tensor,<br>true_trajectory: torch.Tensor,<br>num_steps: int,<br>device: torch.device,<br>divergence_threshold: float = 1000.0) ‑> Dict[str, float]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compute_long_horizon_metrics(
+    model: nn.Module,
+    initial_state: torch.Tensor,
+    true_trajectory: torch.Tensor,
+    num_steps: int,
+    device: torch.device,
+    divergence_threshold: float = 1e3
+) -&gt; Dict[str, float]:
+    &#34;&#34;&#34;
+    Compute long-horizon prediction metrics via autoregressive rollout.
+    
+    Args:
+        model: Neural operator model
+        initial_state: Initial state for rollout [batch, input_horizon, state_dim]
+        true_trajectory: True trajectory [batch, num_steps, state_dim]
+        num_steps: Number of autoregressive steps
+        device: Device for computation
+        divergence_threshold: Threshold for detecting divergence
+    
+    Returns:
+        Dictionary containing:
+            - long_horizon_mse: Mean squared error over prediction horizon
+            - long_horizon_steps: Number of steps before divergence
+    
+    Validates: Requirements 6.3, 6.4, 8.3
+    &#34;&#34;&#34;
+    model.eval()
+    
+    with torch.no_grad():
+        current_state = initial_state.to(device)  # [batch, input_horizon, state_dim]
+        predictions = []
+        
+        # Autoregressive rollout
+        for step in range(num_steps):
+            # Prepare inputs for neural operator
+            # current_state: [batch, input_horizon, state_dim]
+            # Neural operators expect: input_functions [batch, state_dim, num_sensors]
+            #                          query_points [batch, state_dim, num_queries]
+            input_functions = current_state.permute(0, 2, 1)  # [batch, state_dim, input_horizon]
+            
+            # For query points, use the same shape as we want 1 output step
+            # Create query points with shape [batch, state_dim, 1]
+            query_points = torch.zeros(
+                current_state.shape[0], 
+                current_state.shape[2], 
+                1, 
+                device=device
+            )
+            
+            # Predict next state
+            next_state_output = model(input_functions, query_points)  # [batch, state_dim, 1]
+            next_state = next_state_output.permute(0, 2, 1)  # [batch, 1, state_dim]
+            
+            predictions.append(next_state.squeeze(1))  # [batch, state_dim]
+            
+            # Check for divergence
+            if torch.max(torch.abs(next_state)) &gt; divergence_threshold:
+                # Divergence detected
+                steps_before_divergence = step + 1
+                break
+            
+            # Update current state: shift window and append new prediction
+            # Keep last (input_horizon - 1) steps and append new prediction
+            current_state = torch.cat([
+                current_state[:, 1:, :],  # Drop first step
+                next_state  # Append new prediction
+            ], dim=1)
+        else:
+            # No divergence
+            steps_before_divergence = num_steps
+        
+        # Stack predictions
+        if len(predictions) &gt; 0:
+            predictions = torch.stack(predictions, dim=1)  # [batch, steps, state_dim]
+            
+            # Compute MSE over available steps
+            available_steps = predictions.shape[1]
+            true_traj_subset = true_trajectory[:, :available_steps, :].to(device)
+            mse = torch.mean((predictions - true_traj_subset) ** 2).item()
+        else:
+            mse = float(&#39;inf&#39;)
+    
+    metrics = {
+        &#39;long_horizon_mse&#39;: mse,
+        &#39;long_horizon_steps&#39;: steps_before_divergence,
+    }
+    
+    model.train()
+    return metrics</code></pre>
+</details>
+<div class="desc"><p>Compute long-horizon prediction metrics via autoregressive rollout.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>model</code></strong></dt>
+<dd>Neural operator model</dd>
+<dt><strong><code>initial_state</code></strong></dt>
+<dd>Initial state for rollout [batch, input_horizon, state_dim]</dd>
+<dt><strong><code>true_trajectory</code></strong></dt>
+<dd>True trajectory [batch, num_steps, state_dim]</dd>
+<dt><strong><code>num_steps</code></strong></dt>
+<dd>Number of autoregressive steps</dd>
+<dt><strong><code>device</code></strong></dt>
+<dd>Device for computation</dd>
+<dt><strong><code>divergence_threshold</code></strong></dt>
+<dd>Threshold for detecting divergence</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Dictionary containing:
+- long_horizon_mse: Mean squared error over prediction horizon
+- long_horizon_steps: Number of steps before divergence
+Validates: Requirements 6.3, 6.4, 8.3</p></div>
+</dd>
+<dt id="analysis.metrics.compute_training_metrics"><code class="name flex">
+<span>def <span class="ident">compute_training_metrics</span></span>(<span>model: torch.nn.modules.module.Module,<br>batch: Tuple[torch.Tensor, torch.Tensor],<br>loss: torch.Tensor,<br>device: torch.device) ‑> Dict[str, float]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compute_training_metrics(
+    model: nn.Module,
+    batch: Tuple[torch.Tensor, torch.Tensor],
+    loss: torch.Tensor,
+    device: torch.device
+) -&gt; Dict[str, float]:
+    &#34;&#34;&#34;
+    Compute training metrics for a single iteration.
+    
+    Args:
+        model: Neural operator model
+        batch: Tuple of (input, target) tensors
+        loss: Computed loss value
+        device: Device for computation
+    
+    Returns:
+        Dictionary containing:
+            - train_loss: MSE loss value
+            - train_grad_norm: L2 norm of gradient vector
+            - iteration_time: Time taken for this iteration (placeholder, set externally)
+    
+    Validates: Requirements 6.1, 8.1
+    &#34;&#34;&#34;
+    # Compute gradient norm
+    total_norm = 0.0
+    for param in model.parameters():
+        if param.grad is not None:
+            param_norm = param.grad.data.norm(2)
+            total_norm += param_norm.item() ** 2
+    grad_norm = total_norm ** 0.5
+    
+    metrics = {
+        &#39;train_loss&#39;: loss.item(),
+        &#39;train_grad_norm&#39;: grad_norm,
+    }
+    
+    return metrics</code></pre>
+</details>
+<div class="desc"><p>Compute training metrics for a single iteration.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>model</code></strong></dt>
+<dd>Neural operator model</dd>
+<dt><strong><code>batch</code></strong></dt>
+<dd>Tuple of (input, target) tensors</dd>
+<dt><strong><code>loss</code></strong></dt>
+<dd>Computed loss value</dd>
+<dt><strong><code>device</code></strong></dt>
+<dd>Device for computation</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Dictionary containing:
+- train_loss: MSE loss value
+- train_grad_norm: L2 norm of gradient vector
+- iteration_time: Time taken for this iteration (placeholder, set externally)
+Validates: Requirements 6.1, 8.1</p></div>
+</dd>
+<dt id="analysis.metrics.compute_validation_metrics"><code class="name flex">
+<span>def <span class="ident">compute_validation_metrics</span></span>(<span>model: torch.nn.modules.module.Module,<br>val_loader: torch.utils.data.dataloader.DataLoader,<br>device: torch.device,<br>denormalize_fn: <built-in function callable> | None = None) ‑> Dict[str, float]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compute_validation_metrics(
+    model: nn.Module,
+    val_loader: DataLoader,
+    device: torch.device,
+    denormalize_fn: Optional[callable] = None
+) -&gt; Dict[str, float]:
+    &#34;&#34;&#34;
+    Compute validation metrics on the validation set.
+    
+    Args:
+        model: Neural operator model
+        val_loader: DataLoader for validation data
+        device: Device for computation
+        denormalize_fn: Optional function to denormalize predictions and targets
+    
+    Returns:
+        Dictionary containing:
+            - val_loss: Mean squared error on validation set
+            - val_relative_error: Relative L2 error normalized by true solution norm
+            - val_max_error: Maximum pointwise error
+            - val_mean_absolute_error: Mean absolute error
+    
+    Validates: Requirements 6.2, 8.2
+    &#34;&#34;&#34;
+    model.eval()
+    
+    total_loss = 0.0
+    total_relative_error = 0.0
+    max_error = 0.0
+    total_mae = 0.0
+    num_batches = 0
+    
+    with torch.no_grad():
+        for batch_data in val_loader:
+            # Handle different batch formats
+            if len(batch_data) == 3:
+                # DeepONet format: (input_functions, query_points, targets)
+                input_functions, query_points, targets = batch_data
+                input_functions = input_functions.to(device)
+                query_points = query_points.to(device)
+                targets = targets.to(device)
+            elif len(batch_data) == 2:
+                # Simple format: (inputs, targets)
+                inputs, targets = batch_data
+                inputs = inputs.to(device)
+                targets = targets.to(device)
+                
+                # Reshape for neural operator format
+                # inputs: [batch, input_horizon, state_dim]
+                # Neural operators expect: input_functions [batch, state_dim, num_sensors]
+                #                          query_points [batch, state_dim, num_queries]
+                input_functions = inputs.permute(0, 2, 1)  # [batch, state_dim, input_horizon]
+                query_points = targets.permute(0, 2, 1)  # [batch, state_dim, output_horizon]
+            else:
+                raise ValueError(f&#34;Unexpected batch format with {len(batch_data)} elements&#34;)
+            
+            # Forward pass
+            outputs = model(input_functions, query_points)
+            
+            # Reshape targets to match predictions if needed
+            if targets.shape != outputs.shape:
+                # targets: [batch, output_horizon, state_dim]
+                # outputs: [batch, state_dim, output_horizon]
+                if len(targets.shape) == 3 and len(outputs.shape) == 3:
+                    if targets.shape[1] != outputs.shape[1]:
+                        targets = targets.permute(0, 2, 1)
+            
+            # Denormalize if function provided
+            if denormalize_fn is not None:
+                outputs_denorm = denormalize_fn(outputs)
+                targets_denorm = denormalize_fn(targets)
+            else:
+                outputs_denorm = outputs
+                targets_denorm = targets
+            
+            # Compute MSE loss
+            mse = torch.mean((outputs_denorm - targets_denorm) ** 2)
+            total_loss += mse.item()
+            
+            # Compute relative L2 error: ||y_pred - y_true|| / ||y_true||
+            diff_norm = torch.norm(outputs_denorm - targets_denorm)
+            target_norm = torch.norm(targets_denorm)
+            if target_norm &gt; 1e-10:  # Avoid division by zero
+                relative_error = (diff_norm / target_norm).item()
+            else:
+                relative_error = 0.0
+            total_relative_error += relative_error
+            
+            # Compute max error
+            batch_max_error = torch.max(torch.abs(outputs_denorm - targets_denorm)).item()
+            max_error = max(max_error, batch_max_error)
+            
+            # Compute mean absolute error
+            mae = torch.mean(torch.abs(outputs_denorm - targets_denorm)).item()
+            total_mae += mae
+            
+            num_batches += 1
+    
+    metrics = {
+        &#39;val_loss&#39;: total_loss / num_batches,
+        &#39;val_relative_error&#39;: total_relative_error / num_batches,
+        &#39;val_max_error&#39;: max_error,
+        &#39;val_mean_absolute_error&#39;: total_mae / num_batches,
+    }
+    
+    model.train()
+    return metrics</code></pre>
+</details>
+<div class="desc"><p>Compute validation metrics on the validation set.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>model</code></strong></dt>
+<dd>Neural operator model</dd>
+<dt><strong><code>val_loader</code></strong></dt>
+<dd>DataLoader for validation data</dd>
+<dt><strong><code>device</code></strong></dt>
+<dd>Device for computation</dd>
+<dt><strong><code>denormalize_fn</code></strong></dt>
+<dd>Optional function to denormalize predictions and targets</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Dictionary containing:
+- val_loss: Mean squared error on validation set
+- val_relative_error: Relative L2 error normalized by true solution norm
+- val_max_error: Maximum pointwise error
+- val_mean_absolute_error: Mean absolute error
+Validates: Requirements 6.2, 8.2</p></div>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="analysis" href="index.html">analysis</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="analysis.metrics.compute_convergence_metrics" href="#analysis.metrics.compute_convergence_metrics">compute_convergence_metrics</a></code></li>
+<li><code><a title="analysis.metrics.compute_long_horizon_metrics" href="#analysis.metrics.compute_long_horizon_metrics">compute_long_horizon_metrics</a></code></li>
+<li><code><a title="analysis.metrics.compute_training_metrics" href="#analysis.metrics.compute_training_metrics">compute_training_metrics</a></code></li>
+<li><code><a title="analysis.metrics.compute_validation_metrics" href="#analysis.metrics.compute_validation_metrics">compute_validation_metrics</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>

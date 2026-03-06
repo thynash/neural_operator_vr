@@ -1,0 +1,16 @@
+====================================================================================================
+COMPREHENSIVE EXPERIMENTAL RESULTS
+====================================================================================================
+
+Optimizer  Final Val Loss  Total Iterations  Total Epochs  Training Time (min)  Mean Grad Variance  Spectral Radius
+     Adam    3.857339e-06             15100             1             0.982499        3.076953e-05         0.993443
+      SGD    2.066017e-07            145300             5             7.139468        1.802388e-06         0.995899
+     SVRG    2.394572e-06            125000             5            22.840485        2.444414e-07         0.929604
+
+Variance Reduction (SVRG vs SGD): 86.44%
+Variance Reduction (SVRG vs Adam): 99.21%
+
+Spectral Stability Analysis:
+  Adam: 0.993443 (STABLE)
+  SGD: 0.995899 (STABLE)
+  SVRG: 0.929604 (STABLE)

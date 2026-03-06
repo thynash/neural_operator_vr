@@ -1,0 +1,68 @@
+experiment:
+  name: "deeponet_logistic_svrg"
+  seed: 42
+  device: "cuda"
+  deterministic: true
+
+dataset:
+  type: "logistic"
+  params:
+    r: 3.8
+    initial_condition: 0.5
+    trajectory_length: 1000
+  num_train_trajectories: 800
+  num_val_trajectories: 200
+  input_horizon: 5
+  output_horizon: 1
+  train_val_split: 0.8
+  batch_size: 64
+  shuffle: true
+
+model:
+  type: "deeponet"
+  params:
+    branch_layers: [64, 64, 32]
+    trunk_layers: [64, 64, 32]
+    basis_dim: 32
+    activation: "tanh"
+    use_bias: true
+
+optimizer:
+  type: "svrg"
+  params:
+    learning_rate: 0.001
+    inner_loop_length: 50
+    weight_decay: 0.0
+
+scheduler:
+  type: "step"
+  params:
+    step_size: 1500
+    gamma: 0.9
+
+training:
+  num_epochs: 150
+  batch_size: 64
+  validation_interval: 100
+  variance_interval: 500
+  checkpoint_interval: 1000
+  early_stopping_patience: 25
+  target_loss: 0.0001
+
+logging:
+  log_dir: "./logs"
+  save_checkpoints: true
+  save_final_model: true
+  log_level: "INFO"
+
+analysis:
+  compute_spectral_radius: true
+  spectral_interval: 1000
+  long_horizon_steps: 200
+  num_eigenvalues: 5
+
+visualization:
+  generate_plots: true
+  plot_format: "pdf"
+  dpi: 300
+  output_dir: "./visualization_output"

@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>optimizers.base API documentation</title>
+<meta name="description" content="Abstract base class for optimizers with gradient variance tracking.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>optimizers.base</code></h1>
+</header>
+<section id="section-intro">
+<p>Abstract base class for optimizers with gradient variance tracking.</p>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="optimizers.base.OptimizerWithVariance"><code class="flex name class">
+<span>class <span class="ident">OptimizerWithVariance</span></span>
+<span>(</span><span>params, defaults: Dict[str, Any])</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class OptimizerWithVariance(ABC):
+    &#34;&#34;&#34;Abstract base for optimizers with gradient variance tracking.
+    
+    This base class defines the interface for optimization algorithms that support
+    gradient variance computation, which is essential for comparing variance reduction
+    methods like SVRG against standard optimizers like SGD and Adam.
+    &#34;&#34;&#34;
+    
+    def __init__(self, params, defaults: Dict[str, Any]):
+        &#34;&#34;&#34;Initialize optimizer with parameters and default settings.
+        
+        Parameters
+        ----------
+        params : iterable
+            Iterable of parameters to optimize or dicts defining parameter groups
+        defaults : Dict[str, Any]
+            Dictionary containing default values of optimization options
+        &#34;&#34;&#34;
+        self.defaults = defaults
+        self.state: Dict[int, Dict[str, Any]] = {}
+        self.param_groups = []
+        
+        # Handle parameter groups
+        # Convert generator/iterator to list first
+        if not isinstance(params, (list, tuple)):
+            params = list(params)
+        
+        if isinstance(params, (list, tuple)):
+            if len(params) == 0:
+                raise ValueError(&#34;optimizer got an empty parameter list&#34;)
+            if not isinstance(params[0], dict):
+                params = [{&#39;params&#39;: params}]
+        
+        for param_group in params:
+            self.add_param_group(param_group)
+    
+    def add_param_group(self, param_group: Dict[str, Any]) -&gt; None:
+        &#34;&#34;&#34;Add a parameter group to the optimizer.
+        
+        Parameters
+        ----------
+        param_group : Dict[str, Any]
+            Dictionary specifying parameters and optimization options
+        &#34;&#34;&#34;
+        params = param_group[&#39;params&#39;]
+        if isinstance(params, torch.Tensor):
+            param_group[&#39;params&#39;] = [params]
+        elif isinstance(params, set):
+            raise TypeError(&#39;optimizer parameters need to be organized in ordered collections&#39;)
+        else:
+            param_group[&#39;params&#39;] = list(params)
+        
+        for param in param_group[&#39;params&#39;]:
+            if not isinstance(param, torch.Tensor):
+                raise TypeError(&#34;optimizer can only optimize Tensors&#34;)
+        
+        # Add defaults
+        for key, value in self.defaults.items():
+            param_group.setdefault(key, value)
+        
+        self.param_groups.append(param_group)
+    
+    @abstractmethod
+    def step(self, closure: Optional[Callable[[], float]] = None) -&gt; Optional[float]:
+        &#34;&#34;&#34;Perform a single optimization step.
+        
+        Parameters
+        ----------
+        closure : Optional[Callable[[], float]]
+            A closure that reevaluates the model and returns the loss
+        
+        Returns
+        -------
+        Optional[float]
+            The loss value if closure is provided, None otherwise
+        &#34;&#34;&#34;
+        pass
+    
+    @abstractmethod
+    def compute_gradient_variance(
+        self,
+        model: nn.Module,
+        data_loader: DataLoader,
+        loss_fn: Callable[[torch.Tensor, torch.Tensor], torch.Tensor],
+        num_samples: int = 10
+    ) -&gt; float:
+        &#34;&#34;&#34;Compute empirical gradient variance.
+        
+        This method samples multiple mini-batches and computes the variance of
+        gradient estimates, which is crucial for analyzing optimizer behavior.
+        
+        Parameters
+        ----------
+        model : nn.Module
+            Neural network model
+        data_loader : DataLoader
+            DataLoader for sampling mini-batches
+        loss_fn : Callable
+            Loss function that takes (predictions, targets) and returns scalar loss
+        num_samples : int, default=10
+            Number of mini-batch samples for variance estimation
+        
+        Returns
+        -------
+        float
+            Mean squared deviation from mean gradient (gradient variance)
+        &#34;&#34;&#34;
+        pass
+    
+    @abstractmethod
+    def get_state_dict(self) -&gt; Dict[str, Any]:
+        &#34;&#34;&#34;Return optimizer state for checkpointing.
+        
+        Returns
+        -------
+        Dict[str, Any]
+            Dictionary containing optimizer state including parameter groups and state
+        &#34;&#34;&#34;
+        pass
+    
+    def load_state_dict(self, state_dict: Dict[str, Any]) -&gt; None:
+        &#34;&#34;&#34;Load optimizer state from checkpoint.
+        
+        Parameters
+        ----------
+        state_dict : Dict[str, Any]
+            Dictionary containing optimizer state
+        &#34;&#34;&#34;
+        self.state = state_dict[&#39;state&#39;]
+        self.param_groups = state_dict[&#39;param_groups&#39;]
+    
+    def zero_grad(self) -&gt; None:
+        &#34;&#34;&#34;Zero out gradients for all parameters.&#34;&#34;&#34;
+        for group in self.param_groups:
+            for p in group[&#39;params&#39;]:
+                if p.grad is not None:
+                    p.grad.zero_()</code></pre>
+</details>
+<div class="desc"><p>Abstract base for optimizers with gradient variance tracking.</p>
+<p>This base class defines the interface for optimization algorithms that support
+gradient variance computation, which is essential for comparing variance reduction
+methods like SVRG against standard optimizers like SGD and Adam.</p>
+<p>Initialize optimizer with parameters and default settings.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>params</code></strong> :&ensp;<code>iterable</code></dt>
+<dd>Iterable of parameters to optimize or dicts defining parameter groups</dd>
+<dt><strong><code>defaults</code></strong> :&ensp;<code>Dict[str, Any]</code></dt>
+<dd>Dictionary containing default values of optimization options</dd>
+</dl></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>abc.ABC</li>
+</ul>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="optimizers.adam.Adam" href="adam.html#optimizers.adam.Adam">Adam</a></li>
+<li><a title="optimizers.sgd.SGD" href="sgd.html#optimizers.sgd.SGD">SGD</a></li>
+<li><a title="optimizers.svrg.SVRG" href="svrg.html#optimizers.svrg.SVRG">SVRG</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="optimizers.base.OptimizerWithVariance.add_param_group"><code class="name flex">
+<span>def <span class="ident">add_param_group</span></span>(<span>self, param_group: Dict[str, Any]) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_param_group(self, param_group: Dict[str, Any]) -&gt; None:
+    &#34;&#34;&#34;Add a parameter group to the optimizer.
+    
+    Parameters
+    ----------
+    param_group : Dict[str, Any]
+        Dictionary specifying parameters and optimization options
+    &#34;&#34;&#34;
+    params = param_group[&#39;params&#39;]
+    if isinstance(params, torch.Tensor):
+        param_group[&#39;params&#39;] = [params]
+    elif isinstance(params, set):
+        raise TypeError(&#39;optimizer parameters need to be organized in ordered collections&#39;)
+    else:
+        param_group[&#39;params&#39;] = list(params)
+    
+    for param in param_group[&#39;params&#39;]:
+        if not isinstance(param, torch.Tensor):
+            raise TypeError(&#34;optimizer can only optimize Tensors&#34;)
+    
+    # Add defaults
+    for key, value in self.defaults.items():
+        param_group.setdefault(key, value)
+    
+    self.param_groups.append(param_group)</code></pre>
+</details>
+<div class="desc"><p>Add a parameter group to the optimizer.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>param_group</code></strong> :&ensp;<code>Dict[str, Any]</code></dt>
+<dd>Dictionary specifying parameters and optimization options</dd>
+</dl></div>
+</dd>
+<dt id="optimizers.base.OptimizerWithVariance.compute_gradient_variance"><code class="name flex">
+<span>def <span class="ident">compute_gradient_variance</span></span>(<span>self,<br>model: torch.nn.modules.module.Module,<br>data_loader: torch.utils.data.dataloader.DataLoader,<br>loss_fn: Callable[[torch.Tensor, torch.Tensor], torch.Tensor],<br>num_samples: int = 10) ‑> float</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@abstractmethod
+def compute_gradient_variance(
+    self,
+    model: nn.Module,
+    data_loader: DataLoader,
+    loss_fn: Callable[[torch.Tensor, torch.Tensor], torch.Tensor],
+    num_samples: int = 10
+) -&gt; float:
+    &#34;&#34;&#34;Compute empirical gradient variance.
+    
+    This method samples multiple mini-batches and computes the variance of
+    gradient estimates, which is crucial for analyzing optimizer behavior.
+    
+    Parameters
+    ----------
+    model : nn.Module
+        Neural network model
+    data_loader : DataLoader
+        DataLoader for sampling mini-batches
+    loss_fn : Callable
+        Loss function that takes (predictions, targets) and returns scalar loss
+    num_samples : int, default=10
+        Number of mini-batch samples for variance estimation
+    
+    Returns
+    -------
+    float
+        Mean squared deviation from mean gradient (gradient variance)
+    &#34;&#34;&#34;
+    pass</code></pre>
+</details>
+<div class="desc"><p>Compute empirical gradient variance.</p>
+<p>This method samples multiple mini-batches and computes the variance of
+gradient estimates, which is crucial for analyzing optimizer behavior.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>model</code></strong> :&ensp;<code>nn.Module</code></dt>
+<dd>Neural network model</dd>
+<dt><strong><code>data_loader</code></strong> :&ensp;<code>DataLoader</code></dt>
+<dd>DataLoader for sampling mini-batches</dd>
+<dt><strong><code>loss_fn</code></strong> :&ensp;<code>Callable</code></dt>
+<dd>Loss function that takes (predictions, targets) and returns scalar loss</dd>
+<dt><strong><code>num_samples</code></strong> :&ensp;<code>int</code>, default=<code>10</code></dt>
+<dd>Number of mini-batch samples for variance estimation</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>float</code></dt>
+<dd>Mean squared deviation from mean gradient (gradient variance)</dd>
+</dl></div>
+</dd>
+<dt id="optimizers.base.OptimizerWithVariance.get_state_dict"><code class="name flex">
+<span>def <span class="ident">get_state_dict</span></span>(<span>self) ‑> Dict[str, Any]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@abstractmethod
+def get_state_dict(self) -&gt; Dict[str, Any]:
+    &#34;&#34;&#34;Return optimizer state for checkpointing.
+    
+    Returns
+    -------
+    Dict[str, Any]
+        Dictionary containing optimizer state including parameter groups and state
+    &#34;&#34;&#34;
+    pass</code></pre>
+</details>
+<div class="desc"><p>Return optimizer state for checkpointing.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>Dict[str, Any]</code></dt>
+<dd>Dictionary containing optimizer state including parameter groups and state</dd>
+</dl></div>
+</dd>
+<dt id="optimizers.base.OptimizerWithVariance.load_state_dict"><code class="name flex">
+<span>def <span class="ident">load_state_dict</span></span>(<span>self, state_dict: Dict[str, Any]) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def load_state_dict(self, state_dict: Dict[str, Any]) -&gt; None:
+    &#34;&#34;&#34;Load optimizer state from checkpoint.
+    
+    Parameters
+    ----------
+    state_dict : Dict[str, Any]
+        Dictionary containing optimizer state
+    &#34;&#34;&#34;
+    self.state = state_dict[&#39;state&#39;]
+    self.param_groups = state_dict[&#39;param_groups&#39;]</code></pre>
+</details>
+<div class="desc"><p>Load optimizer state from checkpoint.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>state_dict</code></strong> :&ensp;<code>Dict[str, Any]</code></dt>
+<dd>Dictionary containing optimizer state</dd>
+</dl></div>
+</dd>
+<dt id="optimizers.base.OptimizerWithVariance.step"><code class="name flex">
+<span>def <span class="ident">step</span></span>(<span>self, closure: Callable[[], float] | None = None) ‑> float | None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@abstractmethod
+def step(self, closure: Optional[Callable[[], float]] = None) -&gt; Optional[float]:
+    &#34;&#34;&#34;Perform a single optimization step.
+    
+    Parameters
+    ----------
+    closure : Optional[Callable[[], float]]
+        A closure that reevaluates the model and returns the loss
+    
+    Returns
+    -------
+    Optional[float]
+        The loss value if closure is provided, None otherwise
+    &#34;&#34;&#34;
+    pass</code></pre>
+</details>
+<div class="desc"><p>Perform a single optimization step.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>closure</code></strong> :&ensp;<code>Optional[Callable[[], float]]</code></dt>
+<dd>A closure that reevaluates the model and returns the loss</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>Optional[float]</code></dt>
+<dd>The loss value if closure is provided, None otherwise</dd>
+</dl></div>
+</dd>
+<dt id="optimizers.base.OptimizerWithVariance.zero_grad"><code class="name flex">
+<span>def <span class="ident">zero_grad</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def zero_grad(self) -&gt; None:
+    &#34;&#34;&#34;Zero out gradients for all parameters.&#34;&#34;&#34;
+    for group in self.param_groups:
+        for p in group[&#39;params&#39;]:
+            if p.grad is not None:
+                p.grad.zero_()</code></pre>
+</details>
+<div class="desc"><p>Zero out gradients for all parameters.</p></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="optimizers" href="index.html">optimizers</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="optimizers.base.OptimizerWithVariance" href="#optimizers.base.OptimizerWithVariance">OptimizerWithVariance</a></code></h4>
+<ul class="">
+<li><code><a title="optimizers.base.OptimizerWithVariance.add_param_group" href="#optimizers.base.OptimizerWithVariance.add_param_group">add_param_group</a></code></li>
+<li><code><a title="optimizers.base.OptimizerWithVariance.compute_gradient_variance" href="#optimizers.base.OptimizerWithVariance.compute_gradient_variance">compute_gradient_variance</a></code></li>
+<li><code><a title="optimizers.base.OptimizerWithVariance.get_state_dict" href="#optimizers.base.OptimizerWithVariance.get_state_dict">get_state_dict</a></code></li>
+<li><code><a title="optimizers.base.OptimizerWithVariance.load_state_dict" href="#optimizers.base.OptimizerWithVariance.load_state_dict">load_state_dict</a></code></li>
+<li><code><a title="optimizers.base.OptimizerWithVariance.step" href="#optimizers.base.OptimizerWithVariance.step">step</a></code></li>
+<li><code><a title="optimizers.base.OptimizerWithVariance.zero_grad" href="#optimizers.base.OptimizerWithVariance.zero_grad">zero_grad</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>
