@@ -1,0 +1,133 @@
+% ============================================================================
+% HORIZONTAL ARCHITECTURE DIAGRAM TABLE
+% ============================================================================
+
+\begin{table*}[htbp]
+\centering
+\caption{Fourier Neural Operator architecture with layer-by-layer parameter breakdown.}
+\label{tab:fno_horizontal}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{ccccccccc}
+\toprule
+\textbf{Input} & 
+\textbf{Lift} & 
+\textbf{Fourier 1} & 
+\textbf{Fourier 2} & 
+\textbf{Fourier 3} & 
+\textbf{Fourier 4} & 
+\textbf{Project} & 
+\textbf{Output} & 
+\textbf{Total} \\
+\midrule
+$\mathbb{R}^{256 \times 1}$ & 
+$\mathbb{R}^{256 \times 64}$ & 
+$\mathbb{R}^{256 \times 64}$ & 
+$\mathbb{R}^{256 \times 64}$ & 
+$\mathbb{R}^{256 \times 64}$ & 
+$\mathbb{R}^{256 \times 64}$ & 
+$\mathbb{R}^{256 \times 128}$ & 
+$\mathbb{R}^{256 \times 1}$ & 
+-- \\
+\midrule
+-- & 
+Linear & 
+SpectralConv & 
+SpectralConv & 
+SpectralConv & 
+SpectralConv & 
+Linear & 
+Linear & 
+-- \\
+\midrule
+-- & 
+64 & 
+8,192 & 
+8,192 & 
+8,192 & 
+8,192 & 
+8,320 & 
+33,024 & 
+\textbf{74,176} \\
+\midrule
+-- & 
+-- & 
+ReLU & 
+ReLU & 
+ReLU & 
+ReLU & 
+ReLU & 
+-- & 
+-- \\
+\bottomrule
+\end{tabular}%
+}
+\end{table*}
+
+% ============================================================================
+% ALTERNATIVE: More Detailed Horizontal Layout
+% ============================================================================
+
+\begin{table*}[htbp]
+\centering
+\caption{Detailed FNO architecture with computational flow (left to right).}
+\label{tab:fno_detailed}
+\small
+\begin{tabular}{p{1.5cm}p{1.5cm}p{1.8cm}p{1.8cm}p{1.8cm}p{1.8cm}p{1.5cm}p{1.5cm}}
+\toprule
+\textbf{Layer} & \textbf{Type} & \textbf{Input Shape} & \textbf{Output Shape} & \textbf{Params} & \textbf{Operation} & \textbf{Activation} & \textbf{Modes} \\
+\midrule
+Input & -- & $(B, 256, 1)$ & $(B, 256, 1)$ & 0 & Identity & -- & -- \\
+\midrule
+Lift & Linear & $(B, 256, 1)$ & $(B, 256, 64)$ & 64 & $Wx + b$ & -- & -- \\
+\midrule
+Fourier-1 & Spectral Conv & $(B, 256, 64)$ & $(B, 256, 64)$ & 8,192 & FFT $\rightarrow$ Conv $\rightarrow$ IFFT & ReLU & 16 \\
+\midrule
+Fourier-2 & Spectral Conv & $(B, 256, 64)$ & $(B, 256, 64)$ & 8,192 & FFT $\rightarrow$ Conv $\rightarrow$ IFFT & ReLU & 16 \\
+\midrule
+Fourier-3 & Spectral Conv & $(B, 256, 64)$ & $(B, 256, 64)$ & 8,192 & FFT $\rightarrow$ Conv $\rightarrow$ IFFT & ReLU & 16 \\
+\midrule
+Fourier-4 & Spectral Conv & $(B, 256, 64)$ & $(B, 256, 64)$ & 8,192 & FFT $\rightarrow$ Conv $\rightarrow$ IFFT & ReLU & 16 \\
+\midrule
+Project & Linear & $(B, 256, 64)$ & $(B, 256, 128)$ & 8,320 & $Wx + b$ & ReLU & -- \\
+\midrule
+Output & Linear & $(B, 256, 128)$ & $(B, 256, 1)$ & 33,024 & $Wx + b$ & -- & -- \\
+\midrule
+\multicolumn{4}{l}{\textbf{Total Parameters}} & \multicolumn{4}{r}{\textbf{74,176}} \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+% ============================================================================
+% COMPACT VERSION FOR SINGLE COLUMN
+% ============================================================================
+
+\begin{table}[htbp]
+\centering
+\caption{FNO architecture summary (compact).}
+\label{tab:fno_compact}
+\begin{tabular}{lccr}
+\toprule
+\textbf{Layer} & \textbf{Channels} & \textbf{Operation} & \textbf{Params} \\
+\midrule
+Input & 1 & -- & 0 \\
+Lift & $1 \rightarrow 64$ & Linear & 64 \\
+Fourier $\times 4$ & $64 \rightarrow 64$ & SpectralConv & 32,768 \\
+Project & $64 \rightarrow 128$ & Linear & 8,320 \\
+Output & $128 \rightarrow 1$ & Linear & 33,024 \\
+\midrule
+\textbf{Total} & & & \textbf{74,176} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ============================================================================
+% USAGE NOTES
+% ============================================================================
+%
+% For two-column papers, use table* environment for horizontal layout
+% For single-column papers, use the compact version
+% 
+% B = batch size (typically 32 in our experiments)
+% Modes = number of Fourier modes retained (16 in our case)
+%
+% ============================================================================
